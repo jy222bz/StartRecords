@@ -36,3 +36,10 @@ np222gb@student.lnu.se
 qx222ac@student.lnu.se
 jy222bz@student.lnu.se 
 oz222am@student.lnu.se 
+
+## Weekly meeting
+Monday 		  11:30   Slack
+Tuesday 	  12:45
+Wednesday 	11:30   Slack
+Thursday 	  11:30		
+Friday		  11:30   Slack
