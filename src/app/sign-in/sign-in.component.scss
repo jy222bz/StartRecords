@@ -1,0 +1,26 @@
+:host{
+    flex-grow: 1;
+    display: flex;
+    justify-content: left
+
+}
+
+div.userInput{
+    position: relative;
+}
+
+div.userInput label{
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    left: 10 px;
+    background: white;
+    padding: 5px 2px;
+}
+
+div.userInput userInput {
+    font-size: 24 px;
+    outline: 0;
+    padding: 10px 20px;
+}
+
