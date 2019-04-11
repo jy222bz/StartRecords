@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: '[app-page-not-found]',
   template: `<div> 
-            ERROR! The page was not found. 
+            404 - ERROR! The page was not found. 
              </div>`,
-  styles: [`div {color: red; 
+  styles: [`div {font-style: italic; color: red; 
   }`]
 })
 export class PageNotFoundComponent implements OnInit {
