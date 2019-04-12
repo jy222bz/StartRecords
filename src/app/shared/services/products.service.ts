@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 
 @Injectable()
-export class CategoriesService {
+export class ProductsService {
 
 
     constructor(private http: HttpClient) {

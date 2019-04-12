@@ -3,11 +3,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-    {path: '**', component: PageNotFoundComponent},
+
     {
         path: '',
         loadChildren: './modules/home/home.module#HomeModule?chunkName=home',
     },
+    {
+        path: 'admin/categories',
+        loadChildren: './modules/admin/categories/categories.module#CategoriesModule?chunkName=categories',
+    },
+    {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
