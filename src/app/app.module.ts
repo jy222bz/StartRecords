@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from "./material.module";
 import {FirebaseModule} from "./firebase.module";

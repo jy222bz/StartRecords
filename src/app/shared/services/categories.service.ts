@@ -10,11 +10,4 @@ export class CategoriesService {
 
     }
 
-    login() {
-
-    }
-
-    logout() {
-        
-    }
 }
