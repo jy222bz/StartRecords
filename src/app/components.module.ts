@@ -1,10 +1,17 @@
 import {NgModule} from '@angular/core';
+import {AlertComponent} from "./shared/components/alert/alert.component";
+import {PageNotFoundComponent} from "./shared/components/page-not-found/page-not-found.component";
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        AlertComponent,
+        PageNotFoundComponent,
+    ],
     imports: [],
-    providers: [],
-    bootstrap: []
+    exports: [
+        AlertComponent,
+        PageNotFoundComponent,
+    ]
 })
-export class MaterialModule {
+export class ComponentsModule {
 }

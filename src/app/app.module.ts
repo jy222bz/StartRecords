@@ -8,6 +8,7 @@ import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from "./material.module";
 import {FirebaseModule} from "./firebase.module";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
+import {ComponentsModule} from "./components.module";
 
 
 @NgModule({
@@ -21,8 +22,8 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
         BrowserModule,
         AppRoutingModule,
         FirebaseModule,
-        MaterialModule
-
+        MaterialModule,
+        ComponentsModule,
 
     ],
     providers: [],
