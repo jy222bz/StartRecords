@@ -7,13 +7,15 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from "./material.module";
 import {FirebaseModule} from "./firebase.module";
+import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
         PageNotFoundComponent,
-        LoginComponent
+        LoginComponent,
+        ToolbarComponent,
     ],
     imports: [
         BrowserModule,
@@ -24,7 +26,9 @@ import {FirebaseModule} from "./firebase.module";
 
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [
+        AppComponent,
+    ]
 })
 export class AppModule {
 }
