@@ -10,4 +10,12 @@ export class CategoriesService {
 
     }
 
+    add(args) {
+
+    }
+
+    delete(args) {
+
+    }
+
 }

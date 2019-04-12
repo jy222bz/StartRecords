@@ -28,6 +28,7 @@ export class DeleteComponent implements OnInit {
     save() {
         this.working = true;
         this.error = null;
+        /*
         this.categoriesService.delete(this.data)
             .subscribe(
                 (data) => {
@@ -39,6 +40,7 @@ export class DeleteComponent implements OnInit {
                     this.working = false;
                 }
             );
+        */
         return false;
     }
 

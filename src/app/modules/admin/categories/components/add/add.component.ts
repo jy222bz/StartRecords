@@ -39,6 +39,7 @@ export class AddComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
+        /*
         this.categoriesService.add(this.form.value)
             .subscribe(
                 (data) => {
@@ -50,6 +51,7 @@ export class AddComponent implements OnInit {
                     this.working = false;
                 }
             );
+        */
         return false;
     }
 
