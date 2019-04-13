@@ -8,6 +8,7 @@ import {MaterialModule} from "./material.module";
 import {FirebaseModule} from "./firebase.module";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {ComponentsModule} from "./components.module";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ComponentsModule} from "./components.module";
         ToolbarComponent,
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         FirebaseModule,
         MaterialModule,

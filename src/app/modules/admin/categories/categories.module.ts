@@ -9,10 +9,12 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
 import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
     imports: [
+        CommonModule,
         MaterialModule,
         ComponentsModule,
         CategoriesRoutingModule,
