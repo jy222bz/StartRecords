@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-
     {
         path: '',
         loadChildren: './modules/home/home.module#HomeModule?chunkName=home',
