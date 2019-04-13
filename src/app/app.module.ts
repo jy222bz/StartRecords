@@ -18,10 +18,10 @@ import {ComponentsModule} from "./components.module";
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
+        AppRoutingModule,
 
     ],
     providers: [],
