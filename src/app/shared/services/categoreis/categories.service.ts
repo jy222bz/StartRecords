@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from "@angular/fire/database";
+import {AngularFirestore} from "@angular/fire/firestore";
 import {Category} from "../../models/categories/category";
 
 
@@ -7,13 +7,12 @@ import {Category} from "../../models/categories/category";
 export class CategoriesService {
 
 
-    constructor(private db: AngularFireDatabase) {
+    constructor(private afs: AngularFirestore) {
 
     }
 
     get() {
-        console.log('getting list');
-        return this.db.list<Category>('/categories')
+        return this.afs.collection<Category>('categories').valueChanges();
     }
 
     add(args) {
