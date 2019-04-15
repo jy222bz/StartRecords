@@ -10,6 +10,7 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {ComponentsModule} from "./components.module";
 import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthenticationService} from "./shared/services/authentication.service";
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         AppRoutingModule,
 
     ],
-    providers: [],
+    providers: [
+        AuthenticationService,
+    ],
     bootstrap: [
         AppComponent,
     ]
