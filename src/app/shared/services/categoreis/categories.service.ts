@@ -11,7 +11,7 @@ export class CategoriesService {
 
     }
 
-    get() {
+    get(args = null) {
         return this.afs.collection<Category>('categories').valueChanges();
     }
 
