@@ -9,8 +9,7 @@ import {FirebaseModule} from "./firebase.module";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {ComponentsModule} from "./components.module";
 import {CommonModule} from "@angular/common";
-import {FooterComponent} from "./components/footer/footer.component";
-import {MenuComponent} from "./components/menu/menu.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -18,12 +17,11 @@ import {MenuComponent} from "./components/menu/menu.component";
         AppComponent,
         LoginComponent,
         ToolbarComponent,
-        MenuComponent,
-        FooterComponent,
     ],
     imports: [
         CommonModule,
         BrowserModule,
+        BrowserAnimationsModule,
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
