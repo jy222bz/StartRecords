@@ -9,13 +9,18 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
 @NgModule({
     declarations: [],
     imports: [
-        AngularFireModule.initializeApp(environment.firebase, 'my-app-name'),
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        AngularFireStorageModule,
+    ],
+    exports: [
         AngularFirestoreModule,
         AngularFireAuthModule,
         AngularFireStorageModule,
     ],
     providers: [],
-    bootstrap: []
+    entryComponents: []
 })
 export class FirebaseModule {
 }
