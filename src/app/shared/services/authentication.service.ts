@@ -1,20 +1,25 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {AngularFireAuth} from "@angular/fire/auth";
 
 
 @Injectable()
 export class AuthenticationService {
 
-
-    constructor(private http: HttpClient) {
+    // This website is useful
+    // https://alligator.io/angular/firebase-authentication-angularfire2/
+    constructor(private angularFireAuth: AngularFireAuth) {
 
     }
 
-    login() {
+    signup() {
+
+    }
+
+    login(email, password) {
 
     }
 
     logout() {
-        
+
     }
 }

@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {AngularFirestore} from "@angular/fire/firestore";
+import {Category} from "../../models/categories/category";
 
 
 @Injectable()
 export class CategoriesService {
 
 
-    constructor(private http: HttpClient) {
+    constructor(private afs: AngularFirestore) {
 
+    }
+
+    get(args = null) {
+        return this.afs.collection<Category>('categories').valueChanges();
     }
 
     add(args) {
