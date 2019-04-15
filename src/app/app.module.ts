@@ -9,6 +9,7 @@ import {FirebaseModule} from "./firebase.module";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {ComponentsModule} from "./components.module";
 import {CommonModule} from "@angular/common";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {CommonModule} from "@angular/common";
     imports: [
         CommonModule,
         BrowserModule,
+        BrowserAnimationsModule,
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
