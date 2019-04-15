@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+h1 {
+    color: black;
+    text-align: left;
+}
+
+p {
+    color: grey;
+    width: 800px;
+}
+
+header {
+    background-color: blue;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    background-color: #7b1fa2;
+}
+
+nav {
+    background-color: grey;
+    width: auto;
+    height: 50px;
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    a:link, a:visited {
+        background-color: lightblue;
+        color: grey;
+    }
+
+    a:hover, a:active {
+        background-color: white;
+    }
+}
+
+main {
+    background-color: lightblue;
+    color: black
+}
+
+footer {
+    background-color: grey;
+    color: black;
+}
+
+
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-light-green, 800);
+$my-app-accent: mat-palette($mat-deep-orange, 800);
+$my-app-warn: mat-palette($mat-deep-orange);
+
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
