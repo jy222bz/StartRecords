@@ -10,14 +10,16 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {ComponentsModule} from "./components.module";
 import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {AuthenticationService} from './shared/services/authentication.service';
+import {AuthenticationService} from "./shared/services/authentication.service";
+import {SignupComponent} from "./components/signup/signup.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
         ToolbarComponent,
+        LoginComponent,
+        SignupComponent,
     ],
     imports: [
         CommonModule,
@@ -30,10 +32,12 @@ import {AuthenticationService} from './shared/services/authentication.service';
 
     ],
     providers: [
-        AuthenticationService
+        AuthenticationService,
     ],
     bootstrap: [
         AppComponent,
+        LoginComponent,
+        SignupComponent,
     ]
 })
 export class AppModule {

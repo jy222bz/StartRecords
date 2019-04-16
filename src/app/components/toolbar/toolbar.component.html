@@ -1,8 +1,14 @@
 <mat-toolbar style="background-color: #6666ff">
     <mat-toolbar-row>
-        <div id="right" class="example-button-row">
-            <button onclick="alert('You are logged in')" mat-raised-button>Login</button>
-            <mat-icon>star</mat-icon>
-        </div>
+        <span style="color: white">{{ title }}</span>
+        <span class="mat-toolbar-spacer"></span>
+
+        <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()">
+            Signup
+        </button>
+
+        <button mat-raised-button matTooltip="Login" (click)="openLoginComponent()">
+            Login
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>

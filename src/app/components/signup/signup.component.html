@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Login</h2>
+<h2 mat-dialog-title>Signup</h2>
 <app-alert *ngIf="error != null" [value]="error"></app-alert>
 <form novalidate (ngSubmit)="login()">
     <mat-dialog-content [formGroup]="form">
@@ -19,7 +19,7 @@
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button type="button" class="mat-raised-button" (click)="close()">Close</button>
-        <button type="submit" class="mat-raised-button mat-primary" (click)="login()" [disabled]="working">
+        <button type="submit" class="mat-raised-button mat-primary" (click)="signup()" [disabled]="working">
             <span *ngIf="!working">Login</span>
             <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>
         </button>

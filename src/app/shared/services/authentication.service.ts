@@ -9,8 +9,6 @@ import {Observable} from 'rxjs';
 export class AuthenticationService {
    user: Observable<firebase.User>;
 
-    // This website is useful
-    // https://alligator.io/angular/firebase-authentication-angularfire2/
     constructor(private firebaseAuth: AngularFireAuth) {
        this.user = firebaseAuth.authState;
     }
@@ -21,6 +19,7 @@ export class AuthenticationService {
             .auth
             .createUserWithEmailAndPassword(email, password)
             .then(value => {
+
                 console.log('Success!', value);
             })
             .catch(err => {
@@ -30,11 +29,14 @@ export class AuthenticationService {
 
 
     login(email: string, password: string) {
+        console.log(email);
+        console.log(password);
         this.firebaseAuth
             .auth
             .signInWithEmailAndPassword(email, password)
             .then(value => {
                 console.log('Nice, it worked!');
+                console.log(value);
             })
             .catch(err => {
                 console.log('Something went wrong:', err.message);
@@ -45,6 +47,10 @@ export class AuthenticationService {
         this.firebaseAuth
             .auth
             .signOut();
+    }
+
+    isAuthenticated() {
+        return
     }
 
 
