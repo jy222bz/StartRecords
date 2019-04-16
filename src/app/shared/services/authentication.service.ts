@@ -21,37 +21,41 @@ export class AuthenticationService {
     }
 
     signup(email: string, password: string) {
-        this.firebaseAuth
-            .auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(value => {
-
-                console.log('Success!', value);
-            })
-            .catch(err => {
-                console.log('Something went wrong:', err.message);
-            });
+        return new Promise((resolve, reject) => {
+            this.firebaseAuth
+                .auth
+                .createUserWithEmailAndPassword(email, password)
+                .then(value => {
+                    this.user = value;
+                    resolve(value);
+                })
+                .catch(err => {
+                    reject(err.message);
+                });
+        })
     }
 
 
     login(email: string, password: string) {
-        console.log(email);
-        console.log(password);
-        this.firebaseAuth
-            .auth
-            .signInWithEmailAndPassword(email, password)
-            .then(value => {
-                this.user = value;
-            })
-            .catch(err => {
-                console.log('Something went wrong:', err.message);
-            });
+        return new Promise((resolve, reject) => {
+            this.firebaseAuth
+                .auth
+                .signInWithEmailAndPassword(email, password)
+                .then(value => {
+                    this.user = value;
+                    resolve(value);
+                })
+                .catch(err => {
+                    reject(err.message);
+                });
+        });
     }
 
     logout() {
         this.firebaseAuth
             .auth
             .signOut();
+        this.user = null;
     }
 
     isAuthenticated() {

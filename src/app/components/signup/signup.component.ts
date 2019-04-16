@@ -40,8 +40,18 @@ export class SignupComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.authenticationService.signup(this.form.value.email, this.form.value.password);
-
+        this.authenticationService.signup(this.form.value.email, this.form.value.password)
+            .then(
+                (value) => {
+                    this.working = false;
+                    this.dialog.close();
+                }
+            )
+            .catch((error) => {
+                this.working = false;
+                this.error = error;
+            })
+        ;
         return false;
     }
 

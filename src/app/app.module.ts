@@ -12,6 +12,7 @@ import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthenticationService} from "./shared/services/authentication.service";
 import {SignupComponent} from "./components/signup/signup.component";
+import {LogoutComponent} from "./components/logout/logout.component";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {SignupComponent} from "./components/signup/signup.component";
         ToolbarComponent,
         LoginComponent,
         SignupComponent,
+        LogoutComponent,
     ],
     imports: [
         CommonModule,
@@ -38,6 +40,7 @@ import {SignupComponent} from "./components/signup/signup.component";
         AppComponent,
         LoginComponent,
         SignupComponent,
+        LogoutComponent,
     ]
 })
 export class AppModule {

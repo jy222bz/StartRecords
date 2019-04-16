@@ -3,6 +3,7 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 import {MatDialog} from "@angular/material";
 import {LoginComponent} from "../login/login.component";
 import {SignupComponent} from "../signup/signup.component";
+import {LogoutComponent} from "../logout/logout.component";
 
 @Component({
     selector: 'app-toolbar',
@@ -34,6 +35,15 @@ export class ToolbarComponent {
 
     openLoginComponent() {
         const ref = this.dialog.open(LoginComponent, {autoFocus: true, minWidth: 400});
+        ref.afterClosed().subscribe(result => {
+            if (result) {
+
+            }
+        });
+    }
+
+    openLogoutComponent() {
+        const ref = this.dialog.open(LogoutComponent, {autoFocus: true, minWidth: 400});
         ref.afterClosed().subscribe(result => {
             if (result) {
 

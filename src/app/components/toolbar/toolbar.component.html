@@ -4,13 +4,18 @@
         <span class="mat-toolbar-spacer"></span>
 
 
-
-        <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()" *ngIf="!authenticationService.isAuthenticated()">
+        <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()"
+                *ngIf="!authenticationService.isAuthenticated()">
             Signup
         </button>
 
-        <button mat-raised-button matTooltip="Login" (click)="openLoginComponent()" *ngIf="!authenticationService.isAuthenticated()">
+        <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
+                *ngIf="!authenticationService.isAuthenticated()">
             Login
+        </button>
+        <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLogoutComponent()"
+                *ngIf="authenticationService.isAuthenticated()">
+            Logout
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
