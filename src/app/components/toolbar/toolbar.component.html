@@ -3,6 +3,8 @@
         <span style="color: white">{{ title }}</span>
         <span class="mat-toolbar-spacer"></span>
 
+
+
         <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()" *ngIf="!authenticationService.isAuthenticated()">
             Signup
         </button>

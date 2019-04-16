@@ -4,7 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable()
 export class AuthenticationService {
-    user: any;
+    user: any = null;
 
     constructor(private firebaseAuth: AngularFireAuth) {
         this.checkIfLoggedIn();
@@ -55,8 +55,11 @@ export class AuthenticationService {
     }
 
     isAuthenticated() {
-        return this.user != undefined;
+        return this.user != null;
     }
 
+    isAdmin() {
+        return true;
+    }
 
 }
