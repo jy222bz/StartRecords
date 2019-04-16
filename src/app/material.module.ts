@@ -26,6 +26,7 @@ import {
     MatTooltipModule
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
     declarations: [],
@@ -56,6 +57,7 @@ import {CommonModule} from "@angular/common";
         MatPaginatorModule,
         MatSnackBarModule,
 
+        FlexLayoutModule,
         CommonModule,
     ],
     exports: [
@@ -84,6 +86,8 @@ import {CommonModule} from "@angular/common";
         MatTabsModule,
         MatPaginatorModule,
         MatSnackBarModule,
+
+        FlexLayoutModule,
 
     ],
     providers: [],

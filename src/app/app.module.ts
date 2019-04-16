@@ -11,18 +11,27 @@ import {ComponentsModule} from "./components.module";
 import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthenticationService} from "./shared/services/authentication.service";
+import {SignupComponent} from "./components/signup/signup.component";
+import {LogoutComponent} from "./components/logout/logout.component";
+import {FooterComponent} from "./components/footer/footer.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
         ToolbarComponent,
+        LoginComponent,
+        SignupComponent,
+        LogoutComponent,
+        FooterComponent,
     ],
     imports: [
-        CommonModule,
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
+        CommonModule,
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
@@ -34,6 +43,9 @@ import {AuthenticationService} from "./shared/services/authentication.service";
     ],
     bootstrap: [
         AppComponent,
+        LoginComponent,
+        SignupComponent,
+        LogoutComponent,
     ]
 })
 export class AppModule {
