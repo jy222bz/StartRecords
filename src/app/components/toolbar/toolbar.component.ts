@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../shared/services/authentication.service";
 import {MatDialog} from "@angular/material";
 import {LoginComponent} from "../login/login.component";
@@ -10,7 +10,7 @@ import {LogoutComponent} from "../logout/logout.component";
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
     title = 'Star Collection';
 
 
