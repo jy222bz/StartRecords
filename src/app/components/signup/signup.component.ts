@@ -5,10 +5,10 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<LoginComponent>,
+        private dialog: MatDialogRef<SignupComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    login() {
+    signup() {
         if (!this.form.valid) {
             Object.keys(this.form.controls).forEach(field => {
                 const control = this.form.get(field);
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.authenticationService.login(this.form.value.email, this.form.value.password);
+        this.authenticationService.signup(this.form.value.email, this.form.value.password);
 
         return false;
     }

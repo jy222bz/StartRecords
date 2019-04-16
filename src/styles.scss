@@ -15,7 +15,7 @@ header {
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
-    background-color: #b2ff33;
+    background-color: white;
 }
 
 nav {
@@ -70,3 +70,8 @@ $my-app-warn: mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 @include angular-material-theme($my-app-theme);
+
+
+.mat-toolbar-spacer {
+    flex: 1 1 auto;
+}
