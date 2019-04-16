@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: #6666ff">
     <mat-toolbar-row>
-        <span style="color: white">{{ title }}</span>
+        <span style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
         <span class="mat-toolbar-spacer"></span>
 
 
@@ -13,9 +13,23 @@
                 *ngIf="!authenticationService.isAuthenticated()">
             Login
         </button>
-        <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLogoutComponent()"
-                *ngIf="authenticationService.isAuthenticated()">
-            Logout
+
+
+        <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu" *ngIf="authenticationService.isAuthenticated()">
+            <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #clientEditMenu="matMenu">
+            <button mat-menu-item [routerLink]="['/admin']">
+                <mat-icon>account_box</mat-icon>
+                <span>My Account</span>
+            </button>
+            <button mat-menu-item (click)="openLogoutComponent()">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+            </button>
+
+        </mat-menu>
+
+
     </mat-toolbar-row>
 </mat-toolbar>
