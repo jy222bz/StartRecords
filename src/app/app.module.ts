@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthenticationService} from "./shared/services/authentication.service";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LogoutComponent} from "./components/logout/logout.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {LogoutComponent} from "./components/logout/logout.component";
         LoginComponent,
         SignupComponent,
         LogoutComponent,
+        FooterComponent,
     ],
     imports: [
         CommonModule,

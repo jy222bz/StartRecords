@@ -7,6 +7,7 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
     form: FormGroup;
@@ -44,7 +45,7 @@ export class SignupComponent implements OnInit {
             .then(
                 (value) => {
                     this.working = false;
-                    this.dialog.close();
+                    this.dialog.close(value);
                 }
             )
             .catch((error) => {

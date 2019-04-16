@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Signup</h2>
 <app-alert *ngIf="error != null" [value]="error"></app-alert>
-<form novalidate (ngSubmit)="login()">
+<form novalidate (ngSubmit)="signup()">
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
