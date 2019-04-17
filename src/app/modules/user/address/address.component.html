@@ -26,7 +26,7 @@
     <mat-dialog-actions align="end">
         <button type="button" class="mat-raised-button" (click)="close()">Close</button>
         <button type="submit" class="mat-raised-button mat-primary" (click)="save()" [disabled]="working">
-            <span *ngIf="!working">Login</span>
+            <span *ngIf="!working">Save</span>
             <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>
         </button>
     </mat-dialog-actions>
