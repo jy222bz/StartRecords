@@ -5,11 +5,15 @@ import {PageNotFoundComponent} from './shared/components/page-not-found/page-not
 const routes: Routes = [
     {
         path: '',
-        loadChildren: './modules/home/home.module#HomeModule',
+        loadChildren: './modules/main/main.module#MainModule',
     },
     {
-        path: 'admin/categories',
-        loadChildren: './modules/admin/categories/categories.module#CategoriesModule',
+        path: 'admin',
+        loadChildren: './modules/admin/admin.module#AdminModule',
+    },
+    {
+        path: 'user',
+        loadChildren: './modules/user/user.module#UserModule',
     },
     {path: '**', component: PageNotFoundComponent},
 ];

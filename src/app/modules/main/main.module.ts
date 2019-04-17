@@ -1,25 +1,27 @@
 import {NgModule} from '@angular/core';
 import {MaterialModule} from '../../material.module';
 
-import {HomeRoutingModule} from './home.routing.module';
+import {MainRoutingModule} from './main.routing.module';
 
-import {HomeComponent} from './home.component';
+import {MainComponent} from './main.component';
 import {ComponentsModule} from "../../components.module";
+import {FooterComponent} from "./components/footer/footer.component";
 
 
 @NgModule({
     imports: [
         MaterialModule,
         ComponentsModule,
-        HomeRoutingModule,
+        MainRoutingModule,
     ],
     declarations: [
-        HomeComponent,
+        MainComponent,
+        FooterComponent,
     ],
     providers: [
 
     ],
     entryComponents: []
 })
-export class HomeModule {
+export class MainModule {
 }
