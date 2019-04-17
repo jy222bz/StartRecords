@@ -13,9 +13,6 @@
                 *ngIf="!authenticationService.isAuthenticated()">
             Login
         </button>
-
-
-
         <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu" *ngIf="authenticationService.isAuthenticated()">
             <mat-icon>account_circle</mat-icon>
         </button>
