@@ -91,7 +91,12 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     position: fixed;
     left: 0;
     right: 0;
-    top: 80px;
+    top: 68px;
 
+    height: 100%;
+}
 
+.container {
+    position: relative;
+    height: 100%;
 }

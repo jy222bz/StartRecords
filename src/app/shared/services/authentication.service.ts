@@ -59,11 +59,14 @@ export class AuthenticationService {
                 .signInWithEmailAndPassword(email, password)
                 .then(value => {
                     this.user = value;
-                    this.checkIfAdmin(value).then(
-                        () => {
-                            resolve(value);
-                        }
-                    );
+                    this.checkIfAdmin(value)
+                        .then(
+                            () => {
+                                resolve(value);
+                            }
+                        ).catch((error) => {
+                        reject(error);
+                    });
                 })
                 .catch(err => {
                     reject(err.message);
@@ -75,19 +78,20 @@ export class AuthenticationService {
         return new Promise((resolve, reject) => {
             this.afs.collection('users').doc(data.user.uid).get()
                 .subscribe((result) => {
-                    if (result.exists) {
-                        console.log(result.data().admin);
-                        this.user.admin = result.data().admin;
+                        if (result.exists) {
+                            console.log(result.data().admin);
+                            this.user.admin = result.data().admin;
+                        }
+                        resolve();
+                    }, (error) => {
+                        reject(error);
                     }
-                    resolve();
-                });
+                );
         });
     }
 
     logout() {
-        this.firebaseAuth
-            .auth
-            .signOut();
+        this.firebaseAuth.auth.signOut();
         this.user = null;
     }
 
@@ -99,7 +103,7 @@ export class AuthenticationService {
         return this.user != null && this.user.admin === true;
     }
 
-    getId() {
-        return this.user.uid;
+    getUser() {
+        return this.user;
     }
 }

@@ -23,14 +23,27 @@ export class AddressComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'city': ['Växjö', [Validators.required, Validators.minLength(1)]],
-            'postalNumber': [35252, [Validators.required, Validators.minLength(5)]],
+            'city': ['', [Validators.required, Validators.minLength(1)]],
+            'postalNumber': ['', [Validators.required, Validators.minLength(5)]],
             'street': ['', [Validators.required]],
         });
     }
 
     ngOnInit() {
+        this.get();
+    }
 
+    get() {
+        this.userAddressesService.get(this.authenticationService.getUser().uid).subscribe(
+            (next) => {
+                this.form.controls.city.setValue(next.data().city);
+                this.form.controls.street.setValue(next.data().street);
+                this.form.controls.postalNumber.setValue(next.data().postalNumber);
+            },
+            (error) => {
+
+            }
+        )
     }
 
     save() {
@@ -45,12 +58,17 @@ export class AddressComponent implements OnInit {
         this.error = null;
 
 
-        this.userAddressesService.add(this.authenticationService.getId(), {
-            'address': {
-                city: this.form.value.city,
-                postalNumber: this.form.value.postalNumber,
-                street: this.form.value.street
-            }
+        this.userAddressesService.set(this.authenticationService.getUser().uid, {
+            city: this.form.value.city,
+            postalNumber: this.form.value.postalNumber,
+            street: this.form.value.street
+
+        }).then(() => {
+            this.working = false;
+            this.dialog.close();
+        }).catch((error) => {
+            this.working = false;
+            this.error = error;
         });
         return false;
     }
