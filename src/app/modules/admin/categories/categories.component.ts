@@ -21,18 +21,18 @@ export class CategoriesComponent implements OnInit {
         this.get();
     }
 
+    // ----------------------
+    openAddDialog() {
+        const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px'});
+        ref.afterClosed().subscribe(result => {
+
+        });
+    }
+
+    // ----------------------
 
     get() {
         this.categoriesService.get();
-    }
-
-    openAddDialog (){
-        const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px' });
-        ref.afterClosed().subscribe( result =>
-        {
-
-        });
-
     }
 }
 

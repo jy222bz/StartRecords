@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
             .then(
                 (value) => {
                     this.working = false;
-                    this.dialog.close();
+                    this.dialog.close(value);
                 }
             )
             .catch((error) => {

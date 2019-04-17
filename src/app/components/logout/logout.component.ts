@@ -25,7 +25,7 @@ export class LogoutComponent implements OnInit {
 
     logout() {
         this.authenticationService.logout();
-        this.close();
+        this.dialog.close(200);
         return false;
     }
 
