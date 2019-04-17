@@ -1,8 +1,14 @@
 <mat-toolbar style="background-color: #00796b">
     <mat-toolbar-row>
         <span style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
+        <nav>
+        <ul>
+            <li><a href="toolbar.component.html">HOME</a></li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">ABOUT</a></li>
+        </ul>
+            </nav>
         <span class="mat-toolbar-spacer"></span>
-
 
         <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()"
                 *ngIf="!authenticationService.isAuthenticated()">
@@ -13,8 +19,6 @@
                 *ngIf="!authenticationService.isAuthenticated()">
             Login
         </button>
-
-
         <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu" *ngIf="authenticationService.isAuthenticated()">
             <mat-icon>account_circle</mat-icon>
         </button>
@@ -27,6 +31,9 @@
                 <mat-icon>exit_to_app</mat-icon>
                 Logout
             </button>
+
         </mat-menu>
+
     </mat-toolbar-row>
 </mat-toolbar>
+

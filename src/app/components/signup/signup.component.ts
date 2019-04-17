@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit {
             .then(
                 (value) => {
                     this.working = false;
+                    this.dialog.close();
                     this.dialog.close(value);
                 }
             )
@@ -60,3 +61,4 @@ export class SignupComponent implements OnInit {
         this.dialog.close();
     }
 }
+
