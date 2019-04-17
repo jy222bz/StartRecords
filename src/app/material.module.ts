@@ -23,7 +23,8 @@ import {
     MatSnackBarModule,
     MatTableModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSidenavModule,
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -86,7 +87,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatTabsModule,
         MatPaginatorModule,
         MatSnackBarModule,
-
+        MatSidenavModule,
         FlexLayoutModule,
 
     ],

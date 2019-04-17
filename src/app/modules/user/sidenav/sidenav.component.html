@@ -1,0 +1,15 @@
+<mat-drawer-container class="example-container" autosize style="height: 600px">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Address</p>
+        <button (click)="openAddressComponent()" mat-raised-button>
+            Save Address
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+        </button>
+    </div>
+
+</mat-drawer-container>

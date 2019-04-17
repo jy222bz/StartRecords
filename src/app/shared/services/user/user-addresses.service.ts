@@ -5,8 +5,6 @@ import {UserAddress} from "../../models/users/user-address";
 
 @Injectable()
 export class UserAddressesService {
-
-
     constructor(private afs: AngularFirestore) {
 
     }
@@ -15,12 +13,22 @@ export class UserAddressesService {
         return this.afs.collection<UserAddress>('users/' + id).valueChanges();
     }
 
-    add(args) {
+    add(uid, arg) {
+        this.afs.collection('users').doc(uid).set(arg)
+            .then(() => {
+                console.log('done');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
     }
+
 
     delete(args) {
 
     }
 
 }
+
+

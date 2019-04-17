@@ -99,5 +99,7 @@ export class AuthenticationService {
         return this.user != null && this.user.admin === true;
     }
 
-
+    getId() {
+        return this.user.uid;
+    }
 }

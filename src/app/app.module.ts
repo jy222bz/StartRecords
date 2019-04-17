@@ -34,11 +34,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         MaterialModule,
         ComponentsModule,
         AppRoutingModule,
-
     ],
     providers: [
         AuthenticationService,
     ],
+    exports: [],
     bootstrap: [
         AppComponent,
         LoginComponent,
