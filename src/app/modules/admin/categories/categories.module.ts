@@ -28,7 +28,8 @@ import {CommonModule} from "@angular/common";
         CategoriesService,
     ],
     exports: [
-        CategoriesComponent
+        CategoriesComponent,
+        AddComponent
     ],
 
     entryComponents: [
