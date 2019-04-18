@@ -39,19 +39,17 @@ export class AddComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        /*
         this.categoriesService.add(this.form.value)
-            .subscribe(
+            .then(
                 (data) => {
                     this.working = false;
-                    this.dialog.close(data['item']);
+                    this.dialog.close(data);
                 },
                 (error) => {
                     this.error = (error.status === 0) ? error.message : error.error;
                     this.working = false;
                 }
             );
-        */
         return false;
     }
 

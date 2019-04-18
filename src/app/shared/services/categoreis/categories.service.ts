@@ -16,11 +16,8 @@ export class CategoriesService {
         return this.afs.collection<Category>('categories').valueChanges();
     }
 
-
-
-    add(category: Category) {
-
-        this.categoryCollection.add(category);
+    add(arg) {
+        return this.afs.collection('categories').add(arg);
     }
 
     delete(category:Category) {

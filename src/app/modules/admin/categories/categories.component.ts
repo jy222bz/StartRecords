@@ -2,19 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {AddComponent} from "./components/add/add.component";
 import {MatDialog} from "@angular/material";
+import {Category} from "../../../shared/models/categories/category";
+import {ItemsComponent} from "../../../shared/components/items/items.component";
 
 
 @Component({
     selector: 'app-admin-categories',
     templateUrl: './categories.component.html',
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent extends ItemsComponent<Category> implements OnInit {
+    displayedColumns = ['select', 'name'];
 
     constructor(
         private categoriesService: CategoriesService,
         private dialog: MatDialog,
     ) {
-
+        super();
     }
 
     ngOnInit(): void {
@@ -30,9 +33,13 @@ export class CategoriesComponent implements OnInit {
     }
 
     // ----------------------
-
     get() {
-        this.categoriesService.get();
+        this.categoriesService.get().subscribe(
+            (data) => {
+                console.log(data);
+                this.set(data);
+            }
+        );
     }
 }
 
