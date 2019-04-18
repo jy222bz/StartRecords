@@ -27,6 +27,11 @@ import {CommonModule} from "@angular/common";
     providers: [
         CategoriesService,
     ],
+    exports: [
+        CategoriesComponent,
+        AddComponent
+    ],
+
     entryComponents: [
         AddComponent,
         DeleteComponent,
