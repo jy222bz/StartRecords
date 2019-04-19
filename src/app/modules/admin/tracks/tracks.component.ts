@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {AddComponent} from "./components/add/add.component";
 import {MatDialog} from "@angular/material";
-import {Category} from "../../../shared/models/categories/category";
 import {ItemsComponent} from "../../../shared/components/items/items.component";
 import {TracksService} from "../../../shared/services/tracks/tracks.service";
+import {Track} from "../../../shared/models/tracks/track";
 
 
 @Component({
     selector: 'app-admin-tracks',
     templateUrl: './tracks.component.html',
 })
-export class TracksComponent extends ItemsComponent<Category> implements OnInit {
+export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     displayedColumns = ['select', 'name'];
 
     constructor(
