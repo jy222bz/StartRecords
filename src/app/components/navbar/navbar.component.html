@@ -1,27 +1,28 @@
 <mat-toolbar style="background-color: #00796b">
     <mat-toolbar-row>
-        <img src="assets/img/logoDesign.png"/>
+        <img src="assets/images/logo.png" alt=""/>
 
         <span style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
         <nav>
-        <ul>
-            <li><a href="toolbar.component.html">HOME</a></li>
-            <li><a href="#">CONTACT</a></li>
-            <li><a href="#">ABOUT</a></li>
-        </ul>
-            </nav>
+            <ul>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
         <span class="mat-toolbar-spacer"></span>
 
-        <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()"
+        <button style="margin-right: 8px" mat-raised-button (click)="openSignupComponent()"
                 *ngIf="!authenticationService.isAuthenticated()">
-            Signup
+            <mat-icon>person</mat-icon>
+            Register
         </button>
 
-        <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
+        <button style="margin-right: 8px" mat-raised-button (click)="openLoginComponent()"
                 *ngIf="!authenticationService.isAuthenticated()">
             Login
         </button>
-        <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu" *ngIf="authenticationService.isAuthenticated()">
+        <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu"
+                *ngIf="authenticationService.isAuthenticated()">
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #clientEditMenu="matMenu">

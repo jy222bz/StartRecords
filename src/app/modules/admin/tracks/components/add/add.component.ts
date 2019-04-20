@@ -40,7 +40,9 @@ export class AddComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        this.categoriesService.add(this.form.value)
+
+        /*
+        this.tracksService.add(this.form.value)
             .then(
                 (data) => {
                     this.working = false;
@@ -51,6 +53,7 @@ export class AddComponent implements OnInit {
                     this.working = false;
                 }
             );
+        */
         return false;
     }
 
