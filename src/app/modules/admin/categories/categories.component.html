@@ -43,8 +43,6 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row [draggable] (dropped)="setOrder($event, row)"
-                     *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
     </main>
 </div>
