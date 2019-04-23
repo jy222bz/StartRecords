@@ -14,7 +14,7 @@ import {AuthenticationService} from "./shared/services/authentication.service";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
     declarations: [
@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         LoginComponent,
         SignupComponent,
         LogoutComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -34,6 +35,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         MaterialModule,
         ComponentsModule,
         AppRoutingModule,
+        ScrollingModule
     ],
     providers: [
         AuthenticationService,

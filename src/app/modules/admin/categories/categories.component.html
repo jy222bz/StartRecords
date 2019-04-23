@@ -1,51 +1,55 @@
 <div class="container">
-    <mat-toolbar class="toolbar-header">
-        <mat-toolbar-row>
-            <span>Categories</span>
-            <span class="mat-toolbar-spacer"></span>
-            <button mat-icon-button matTooltip="Add" (click)="openAddDialog()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </mat-toolbar-row>
-    </mat-toolbar>
+    <main>
+        <mat-toolbar class="toolbar-header">
+            <mat-toolbar-row>
+                <span>Categories</span>
+                <span class="mat-toolbar-spacer"></span>
+                <button mat-icon-button matTooltip="Add" (click)="openAddDialog()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
 
-    <mat-table [dataSource]="dataSource" class="mat-table-content">
-        <ng-container matColumnDef="select">
-            <mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
-                              [checked]="selection.hasValue() && isAllSelected()"
-                              [indeterminate]="selection.hasValue() && !isAllSelected()">
-                </mat-checkbox>
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()"
-                              (change)="$event ? selection.toggle(row) : null"
-                              [checked]="selection.isSelected(row)">
-                </mat-checkbox>
-            </mat-cell>
-        </ng-container>
+        <mat-table [dataSource]="dataSource" class="mat-table-content">
+            <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
-            </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+                </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="created">
-            <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="created">
+                <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [draggable] (dropped)="setOrder($event, row)"
-                 *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row [draggable] (dropped)="setOrder($event, row)"
+                     *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </main>
 </div>
+
+
 
 
 
