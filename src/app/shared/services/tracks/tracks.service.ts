@@ -28,7 +28,7 @@ export class TracksService {
         {
             let sum =0;
             for (let i = 0; i < Tracks.length; i++) {
-                sum += Tracks[i]
+                sum += Tracks[i].time;
         }
 
         }
