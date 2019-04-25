@@ -5,11 +5,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 @Injectable()
 export class CategoriesService {
 
-    categories: Observable<Category[]>;
-    private categoryCollection: AngularFirestoreCollection<Category>;
     constructor(private afs: AngularFirestore) {
-        this.categoryCollection = afs.collection<Category>('categories');
-        this.categories = this.categoryCollection.valueChanges();
+
     }
 
     get(args = null) {

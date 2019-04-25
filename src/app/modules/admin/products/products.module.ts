@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 
 
-import {CategoriesRoutingModule} from './categories.routing.module';
+import {ProductsRoutingModule} from './products.routing.module';
 
-import {CategoriesComponent} from './categories.component';
+import {ProductsComponent} from './products.component';
 import {MaterialModule} from "../../../material.module";
-import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 
 @NgModule({
@@ -17,19 +17,20 @@ import {CommonModule} from "@angular/common";
         CommonModule,
         MaterialModule,
         ComponentsModule,
-        CategoriesRoutingModule,
+        ProductsRoutingModule,
     ],
     declarations: [
-        CategoriesComponent,
+        ProductsComponent,
         AddComponent,
         DeleteComponent,
+        ProductsComponent,
 
     ],
     providers: [
-        CategoriesService,
+        ProductsService,
     ],
     exports: [
-        CategoriesComponent,
+        ProductsComponent,
         AddComponent,
     ],
 
@@ -38,5 +39,5 @@ import {CommonModule} from "@angular/common";
         DeleteComponent,
     ]
 })
-export class CategoriesModule {
+export class ProductsModule {
 }
