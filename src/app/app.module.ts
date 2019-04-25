@@ -34,8 +34,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
-        AppRoutingModule,
-        ScrollingModule
+        AppRoutingModule
     ],
     providers: [
         AuthenticationService,
