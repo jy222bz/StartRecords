@@ -6,6 +6,8 @@ import {SignupComponent} from "../signup/signup.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {Router} from "@angular/router";
 
+
+
 // @ts-ignore
 @Component({
     selector: 'app-toolbar',
@@ -13,7 +15,8 @@ import {Router} from "@angular/router";
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-    title = 'Star Collection';
+    title = 'Star Records';
+
 
 
 
