@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import { Observable } from 'rxjs';
+
 import {Category} from "../../models/categories/category";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+
 @Injectable()
 export class CategoriesService {
 
@@ -17,7 +18,7 @@ export class CategoriesService {
         return this.afs.collection('categories').add(arg);
     }
 
-    delete(category:Category) {
+    delete(category: Category) {
 
 
     }
