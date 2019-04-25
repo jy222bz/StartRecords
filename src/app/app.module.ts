@@ -14,7 +14,7 @@ import {AuthenticationService} from "./shared/services/authentication.service";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
 
 @NgModule({
     declarations: [
