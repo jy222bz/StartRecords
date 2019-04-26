@@ -5,11 +5,11 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 
 
 @Component({
-    selector: 'app-signup',
-    templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class RegisterComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
@@ -17,12 +17,12 @@ export class SignupComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<SignupComponent>,
+        private dialog: MatDialogRef<RegisterComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'email': ['test@gmail.com', [Validators.required, Validators.email]],
-            'password': ['123456789', [Validators.required, Validators.minLength(4)]],
+            'email': ['', [Validators.required, Validators.email]],
+            'password': ['', [Validators.required, Validators.minLength(4)]],
         });
     }
 

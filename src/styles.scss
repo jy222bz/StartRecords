@@ -15,7 +15,6 @@ header {
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
-    background-color: white;
 }
 
 nav {
@@ -102,4 +101,14 @@ a {
 .container {
     position: relative;
     height: 100%;
+    padding: 8px;
+}
+
+.toolbar-header {
+    margin-bottom: 8px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+.mat-toolbar {
+    background-color: white;
 }

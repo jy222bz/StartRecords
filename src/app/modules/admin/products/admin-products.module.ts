@@ -1,15 +1,17 @@
 import {NgModule} from '@angular/core';
 
 
-import {ProductsRoutingModule} from './products.routing.module';
+import {AdminProductsRoutingModule} from './admin-products.routing.module';
 
-import {ProductsComponent} from './products.component';
+import {AdminProductsComponent} from './admin-products.component';
 import {MaterialModule} from "../../../material.module";
 import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
 import {ProductsService} from "../../../shared/services/products/products.service";
+import {ImagesService} from "../../../shared/services/images/images.service";
+import {ProductService} from "../../../shared/services/products/product.service";
 
 
 @NgModule({
@@ -17,20 +19,22 @@ import {ProductsService} from "../../../shared/services/products/products.servic
         CommonModule,
         MaterialModule,
         ComponentsModule,
-        ProductsRoutingModule,
+        AdminProductsRoutingModule,
     ],
     declarations: [
-        ProductsComponent,
+        AdminProductsComponent,
         AddComponent,
         DeleteComponent,
-        ProductsComponent,
+        AdminProductsComponent,
 
     ],
     providers: [
         ProductsService,
+        ProductService,
+        ImagesService,
     ],
     exports: [
-        ProductsComponent,
+        AdminProductsComponent,
         AddComponent,
     ],
 
@@ -39,5 +43,5 @@ import {ProductsService} from "../../../shared/services/products/products.servic
         DeleteComponent,
     ]
 })
-export class ProductsModule {
+export class AdminProductsModule {
 }

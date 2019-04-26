@@ -8,10 +8,10 @@ import {Product} from "../../../shared/models/products/product";
 
 @Component({
     selector: 'app-admin-products',
-    templateUrl: './products.component.html',
+    templateUrl: './admin-products.component.html',
 })
-export class ProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['select', 'name'];
+export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
+    displayedColumns = ['select', 'name', 'artist', 'producer', 'price', 'duration'];
 
     constructor(
         private productsService: ProductsService,
@@ -36,8 +36,17 @@ export class ProductsComponent extends ItemsComponent<Product> implements OnInit
     get() {
         this.productsService.get().subscribe(
             (data) => {
-                console.log(data);
-                this.set(data);
+                let products = data.map(actions => {
+                    return {
+                        id: actions.payload.doc.id,
+                        name: actions.payload.doc.data().name,
+                        producer: actions.payload.doc.data().producer,
+                        artist: actions.payload.doc.data().artist,
+                        price: actions.payload.doc.data().price,
+                        duration: actions.payload.doc.data().duration,
+                    }
+                });
+                this.set(products);
             }
         );
     }

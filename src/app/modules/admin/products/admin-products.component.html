@@ -32,7 +32,31 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+            <mat-cell *matCellDef="let element"><a routerLink="/admin/tracks/{{element.id}}"> <strong> {{element.name}} </strong></a>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="artist">
+            <mat-header-cell *matHeaderCellDef> Artist</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.artist}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="producer">
+            <mat-header-cell *matHeaderCellDef> Producer</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.producer}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.price}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+            <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.duration}}
             </mat-cell>
         </ng-container>
 
@@ -42,8 +66,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row [draggable] (dropped)="setOrder($event, row)"
-                 *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 </div>
 

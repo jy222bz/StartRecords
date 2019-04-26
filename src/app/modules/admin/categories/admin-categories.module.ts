@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 
 
-import {CategoriesRoutingModule} from './categories.routing.module';
+import {AdminCategoriesRoutingModule} from './admin-categories.routing.module';
 
-import {CategoriesComponent} from './categories.component';
+import {AdminCategoriesComponent} from './admin-categories.component';
 import {MaterialModule} from "../../../material.module";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {AddComponent} from "./components/add/add.component";
@@ -17,10 +17,10 @@ import {CommonModule} from "@angular/common";
         CommonModule,
         MaterialModule,
         ComponentsModule,
-        CategoriesRoutingModule,
+        AdminCategoriesRoutingModule,
     ],
     declarations: [
-        CategoriesComponent,
+        AdminCategoriesComponent,
         AddComponent,
         DeleteComponent,
 
@@ -29,7 +29,7 @@ import {CommonModule} from "@angular/common";
         CategoriesService,
     ],
     exports: [
-        CategoriesComponent,
+        AdminCategoriesComponent,
         AddComponent,
     ],
 
@@ -38,5 +38,5 @@ import {CommonModule} from "@angular/common";
         DeleteComponent,
     ]
 })
-export class CategoriesModule {
+export class AdminCategoriesModule {
 }
