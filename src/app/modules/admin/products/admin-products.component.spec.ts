@@ -1,0 +1,14 @@
+import { TestBed, inject } from '@angular/core/testing';
+import {AdminProductsComponent} from './admin-products.component';
+
+describe('AdminProduct', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [AdminProductsComponent]
+        });
+    });
+
+    it('should be created', inject([AdminProductsComponent], (service: AdminProductsComponent) => {
+        expect(service).toBeTruthy();
+    }));
+});
