@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: './modules/admin/products/admin-products.module#AdminProductsModule',
     },
     {
-        path: 'admin/tracks',
+        path: 'admin/tracks/:id',
         loadChildren: './modules/admin/tracks/admin-tracks.module#AdminTracksModule',
     },
     {
