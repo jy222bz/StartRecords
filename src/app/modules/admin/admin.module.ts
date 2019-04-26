@@ -4,9 +4,10 @@ import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../material.module";
 import {ComponentsModule} from "../../components.module";
 import {AdminComponent} from "./admin.component";
-import {CategoriesModule} from "./categories/categories.module";
-import {UserAddressesService} from "../../shared/services/user/user-addresses.service";
+import {SidenavComponent} from "../../modules/admin/sidenav/sidenav.component";
+import {CategoriesService} from "../../shared/services/categoreis/categories.service"
 import {ProductsModule} from "./products/products.module";
+import {CategoriesComponent} from "./categories/categories.component";
 
 @NgModule({
     imports: [
@@ -14,16 +15,20 @@ import {ProductsModule} from "./products/products.module";
         MaterialModule,
         ComponentsModule,
         AdminRoutingModule,
-        CategoriesModule,
         ProductsModule,
     ],
     declarations: [
         AdminComponent,
+        SidenavComponent,
+        CategoriesComponent,
     ],
     providers: [
-        UserAddressesService,
+        CategoriesService,
     ],
-    entryComponents: []
+    entryComponents: [
+        CategoriesComponent,
+    ]
 })
 export class AdminModule {
 }
+

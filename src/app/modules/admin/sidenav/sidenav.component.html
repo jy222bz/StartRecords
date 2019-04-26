@@ -1,0 +1,23 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-list>
+            <h3 mat-subheader>Edit</h3>
+            <mat-list-item (click)="openProductsComponent()" style="cursor: pointer">
+                <mat-icon mat-list-icon>&#9738;</mat-icon>
+                <h4 mat-line>Genre</h4>
+                <p mat-line></p>
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar class="toolbar-header">
+            <mat-toolbar-row>
+                <button type="button" mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>Settings</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+</mat-drawer-container>
