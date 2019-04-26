@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
+import {ImagesService} from "../../../../../shared/services/images/images.service";
+import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -15,6 +17,8 @@ export class AddComponent implements OnInit {
 
     constructor(
         private productsService: ProductsService,
+        private productService: ProductService,
+        private imagesService: ImagesService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<AddComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
@@ -67,6 +71,22 @@ export class AddComponent implements OnInit {
                 }
             );
         return false;
+    }
+
+    uploadImage() {
+        if (this.form.controls.image.value !== 0) {
+            const randomId = Math.random().toString(36).substring(2);
+            this.imagesService.upload(randomId + '.jpg', this.form.controls.image.value.files[0]).then(
+                (data) => {
+
+                }
+            ).catch((error) => {
+                this.working = true;
+                this.error = error;
+            });
+
+        }
+
     }
 
     close() {

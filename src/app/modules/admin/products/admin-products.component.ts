@@ -33,12 +33,6 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     }
 
     // ----------------------
-    navigateTracks() {
-
-
-    }
-
-    // ----------------------
     get() {
         this.productsService.get().subscribe(
             (data) => {

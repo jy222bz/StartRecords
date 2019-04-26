@@ -29,7 +29,19 @@ export class ProductService {
                 );
             }
         );
+    }
 
+    setImage(id, imageUrl) {
+        this.afs.collection('products').doc(id).get().subscribe(
+            (next) => {
+                console.log(next.data());
+                let data = next.data();
+                data.image = imageUrl;
+                this.afs.collection('products').doc(id).set(data).then(
+
+                );
+            }
+        );
     }
 
 }

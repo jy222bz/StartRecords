@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Product} from "../../models/products/product";
-import {AngularFirestore} from "@angular/fire/firestore";
 import {AngularFireStorage} from "@angular/fire/storage";
 
 
@@ -11,7 +9,23 @@ export class ImagesService {
     }
 
     upload(name, file) {
-        this.afs.upload('/images/' + name, file);
+        return new Promise((resolve, reject) => {
+            this.afs.upload('/images/' + name, file)
+                .snapshotChanges()
+                .subscribe(
+                    (next) => {
+                        next.ref.getDownloadURL().then(
+                            data => {
+                                resolve(data);
+                            }
+                        )
+                    },
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+
     }
 
 }
