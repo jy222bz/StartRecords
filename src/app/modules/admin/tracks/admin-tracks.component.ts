@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material";
 import {ItemsComponent} from "../../../shared/components/items/items.component";
 import {TracksService} from "../../../shared/services/tracks/tracks.service";
 import {Track} from "../../../shared/models/tracks/track";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -12,8 +13,10 @@ import {Track} from "../../../shared/models/tracks/track";
 })
 export class AdminTracksComponent extends ItemsComponent<Track> implements OnInit {
     displayedColumns = ['select', 'name'];
+    productId = '';
 
     constructor(
+        private route: ActivatedRoute,
         private tracksService: TracksService,
         private dialog: MatDialog,
     ) {
@@ -21,12 +24,16 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
     }
 
     ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            this.productId = params['id'];
+            this.get();
+        });
         this.get();
     }
 
     // ----------------------
     openAddDialog() {
-        const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px'});
+        const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px', data: {productId: this.productId}});
         ref.afterClosed().subscribe(result => {
 
         });
@@ -34,15 +41,13 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
 
     // ----------------------
     get() {
-        /*
-        this.categoriesService.get().subscribe(
+        this.tracksService.get(this.productId).subscribe(
             (data) => {
                 console.log(data);
                 this.set(data);
             }
         );
 
-         */
     }
 }
 

@@ -5,17 +5,12 @@ import {AngularFirestore} from "@angular/fire/firestore";
 
 @Injectable()
 export class ProductsService {
-
-
     constructor(private afs: AngularFirestore) {
 
     }
 
     get() {
-        const productsCollection = this.afs.collection<Product>('products').snapshotChanges()
-
-            ;
-        return productsCollection;
+        return this.afs.collection<Product>('products').snapshotChanges();
     }
 
     add(args) {

@@ -11,8 +11,15 @@ export class TracksService {
 
     }
 
-    get(args = null) {
-        return this.afs.collection<Track>('tracks').valueChanges();
+    get(productId, args = null) {
+        return this.afs.collection<Track>('tracks',
+                ref => ref.where('productId', '==', productId)).valueChanges();
+    }
+
+    add(args) {
+        return this.afs.collection('tracks').add(args)
+
+            ;
     }
 
 
