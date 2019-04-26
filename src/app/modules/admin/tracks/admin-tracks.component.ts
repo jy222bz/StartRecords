@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
     templateUrl: './admin-tracks.component.html',
 })
 export class AdminTracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['select', 'name'];
+    displayedColumns = ['select', 'name', 'duration'];
     productId = '';
 
     constructor(

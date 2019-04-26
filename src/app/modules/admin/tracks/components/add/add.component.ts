@@ -21,7 +21,7 @@ export class AddComponent implements OnInit {
 
         this.form = this.fb.group({
             'name': ['Song 1', [Validators.required, Validators.minLength(4)]],
-            'duration': ['600', [Validators.required]],
+            'duration': [600, [Validators.required]],
             'description': ['This is our first track'],
         });
     }
@@ -44,6 +44,7 @@ export class AddComponent implements OnInit {
         let data = {
             productId: this.data.productId,
             name: this.form.controls.name.value,
+            duration: this.form.controls.duration.value,
         };
 
         this.tracksService.add(data)
