@@ -11,7 +11,7 @@ import {Product} from "../../../shared/models/products/product";
     templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['select', 'name'];
+    displayedColumns = ['select', 'name', 'artist', 'producer', 'price'];
 
     constructor(
         private productsService: ProductsService,
@@ -45,7 +45,10 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                 let products = data.map(actions => {
                     return {
                         id: actions.payload.doc.id,
-                        name: actions.payload.doc.data().name
+                        name: actions.payload.doc.data().name,
+                        producer: actions.payload.doc.data().producer,
+                        artist: actions.payload.doc.data().artist,
+                        price: actions.payload.doc.data().price,
                     }
                 });
                 console.log(products);

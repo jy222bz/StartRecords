@@ -36,6 +36,24 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="artist">
+            <mat-header-cell *matHeaderCellDef> Artist</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.artist}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="producer">
+            <mat-header-cell *matHeaderCellDef> Producer</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.producer}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.price}}
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="created">
             <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
