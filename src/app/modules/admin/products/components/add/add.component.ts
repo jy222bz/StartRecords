@@ -37,7 +37,6 @@ export class AddComponent implements OnInit {
     }
 
     save() {
-        console.log('Im here');
         if (!this.form.valid) {
             Object.keys(this.form.controls).forEach(field => {
                 const control = this.form.get(field);
@@ -45,7 +44,6 @@ export class AddComponent implements OnInit {
             });
             return false;
         }
-        console.log('Im here 1');
         this.working = true;
         this.error = null;
         this.productsService.add(this.form.value)
