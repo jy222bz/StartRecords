@@ -5,7 +5,7 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 
 
 @Component({
-    selector: 'app-signup',
+    selector: 'app-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
