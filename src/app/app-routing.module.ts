@@ -11,7 +11,14 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: './modules/admin/admin.module#AdminModule',
     },
-
+    {
+        path: 'admin/categories',
+        loadChildren: './modules/admin/categories/admin-categories.module#AdminCategoriesModule',
+    },
+    {
+        path: 'admin/products',
+        loadChildren: './modules/admin/products/admin-products.module#AdminProductsModule',
+    },
     {
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',

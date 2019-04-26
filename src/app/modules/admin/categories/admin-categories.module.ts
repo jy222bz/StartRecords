@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 
 
-import {ProductsRoutingModule} from './products.routing.module';
+import {AdminCategoriesRoutingModule} from './admin-categories.routing.module';
 
-import {ProductsComponent} from './products.component';
+import {AdminCategoriesComponent} from './admin-categories.component';
 import {MaterialModule} from "../../../material.module";
+import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
-import {ProductsService} from "../../../shared/services/products/products.service";
 
 
 @NgModule({
@@ -17,20 +17,19 @@ import {ProductsService} from "../../../shared/services/products/products.servic
         CommonModule,
         MaterialModule,
         ComponentsModule,
-        ProductsRoutingModule,
+        AdminCategoriesRoutingModule,
     ],
     declarations: [
-        ProductsComponent,
+        AdminCategoriesComponent,
         AddComponent,
         DeleteComponent,
-        ProductsComponent,
 
     ],
     providers: [
-        ProductsService,
+        CategoriesService,
     ],
     exports: [
-        ProductsComponent,
+        AdminCategoriesComponent,
         AddComponent,
     ],
 
@@ -39,5 +38,5 @@ import {ProductsService} from "../../../shared/services/products/products.servic
         DeleteComponent,
     ]
 })
-export class ProductsModule {
+export class AdminCategoriesModule {
 }

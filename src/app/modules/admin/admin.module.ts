@@ -4,9 +4,9 @@ import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../material.module";
 import {ComponentsModule} from "../../components.module";
 import {AdminComponent} from "./admin.component";
-import {CategoriesModule} from "./categories/categories.module";
+import {AdminCategoriesModule} from "./categories/admin-categories.module";
 import {UserAddressesService} from "../../shared/services/user/user-addresses.service";
-import {ProductsModule} from "./products/products.module";
+import {AdminProductsModule} from "./products/admin-products.module";
 
 @NgModule({
     imports: [
@@ -14,8 +14,8 @@ import {ProductsModule} from "./products/products.module";
         MaterialModule,
         ComponentsModule,
         AdminRoutingModule,
-        CategoriesModule,
-        ProductsModule,
+        AdminCategoriesModule,
+        AdminProductsModule,
     ],
     declarations: [
         AdminComponent,

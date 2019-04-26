@@ -8,9 +8,9 @@ import {ItemsComponent} from "../../../shared/components/items/items.component";
 
 @Component({
     selector: 'app-admin-categories',
-    templateUrl: './categories.component.html',
+    templateUrl: './admin-categories.component.html',
 })
-export class CategoriesComponent extends ItemsComponent<Category> implements OnInit {
+export class AdminCategoriesComponent extends ItemsComponent<Category> implements OnInit {
     displayedColumns = ['select', 'name'];
 
     constructor(

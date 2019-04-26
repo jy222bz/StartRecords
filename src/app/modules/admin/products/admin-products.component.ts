@@ -8,9 +8,9 @@ import {Product} from "../../../shared/models/products/product";
 
 @Component({
     selector: 'app-admin-products',
-    templateUrl: './products.component.html',
+    templateUrl: './admin-products.component.html',
 })
-export class ProductsComponent extends ItemsComponent<Product> implements OnInit {
+export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
     displayedColumns = ['select', 'name'];
 
     constructor(
