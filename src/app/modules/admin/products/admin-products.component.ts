@@ -51,7 +51,6 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                         price: actions.payload.doc.data().price,
                     }
                 });
-                console.log(products);
                 this.set(products);
             }
         );

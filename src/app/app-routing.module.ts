@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: './modules/admin/products/admin-products.module#AdminProductsModule',
     },
     {
+        path: 'admin/tracks',
+        loadChildren: './modules/admin/tracks/admin-tracks.module#AdminTracksModule',
+    },
+    {
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',
     },

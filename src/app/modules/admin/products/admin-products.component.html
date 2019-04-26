@@ -32,7 +32,7 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+            <mat-cell *matCellDef="let element"><a routerLink="/admin/tracks/{{element.id}}"> <strong> {{element.name}} </strong></a>
             </mat-cell>
         </ng-container>
 
