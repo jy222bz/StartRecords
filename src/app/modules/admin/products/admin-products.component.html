@@ -30,6 +30,11 @@
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="image">
+            <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
+            <img *matCellDef="let element" src="{{element.imageUrl}}" width="64" height="64"/>
+        </ng-container>
+
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
             <mat-cell *matCellDef="let element"><a routerLink="/admin/tracks/{{element.id}}"> <strong> {{element.name}} </strong></a>
