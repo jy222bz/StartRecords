@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {TracksComponent} from './tracks.component';
+import {AdminTracksComponent} from './admin-tracks.component';
 
 const routes: Routes = [
-    {path: '', component: TracksComponent}
+    {path: '', component: AdminTracksComponent}
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class TracksRoutingModule {
+export class AdminTracksRoutingModule {
 }

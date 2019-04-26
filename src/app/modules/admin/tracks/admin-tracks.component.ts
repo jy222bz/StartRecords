@@ -8,9 +8,9 @@ import {Track} from "../../../shared/models/tracks/track";
 
 @Component({
     selector: 'app-admin-tracks',
-    templateUrl: './tracks.component.html',
+    templateUrl: './admin-tracks.component.html',
 })
-export class TracksComponent extends ItemsComponent<Track> implements OnInit {
+export class AdminTracksComponent extends ItemsComponent<Track> implements OnInit {
     displayedColumns = ['select', 'name'];
 
     constructor(

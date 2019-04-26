@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 
 
-import {TracksRoutingModule} from './tracks.routing.module';
+import {AdminTracksRoutingModule} from './admin-tracks.routing.module';
 
-import {TracksComponent} from './tracks.component';
+import {AdminTracksComponent} from './admin-tracks.component';
 import {MaterialModule} from "../../../material.module";
 import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
@@ -17,10 +17,10 @@ import {TracksService} from "../../../shared/services/tracks/tracks.service";
         CommonModule,
         MaterialModule,
         ComponentsModule,
-        TracksRoutingModule,
+        AdminTracksRoutingModule,
     ],
     declarations: [
-        TracksComponent,
+        AdminTracksComponent,
         AddComponent,
         DeleteComponent,
     ],
@@ -28,7 +28,7 @@ import {TracksService} from "../../../shared/services/tracks/tracks.service";
         TracksService,
     ],
     exports: [
-        TracksComponent,
+        AdminTracksComponent,
         AddComponent
     ],
 
@@ -37,5 +37,5 @@ import {TracksService} from "../../../shared/services/tracks/tracks.service";
         DeleteComponent,
     ]
 })
-export class TracksModule {
+export class AdminTracksModule {
 }
