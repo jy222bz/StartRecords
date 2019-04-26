@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
 import {ProductsService} from "../../../../../shared/services/products/products.service";
 
 
@@ -46,7 +45,17 @@ export class AddComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        this.productsService.add(this.form.value)
+
+        const data = {
+            name: this.form.controls.name.value,
+            year: this.form.controls.year.value,
+            artist: this.form.controls.artist.value,
+            producer: this.form.controls.producer.value,
+            price: this.form.controls.price.value,
+            duration: this.form.controls.duration.value,
+            description: this.form.controls.description.value,
+        };
+        this.productsService.add(data)
             .then(
                 (data) => {
                     this.working = false;
