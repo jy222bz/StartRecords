@@ -26,6 +26,7 @@ export class AddComponent implements OnInit {
             'artist': ['Niko', [Validators.required, Validators.minLength(4)]],
             'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
             'price': [0, [Validators.required]],
+            'duration': [0, [Validators.required]],
             'description': [''],
         });
     }

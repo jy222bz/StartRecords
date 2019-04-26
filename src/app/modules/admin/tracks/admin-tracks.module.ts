@@ -10,6 +10,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
 import {TracksService} from "../../../shared/services/tracks/tracks.service";
+import {ProductService} from "../../../shared/services/products/product.service";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {TracksService} from "../../../shared/services/tracks/tracks.service";
     ],
     providers: [
         TracksService,
+        ProductService,
     ],
     exports: [
         AdminTracksComponent,

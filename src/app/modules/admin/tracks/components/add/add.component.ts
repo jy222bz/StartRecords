@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TracksService} from "../../../../../shared/services/tracks/tracks.service";
+import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class AddComponent implements OnInit {
 
     constructor(
         private tracksService: TracksService,
+        private productService: ProductService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<AddComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
@@ -51,6 +53,7 @@ export class AddComponent implements OnInit {
             .then(
                 (data) => {
                     this.working = false;
+                    this.productService.addDuration(this.data.productId, this.form.controls.duration.value);
                     this.dialog.close(data);
                 },
                 (error) => {
