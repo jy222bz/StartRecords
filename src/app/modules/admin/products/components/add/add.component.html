@@ -34,6 +34,12 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
+                <input-file placeholder="Image" [formControl]="form.controls.image"></input-file>
+                <mat-icon matSuffix>photo</mat-icon>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Description"
                        [formControl]="form.controls.description">
             </mat-form-field>

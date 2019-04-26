@@ -28,9 +28,13 @@ import {
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {InputFileComponent} from "./shared/components/input-file/input-file.component";
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        InputFileComponent,
+
+    ],
     imports: [
         FormsModule,
         ReactiveFormsModule,
@@ -90,6 +94,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatSidenavModule,
         FlexLayoutModule,
 
+        InputFileComponent,
     ],
     providers: [],
     entryComponents: []

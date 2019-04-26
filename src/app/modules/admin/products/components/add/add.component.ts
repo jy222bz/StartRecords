@@ -27,6 +27,7 @@ export class AddComponent implements OnInit {
             'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
             'price': [0, [Validators.required]],
             'duration': [0, [Validators.required]],
+            'image': [0],
             'description': [''],
         });
     }
