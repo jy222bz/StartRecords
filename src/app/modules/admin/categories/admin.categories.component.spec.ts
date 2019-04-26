@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import {AdminCategoriesComponent} from './admin-categories.component';
 
-describe('CategoryService', () => {
+describe('AdminCategories', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [AdminCategoriesComponent]
