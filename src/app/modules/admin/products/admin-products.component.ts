@@ -33,11 +33,23 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     }
 
     // ----------------------
+    navigateTracks() {
+
+
+    }
+
+    // ----------------------
     get() {
         this.productsService.get().subscribe(
             (data) => {
-                console.log(data);
-                this.set(data);
+                let products = data.map(actions => {
+                    return {
+                        id: actions.payload.doc.id,
+                        name: actions.payload.doc.data().name
+                    }
+                });
+                console.log(products);
+                this.set(products);
             }
         );
     }

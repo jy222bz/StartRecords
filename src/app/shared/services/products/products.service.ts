@@ -12,11 +12,16 @@ export class ProductsService {
     }
 
     get() {
-        return this.afs.collection<Product>('products').valueChanges();
+        const productsCollection = this.afs.collection<Product>('products').snapshotChanges()
+
+            ;
+        return productsCollection;
     }
 
     add(args) {
-        return this.afs.collection('products').add(args);
+        return this.afs.collection('products').add(args)
+
+            ;
     }
 
 
