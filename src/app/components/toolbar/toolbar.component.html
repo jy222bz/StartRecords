@@ -1,6 +1,9 @@
 <mat-toolbar style="background-color: #cd5048">
     <img src="assets/images/star.png"/>
-
+    <span id="title" style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
+    <li><a href="toolbar.component.html">HOME</a></li>
+    <li><a href="#">CONTACT</a></li>
+    <li><a href="#">ABOUT</a></li>
     <span class="mat-toolbar-spacer"></span>
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()"
