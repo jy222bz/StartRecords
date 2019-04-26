@@ -4,7 +4,7 @@ import {MatDialog} from "@angular/material";
 import {ItemsComponent} from "../../../shared/components/items/items.component";
 import {TracksService} from "../../../shared/services/tracks/tracks.service";
 import {Track} from "../../../shared/models/tracks/track";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -19,6 +19,7 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
         private route: ActivatedRoute,
         private tracksService: TracksService,
         private dialog: MatDialog,
+        private router: Router,
     ) {
         super();
     }
@@ -37,6 +38,10 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
         ref.afterClosed().subscribe(result => {
 
         });
+    }
+
+    navigateProducts() {
+        this.router.navigate(['admin/products']);
     }
 
     // ----------------------

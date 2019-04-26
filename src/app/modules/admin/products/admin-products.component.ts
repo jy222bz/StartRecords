@@ -11,7 +11,7 @@ import {Product} from "../../../shared/models/products/product";
     templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['select', 'name', 'artist', 'producer', 'price'];
+    displayedColumns = ['select', 'name', 'artist', 'producer', 'price', 'duration'];
 
     constructor(
         private productsService: ProductsService,
@@ -49,6 +49,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                         producer: actions.payload.doc.data().producer,
                         artist: actions.payload.doc.data().artist,
                         price: actions.payload.doc.data().price,
+                        duration: actions.payload.doc.data().duration,
                     }
                 });
                 this.set(products);

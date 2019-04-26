@@ -5,4 +5,5 @@ export class Product extends Model{
     artist: string;
     producer: string;
     price: number;
+    duration: number;
 }
