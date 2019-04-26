@@ -2,18 +2,34 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../shared/services/authentication.service";
 import {MatDialog} from "@angular/material";
 import {LoginComponent} from "../login/login.component";
-import {RegisterComponent} from "../register/register.component";
+import {SignupComponent} from "../signup/signup.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {Router} from "@angular/router";
+
+
 
 // @ts-ignore
 @Component({
     selector: 'app-toolbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-    title = 'Star Collection';
+export class ToolbarComponent implements OnInit {
+    title = 'Star Records';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -27,7 +43,7 @@ export class NavbarComponent implements OnInit {
     }
 
     openSignupComponent() {
-        const ref = this.dialog.open(RegisterComponent, {autoFocus: true, minWidth: 400});
+        const ref = this.dialog.open(SignupComponent, {autoFocus: true, minWidth: 400});
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.navigateMyAccount();

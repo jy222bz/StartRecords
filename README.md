@@ -41,6 +41,6 @@ ja223rt@student.lnu.se
 ## Weekly meeting
 Monday 		  11:30   Slack
 Tuesday 	  12:45
-Wednesday 	11:30   Slack
+Wednesday 	  11:30   Slack
 Thursday 	  11:30		
 Friday		  11:30   Slack

@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -33,7 +34,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
-        AppRoutingModule,
+        AppRoutingModule
     ],
     providers: [
         AuthenticationService,

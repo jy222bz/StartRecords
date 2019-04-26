@@ -1,5 +1,6 @@
-export class Product {
-    id: string;
+import {Model} from "../model";
+
+export class Product extends Model{
     name: string;
 
 }

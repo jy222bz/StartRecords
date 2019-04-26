@@ -1,41 +1,36 @@
-<mat-toolbar style="background-color: #00796b">
-    <mat-toolbar-row>
-        <img src="assets/images/logo.png" alt=""/>
+<mat-toolbar style="background-color: #cd5048">
+    <img src="assets/img/star.png"/>
 
-        <span style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
-        <nav>
-            <ul>
-                <li><a href="#">CONTACT</a></li>
-                <li><a href="#">ABOUT</a></li>
-            </ul>
-        </nav>
-        <span class="mat-toolbar-spacer"></span>
 
-        <button style="margin-right: 8px" mat-raised-button (click)="openSignupComponent()"
-                *ngIf="!authenticationService.isAuthenticated()">
-            <mat-icon>person</mat-icon>
-            Register
+    <span id="title" style="color: snow; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
+
+            <li><a href="toolbar.component.html">HOME</a></li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">ABOUT</a></li>
+    <span class="mat-toolbar-spacer"></span>
+
+    <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openSignupComponent()"
+            *ngIf="!authenticationService.isAuthenticated()">
+        Signup
+    </button>
+
+    <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
+            *ngIf="!authenticationService.isAuthenticated()">
+        Login
+    </button>
+    <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu" *ngIf="authenticationService.isAuthenticated()">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #clientEditMenu="matMenu">
+        <button mat-menu-item (click)="navigateMyAccount()">
+            <mat-icon>account_box</mat-icon>
+            <span>My Account</span>
+        </button>
+        <button mat-menu-item (click)="openLogoutComponent()">
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
         </button>
 
-        <button style="margin-right: 8px" mat-raised-button (click)="openLoginComponent()"
-                *ngIf="!authenticationService.isAuthenticated()">
-            Login
-        </button>
-        <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu"
-                *ngIf="authenticationService.isAuthenticated()">
-            <mat-icon>account_circle</mat-icon>
-        </button>
-        <mat-menu #clientEditMenu="matMenu">
-            <button mat-menu-item (click)="navigateMyAccount()">
-                <mat-icon>account_box</mat-icon>
-                <span>My Account</span>
-            </button>
-            <button mat-menu-item (click)="openLogoutComponent()">
-                <mat-icon>exit_to_app</mat-icon>
-                Logout
-            </button>
-
-        </mat-menu>
-    </mat-toolbar-row>
+    </mat-menu>
 </mat-toolbar>
 

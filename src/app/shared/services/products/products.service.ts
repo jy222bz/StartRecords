@@ -1,24 +1,22 @@
 import {Injectable} from '@angular/core';
-
-import {AngularFireDatabase} from "@angular/fire/database";
 import {Product} from "../../models/products/product";
+import {AngularFirestore} from "@angular/fire/firestore";
 
 
 @Injectable()
 export class ProductsService {
 
 
-    constructor(private db: AngularFireDatabase) {
+    constructor(private afs: AngularFirestore) {
 
     }
 
     get() {
-        console.log('getting list');
-        return this.db.list<Product>('/products')
+        return this.afs.collection<Product>('products').valueChanges();
     }
 
     add(args) {
-
+        return this.afs.collection('products').add(args);
     }
 
 
