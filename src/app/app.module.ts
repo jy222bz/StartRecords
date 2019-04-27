@@ -14,6 +14,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {UserService} from "./shared/services/user/user.service";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
         AppRoutingModule
     ],
     providers: [
+        UserService,
         AuthenticationService,
     ],
     exports: [],

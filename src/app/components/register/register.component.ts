@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
+            'name': ['', [Validators.required, Validators.minLength(4)]],
             'email': ['', [Validators.required, Validators.email]],
             'password': ['', [Validators.required, Validators.minLength(4)]],
         });
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
-    signup() {
+    register() {
         if (!this.form.valid) {
             Object.keys(this.form.controls).forEach(field => {
                 const control = this.form.get(field);
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.authenticationService.signup(this.form.value.email, this.form.value.password)
+        this.authenticationService.register(this.form.value.name, this.form.value.email, this.form.value.password)
             .then(
                 (value) => {
                     this.working = false;
