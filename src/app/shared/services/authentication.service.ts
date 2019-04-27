@@ -1,71 +1,36 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Account} from "../models/account";
+import {UserService} from "./user/user.service";
 
 
 @Injectable()
 export class AuthenticationService {
-    user: any = null;
+    account: Account = null;
 
     constructor(private firebaseAuth: AngularFireAuth,
-                private afs: AngularFirestore) {
+                private afs: AngularFirestore,
+                private userService: UserService,
+    ) {
         this.checkIfLoggedIn();
     }
 
-    checkIfLoggedIn() {
-        this.firebaseAuth.authState.subscribe(
-            res => {
-                if (res && res.uid) {
-                    this.user = res;
-                }
-            }
-        );
-    }
-
-    signup(email: string, password: string) {
+    register(name, email: string, password: string) {
         return new Promise((resolve, reject) => {
             this.firebaseAuth
                 .auth
                 .createUserWithEmailAndPassword(email, password)
                 .then(value => {
-                    this.user = value;
-                    this.createUser(value);
-                    resolve(value);
-                })
-                .catch(err => {
-                    reject(err.message);
-                });
-        });
-    }
-
-    createUser(result) {
-        this.afs.collection('users').doc(result.user.uid).set({
-            admin: false,
-            addresses: {},
-            country: ''
-        })
-            .then(() => {
-
-            })
-            .catch((error) => {
-
-            });
-    }
-
-    login(email: string, password: string) {
-        return new Promise((resolve, reject) => {
-            this.firebaseAuth
-                .auth
-                .signInWithEmailAndPassword(email, password)
-                .then(value => {
-                    this.user = value;
-                    this.checkIfAdmin(value)
-                        .then(
-                            () => {
-                                resolve(value);
-                            }
-                        ).catch((error) => {
-                        reject(error);
+                    this.account = new Account(value.user.uid, value.user.email);
+                    this.userService.set(this.account.id, {
+                        admin: false,
+                        name: name,
+                    }).then(() => {
+                        this.account.name = name;
+                        resolve(this.account);
+                    }).catch((error) => {
+                        reject(error.message);
                     });
                 })
                 .catch(err => {
@@ -74,36 +39,79 @@ export class AuthenticationService {
         });
     }
 
-    checkIfAdmin(data) {
+    login(email: string, password: string) {
         return new Promise((resolve, reject) => {
-            this.afs.collection('users').doc(data.user.uid).get()
+            this.firebaseAuth
+                .auth
+                .signInWithEmailAndPassword(email, password)
+                .then(value => {
+                    this.account = new Account(value.user.uid, value.user.email);
+                    this.getAccountInfo()
+                        .then(() => {
+                            resolve(this.account);
+                        })
+                        .catch((error) => {
+                            reject(error);
+                        })
+                    ;
+                })
+                .catch(err => {
+                    reject(err.message);
+                });
+        });
+    }
+
+    logout() {
+        this.firebaseAuth.auth.signOut()
+            .then((next) => {
+
+            })
+            .catch(err => {
+
+            });
+        this.account = null;
+    }
+
+    isAuthenticated() {
+        return this.account != null;
+    }
+
+    isAdmin() {
+        return this.account != null && this.account.admin === true;
+    }
+
+    getAccount() {
+        return this.account;
+    }
+
+
+    //
+    // -----------------------
+    private checkIfLoggedIn() {
+        this.firebaseAuth.authState
+            .subscribe((next) => {
+                    if (next && next.uid) {
+                        this.account = new Account(next.uid, next.email);
+                        this.getAccountInfo().then();
+                    } else {
+                        this.account = null;
+                    }
+                }
+            );
+    }
+
+    private getAccountInfo() {
+        return new Promise((resolve, reject) => {
+            this.userService.get(this.account.id)
                 .subscribe((result) => {
-                        if (result.exists) {
-                            console.log(result.data().admin);
-                            this.user.admin = result.data().admin;
-                        }
+                        this.account.name = result.data().name;
+                        this.account.admin = result.data().admin;
                         resolve();
                     }, (error) => {
                         reject(error);
                     }
                 );
         });
-    }
 
-    logout() {
-        this.firebaseAuth.auth.signOut();
-        this.user = null;
-    }
-
-    isAuthenticated() {
-        return this.user != null;
-    }
-
-    isAdmin() {
-        return this.user != null && this.user.admin === true;
-    }
-
-    getUser() {
-        return this.user;
     }
 }

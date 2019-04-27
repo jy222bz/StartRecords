@@ -7,4 +7,5 @@ export class Product extends Model{
     imageUrl: string;
     price: number;
     duration: number;
+    description: string;
 }

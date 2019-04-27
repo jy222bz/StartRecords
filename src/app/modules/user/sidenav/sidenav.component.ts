@@ -34,7 +34,7 @@ export class SidenavComponent implements OnInit  {
 
     // -------------------
     get() {
-        const user = this.authenticationService.getUser();
+        const user = this.authenticationService.getAccount();
         console.log(user);
     }
 

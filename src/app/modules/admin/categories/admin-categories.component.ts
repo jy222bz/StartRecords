@@ -4,6 +4,7 @@ import {AddComponent} from "./components/add/add.component";
 import {MatDialog} from "@angular/material";
 import {Category} from "../../../shared/models/categories/category";
 import {ItemsComponent} from "../../../shared/components/items/items.component";
+import {DeleteComponent} from "./components/delete/delete.component";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {ItemsComponent} from "../../../shared/components/items/items.component";
     templateUrl: './admin-categories.component.html',
 })
 export class AdminCategoriesComponent extends ItemsComponent<Category> implements OnInit {
-    displayedColumns = ['select', 'name'];
+    displayedColumns = ['name', 'description', 'edit'];
 
     constructor(
         private categoriesService: CategoriesService,
@@ -28,18 +29,31 @@ export class AdminCategoriesComponent extends ItemsComponent<Category> implement
     openAddDialog() {
         const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px'});
         ref.afterClosed().subscribe(result => {
-
+            if (result) {
+                this.add(result);
+            }
         });
     }
 
     // ----------------------
+    openCategoryDeleteComponent(element) {
+        const ref = this.dialog.open(DeleteComponent, {autoFocus: true, width: '480px', data: element});
+        ref.afterClosed()
+            .subscribe((next) => {
+                if (next) {
+                    this.delete(next);
+                }
+            });
+    }
+
+    // ----------------------
     get() {
-        this.categoriesService.get().subscribe(
-            (data) => {
-                console.log(data);
+        const subscription = this.categoriesService.get()
+            .subscribe((data) => {
                 this.set(data);
-            }
-        );
+                subscription.unsubscribe();
+            })
+        ;
     }
 }
 

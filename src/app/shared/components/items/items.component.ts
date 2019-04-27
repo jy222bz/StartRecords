@@ -90,12 +90,19 @@ export abstract class ItemsComponent<T extends Model> {
         this.dataSource = new MatTableDataSource([]);
     }
 
-    delete(items) {
+    delete(result) {
         this.selection.clear();
-        this.dataSource.data = this.dataSource.data.filter((elem) => {
-            return items.indexOf(elem.id) === -1;
-        });
-        this.total -= items.length;
+        if (result instanceof Array) {
+            this.dataSource.data = this.dataSource.data.filter((elem) => {
+                return result.indexOf(elem.id) === -1;
+            });
+            this.total -= result.length;
+        } else {
+            this.dataSource.data = this.dataSource.data.filter((elem) => {
+                return result.id !== elem.id;
+            });
+            this.total -= 1;
+        }
     }
 
     abstract get();
