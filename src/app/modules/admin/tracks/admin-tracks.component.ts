@@ -36,7 +36,9 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
     openAddDialog() {
         const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px', data: {productId: this.productId}});
         ref.afterClosed().subscribe(result => {
-
+            if (result) {
+                this.add(result);
+            }
         });
     }
 
@@ -46,10 +48,10 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
 
     // ----------------------
     get() {
-        this.tracksService.get(this.productId).subscribe(
+        const subscription = this.tracksService.get(this.productId).subscribe(
             (data) => {
-                console.log(data);
                 this.set(data);
+                subscription.unsubscribe();
             }
         );
 

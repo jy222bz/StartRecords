@@ -43,24 +43,23 @@ export class AddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        let data = {
+        let data: any = {
             productId: this.data.productId,
             name: this.form.controls.name.value,
             duration: this.form.controls.duration.value,
         };
 
         this.tracksService.add(data)
-            .then(
-                (data) => {
-                    this.working = false;
-                    this.productService.addDuration(this.data.productId, this.form.controls.duration.value);
-                    this.dialog.close(data);
-                },
-                (error) => {
-                    this.error = (error.status === 0) ? error.message : error.error;
-                    this.working = false;
-                }
-            );
+            .then((next) => {
+                this.working = false;
+                this.productService.addDuration(this.data.productId, this.form.controls.duration.value);
+                data.id = next.id;
+                this.dialog.close(data);
+            })
+            .catch((error) => {
+                this.error = (error.status === 0) ? error.message : error.error;
+                this.working = false;
+            });
         return false;
     }
 
