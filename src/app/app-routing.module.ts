@@ -9,7 +9,7 @@ const routes: Routes = [
     },
     {
         path: 'admin',
-        loadChildren: './modules/admin/admin.module#AdminModule',
+        loadChildren: './modules/admin/home/admin.module#AdminModule',
     },
     {
         path: 'admin/categories',
@@ -23,6 +23,8 @@ const routes: Routes = [
         path: 'admin/tracks/:id',
         loadChildren: './modules/admin/tracks/admin-tracks.module#AdminTracksModule',
     },
+
+
     {
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',
