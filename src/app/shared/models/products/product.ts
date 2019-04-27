@@ -4,7 +4,7 @@ export class Product extends Model{
     name: string;
     artist: string;
     producer: string;
-    imageUrl: string;
+    cover: string;
     price: number;
     duration: number;
     description: string;

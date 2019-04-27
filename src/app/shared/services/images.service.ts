@@ -8,9 +8,9 @@ export class ImagesService {
 
     }
 
-    upload(name, file) {
+    upload(path, name, file) {
         return new Promise((resolve, reject) => {
-            this.afs.upload('/images/' + name, file)
+            this.afs.upload(path + name, file)
                 .snapshotChanges()
                 .subscribe(
                     (next) => {

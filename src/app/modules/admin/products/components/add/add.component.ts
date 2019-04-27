@@ -30,7 +30,7 @@ export class AddComponent implements OnInit {
             'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
             'price': [0, [Validators.required]],
             'duration': [0, [Validators.required]],
-            'image': [0],
+            'cover': [0],
             'description': [''],
         });
     }
@@ -50,16 +50,16 @@ export class AddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        if (this.form.controls.image.value !== 0) {
-            const randomId = Math.random().toString(36).substring(2);
-            this.imagesService.upload(randomId + '.jpg', this.form.controls.image.value.files[0]).then(
-                (data) => {
+        if (this.form.controls.cover.value !== 0) {
+            const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
+            this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
+                .then((data) => {
                     this.saveProduct(data);
-                }
-            ).catch((error) => {
-                this.working = true;
-                this.error = error;
-            });
+                })
+                .catch((error) => {
+                    this.working = true;
+                    this.error = error;
+                });
         } else {
             this.saveProduct('');
         }
@@ -67,7 +67,7 @@ export class AddComponent implements OnInit {
     }
 
 
-    saveProduct(imageUrl) {
+    saveProduct(cover) {
         let data: any = {
             name: this.form.controls.name.value,
             year: this.form.controls.year.value,
@@ -76,7 +76,7 @@ export class AddComponent implements OnInit {
             price: this.form.controls.price.value,
             duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
-            imageUrl: imageUrl,
+            cover: cover,
         };
         this.productsService.add(data)
             .then((next) => {

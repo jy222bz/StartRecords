@@ -21,7 +21,7 @@ export class ProductsService {
                         artist: item.payload.doc.data().artist,
                         price: item.payload.doc.data().price,
                         duration: item.payload.doc.data().duration,
-                        imageUrl: item.payload.doc.data().imageUrl,
+                        cover: item.payload.doc.data().cover,
                         description: item.payload.doc.data().description,
                     }))
                 }));

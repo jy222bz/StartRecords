@@ -32,7 +32,7 @@
 
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
-            <mat-cell *matCellDef="let element"><img *ngIf="element.imageUrl !== ''" src="{{element.imageUrl}}"
+            <mat-cell *matCellDef="let element"><img *ngIf="element.cover !== ''" src="{{element.cover}}"
                                                      width="48" height="48" style="padding: 8px"/></mat-cell>
         </ng-container>
 
