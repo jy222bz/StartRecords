@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder} from '@angular/forms';
-import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
-import {ProductsService} from "../../../../../shared/services/products/products.service";
+import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -14,12 +13,10 @@ export class DeleteComponent implements OnInit {
     error = null;
 
     constructor(
-        private productsService: ProductsService,
+        private productService: ProductService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<DeleteComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) {
-
-
+        @Inject(MAT_DIALOG_DATA) private data: any) {
     }
 
     ngOnInit() {
@@ -29,19 +26,15 @@ export class DeleteComponent implements OnInit {
     save() {
         this.working = true;
         this.error = null;
-        /*
-        this.categoriesService.delete(this.data)
-            .subscribe(
-                (data) => {
-                    this.working = false;
-                    this.dialog.close(data['items']);
-                },
-                (error) => {
-                    this.error = (error.status === 0) ? error.message : error.error;
-                    this.working = false;
-                }
-            );
-        */
+        this.productService.delete(this.data.id)
+            .then((next) => {
+                this.working = false;
+                this.dialog.close();
+            })
+            .catch((error) => {
+                this.error = (error.status === 0) ? error.message : error.error;
+                this.working = false;
+            });
         return false;
     }
 

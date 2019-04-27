@@ -32,12 +32,14 @@
 
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
-            <img *matCellDef="let element" src="{{element.imageUrl}}" width="64" height="64"/>
+            <mat-cell *matCellDef="let element"><img *ngIf="element.imageUrl !== ''" src="{{element.imageUrl}}"
+                                                     width="48" height="48" style="padding: 8px"/></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="/admin/tracks/{{element.id}}"> <strong> {{element.name}} </strong></a>
+            <mat-cell *matCellDef="let element"><a routerLink="/admin/tracks/{{element.id}}">
+                <strong> {{element.name}} </strong></a>
             </mat-cell>
         </ng-container>
 
@@ -70,6 +72,20 @@
             <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="mat-column-end">
+                <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item (click)="openProductDeleteComponent(element)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

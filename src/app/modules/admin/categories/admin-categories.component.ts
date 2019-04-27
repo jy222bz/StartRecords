@@ -36,7 +36,6 @@ export class AdminCategoriesComponent extends ItemsComponent<Category> implement
     get() {
         this.categoriesService.get().subscribe(
             (data) => {
-                console.log(data);
                 this.set(data);
             }
         );

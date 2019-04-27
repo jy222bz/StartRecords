@@ -13,15 +13,22 @@ export class ProductService {
         return this.afs.collection<Product>('products').snapshotChanges();
     }
 
-    update(id, args = null) {
-        return this.afs.collection('products').doc(id).set(args);
+    set(id, args = null) {
+        return this.afs.collection('products').doc(id).set(args, {
+            merge: true
+        });
+    }
 
+    delete(id) {
+        // Delete tracks
+        // this.afs.collection('tracks', ref => ref.where('productId', '==', productId)).delete()
+
+        return this.afs.collection('products').doc(id).delete();
     }
 
     addDuration(id, duration) {
         this.afs.collection('products').doc(id).get().subscribe(
             (next) => {
-                console.log(next.data());
                 let data = next.data();
                 data.duration += duration;
                 this.afs.collection('products').doc(id).set(data).then(
@@ -30,18 +37,4 @@ export class ProductService {
             }
         );
     }
-
-    setImage(id, imageUrl) {
-        this.afs.collection('products').doc(id).get().subscribe(
-            (next) => {
-                console.log(next.data());
-                let data = next.data();
-                data.image = imageUrl;
-                this.afs.collection('products').doc(id).set(data).then(
-
-                );
-            }
-        );
-    }
-
 }

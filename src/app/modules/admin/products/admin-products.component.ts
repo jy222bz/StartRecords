@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material";
 import {ItemsComponent} from "../../../shared/components/items/items.component";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {Product} from "../../../shared/models/products/product";
+import {DeleteComponent} from "./components/delete/delete.component";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {Product} from "../../../shared/models/products/product";
     templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['select', 'image', 'name', 'artist', 'producer', 'price', 'duration'];
+    displayedColumns = ['image', 'name', 'artist', 'producer', 'price', 'duration', 'edit'];
 
     constructor(
         private productsService: ProductsService,
@@ -32,22 +33,21 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
         });
     }
 
+
+    // ----------------------
+    openProductDeleteComponent(element) {
+        const ref = this.dialog.open(DeleteComponent, {autoFocus: true, width: '480px', data: element});
+        ref.afterClosed().subscribe(result => {
+
+        });
+    }
+
     // ----------------------
     get() {
         this.productsService.get().subscribe(
             (data) => {
-                let products = data.map(actions => {
-                    return {
-                        id: actions.payload.doc.id,
-                        name: actions.payload.doc.data().name,
-                        producer: actions.payload.doc.data().producer,
-                        artist: actions.payload.doc.data().artist,
-                        price: actions.payload.doc.data().price,
-                        duration: actions.payload.doc.data().duration,
-                        imageUrl: actions.payload.doc.data().imageUrl,
-                    }
-                });
-                this.set(products);
+                console.log(data);
+                this.set(data);
             }
         );
     }

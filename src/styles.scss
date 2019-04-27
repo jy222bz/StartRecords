@@ -3,47 +3,9 @@ h1 {
     text-align: left;
 }
 
-p {
-    color: grey;
-    width: 800px;
-}
-
-header {
-    background-color: blue;
-}
-
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
-}
-
-nav {
-    background-color: grey;
-    width: auto;
-    height: 50px;
-
-    ul {
-        padding-left: 20px;
-    }
-
-    li {
-        display: inline-block;
-    }
-
-    a {
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-    }
-
-    a:link, a:visited {
-        background-color: lightblue;
-        color: grey;
-    }
-
-    a:hover, a:active {
-        background-color: white;
-    }
 }
 
 main {
@@ -55,7 +17,6 @@ footer {
     background-color: grey;
     color: black;
 }
-
 
 
 @import '~@angular/material/theming';
@@ -73,6 +34,11 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 .mat-toolbar-spacer {
     flex: 1 1 auto;
+}
+
+.mat-column-end {
+    display: flex;
+    justify-content: flex-end;
 }
 
 a {

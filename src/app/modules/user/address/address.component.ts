@@ -34,7 +34,7 @@ export class AddressComponent implements OnInit {
     }
 
     get() {
-        this.userAddressesService.get(this.authenticationService.getAccount().uid).subscribe(
+        this.userAddressesService.get(this.authenticationService.getAccount().id).subscribe(
             (next) => {
                 this.form.controls.city.setValue(next.data().city);
                 this.form.controls.street.setValue(next.data().street);
@@ -58,7 +58,7 @@ export class AddressComponent implements OnInit {
         this.error = null;
 
 
-        this.userAddressesService.set(this.authenticationService.getAccount().uid, {
+        this.userAddressesService.set(this.authenticationService.getAccount().id, {
             city: this.form.value.city,
             postalNumber: this.form.value.postalNumber,
             street: this.form.value.street

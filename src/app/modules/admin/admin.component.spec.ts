@@ -12,4 +12,4 @@ describe('AdminComponentCreated', () => {
     it('should be created', inject([AdminComponent], (service: AdminComponent) => {
         expect(service).toBeTruthy();
     }));
-
+});
