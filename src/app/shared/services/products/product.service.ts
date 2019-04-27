@@ -21,7 +21,11 @@ export class ProductService {
 
     delete(id) {
         // Delete tracks
-        // this.afs.collection('tracks', ref => ref.where('productId', '==', productId)).delete()
+        /*
+        this.afs.collection('tracks', ref => ref.where('productId', '==', id))
+            .delete();
+        */
+
 
         return this.afs.collection('products').doc(id).delete();
     }

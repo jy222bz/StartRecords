@@ -23,6 +23,7 @@ export class ProductsService {
                         duration: item.payload.doc.data().duration,
                         cover: item.payload.doc.data().cover,
                         description: item.payload.doc.data().description,
+                        total: item.payload.doc.data().total,
                     }))
                 }));
     }

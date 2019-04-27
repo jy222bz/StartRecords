@@ -77,6 +77,7 @@ export class AddComponent implements OnInit {
             duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
             cover: cover,
+            total: 0,
         };
         this.productsService.add(data)
             .then((next) => {
