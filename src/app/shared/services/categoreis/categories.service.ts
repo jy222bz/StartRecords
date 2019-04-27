@@ -18,6 +18,7 @@ export class CategoriesService {
                         id: item.payload.doc.id,
                         name: item.payload.doc.data().name,
                         description: item.payload.doc.data().description,
+                        count: item.payload.doc.data().count,
                     }))
                 }));
     }

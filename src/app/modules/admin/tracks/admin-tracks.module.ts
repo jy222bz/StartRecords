@@ -11,6 +11,7 @@ import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
 import {TracksService} from "../../../shared/services/tracks/tracks.service";
 import {ProductService} from "../../../shared/services/products/product.service";
+import {TrackService} from "../../../shared/services/tracks/track.service";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ProductService} from "../../../shared/services/products/product.service"
     ],
     providers: [
         TracksService,
+        TrackService,
         ProductService,
     ],
     exports: [

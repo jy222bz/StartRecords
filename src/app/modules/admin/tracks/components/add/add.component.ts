@@ -52,7 +52,7 @@ export class AddComponent implements OnInit {
         this.tracksService.add(data)
             .then((next) => {
                 this.working = false;
-                this.productService.addDuration(this.data.productId, this.form.controls.duration.value);
+                this.productService.updateDuration(this.data.productId, this.form.controls.duration.value).then();
                 data.id = next.id;
                 this.dialog.close(data);
             })

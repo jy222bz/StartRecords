@@ -29,6 +29,7 @@ export class ProductsService {
     }
 
     add(args) {
+
         return this.afs.collection<Product>('products').add(args)
 
             ;

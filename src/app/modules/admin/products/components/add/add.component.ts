@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
 import {ImagesService} from "../../../../../shared/services/images.service";
-import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -17,7 +16,6 @@ export class AddComponent implements OnInit {
 
     constructor(
         private productsService: ProductsService,
-        private productService: ProductService,
         private imagesService: ImagesService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<AddComponent>,
@@ -29,8 +27,9 @@ export class AddComponent implements OnInit {
             'artist': ['Niko', [Validators.required, Validators.minLength(4)]],
             'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
             'price': [0, [Validators.required]],
-            'duration': [0, [Validators.required]],
-            'cover': [0],
+            'duration': [0],
+            'total': [0],
+            'cover': [''],
             'description': [''],
         });
     }
@@ -50,7 +49,7 @@ export class AddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        if (this.form.controls.cover.value !== 0) {
+        if (this.form.controls.cover.value !== '') {
             const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
             this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
                 .then((data) => {
