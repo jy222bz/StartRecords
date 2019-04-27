@@ -9,8 +9,8 @@ export class ProductService {
 
     }
 
-    get() {
-        return this.afs.collection<Product>('products').snapshotChanges();
+    get(id) {
+        return this.afs.collection<Product>('products').doc(id).get();
     }
 
     set(id, args = null) {

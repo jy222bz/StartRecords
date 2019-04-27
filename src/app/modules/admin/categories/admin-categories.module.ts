@@ -10,6 +10,7 @@ import {AddComponent} from "./components/add/add.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
+import {CategoryService} from "../../../shared/services/categoreis/category.service";
 
 
 @NgModule({
@@ -27,12 +28,8 @@ import {CommonModule} from "@angular/common";
     ],
     providers: [
         CategoriesService,
+        CategoryService,
     ],
-    exports: [
-        AdminCategoriesComponent,
-        AddComponent,
-    ],
-
     entryComponents: [
         AddComponent,
         DeleteComponent,

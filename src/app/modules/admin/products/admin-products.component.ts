@@ -29,7 +29,9 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     openAddDialog() {
         const ref = this.dialog.open(AddComponent, {autoFocus: true, width: '480px'});
         ref.afterClosed().subscribe(result => {
-
+            if (result) {
+                this.add(result);
+            }
         });
     }
 
@@ -38,18 +40,20 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     openProductDeleteComponent(element) {
         const ref = this.dialog.open(DeleteComponent, {autoFocus: true, width: '480px', data: element});
         ref.afterClosed().subscribe(result => {
-
+            if (result) {
+                this.delete(result);
+            }
         });
     }
 
     // ----------------------
     get() {
-        this.productsService.get().subscribe(
-            (data) => {
-                console.log(data);
+        const subscription = this.productsService.get()
+            .subscribe((data) => {
                 this.set(data);
-            }
-        );
+                subscription.unsubscribe();
+            })
+        ;
     }
 }
 

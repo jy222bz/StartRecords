@@ -68,7 +68,7 @@ export class AddComponent implements OnInit {
 
 
     saveProduct(imageUrl) {
-        const data = {
+        let data: any = {
             name: this.form.controls.name.value,
             year: this.form.controls.year.value,
             artist: this.form.controls.artist.value,
@@ -79,16 +79,16 @@ export class AddComponent implements OnInit {
             imageUrl: imageUrl,
         };
         this.productsService.add(data)
-            .then(
-                (data) => {
+            .then((next) => {
                     this.working = false;
+                    data.id = next.id;
                     this.dialog.close(data);
-                },
-                (error) => {
-                    this.error = (error.status === 0) ? error.message : error.error;
-                    this.working = false;
                 }
-            );
+            )
+            .catch((error) => {
+                this.error = (error.status === 0) ? error.message : error.error;
+                this.working = false;
+            });
     }
 
     close() {

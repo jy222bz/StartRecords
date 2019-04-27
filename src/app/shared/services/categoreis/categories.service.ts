@@ -22,13 +22,7 @@ export class CategoriesService {
                 }));
     }
 
-    add(arg) {
-        return this.afs.collection('categories').add(arg);
+    add(args) {
+        return this.afs.collection('categories').add(args);
     }
-
-    delete(id) {
-
-
-    }
-
 }

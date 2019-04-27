@@ -29,7 +29,7 @@ export class DeleteComponent implements OnInit {
         this.productService.delete(this.data.id)
             .then((next) => {
                 this.working = false;
-                this.dialog.close();
+                this.dialog.close(this.data);
             })
             .catch((error) => {
                 this.error = (error.status === 0) ? error.message : error.error;
