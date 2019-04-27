@@ -9,11 +9,11 @@ import {RegisterComponent} from "../register/register.component";
 
 
 @Component({
-    selector: 'app-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
     title = 'Star Records';
 
     constructor(
@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
 
     }
 
-    openSignupComponent() {
+    openRegisterComponent() {
         const ref = this.dialog.open(RegisterComponent, {autoFocus: true, minWidth: 400});
         ref.afterClosed().subscribe(result => {
             if (result) {

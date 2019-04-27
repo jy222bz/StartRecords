@@ -13,13 +13,13 @@ import {AuthenticationService} from "./shared/services/authentication.service";
 import {RegisterComponent} from "./components/register/register.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ToolbarComponent} from "./components/toolbar/toolbar.component";
+import {NavbarComponent} from "./components/navbar/navbar.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        ToolbarComponent,
+        NavbarComponent,
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
