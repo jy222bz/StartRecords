@@ -10,7 +10,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
 import {ComponentsModule} from "../../../components.module";
 import {CommonModule} from "@angular/common";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {ImagesService} from "../../../shared/services/images/images.service";
+import {ImagesService} from "../../../shared/services/images.service";
 import {ProductService} from "../../../shared/services/products/product.service";
 
 
