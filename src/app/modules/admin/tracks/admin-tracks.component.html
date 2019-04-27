@@ -1,13 +1,14 @@
 <div class="container">
     <mat-toolbar class="toolbar-header">
         <mat-toolbar-row>
-            <span>Tracks</span>
+            <span class="font-larger" >Tracks</span>
             <span class="mat-toolbar-spacer"></span>
             <button mat-icon-button matTooltip="Back" (click)="navigateProducts()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Add" (click)="openAddDialog()">
+            <button mat-flat-button color="primary" (click)="openAddDialog()">
                 <mat-icon>add</mat-icon>
+                Add
             </button>
         </mat-toolbar-row>
     </mat-toolbar>

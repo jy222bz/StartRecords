@@ -22,6 +22,7 @@ export class AddComponent implements OnInit {
         this.form = this.fb.group({
             'name': ['', [Validators.required, Validators.minLength(4)]],
             'description': [''],
+            'count': [0],
         });
     }
 

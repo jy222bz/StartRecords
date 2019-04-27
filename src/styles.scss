@@ -59,22 +59,41 @@ a {
     position: fixed;
     left: 0;
     right: 0;
-    top: 68px;
-
+    top: 64px;
     height: 100%;
 }
 
 .container {
     position: relative;
     height: 100%;
-    padding: 8px;
+    padding: 16px;
 }
 
 .toolbar-header {
     margin-bottom: 8px;
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
 }
 
 .mat-toolbar {
     background-color: white;
+}
+
+// Font styles
+.font-smaller {
+    font-size: smaller;
+}
+
+.font-small {
+    font-size: small;
+}
+
+.font-medium {
+    font-size: medium;
+}
+
+.font-large {
+    font-size: large;
+}
+
+.font-larger {
+    font-size: larger;
 }

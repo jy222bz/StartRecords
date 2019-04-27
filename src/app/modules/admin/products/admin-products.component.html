@@ -1,10 +1,11 @@
 <div class="container">
     <mat-toolbar class="toolbar-header">
         <mat-toolbar-row>
-            <span>Products</span>
+            <span class="font-larger" >Products</span>
             <span class="mat-toolbar-spacer"></span>
-            <button mat-icon-button matTooltip="Add" (click)="openAddDialog()">
+            <button mat-flat-button color="primary" (click)="openAddDialog()">
                 <mat-icon>add</mat-icon>
+                Add
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
@@ -80,7 +81,7 @@
                 </button>
                 <mat-menu #userMenu="matMenu">
                     <button mat-menu-item (click)="openProductDeleteComponent(element)">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon color="warn">delete</mat-icon>
                         <span>Delete</span>
                     </button>
                 </mat-menu>
