@@ -1,8 +1,39 @@
-.sidenav {
-    width: 300px;
-    height: 100%;
+@keyframes showTile {
+    0% {
+        opacity: 0;
+        transform: scale(0, 0);
+    }
+    100% {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
 }
 
-.container {
-    height: 100%;
+
+
+.app-admin-tiles {
+    padding: 8px;
 }
+
+.app-admin-tile {
+    animation: showTile 0.5s cubic-bezier(.33,.04,.72,.45);
+    animation-fill-mode: both;
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.app-admin-tile-content {
+    margin: 8px;
+    height: 100%;
+    max-height: 240px;
+}
+
+
+
+.app-admin-tiles .app-admin-tile:nth-child(1) { animation-delay: .2s }
+.app-admin-tiles .app-admin-tile:nth-child(2) { animation-delay: .4s }

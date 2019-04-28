@@ -98,7 +98,51 @@ a {
     font-size: larger;
 }
 
-@keyframes slideIn {
+// Material icons
+.material-icons.mat-14 {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.material-icons.mat-18 {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.material-icons.mat-24 {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.material-icons.mat-36 {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+}
+
+.material-icons.mat-48 {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.material-icons.mat-56 {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+}
+
+.material-icons.mat-72 {
+    font-size: 72px;
+    width: 72px;
+    height: 72px;
+}
+
+// Mat header slider
+@keyframes MatHeaderSlideIn {
     0% {
         opacity: 0;
         transform: translateX(-100%);
@@ -109,13 +153,8 @@ a {
     }
 }
 
-.mat-header-row {
-    animation: slideIn 0.3s linear;
-    animation-fill-mode: both;
-}
-
 .mat-header-row .mat-header-cell {
-    animation: slideIn 0.3s linear;
+    animation: MatHeaderSlideIn 0.3s linear;
     animation-fill-mode: both;
 }
 
