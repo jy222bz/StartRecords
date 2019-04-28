@@ -151,22 +151,22 @@ a {
 @keyframes MatHeaderSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateY(50%);
     }
     100% {
-        transform: translateX(0);
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
 .mat-header-row .mat-header-cell {
-    animation: MatHeaderSlideIn 0.3s linear;
+    animation: MatHeaderSlideIn 0.2s linear;
     animation-fill-mode: both;
 }
 
-.mat-header-row .mat-header-cell:nth-child(1) { animation-delay: .2s }
-.mat-header-row .mat-header-cell:nth-child(2) { animation-delay: .4s }
-.mat-header-row .mat-header-cell:nth-child(3) { animation-delay: .6s }
-.mat-header-row .mat-header-cell:nth-child(4) { animation-delay: .8s }
-.mat-header-row .mat-header-cell:nth-child(5) { animation-delay: 1s }
-.mat-header-row .mat-header-cell:nth-child(6) { animation-delay: 1.2s }
+.mat-header-row .mat-header-cell:nth-child(1) { animation-delay: .1s }
+.mat-header-row .mat-header-cell:nth-child(2) { animation-delay: .2s }
+.mat-header-row .mat-header-cell:nth-child(3) { animation-delay: .3s }
+.mat-header-row .mat-header-cell:nth-child(4) { animation-delay: .4s }
+.mat-header-row .mat-header-cell:nth-child(5) { animation-delay: .5s }
+.mat-header-row .mat-header-cell:nth-child(6) { animation-delay: .6s }
