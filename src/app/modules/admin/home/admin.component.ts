@@ -49,5 +49,9 @@ export class AdminComponent implements OnInit {
     ngOnInit(): void {
 
     }
-}
 
+    navigate(element) {
+        this.router.navigate([element.url]);
+    }
+
+}

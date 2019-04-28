@@ -84,6 +84,10 @@ export class AuthenticationService {
         return this.account;
     }
 
+    getName() {
+        return this.account ? this.account.name : '';
+    }
+
 
     //
     // -----------------------
