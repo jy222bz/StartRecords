@@ -9,6 +9,7 @@ import {FooterComponent} from "./components/footer/footer.component";
 import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "../../shared/services/products/products.service";
 import {ProductComponent} from "./products/product/product.component";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ProductComponent} from "./products/product/product.component";
         MaterialModule,
         ComponentsModule,
         MainRoutingModule,
+        CommonModule,
     ],
     declarations: [
         MainComponent,
