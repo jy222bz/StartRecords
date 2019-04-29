@@ -17,7 +17,7 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
     productId = '';
 
     constructor(
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private tracksService: TracksService,
         private dialog: MatDialog,
         private router: Router,
@@ -26,11 +26,10 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        this.activatedRoute.params.subscribe(params => {
             this.productId = params['id'];
             this.get();
         });
-        this.get();
     }
 
     // ----------------------

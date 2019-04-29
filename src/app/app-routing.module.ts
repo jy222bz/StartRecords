@@ -29,6 +29,12 @@ const routes: Routes = [
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',
     },
+
+    {
+        path: 'product/:id',
+        loadChildren: './modules/main/product/product.module#ProductModule',
+    },
+
     {path: '**', component: PageNotFoundComponent},
 ];
 
