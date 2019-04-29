@@ -1,0 +1,15 @@
+<mat-grid-tile [colspan]="colspan"
+               [rowspan]="rowspan"
+               [style.color]="color"
+
+               class="app-admin-tile"
+>
+    <mat-card class="app-admin-tile-card" (click)="navigate()">
+        <ul style="list-style-type:none; padding: 0">
+            <li><span class="font-larger">{{text}}</span></li>
+            <li>
+                <mat-icon class="mat-92" [style.color]="color">{{ icon }}</mat-icon>
+            </li>
+        </ul>
+    </mat-card>
+</mat-grid-tile>

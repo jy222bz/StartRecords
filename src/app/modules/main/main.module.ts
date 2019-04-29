@@ -6,6 +6,9 @@ import {MainRoutingModule} from './main.routing.module';
 import {MainComponent} from './main.component';
 import {ComponentsModule} from "../../components.module";
 import {FooterComponent} from "./components/footer/footer.component";
+import {ProductsComponent} from "./products/products.component";
+import {ProductsService} from "../../shared/services/products/products.service";
+import {ProductComponent} from "./products/product/product.component";
 
 
 @NgModule({
@@ -17,9 +20,11 @@ import {FooterComponent} from "./components/footer/footer.component";
     declarations: [
         MainComponent,
         FooterComponent,
+        ProductsComponent,
+        ProductComponent,
     ],
     providers: [
-
+        ProductsService,
     ],
     entryComponents: []
 })

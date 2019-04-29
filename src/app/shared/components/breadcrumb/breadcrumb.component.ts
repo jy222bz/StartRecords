@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import './breadcrumb.component.css';
 
@@ -8,23 +8,10 @@ import './breadcrumb.component.css';
 })
 export class BreadcrumbComponent implements OnInit {
 
-    currentValue = '';
-    _value: any;
-
-    @Input()
-    set value(value: any) {
-
-    }
-
-    get value() {
-        return this._value;
-    }
-
 
     ngOnInit(): void {
 
     }
-
 
 
 }

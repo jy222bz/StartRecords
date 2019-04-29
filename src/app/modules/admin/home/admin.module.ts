@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../../material.module";
 import {ComponentsModule} from "../../../components.module";
 import {AdminComponent} from "./admin.component";
+import {TileComponent} from "./components/tile/tile.component";
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import {AdminComponent} from "./admin.component";
     ],
     declarations: [
         AdminComponent,
+        TileComponent,
     ],
     providers: [],
     entryComponents: []

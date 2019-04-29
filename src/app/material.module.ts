@@ -29,11 +29,12 @@ import {
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {InputFileComponent} from "./shared/components/input-file/input-file.component";
+import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.component";
 
 @NgModule({
     declarations: [
         InputFileComponent,
-
+        BreadcrumbComponent,
     ],
     imports: [
         FormsModule,
@@ -95,6 +96,7 @@ import {InputFileComponent} from "./shared/components/input-file/input-file.comp
         FlexLayoutModule,
 
         InputFileComponent,
+        BreadcrumbComponent,
     ],
     providers: [],
     entryComponents: []

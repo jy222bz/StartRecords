@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
             cols: 1,
             rows: 1,
             icon: 'library_music',
-            color: '#c2185b',
+            color: '#6a1b9a',
         },
         {
             text: 'Categories',
@@ -35,6 +35,13 @@ export class AdminComponent implements OnInit {
             rows: 1,
             icon: 'category',
             color: '#00796b',
+        }, {
+            text: 'Orders',
+            url: '/admin/orders',
+            cols: 1,
+            rows: 1,
+            icon: 'shop',
+            color: '#bf360c',
         },
     ];
 
