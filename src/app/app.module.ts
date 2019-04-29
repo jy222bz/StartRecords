@@ -15,6 +15,7 @@ import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {UserService} from "./shared/services/user/user.service";
         NavbarComponent,
         LoginComponent,
         RegisterComponent,
-        LogoutComponent,
+        LogoutComponent
 
     ],
     imports: [
@@ -35,7 +36,8 @@ import {UserService} from "./shared/services/user/user.service";
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FlexLayoutModule
     ],
     providers: [
         UserService,
