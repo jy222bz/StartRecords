@@ -6,6 +6,7 @@ import {Product} from "../../../shared/models/products/product";
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
+    styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent extends ItemsComponent<Product> implements OnInit {
 

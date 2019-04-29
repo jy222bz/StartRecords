@@ -30,6 +30,7 @@ import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {InputFileComponent} from "./shared/components/input-file/input-file.component";
 import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
     declarations: [
@@ -65,6 +66,7 @@ import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.com
 
         FlexLayoutModule,
         CommonModule,
+        RouterModule,
     ],
     exports: [
         FormsModule,

@@ -30,4 +30,8 @@ export class TileComponent implements OnInit {
     navigate() {
         this.router.navigate([this.url]);
     }
+
+    mouseover() {
+
+    }
 }
