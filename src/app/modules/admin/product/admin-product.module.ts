@@ -6,6 +6,11 @@ import {AdminProductComponent} from "./admin-product.component";
 import {ProductService} from "../../../shared/services/products/product.service";
 import {AdminProductRoutingModule} from "./admin-product.routing.module";
 import {MaterialModule} from "../../../material.module";
+import {TracksComponent} from "./components/tracks/tracks.component";
+import {ProductTracksService} from "../../../shared/services/products/product-tracks.service";
+import {ProductTrackService} from "../../../shared/services/products/product-track.service";
+import {TracksAddComponent} from "./components/tracks/components/add/tracks-add.component";
+import {TracksDeleteComponent} from "./components/tracks/components/delete/tracks-delete.component";
 
 
 @NgModule({
@@ -17,12 +22,19 @@ import {MaterialModule} from "../../../material.module";
     ],
     declarations: [
         AdminProductComponent,
-
+        TracksComponent,
+        TracksAddComponent,
+        TracksDeleteComponent,
     ],
     providers: [
         ProductService,
+        ProductTracksService,
+        ProductTrackService,
     ],
-    entryComponents: []
+    entryComponents: [
+        TracksAddComponent,
+        TracksDeleteComponent,
+    ]
 })
 export class AdminProductModule {
 }

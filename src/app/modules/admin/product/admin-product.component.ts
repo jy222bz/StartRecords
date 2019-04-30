@@ -29,7 +29,6 @@ export class AdminProductComponent implements OnInit {
     load() {
         const subscription = this.productService.get(this.product.id).subscribe(
             (next) => {
-                console.log(next.data());
                 this.product = next.data();
                 subscription.unsubscribe();
             },
@@ -37,6 +36,12 @@ export class AdminProductComponent implements OnInit {
                 subscription.unsubscribe();
             }
         )
+    }
+
+
+    //
+    edit() {
+
     }
 }
 

@@ -5,16 +5,16 @@ import {map} from "rxjs/operators";
 
 
 @Injectable()
-export class TracksService {
+export class ProductTracksService {
 
 
     constructor(private afs: AngularFirestore) {
 
     }
 
-    get(productId, args = null) {
+    get(id, args = null) {
         return this.afs.collection<Track>('tracks',
-            ref => ref.where('productId', '==', productId)).snapshotChanges()
+            ref => ref.where('productId', '==', id)).snapshotChanges()
             .pipe(map(
                 actions => {
                     return actions.map(item => ({

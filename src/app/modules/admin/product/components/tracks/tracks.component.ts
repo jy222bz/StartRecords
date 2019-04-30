@@ -1,24 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {AddComponent} from "./components/add/add.component";
+import {Component, Input, OnInit} from '@angular/core';
+import {TracksAddComponent} from "./components/add/tracks-add.component";
 import {MatDialog} from "@angular/material";
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {TracksService} from "../../../shared/services/tracks/tracks.service";
-import {Track} from "../../../shared/models/tracks/track";
+import {ItemsComponent} from "../../../../../shared/components/items/items.component";
+import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
+import {Track} from "../../../../../shared/models/tracks/track";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DeleteComponent} from "./components/delete/delete.component";
+import {TracksDeleteComponent} from "./components/delete/tracks-delete.component";
 
 
 @Component({
-    selector: 'app-admin-tracks',
-    templateUrl: './admin-tracks.component.html',
+    selector: 'app-product-tracks',
+    templateUrl: './tracks.component.html',
 })
-export class AdminTracksComponent extends ItemsComponent<Track> implements OnInit {
+export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     displayedColumns = ['select', 'name', 'duration'];
-    productId = '';
+
+    @Input() productId;
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private tracksService: TracksService,
+        private tracksService: ProductTracksService,
         private dialog: MatDialog,
         private router: Router,
     ) {
@@ -26,15 +27,13 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
     }
 
     ngOnInit(): void {
-        this.activatedRoute.params.subscribe(params => {
-            this.productId = params['id'];
-            this.get();
-        });
+        this.get();
     }
 
     // ----------------------
     openAddDialog() {
-        const ref = this.dialog.open(AddComponent, {
+        console.log(this.productId);
+        const ref = this.dialog.open(TracksAddComponent, {
             autoFocus: true,
             width: '480px',
             data: {productId: this.productId}
@@ -48,17 +47,12 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
 
     // ----------------------
     openTrackDeleteComponent(element) {
-        const ref = this.dialog.open(DeleteComponent, {autoFocus: true, width: '480px', data: element});
+        const ref = this.dialog.open(TracksDeleteComponent, {autoFocus: true, width: '480px', data: element});
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.delete(result);
             }
         });
-    }
-
-    // ----------------------
-    navigateProducts() {
-        this.router.navigate(['admin/products']);
     }
 
     // ----------------------

@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Product} from "../../models/products/product";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {firestore} from "firebase";
 
 
 @Injectable()
-export class TrackService {
+export class ProductTrackService {
     constructor(private afs: AngularFirestore) {
 
     }
