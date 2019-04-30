@@ -1,56 +1,12 @@
 
-<style>
-    * {
-        box-sizing: border-box;
-        -webkit-text-fill-color: darkgrey;
-
-    }
-    body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-        margin: 0;
-
-    }
-    #main {
-        display: flex;
-        flex: 0 0 20vw;
-
-    }
-    #main > article {
-        flex: 1;
-        align-content: flex-end;
-        background: navy;
-
-
-        order: 1;
-    }
-    #main > nav,
-    #main > aside {
-        flex: 1;
-    }
-    #main > nav {
-        background: #fcfcfc;
-        order: 3;
-    }
-
-    #main > aside {
-        background: purple;
-        order: 2;
-    }
-    header, footer {
-        background: navy;
-        height: 20vh;
-    }
-    header, footer, article, nav, aside {
-        padding: 1em;
-    }
-</style>
 <body>
-<header>You are looking at this record: {{product.name}}</header>
+<header>You are looking at this record: {{product.name}}
+</header>
+
 
 <div id="main">
     <article>
+
         <img src="{{product.cover}} "width="400" height="300">
         <p>This the official cover for this record</p>
     </article>
@@ -62,9 +18,18 @@
         <p>The producer for this record: {{product.producer}}</p>
         <p>The release year: {{product.year}}</p>
         <p>The price: {{product.price}}</p>
-        <p>The available amount in stock: {{product.total}}</p>
+        <p>The available amount in the stock: {{product.total}}</p>
     </aside>
 
 </div>
-<footer>More Information</footer>
+<footer>
+    <p>Rate The Product</p>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+</footer>
 </body>
