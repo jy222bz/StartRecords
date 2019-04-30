@@ -30,8 +30,7 @@ export class ProductComponent implements OnInit {
     load() {
         const subscription = this.productService.get(this.product.id).subscribe(
             (next) => {
-                console.log(next.data());
-                this.product = next.data();
+                this.product = next;
                 subscription.unsubscribe();
             },
             (error) => {

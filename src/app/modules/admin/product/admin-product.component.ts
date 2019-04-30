@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/products/product.service";
 import {ActivatedRoute} from "@angular/router";
+import {Product} from "../../../shared/models/products/product";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class AdminProductComponent implements OnInit {
-    product: any = {};
+    product: Product = new Product();
 
     constructor(
         private productService: ProductService,
@@ -29,7 +30,7 @@ export class AdminProductComponent implements OnInit {
     load() {
         const subscription = this.productService.get(this.product.id).subscribe(
             (next) => {
-                this.product = next.data();
+                this.product = next;
                 subscription.unsubscribe();
             },
             (error) => {

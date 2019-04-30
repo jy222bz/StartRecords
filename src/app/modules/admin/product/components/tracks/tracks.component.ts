@@ -21,7 +21,6 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
         private activatedRoute: ActivatedRoute,
         private tracksService: ProductTracksService,
         private dialog: MatDialog,
-        private router: Router,
     ) {
         super();
     }
@@ -32,11 +31,10 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
 
     // ----------------------
     openAddDialog() {
-        console.log(this.productId);
         const ref = this.dialog.open(TracksAddComponent, {
             autoFocus: true,
             width: '480px',
-            data: {productId: this.productId}
+            data: this.productId
         });
         ref.afterClosed().subscribe(result => {
             if (result) {

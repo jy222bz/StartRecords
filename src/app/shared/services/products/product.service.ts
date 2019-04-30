@@ -3,6 +3,7 @@ import {Product} from "../../models/products/product";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {firestore} from 'firebase/app';
 import {Track} from "../../models/tracks/track";
+import {map} from "rxjs/operators";
 
 
 @Injectable()
@@ -12,7 +13,21 @@ export class ProductService {
     }
 
     get(id) {
-        return this.afs.collection<Product>('products').doc(id).get();
+        return this.afs.collection<Product>('products').doc(id).get()
+            .pipe(map(
+                actions => {
+                    return new Product(
+                        actions.id,
+                        actions.data().name,
+                        actions.data().producer,
+                        actions.data().artist,
+                        actions.data().price,
+                        actions.data().duration,
+                        actions.data().cover,
+                        actions.data().description,
+                        actions.data().total,
+                    )
+                }));
     }
 
     set(id, args = null) {

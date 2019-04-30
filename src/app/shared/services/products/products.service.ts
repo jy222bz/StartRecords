@@ -21,18 +21,23 @@ export class ProductsService {
         return this.afs.collection<Product>('products').snapshotChanges()
             .pipe(map(
                 actions => {
-                    return actions.map(item => ({
-                        id: item.payload.doc.id,
-                        name: item.payload.doc.data().name,
-                        producer: item.payload.doc.data().producer,
-                        artist: item.payload.doc.data().artist,
-                        price: item.payload.doc.data().price,
-                        duration: item.payload.doc.data().duration,
-                        cover: item.payload.doc.data().cover,
-                        description: item.payload.doc.data().description,
-                        total: item.payload.doc.data().total,
-                    }))
-                }));
+                    return actions.map(item => (
+                            new Product(
+                                item.payload.doc.id,
+                                item.payload.doc.data().name,
+                                item.payload.doc.data().producer,
+                                item.payload.doc.data().artist,
+                                item.payload.doc.data().price,
+                                item.payload.doc.data().duration,
+                                item.payload.doc.data().cover,
+                                item.payload.doc.data().description,
+                                item.payload.doc.data().total,
+                            )
+                        )
+                    )
+                }
+            ))
+            ;
     }
 
     add(args) {

@@ -11,6 +11,11 @@ import {ProductTracksService} from "../../../shared/services/products/product-tr
 import {ProductTrackService} from "../../../shared/services/products/product-track.service";
 import {TracksAddComponent} from "./components/tracks/components/add/tracks-add.component";
 import {TracksDeleteComponent} from "./components/tracks/components/delete/tracks-delete.component";
+import {CategoriesAddComponent} from "./components/categories/components/add/categories-add.component";
+import {CategoriesDeleteComponent} from "./components/categories/components/delete/categories-delete.component";
+import {ProductCategoriesService} from "../../../shared/services/products/product-categories.service";
+import {CategoriesComponent} from "./components/categories/categories.component";
+import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 
 
 @NgModule({
@@ -25,15 +30,26 @@ import {TracksDeleteComponent} from "./components/tracks/components/delete/track
         TracksComponent,
         TracksAddComponent,
         TracksDeleteComponent,
+
+        CategoriesComponent,
+        CategoriesAddComponent,
+        CategoriesDeleteComponent,
     ],
     providers: [
         ProductService,
         ProductTracksService,
         ProductTrackService,
+
+        CategoriesService,
+
+        ProductCategoriesService,
     ],
     entryComponents: [
         TracksAddComponent,
         TracksDeleteComponent,
+
+        CategoriesAddComponent,
+        CategoriesDeleteComponent,
     ]
 })
 export class AdminProductModule {

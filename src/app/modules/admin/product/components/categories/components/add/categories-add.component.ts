@@ -3,33 +3,47 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
 import {ProductService} from "../../../../../../../shared/services/products/product.service";
+import {ProductCategoriesService} from "../../../../../../../shared/services/products/product-categories.service";
+import {CategoriesService} from "../../../../../../../shared/services/categoreis/categories.service";
+import {Category} from "../../../../../../../shared/models/categories/category";
 
 
 @Component({
-    selector: 'app-admin-product-tracks-add',
-    templateUrl: './tracks-add.component.html',
+    selector: 'app-admin-product-categories-add',
+    templateUrl: './categories-add.component.html',
 })
-export class TracksAddComponent implements OnInit {
+export class CategoriesAddComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
+    categories: any[] = [];
+
     constructor(
-        private productTracksService: ProductTracksService,
-        private productService: ProductService,
+        private productCategoriesService: ProductCategoriesService,
+        private categoriesService: CategoriesService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<TracksAddComponent>,
+        private dialog: MatDialogRef<CategoriesAddComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
 
+        console.log(data);
+
         this.form = this.fb.group({
-            'name': ['Song 1', [Validators.required, Validators.minLength(4)]],
-            'duration': [600, [Validators.required]],
-            'description': ['This is our first track'],
+            'category_id': ['', [Validators.required]],
         });
     }
 
     ngOnInit() {
+        this.getCategories();
+    }
 
+    getCategories() {
+        const subscription = this.categoriesService.get().subscribe(
+            (next) => {
+                this.categories = next;
+                subscription.unsubscribe();
+            }
+        )
     }
 
     save() {
@@ -43,18 +57,13 @@ export class TracksAddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        console.log(this.data);
         let data: any = {
-            productId: this.data,
-            name: this.form.controls.name.value,
-            duration: this.form.controls.duration.value,
+            category_id: this.form.controls.category_id.value,
         };
 
-        this.productTracksService.add(data)
+        this.productCategoriesService.add(this.data.productId, data)
             .then((next) => {
                 this.working = false;
-                this.productService.updateDuration(this.data, this.form.controls.duration.value).then();
-                data.id = next.id;
                 this.dialog.close(data);
             })
             .catch((error) => {
