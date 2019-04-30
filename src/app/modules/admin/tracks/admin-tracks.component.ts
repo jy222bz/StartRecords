@@ -67,6 +67,9 @@ export class AdminTracksComponent extends ItemsComponent<Track> implements OnIni
             (data) => {
                 this.set(data);
                 subscription.unsubscribe();
+            },
+            (error) => {
+                subscription.unsubscribe();
             }
         );
 
