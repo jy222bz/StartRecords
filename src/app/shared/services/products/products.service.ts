@@ -10,6 +10,13 @@ export class ProductsService {
 
     }
 
+    has(name) {
+        return this.afs.collection<Product>('products',
+            ref => ref.where('name', '==', name)).snapshotChanges()
+
+            ;
+    }
+
     get() {
         return this.afs.collection<Product>('products').snapshotChanges()
             .pipe(map(

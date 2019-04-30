@@ -49,6 +49,23 @@ export class AddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
+        this.uploadImage();
+        return false;
+    }
+
+    checkName() {
+        this.productsService.has(this.form.controls.name.value).subscribe(
+            (next) => {
+                console.log(next);
+            },
+            (error) => {
+                this.working = true;
+                this.error = error;
+            }
+        );
+    }
+
+    uploadImage() {
         if (this.form.controls.cover.value !== '') {
             const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
             this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
@@ -62,9 +79,7 @@ export class AddComponent implements OnInit {
         } else {
             this.saveProduct('');
         }
-        return false;
     }
-
 
     saveProduct(cover) {
         let data: any = {
