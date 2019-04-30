@@ -1,26 +1,27 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TracksService} from "../../../../../shared/services/tracks/tracks.service";
-import {ProductService} from "../../../../../shared/services/products/product.service";
+import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
+import {ProductService} from "../../../../../../../shared/services/products/product.service";
 
 
 @Component({
     selector: 'app-admin-tracks-add',
-    templateUrl: './add.component.html',
+    templateUrl: './tracks-add.component.html',
 })
-export class AddComponent implements OnInit {
+export class TracksAddComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
     constructor(
-        private tracksService: TracksService,
+        private tracksService: ProductTracksService,
         private productService: ProductService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<AddComponent>,
+        private dialog: MatDialogRef<TracksAddComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
 
+        console.log(data);
         this.form = this.fb.group({
             'name': ['Song 1', [Validators.required, Validators.minLength(4)]],
             'duration': [600, [Validators.required]],

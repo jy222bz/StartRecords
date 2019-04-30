@@ -1,8 +1,25 @@
-<div>
+<div class="page-toolbar">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span>{{ product.name }}</span>
+            <span class="mat-toolbar-spacer"></span>
 
-    {{product.name}}
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="edit()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+            </mat-menu>
 
-    <img src="{{product.cover}}">
+        </mat-toolbar-row>
+    </mat-toolbar>
 </div>
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px">
 
-
+</div>
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+    <app-product-tracks [productId]="product.id"></app-product-tracks>
+</div>

@@ -25,12 +25,6 @@ const routes: Routes = [
     },
 
     {
-        path: 'admin/tracks/:id',
-        loadChildren: './modules/admin/tracks/admin-tracks.module#AdminTracksModule',
-    },
-
-
-    {
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',
     },
