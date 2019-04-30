@@ -34,6 +34,7 @@ export class ProductService {
 
         // Reduce categories
 
+
         // Delete product
         return this.afs.collection('products').doc(id).delete();
     }

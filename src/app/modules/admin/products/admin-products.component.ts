@@ -49,10 +49,15 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     // ----------------------
     get() {
         const subscription = this.productsService.get()
-            .subscribe((data) => {
-                this.set(data);
-                subscription.unsubscribe();
-            })
+            .subscribe(
+                (data) => {
+                    this.set(data);
+                    subscription.unsubscribe();
+                },
+                (error) => {
+                    subscription.unsubscribe();
+                }
+            )
         ;
     }
 }
