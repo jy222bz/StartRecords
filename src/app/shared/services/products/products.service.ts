@@ -18,9 +18,8 @@ export class ProductsService {
     }
 
     get() {
-
-        const queryFn = (ref => ref.where('name', '==', 'Test'));
-        return this.afs.collection<Product>('products', queryFn).snapshotChanges()
+        // const queryFn = (ref => ref.where('name', '==', 'Test'));
+        return this.afs.collection<Product>('products').snapshotChanges()
             .pipe(map(
                 actions => {
                     return actions.map(item => (
