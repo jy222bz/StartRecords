@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {Product} from "../../../../shared/models/products/product";
 
 @Component({
     selector: 'app-product',
@@ -8,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class ProductComponent implements OnInit {
 
-    @Input() item;
+    @Input() item: Product;
 
     constructor(
         private router: Router,
@@ -23,6 +24,9 @@ export class ProductComponent implements OnInit {
         this.router.navigate(['/product/' + this.item.id]);
     }
 
+    afterImageLoaded(event) {
+        console.log(event)
+    }
 }
 
 

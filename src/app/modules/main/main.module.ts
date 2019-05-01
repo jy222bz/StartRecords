@@ -10,6 +10,7 @@ import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "../../shared/services/products/products.service";
 import {ProductComponent} from "./products/product/product.component";
 import {CommonModule} from "@angular/common";
+import {SharedModule} from "../../shared.module";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {CommonModule} from "@angular/common";
         ComponentsModule,
         MainRoutingModule,
         CommonModule,
+        SharedModule,
     ],
     declarations: [
         MainComponent,

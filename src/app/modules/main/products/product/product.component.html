@@ -1,5 +1,5 @@
 <div class="app-product" (click)="navigate()">
-    <img src="{{item.cover}}">
+    <img  [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)">
     {{item.name}}
 </div>
 
