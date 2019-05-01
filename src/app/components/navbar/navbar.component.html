@@ -1,13 +1,6 @@
-
-
 <mat-toolbar class="app-navbar">
-
     <span id="title" style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
-
     <span class="mat-toolbar-spacer"></span>
-
-
-
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
             *ngIf="!authenticationService.isAuthenticated()">

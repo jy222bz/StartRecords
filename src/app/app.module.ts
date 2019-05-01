@@ -15,18 +15,9 @@ import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
-import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavbarComponent,
-        LoginComponent,
-        RegisterComponent,
-        LogoutComponent
-
-    ],
     imports: [
         BrowserModule,
         FormsModule,
@@ -37,15 +28,23 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MaterialModule,
         ComponentsModule,
         AppRoutingModule,
-        FlexLayoutModule
+    ],
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        LoginComponent,
+        RegisterComponent,
+        LogoutComponent
+
     ],
     providers: [
         UserService,
         AuthenticationService,
     ],
-    exports: [],
     bootstrap: [
         AppComponent,
+    ],
+    entryComponents: [
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
