@@ -22,6 +22,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     }
 
     ngOnInit(): void {
+        this.getTotal();
         this.get();
     }
 
@@ -48,7 +49,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get()
+        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
             .subscribe(
                 (data) => {
                     this.set(data);
@@ -59,6 +60,17 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                 }
             )
         ;
+    }
+
+    getTotal() {
+        this.productsService.getMeta().subscribe(
+            (data) => {
+                this.setTotal(data.total);
+            },
+            (error) => {
+
+            }
+        )
     }
 }
 

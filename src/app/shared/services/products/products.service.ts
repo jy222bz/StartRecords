@@ -3,6 +3,7 @@ import {Product} from "../../models/products/product";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {map} from "rxjs/operators";
 import {firestore} from 'firebase/app';
+import {ProductMeta} from "../../models/products/product-meta";
 
 
 @Injectable()
@@ -17,9 +18,12 @@ export class ProductsService {
             ;
     }
 
-    get() {
-        // const queryFn = (ref => ref.where('name', '==', 'Test'));
-        return this.afs.collection<Product>('products').snapshotChanges()
+    get(pageIndex, pageSize) {
+        return this.afs.collection<Product>('products',
+            ref => ref
+                .orderBy('name', 'asc')
+                .limit(pageSize)
+        ).snapshotChanges()
             .pipe(map(
                 actions => {
                     return actions.map(item => (
@@ -49,4 +53,20 @@ export class ProductsService {
             ;
     }
 
+    getMeta() {
+        return this.afs.collection<ProductMeta>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').get()
+            .pipe(map(
+                actions => {
+                    return new ProductMeta(
+                        actions.data().total,
+                    )
+                }));
+    }
+
+    incrementTotal(number = 1) {
+        this.afs.collection('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').update(
+            {
+                total: firestore.FieldValue.increment(number)
+            }).then();
+    }
 }

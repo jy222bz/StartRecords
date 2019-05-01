@@ -97,6 +97,7 @@ export class AddComponent implements OnInit {
             .then((next) => {
                     this.working = false;
                     data.id = next.id;
+                    this.productsService.incrementTotal();
                     this.dialog.close(data);
                 }
             )
