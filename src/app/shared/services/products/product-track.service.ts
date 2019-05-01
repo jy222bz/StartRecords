@@ -10,16 +10,16 @@ export class ProductTrackService {
     }
 
     get(id) {
-        return this.afs.collection<Product>('tracks').doc(id).get();
+        return this.afs.collection<Product>('product-tracks').doc(id).get();
     }
 
     set(id, args = null) {
-        return this.afs.collection('tracks').doc(id).set(args, {
+        return this.afs.collection('product-tracks').doc(id).set(args, {
             merge: true
         });
     }
 
     delete(id) {
-        return this.afs.collection('tracks').doc(id).delete();
+        return this.afs.collection('product-tracks').doc(id).delete();
     }
 }

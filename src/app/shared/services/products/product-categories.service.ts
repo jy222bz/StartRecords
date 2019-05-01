@@ -9,12 +9,18 @@ export class ProductCategoriesService {
 
     }
 
+    // array-contains
     get(id) {
         return this.afs.collection<Product>('product_categories').doc(id).get();
     }
 
     add(id, args = null) {
-        return this.afs.collection('product_categories').doc(id).set(args);
+
+        return this.afs.collection('products').doc(id).set({
+            'sdfsdfsdf': 1
+        }, {
+            merge: true
+        });
     }
 
     delete(id) {

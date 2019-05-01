@@ -43,7 +43,6 @@ export class TracksAddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        console.log(this.data);
         let data: any = {
             productId: this.data,
             name: this.form.controls.name.value,

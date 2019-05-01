@@ -26,6 +26,7 @@ export class ProductService {
                         actions.data().cover,
                         actions.data().description,
                         actions.data().total,
+                        actions.data().createdAt,
                     )
                 }));
     }
@@ -42,7 +43,7 @@ export class ProductService {
             ref => ref.where('productId', '==', id)).snapshotChanges()
             .subscribe((next) => {
                 next.forEach(item => {
-                    this.afs.collection('tracks').doc(item.payload.doc.id).delete().then();
+                    this.afs.collection('product-tracks').doc(item.payload.doc.id).delete().then();
                 });
                 tracksSub.unsubscribe();
             });

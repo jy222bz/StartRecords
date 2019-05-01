@@ -9,10 +9,10 @@ export class Product extends Model {
     total: number;
     duration: number;
     description: string;
-    created_at: string;
+    createdAt: string;
 
     constructor(id = '', name = '', producer = '', artist = '', price = 0, duration = 0, cover = '', description = '',
-                total = 0, created_at = ''
+                total = 0, createdAt = null
     ) {
         super();
         this.id = id;
@@ -23,6 +23,6 @@ export class Product extends Model {
         this.duration = duration;
         this.description = description;
         this.cover = cover;
-        this.created_at = created_at;
+        this.createdAt = createdAt != null ? createdAt.toDate().toLocaleString() : '';
     }
 }

@@ -40,7 +40,6 @@ export class CategoriesComponent extends ItemsComponent<Track> implements OnInit
 
     // ----------------------
     openAddDialog() {
-        console.log(this._productId);
         const ref = this.dialog.open(CategoriesAddComponent, {
             autoFocus: true,
             width: '480px',

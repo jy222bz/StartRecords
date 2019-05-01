@@ -12,14 +12,15 @@ export class ProductsService {
     }
 
     has(name) {
-        return this.afs.collection<Product>('products',
-            ref => ref.where('name', '==', name)).snapshotChanges()
-
+        const queryFn = ref => ref.where('name', '==', name);
+        return this.afs.collection<Product>('products', queryFn).snapshotChanges()
             ;
     }
 
     get() {
-        return this.afs.collection<Product>('products').snapshotChanges()
+
+        const queryFn = (ref => ref.where('name', '==', 'Test'));
+        return this.afs.collection<Product>('products', queryFn).snapshotChanges()
             .pipe(map(
                 actions => {
                     return actions.map(item => (
@@ -33,7 +34,7 @@ export class ProductsService {
                                 item.payload.doc.data().cover,
                                 item.payload.doc.data().description,
                                 item.payload.doc.data().total,
-                                item.payload.doc.data().created_at,
+                                item.payload.doc.data().createdAt,
                             )
                         )
                     )
@@ -43,7 +44,7 @@ export class ProductsService {
     }
 
     add(args) {
-        args.created_at = firestore.FieldValue.serverTimestamp();
+        args.createdAt = firestore.FieldValue.serverTimestamp();
         return this.afs.collection<Product>('products').add(args)
 
             ;
