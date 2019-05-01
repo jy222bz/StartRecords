@@ -14,9 +14,7 @@ export class ProductCategoriesService {
     }
 
     add(id, args = null) {
-        return this.afs.collection('product_categories').doc(id).set(args, {
-            merge: true
-        });
+        return this.afs.collection('product_categories').doc(id).set(args);
     }
 
     delete(id) {

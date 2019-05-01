@@ -25,9 +25,6 @@ export class CategoriesAddComponent implements OnInit {
         private fb: FormBuilder,
         private dialog: MatDialogRef<CategoriesAddComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
-
-        console.log(data);
-
         this.form = this.fb.group({
             'category_id': ['', [Validators.required]],
         });

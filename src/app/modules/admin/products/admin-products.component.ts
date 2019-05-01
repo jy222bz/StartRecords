@@ -12,7 +12,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
     templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['image', 'name', 'artist', 'producer', 'price', 'duration', 'edit'];
+    displayedColumns = ['image', 'name', 'created_at', 'edit'];
 
     constructor(
         private productsService: ProductsService,

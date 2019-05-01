@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product} from "../../models/products/product";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {map} from "rxjs/operators";
+import {firestore} from 'firebase/app';
 
 
 @Injectable()
@@ -32,6 +33,7 @@ export class ProductsService {
                                 item.payload.doc.data().cover,
                                 item.payload.doc.data().description,
                                 item.payload.doc.data().total,
+                                item.payload.doc.data().created_at,
                             )
                         )
                     )
@@ -41,7 +43,7 @@ export class ProductsService {
     }
 
     add(args) {
-
+        args.created_at = firestore.FieldValue.serverTimestamp();
         return this.afs.collection<Product>('products').add(args)
 
             ;

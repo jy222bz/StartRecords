@@ -13,7 +13,7 @@ import {ProductCategoriesService} from "../../../../../shared/services/products/
     templateUrl: './categories.component.html',
 })
 export class CategoriesComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['select', 'name'];
+    displayedColumns = ['name'];
 
     _productId = '';
 

@@ -13,7 +13,7 @@ import {TracksDeleteComponent} from "./components/delete/tracks-delete.component
     templateUrl: './tracks.component.html',
 })
 export class TracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['select', 'name', 'duration'];
+    displayedColumns = ['name', 'duration'];
 
     @Input() productId;
 

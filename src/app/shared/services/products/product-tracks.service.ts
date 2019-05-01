@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Track} from "../../models/tracks/track";
 import {map} from "rxjs/operators";
+import {firestore} from "firebase";
 
 
 @Injectable()
@@ -28,6 +29,7 @@ export class ProductTracksService {
     }
 
     add(args) {
+        args.created_at = firestore.FieldValue.serverTimestamp();
         return this.afs.collection('tracks').add(args)
             ;
     }

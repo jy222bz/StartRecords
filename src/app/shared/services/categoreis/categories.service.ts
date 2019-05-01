@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Category} from "../../models/categories/category";
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
+import {firestore} from "firebase";
 
 @Injectable()
 export class CategoriesService {
@@ -24,6 +25,7 @@ export class CategoriesService {
     }
 
     add(args) {
+        args.created_at = firestore.FieldValue.serverTimestamp();
         return this.afs.collection('categories').add(args);
     }
 }
