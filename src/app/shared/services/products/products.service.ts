@@ -18,7 +18,7 @@ export class ProductsService {
             ;
     }
 
-    get(pageIndex, pageSize) {
+    get(pageIndex, pageSize, lastElement = null) {
         return this.afs.collection<Product>('products',
             ref => ref
                 .orderBy('name', 'asc')

@@ -10,6 +10,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
 @Component({
     selector: 'app-admin-products',
     templateUrl: './admin-products.component.html',
+    styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
     displayedColumns = ['image', 'name', 'created_at', 'edit'];

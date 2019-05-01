@@ -9,6 +9,8 @@ import {ProductsService} from "../../../shared/services/products/products.servic
 export class ProductsComponent implements OnInit {
 
     products = [];
+    pageIndex = 0;
+    pageSize = 20;
 
     constructor(
         private productsService: ProductsService,
@@ -22,11 +24,15 @@ export class ProductsComponent implements OnInit {
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get()
+        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
             .subscribe((data) => {
-                this.products = data;
-                subscription.unsubscribe();
-            })
+                    this.products = data;
+                    subscription.unsubscribe();
+                },
+                (error) => {
+                    subscription.unsubscribe();
+                }
+            )
         ;
     }
 

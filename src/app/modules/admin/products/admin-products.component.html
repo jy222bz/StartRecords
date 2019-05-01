@@ -2,7 +2,7 @@
     <div class="page-toolbar">
         <mat-toolbar>
             <mat-toolbar-row>
-                <span class="font-larger" >Albums</span>
+                <span class="font-larger">Albums</span>
                 <span class="mat-toolbar-spacer"></span>
                 <button mat-flat-button color="primary" (click)="openAddDialog()">
                     <mat-icon>add</mat-icon>
@@ -35,7 +35,7 @@
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
             <mat-cell *matCellDef="let element"><img *ngIf="element.cover !== ''" src="{{element.cover}}"
-                                                     width="48" height="48" style="padding: 8px" alt=""/></mat-cell>
+                                                     class="app-admin-products-img" alt=""/></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
