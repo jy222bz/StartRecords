@@ -12,6 +12,8 @@ export class ProductsComponent implements OnInit {
     pageIndex = 0;
     pageSize = 20;
 
+    columns = 4;
+
     constructor(
         private productsService: ProductsService,
     ) {
@@ -20,6 +22,24 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
         this.get();
+    }
+
+    onResize(event) {
+        if (event.target.innerWidth < 1920) {
+            this.columns = 6;
+        }
+        if (event.target.innerWidth < 1280) {
+            this.columns = 4;
+        }
+        if (event.target.innerWidth < 960) {
+            this.columns = 3;
+        }
+        if (event.target.innerWidth < 600) {
+            this.columns = 2;
+        }
+        if (event.target.innerWidth < 400) {
+            this.columns = 1;
+        }
     }
 
     // ----------------------

@@ -4,7 +4,6 @@ h1 {
 }
 
 body {
-    font-family: Roboto, sans-serif;
     background-color: #fcfcfc;
     margin: 0;
 }
@@ -16,7 +15,10 @@ a {
 
 /* Theme */
 @import '~@angular/material/theming';
-@include mat-core();
+$custom-typography: mat-typography-config(
+    $font-family: 'Work Sans'
+);
+@include mat-core($custom-typography);
 
 $my-app-primary: mat-palette($mat-light-green, 800);
 $my-app-accent: mat-palette($mat-deep-orange, 800);
@@ -111,6 +113,10 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 .font-larger {
     font-size: larger;
+}
+
+.font-x-larger {
+    font-size: x-large;
 }
 
 // Material icons

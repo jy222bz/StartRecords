@@ -1,6 +1,8 @@
 <div class="app-product" (click)="navigate()">
-    <span>Testing</span>
-    <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)" alt="">
+    <span>{{item.name}}</span>
+
+    <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)" [style.animation-duration]="23" alt="">
+    <div class="layer"></div>
 </div>
 
 

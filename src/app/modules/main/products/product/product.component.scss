@@ -1,6 +1,6 @@
 @keyframes fadein {
     from {
-        transform: scale(0.0);
+        transform: scale(1.6);
         opacity: 0;
 
     }
@@ -15,12 +15,19 @@
     span {
         z-index: 10;
         position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-size: 28px;
     }
     img {
         z-index: 0;
         width: 100%;
         min-height: 100px;
-        background: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy
+        background:
+        url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy
         53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKICAgICB
         3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUw
         IDUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNCIgaGVpZ2h0PSI3IiBmaWxsPSIjMzMzI
@@ -33,13 +40,33 @@
         9IjQiIGhlaWdodD0iNyIgZmlsbD0iIzMzMyI+CiAgICAgIDxhbmltYXRlVHJhbnNmb3JtICBhdHRyaWJ1dGVUeXBlPSJ4bWwiCiAgICAgICAg
         YXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJzY2FsZSIKICAgICAgICB2YWx1ZXM9IjEsMTsgMSwzOyAxLDEiCiAgICAgICAgYmVna
         W49IjAuNHMiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+ICAgICAgIAogICAgPC9yZWN0PgogIDwvc3ZnPg==") no-repeat center;
+
     }
 
     img.ng-lazyloaded {
         width: 100%;
-        object-fit: cover;
-        animation: fadein 1.0s;
+        object-fit: fill ;
+        animation: fadein 1.2s;
+        transition: all .2s ease-in-out;
     }
 
+
     cursor: pointer;
+}
+
+.app-product:hover {
+    img.ng-lazyloaded {
+        transform: scale(1.2);
+    }
+
+    span {
+
+    }
+}
+
+.layer {
+    background-color: rgba(248, 247, 216, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
