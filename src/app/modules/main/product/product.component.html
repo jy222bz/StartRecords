@@ -1,5 +1,4 @@
 
-<body>
 <header>You are looking at this record: {{product.name}}
 </header>
 
@@ -7,10 +6,25 @@
 <div id="main">
     <article>
 
-        <img src="{{product.cover}} "width="400" height="300">
-        <p>This is the official cover for this record.</p>
     </article>
-    <nav>Another</nav>
+    <nav>
+        <img src="{{product.cover}} "width="400" height="300">
+
+            <span class="font-larger"></span>
+            <span class="mat-toolbar-spacer"></span>
+            <button mat-flat-button color="primary" >
+                <mat-icon>add</mat-icon>
+                Buy
+            </button>
+        <p>Rate This Record</p>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </nav>
     <aside>General Information
         <p>The record: {{product.name}}</p>
         <p>The artist: {{product.artist}}</p>
@@ -20,16 +34,8 @@
         <p>The price: {{product.price}}</p>
         <p>The available amount in the stock: {{product.total}}</p>
     </aside>
-
 </div>
 <footer>
-    <p>Rate The Product</p>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
 </footer>
-</body>
+
