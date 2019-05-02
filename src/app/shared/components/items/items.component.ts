@@ -32,6 +32,7 @@ export abstract class ItemsComponent<T extends Model> {
 
     onPageChange(pageEvent) {
         this.selection.clear();
+        this.pageSize = pageEvent.pageSize;
         this.pageIndex = pageEvent.pageIndex;
         this.get();
     }
@@ -72,8 +73,11 @@ export abstract class ItemsComponent<T extends Model> {
     }
 
     set(data) {
-        this.total = data.length;
         this.dataSource = new MatTableDataSource(data);
+    }
+
+    setTotal(total) {
+        this.total = total;
     }
 
     add(result) {

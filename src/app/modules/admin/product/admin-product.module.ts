@@ -11,6 +11,15 @@ import {ProductTracksService} from "../../../shared/services/products/product-tr
 import {ProductTrackService} from "../../../shared/services/products/product-track.service";
 import {TracksAddComponent} from "./components/tracks/components/add/tracks-add.component";
 import {TracksDeleteComponent} from "./components/tracks/components/delete/tracks-delete.component";
+import {CategoriesAddComponent} from "./components/categories/components/add/categories-add.component";
+import {CategoriesDeleteComponent} from "./components/categories/components/delete/categories-delete.component";
+import {ProductCategoriesService} from "../../../shared/services/products/product-categories.service";
+import {CategoriesComponent} from "./components/categories/categories.component";
+import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
+import {SharedModule} from "../../../shared.module";
+import {ImageComponent} from "./components/image/image.component";
+import {ImageUploadComponent} from "./components/image/component/upload/image-upload.component";
+import {ImagesService} from "../../../shared/services/images.service";
 
 
 @NgModule({
@@ -18,6 +27,7 @@ import {TracksDeleteComponent} from "./components/tracks/components/delete/track
         MaterialModule,
         ComponentsModule,
         CommonModule,
+        SharedModule,
         AdminProductRoutingModule,
     ],
     declarations: [
@@ -25,15 +35,33 @@ import {TracksDeleteComponent} from "./components/tracks/components/delete/track
         TracksComponent,
         TracksAddComponent,
         TracksDeleteComponent,
+
+        CategoriesComponent,
+        CategoriesAddComponent,
+        CategoriesDeleteComponent,
+
+        ImageComponent,
+        ImageUploadComponent,
     ],
     providers: [
         ProductService,
         ProductTracksService,
         ProductTrackService,
+
+        CategoriesService,
+
+        ImagesService,
+
+        ProductCategoriesService,
     ],
     entryComponents: [
         TracksAddComponent,
         TracksDeleteComponent,
+
+        CategoriesAddComponent,
+        CategoriesDeleteComponent,
+
+        ImageUploadComponent,
     ]
 })
 export class AdminProductModule {

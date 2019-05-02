@@ -1,25 +1,24 @@
-<div class="page-toolbar">
-    <mat-toolbar>
-        <mat-toolbar-row>
-            <span>{{ product.name }}</span>
-            <span class="mat-toolbar-spacer"></span>
-
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="edit()">
+<div class="container">
+    <div class="page-toolbar">
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <span class="font-larger">{{ product.name }}</span>
+                <span class="mat-toolbar-spacer"></span>
+                <button mat-icon-button >
                     <mat-icon>edit</mat-icon>
-                    <span>Edit</span>
                 </button>
-            </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+        <app-admin-product-image [productId]="product.id" [cover]="product.cover"></app-admin-product-image>
 
-        </mat-toolbar-row>
-    </mat-toolbar>
-</div>
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px">
+    </div>
+    <div fxLayout="row" fxLayoutGap="16px">
+        <app-product-categories [productId]="product.id" fxFill></app-product-categories>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+        <app-product-tracks [productId]="product.id" fxFill></app-product-tracks>
+    </div>
 
-</div>
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
-    <app-product-tracks [productId]="product.id"></app-product-tracks>
 </div>

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Track} from "../../models/tracks/track";
 import {map} from "rxjs/operators";
+import {firestore} from 'firebase/app';
 
 
 @Injectable()
@@ -13,22 +14,26 @@ export class ProductTracksService {
     }
 
     get(id, args = null) {
-        return this.afs.collection<Track>('tracks',
+        return this.afs.collection<Track>('product-tracks',
             ref => ref.where('productId', '==', id)).snapshotChanges()
             .pipe(map(
                 actions => {
-                    return actions.map(item => ({
-                        id: item.payload.doc.id,
-                        name: item.payload.doc.data().name,
-                        productId: item.payload.doc.data().productId,
-                        duration: item.payload.doc.data().duration,
-                        description: item.payload.doc.data().description,
-                    }))
+                    return actions.map(item => (
+                        new Track(
+                            item.payload.doc.id,
+                            item.payload.doc.data().name,
+                            item.payload.doc.data().productId,
+                            item.payload.doc.data().description,
+                            item.payload.doc.data().duration,
+                            item.payload.doc.data().createdAt ,
+                        )
+                    ))
                 }));
     }
 
     add(args) {
-        return this.afs.collection('tracks').add(args)
+        args.createdAt = firestore.FieldValue.serverTimestamp();
+        return this.afs.collection('product-tracks').add(args)
             ;
     }
 

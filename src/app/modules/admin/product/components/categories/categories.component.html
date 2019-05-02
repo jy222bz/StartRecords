@@ -1,6 +1,6 @@
 <mat-toolbar class="toolbar-header">
     <mat-toolbar-row>
-        <span class="font-large" >Tracks</span>
+        <span class="font-large" >Genres</span>
         <span class="mat-toolbar-spacer"></span>
         <button mat-flat-button color="primary" (click)="openAddDialog()">
             <mat-icon>add</mat-icon>
@@ -36,16 +36,6 @@
         </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="duration">
-        <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="created_at">
-        <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="edit">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element" class="mat-column-end">
@@ -53,7 +43,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #userMenu="matMenu">
-                <button mat-menu-item (click)="openTrackDeleteComponent(element)">
+                <button mat-menu-item (click)="openCategoryDeleteComponent(element)">
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>

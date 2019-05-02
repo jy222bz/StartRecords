@@ -1,25 +1,34 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TracksAddComponent} from "./components/add/tracks-add.component";
 import {MatDialog} from "@angular/material";
 import {ItemsComponent} from "../../../../../shared/components/items/items.component";
-import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
 import {Track} from "../../../../../shared/models/tracks/track";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TracksDeleteComponent} from "./components/delete/tracks-delete.component";
+import {ActivatedRoute} from "@angular/router";
+import {CategoriesAddComponent} from "./components/add/categories-add.component";
+import {CategoriesDeleteComponent} from "./components/delete/categories-delete.component";
+import {ProductCategoriesService} from "../../../../../shared/services/products/product-categories.service";
 
 
 @Component({
-    selector: 'app-product-tracks',
-    templateUrl: './tracks.component.html',
+    selector: 'app-product-categories',
+    templateUrl: './categories.component.html',
 })
-export class TracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['name', 'created_at', 'duration'];
+export class CategoriesComponent extends ItemsComponent<Track> implements OnInit {
+    displayedColumns = ['name'];
 
-    @Input() productId;
+    _productId = '';
+
+    @Input()
+    set productId(productId: string) {
+        this._productId = productId;
+    }
+
+    get productId(): string {
+        return this._productId;
+    }
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private tracksService: ProductTracksService,
+        private productCategoriesService: ProductCategoriesService,
         private dialog: MatDialog,
     ) {
         super();
@@ -31,10 +40,10 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
 
     // ----------------------
     openAddDialog() {
-        const ref = this.dialog.open(TracksAddComponent, {
+        const ref = this.dialog.open(CategoriesAddComponent, {
             autoFocus: true,
             width: '480px',
-            data: this.productId
+            data: {productId: this._productId}
         });
         ref.afterClosed().subscribe(result => {
             if (result) {
@@ -44,8 +53,8 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     }
 
     // ----------------------
-    openTrackDeleteComponent(element) {
-        const ref = this.dialog.open(TracksDeleteComponent, {autoFocus: true, width: '480px', data: element});
+    openCategoryDeleteComponent(element) {
+        const ref = this.dialog.open(CategoriesDeleteComponent, {autoFocus: true, width: '480px', data: element});
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.delete(result);
@@ -55,7 +64,7 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
 
     // ----------------------
     get() {
-        const subscription = this.tracksService.get(this.productId).subscribe(
+        const subscription = this.productCategoriesService.get(this.productId).subscribe(
             (data) => {
                 this.set(data);
                 subscription.unsubscribe();
