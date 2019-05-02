@@ -1,4 +1,7 @@
 <div (window:resize)="onResize($event)">
+
+
+
     <mat-grid-list [cols]="columns"  class="app-admin-tiles">
         <mat-grid-tile *ngFor="let element of products"
             class="app-product-tile"
@@ -8,7 +11,5 @@
                 style="width: 100%;"
             ></app-product>
         </mat-grid-tile>
-
-
     </mat-grid-list>
 </div>

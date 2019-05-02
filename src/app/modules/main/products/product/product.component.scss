@@ -12,7 +12,9 @@
 
 .app-product {
     position: relative;
-    span {
+
+
+    .app-product-title {
         z-index: 10;
         position: absolute;
         top: 30%;
@@ -22,12 +24,15 @@
         color: white;
         font-size: 28px;
     }
-    img {
-        z-index: 0;
-        width: 100%;
-        min-height: 100px;
-        background:
-        url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy
+
+    .app-product-image-container{
+
+        img {
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy
         53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKICAgICB
         3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUw
         IDUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNCIgaGVpZ2h0PSI3IiBmaWxsPSIjMzMzI
@@ -41,22 +46,46 @@
         YXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJzY2FsZSIKICAgICAgICB2YWx1ZXM9IjEsMTsgMSwzOyAxLDEiCiAgICAgICAgYmVna
         W49IjAuNHMiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+ICAgICAgIAogICAgPC9yZWN0PgogIDwvc3ZnPg==") no-repeat center;
 
+        }
+
+        img.ng-lazyloaded {
+            width: 100%;
+            object-fit: fill ;
+            animation: fadein 1.2s;
+            transition: all .2s ease-in-out;
+        }
+
     }
 
-    img.ng-lazyloaded {
+    .app-product-image-layer {
+        background-color: rgba(0, 0, 0, 0.4);
+        top: 0;
         width: 100%;
-        object-fit: fill ;
-        animation: fadein 1.2s;
-        transition: all .2s ease-in-out;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
     }
+
+
+
+
 
 
     cursor: pointer;
 }
 
 .app-product:hover {
-    img.ng-lazyloaded {
-        transform: scale(1.2);
+
+    .app-product-title {
+
+    }
+
+    .app-product-image-container {
+        img {
+            transform: scale(1.2);
+        }
+
+
     }
 
     span {
@@ -64,9 +93,3 @@
     }
 }
 
-.layer {
-    background-color: rgba(248, 247, 216, 0.7);
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
