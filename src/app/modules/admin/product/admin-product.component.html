@@ -10,6 +10,10 @@
             </mat-toolbar-row>
         </mat-toolbar>
     </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+        <app-admin-product-image [productId]="product.id" [cover]="product.cover"></app-admin-product-image>
+
+    </div>
     <div fxLayout="row" fxLayoutGap="16px">
         <app-product-categories [productId]="product.id" fxFill></app-product-categories>
     </div>

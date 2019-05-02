@@ -16,6 +16,10 @@ import {CategoriesDeleteComponent} from "./components/categories/components/dele
 import {ProductCategoriesService} from "../../../shared/services/products/product-categories.service";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
+import {SharedModule} from "../../../shared.module";
+import {ImageComponent} from "./components/image/image.component";
+import {ImageUploadComponent} from "./components/image/component/upload/image-upload.component";
+import {ImagesService} from "../../../shared/services/images.service";
 
 
 @NgModule({
@@ -23,6 +27,7 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
         MaterialModule,
         ComponentsModule,
         CommonModule,
+        SharedModule,
         AdminProductRoutingModule,
     ],
     declarations: [
@@ -34,6 +39,9 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
         CategoriesComponent,
         CategoriesAddComponent,
         CategoriesDeleteComponent,
+
+        ImageComponent,
+        ImageUploadComponent,
     ],
     providers: [
         ProductService,
@@ -41,6 +49,8 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
         ProductTrackService,
 
         CategoriesService,
+
+        ImagesService,
 
         ProductCategoriesService,
     ],
@@ -50,6 +60,8 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
 
         CategoriesAddComponent,
         CategoriesDeleteComponent,
+
+        ImageUploadComponent,
     ]
 })
 export class AdminProductModule {
