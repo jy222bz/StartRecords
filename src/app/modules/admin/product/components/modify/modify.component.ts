@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProductsService} from "../../../../../shared/services/products/products.service";
 import {ImagesService} from "../../../../../shared/services/images.service";
 import {ProductService} from "../../../../../shared/services/products/product.service";
 
@@ -25,10 +24,10 @@ export class ModifyComponent implements OnInit {
         this.form = this.fb.group({
             'name': [data.name, [Validators.required, Validators.minLength(4)]],
             'year': [data.year, [Validators.required, Validators.minLength(4)]],
-            'artist': ['Niko', [Validators.required, Validators.minLength(4)]],
-            'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
-            'price': [0, [Validators.required]],
-            'description': [''],
+            'artist': [data.artist, [Validators.required, Validators.minLength(4)]],
+            'producer': [data.producer, [Validators.required, Validators.minLength(4)]],
+            'price': [data.price, [Validators.required]],
+            'description': [data.description],
         });
     }
 
@@ -59,10 +58,9 @@ export class ModifyComponent implements OnInit {
             artist: this.form.controls.artist.value,
             producer: this.form.controls.producer.value,
             price: this.form.controls.price.value,
-            duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
         };
-        this.productService.set(data)
+        this.productService.set(this.data.id,data)
             .then((next) => {
                     this.working = false;
                     this.dialog.close(data);
