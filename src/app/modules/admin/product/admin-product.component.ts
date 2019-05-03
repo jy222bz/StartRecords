@@ -11,7 +11,7 @@ import {ItemsComponent} from "../../../shared/components/items/items.component";
 @Component({
     selector: 'app-admin-product',
     templateUrl: './admin-product.component.html',
-    styleUrls: ['./admin-product.component.css']
+    styleUrls: ['./admin-product.component.scss']
 })
 
 export class AdminProductComponent extends ItemsComponent<Product> implements OnInit {
@@ -34,7 +34,7 @@ export class AdminProductComponent extends ItemsComponent<Product> implements On
     }
 
     openModifyDialog() {
-        const ref = this.dialog.open(ModifyComponent, {autoFocus: true, width: '480px'});
+        const ref = this.dialog.open(ModifyComponent, {autoFocus: true, width: '480px', data: this.product});
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.modify(result);

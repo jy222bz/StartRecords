@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
 import {ImagesService} from "../../../../../shared/services/images.service";
+import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -15,21 +16,18 @@ export class ModifyComponent implements OnInit {
     error = null;
 
     constructor(
-        private productsService: ProductsService,
+        private productService: ProductService,
         private imagesService: ImagesService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<ModifyComponent>,
-        @Inject(MAT_DIALOG_DATA) data) {
+        @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'name': ['Test', [Validators.required, Validators.minLength(4)]],
-            'year': ['1999', [Validators.required, Validators.minLength(4)]],
+            'name': [data.name, [Validators.required, Validators.minLength(4)]],
+            'year': [data.year, [Validators.required, Validators.minLength(4)]],
             'artist': ['Niko', [Validators.required, Validators.minLength(4)]],
             'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
             'price': [0, [Validators.required]],
-            'duration': [0],
-            'total': [0],
-            'cover': [''],
             'description': [''],
         });
     }
@@ -49,39 +47,12 @@ export class ModifyComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.uploadImage();
+        this.saveProduct();
         return false;
     }
 
-    checkName() {
-        this.productsService.has(this.form.controls.name.value).subscribe(
-            (next) => {
-                console.log(next);
-            },
-            (error) => {
-                this.working = true;
-                this.error = error;
-            }
-        );
-    }
 
-    uploadImage() {
-        if (this.form.controls.cover.value !== '') {
-            const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
-            this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
-                .then((data) => {
-                    this.saveProduct(data);
-                })
-                .catch((error) => {
-                    this.working = true;
-                    this.error = error;
-                });
-        } else {
-            this.saveProduct('');
-        }
-    }
-
-    saveProduct(cover) {
+    saveProduct() {
         let data: any = {
             name: this.form.controls.name.value,
             year: this.form.controls.year.value,
@@ -90,14 +61,10 @@ export class ModifyComponent implements OnInit {
             price: this.form.controls.price.value,
             duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
-            cover: cover,
-            total: 0,
         };
-        this.productsService.add(data)
+        this.productService.set(data)
             .then((next) => {
                     this.working = false;
-                    data.id = next.id;
-                    this.productsService.incrementTotal();
                     this.dialog.close(data);
                 }
             )

@@ -58,11 +58,6 @@ import {ModifyComponent} from "../../admin/product/components/modify/modify.comp
         ProductCategoriesService,
     ],
 
-    /*exports: [
-        AdminProductComponent,
-        ModifyComponent,
-    ],*/
-
     entryComponents: [
         TracksAddComponent,
         TracksDeleteComponent,
@@ -71,6 +66,7 @@ import {ModifyComponent} from "../../admin/product/components/modify/modify.comp
         CategoriesDeleteComponent,
 
         ImageUploadComponent,
+        ModifyComponent,
     ]
 
 })
