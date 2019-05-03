@@ -24,7 +24,7 @@ export class ProductsService {
                         cover: item.payload.doc.data().cover,
                         description: item.payload.doc.data().description,
                         total: item.payload.doc.data().total,
-                    }))
+                    }));
                 }));
     }
 
