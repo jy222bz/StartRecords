@@ -90,6 +90,16 @@ export abstract class ItemsComponent<T extends Model> {
         }
         this.dataSource.filter = '';
     }
+    modify(result) {
+        if (result instanceof Array) {
+            this.dataSource.data.push(...result);
+            this.total += result.length;
+        } else {
+            this.dataSource.data.push(result);
+            this.total += 1;
+        }
+        this.dataSource.filter = '';
+    }
 
     clear() {
         this.selection.clear();

@@ -4,8 +4,8 @@
             <mat-toolbar-row>
                 <span class="font-larger">{{ product.name }}</span>
                 <span class="mat-toolbar-spacer"></span>
-                <button mat-icon-button >
-                    <mat-icon>add</mat-icon>
+                <button mat-icon-button (click)="openModifyDialog()">
+                    <mat-icon>edit</mat-icon>
                 </button>
             </mat-toolbar-row>
         </mat-toolbar>
