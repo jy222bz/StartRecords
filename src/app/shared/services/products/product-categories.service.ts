@@ -10,7 +10,7 @@ export class ProductCategoriesService {
     }
     // array-contains
     get(id) {
-        return this.afs.collection<Product>('product').doc(id).get();
+        return this.afs.collection<Product>('products').doc(id).get();
     }
 
     add(id, args = null) {
@@ -29,6 +29,6 @@ export class ProductCategoriesService {
 }
 
     delete(id) {
-        return this.afs.collection('product_categories').doc(id).delete();
+        return this.afs.collection('products').doc(id).delete();
     }
 }
