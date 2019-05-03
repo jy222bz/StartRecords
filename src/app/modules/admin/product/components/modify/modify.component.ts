@@ -2,19 +2,21 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
+import {ImagesService} from "../../../../../shared/services/images.service";
 
 
 @Component({
-    selector: 'app-admin-products-modify',
+    selector: 'app-admin-products-add',
     templateUrl: './modify.component.html',
 })
-export class ModifyProductComponent implements OnInit {
+export class ModifyComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
     constructor(
         private productsService: ProductsService,
+        private imagesService: ImagesService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<ModifyComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
@@ -43,10 +45,11 @@ export class ModifyProductComponent implements OnInit {
                 control.markAsTouched({onlySelf: true});
             });
             return false;
-            this.working = true;
         }
+        this.working = true;
         this.error = null;
 
+        this.uploadImage();
         return false;
     }
 
@@ -60,6 +63,22 @@ export class ModifyProductComponent implements OnInit {
                 this.error = error;
             }
         );
+    }
+
+    uploadImage() {
+        if (this.form.controls.cover.value !== '') {
+            const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
+            this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
+                .then((data) => {
+                    this.saveProduct(data);
+                })
+                .catch((error) => {
+                    this.working = true;
+                    this.error = error;
+                });
+        } else {
+            this.saveProduct('');
+        }
     }
 
     saveProduct(cover) {
@@ -91,6 +110,4 @@ export class ModifyProductComponent implements OnInit {
     close() {
         this.dialog.close();
     }
-
-
 }
