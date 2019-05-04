@@ -20,6 +20,7 @@ import {SharedModule} from "../../../shared.module";
 import {ImageComponent} from "./components/image/image.component";
 import {ImageUploadComponent} from "./components/image/component/upload/image-upload.component";
 import {ImagesService} from "../../../shared/services/images.service";
+import {ModifyComponent} from "../../admin/product/components/modify/modify.component";
 
 
 @NgModule({
@@ -35,6 +36,8 @@ import {ImagesService} from "../../../shared/services/images.service";
         TracksComponent,
         TracksAddComponent,
         TracksDeleteComponent,
+
+        ModifyComponent,
 
         CategoriesComponent,
         CategoriesAddComponent,
@@ -54,6 +57,7 @@ import {ImagesService} from "../../../shared/services/images.service";
 
         ProductCategoriesService,
     ],
+
     entryComponents: [
         TracksAddComponent,
         TracksDeleteComponent,
@@ -62,7 +66,9 @@ import {ImagesService} from "../../../shared/services/images.service";
         CategoriesDeleteComponent,
 
         ImageUploadComponent,
+        ModifyComponent,
     ]
+
 })
 export class AdminProductModule {
 }
