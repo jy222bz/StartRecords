@@ -1,11 +1,15 @@
 <div class="app-product" (click)="navigate()">
     <span class="app-product-title">{{item.name}}</span>
-
+    <span class="app-product-artist">{{item.artist}}</span>
+    <div class="app-product-info">
+        <span class="app-product-price"> Price: {{item.price}} kr</span>
+        <!--<span class="app-product-year">{{item.year}}</span>-->
+        <!--<span class="app-product-producer">{{item.producer}}</span>-->
+    </div>
     <div class="app-product-image-container">
         <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)" [style.animation-duration]="23" alt="">
         <div class="app-product-image-layer"></div>
     </div>
-    <span class="app-product-artist">{{item.artist}}</span>
 
 </div>
 
