@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit product</h2>
+<h2 mat-dialog-title>Add new product</h2>
 <app-alert *ngIf="error != null" [value]="error"></app-alert>
 <form novalidate (ngSubmit)="save()">
     <mat-dialog-content [formGroup]="form">
@@ -32,7 +32,12 @@
                        [formControl]="form.controls.price">
             </mat-form-field>
         </div>
-
+        <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 100%">
+                <input-file placeholder="Cover" [formControl]="form.controls.cover"></input-file>
+                <mat-icon matSuffix>photo</mat-icon>
+            </mat-form-field>
+        </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Description"

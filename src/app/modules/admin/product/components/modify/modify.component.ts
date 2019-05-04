@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ProductsService} from "../../../../../shared/services/products/products.service";
 import {ImagesService} from "../../../../../shared/services/images.service";
-import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
 @Component({
@@ -15,19 +15,22 @@ export class ModifyComponent implements OnInit {
     error = null;
 
     constructor(
-        private productService: ProductService,
+        private productsService: ProductsService,
         private imagesService: ImagesService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<ModifyComponent>,
-        @Inject(MAT_DIALOG_DATA) private data) {
+        @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'name': [data.name, [Validators.required, Validators.minLength(4)]],
-            'year': [data.year, [Validators.required, Validators.minLength(4)]],
-            'artist': [data.artist, [Validators.required, Validators.minLength(4)]],
-            'producer': [data.producer, [Validators.required, Validators.minLength(4)]],
-            'price': [data.price, [Validators.required]],
-            'description': [data.description],
+            'name': ['Test', [Validators.required, Validators.minLength(4)]],
+            'year': ['1999', [Validators.required, Validators.minLength(4)]],
+            'artist': ['Niko', [Validators.required, Validators.minLength(4)]],
+            'producer': ['Ville', [Validators.required, Validators.minLength(4)]],
+            'price': [0, [Validators.required]],
+            'duration': [0],
+            'total': [0],
+            'cover': [''],
+            'description': [''],
         });
     }
 
@@ -46,23 +49,55 @@ export class ModifyComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.saveProduct();
+        this.uploadImage();
         return false;
     }
 
+    checkName() {
+        this.productsService.has(this.form.controls.name.value).subscribe(
+            (next) => {
+                console.log(next);
+            },
+            (error) => {
+                this.working = true;
+                this.error = error;
+            }
+        );
+    }
 
-    saveProduct() {
+    uploadImage() {
+        if (this.form.controls.cover.value !== '') {
+            const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
+            this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
+                .then((data) => {
+                    this.saveProduct(data);
+                })
+                .catch((error) => {
+                    this.working = true;
+                    this.error = error;
+                });
+        } else {
+            this.saveProduct('');
+        }
+    }
+
+    saveProduct(cover) {
         let data: any = {
             name: this.form.controls.name.value,
             year: this.form.controls.year.value,
             artist: this.form.controls.artist.value,
             producer: this.form.controls.producer.value,
             price: this.form.controls.price.value,
+            duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
+            cover: cover,
+            total: 0,
         };
-        this.productService.set(this.data.id,data)
+        this.productsService.add(data)
             .then((next) => {
                     this.working = false;
+                    data.id = next.id;
+                    this.productsService.incrementTotal();
                     this.dialog.close(data);
                 }
             )
