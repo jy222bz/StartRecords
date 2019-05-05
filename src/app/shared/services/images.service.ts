@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFireStorage} from "@angular/fire/storage";
+import {AngularFireStorage} from '@angular/fire/storage';
 
 
 @Injectable()
@@ -11,19 +11,20 @@ export class ImagesService {
     upload(path, name, file) {
         return new Promise((resolve, reject) => {
             this.afs.upload(path + name, file)
-                .snapshotChanges()
-                .subscribe(
-                    (next) => {
-                        next.ref.getDownloadURL().then(
-                            data => {
-                                resolve(data);
-                            }
-                        )
-                    },
-                    (error) => {
-                        reject(error);
+                .then((next) => {
+                        next.ref.getDownloadURL()
+                            .then((data) => {
+                                    resolve(data);
+                                }
+                            )
+                            .catch((error) => {
+                                reject(error);
+                            });
                     }
-                );
+                )
+                .catch((error) => {
+                    reject(error);
+                });
         });
 
     }
