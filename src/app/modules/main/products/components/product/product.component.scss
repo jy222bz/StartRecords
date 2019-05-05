@@ -13,18 +13,30 @@
 .app-product {
     position: relative;
 
-
     .app-product-title {
         z-index: 10;
         position: absolute;
-        top: 30%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
         color: white;
-        font-size: 28px;
+        font-size: 18px;
     }
-
+    .app-product-artist{
+        z-index: 10;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #ffd633;
+        font-size: 28px;
+        vertical-align: bottom;
+    }
+    .app-product-price, .app-product-producer, .app-product-info{
+        visibility: hidden;
+    }
     .app-product-image-container{
 
         img {
@@ -77,8 +89,48 @@
 .app-product:hover {
 
     .app-product-title {
-
+        top: 30%;
     }
+    .app-product-price {
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        visibility: visible;
+    }
+    /*.app-product-producer{
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fcfcfc;
+        font-size: 18px;
+        visibility: visible;
+    }*/
+    /*.app-product-info{
+        width: 90%;
+        position: absolute;
+        border: 5px solid grey;
+        visibility: visible;
+        top: 40%;
+        left: 50%;
+    }*/
+    /*.app-product-year {
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-size: 12px;
+    }*/
 
     .app-product-image-container {
         img {

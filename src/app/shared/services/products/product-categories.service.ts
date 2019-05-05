@@ -8,9 +8,10 @@ export class ProductCategoriesService {
     constructor(private afs: AngularFirestore) {
 
     }
+
     // array-contains
     get(id) {
-        return this.afs.collection<Product>('products').doc(id).get();
+        return this.afs.collection<Product>('product_categories').doc(id).get();
     }
 
     add(id, args = null) {
@@ -22,13 +23,7 @@ export class ProductCategoriesService {
         });
     }
 
-    set(id, args = null) {
-    return this.afs.collection('products').doc(id).set(args, {
-        merge: true
-    });
-}
-
     delete(id) {
-        return this.afs.collection('products').doc(id).delete();
+        return this.afs.collection('product_categories').doc(id).delete();
     }
 }
