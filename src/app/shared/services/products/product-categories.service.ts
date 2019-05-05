@@ -52,7 +52,6 @@ export class ProductCategoriesService {
                         const subscription = this.afs.collection<Category>('categories').get().subscribe(
                             (data) => {
                                 const res = [];
-                                console.log(data.docs);
                                 data.docs.forEach((item) => {
                                     let found = false;
                                     next.data().categories.forEach((categoryId) => {
