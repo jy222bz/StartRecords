@@ -11,7 +11,10 @@
 
 .app-admin-tile-card:hover {
     color: white;
-    background-color: #00695c;
+
+    ul li .mat-icon {
+        color: white;
+    }
 }
 
 .app-admin-tile-content {
