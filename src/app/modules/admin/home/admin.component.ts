@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "../../../shared/services/authentication.service";
+import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
 
 
 interface Tile {
@@ -19,6 +19,7 @@ interface Tile {
     styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+
     tools: Tile[] = [
         {
             text: 'Albums',
@@ -57,8 +58,8 @@ export class AdminComponent implements OnInit {
 
     }
 
-    navigate(element) {
-        this.router.navigate([element.url]);
+    getCounts() {
+
     }
 
 }

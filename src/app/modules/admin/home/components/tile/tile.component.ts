@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material";
-import {Router} from "@angular/router";
+import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-admin-tile',
@@ -8,10 +8,21 @@ import {Router} from "@angular/router";
     styleUrls: ['./tile.component.scss'],
 })
 export class TileComponent implements OnInit {
+    backgroundColor = '#fff';
+    iconColor = '';
+    count = 0;
+    showInfo = false;
+
+    _color = '';
 
     @Input() url;
     @Input() text;
-    @Input() color;
+    @Input()
+    set color(value) {
+        this._color = value;
+        this.iconColor = value;
+    }
+
     @Input() icon;
     @Input() colspan;
     @Input() rowspan;
@@ -31,7 +42,15 @@ export class TileComponent implements OnInit {
         this.router.navigate([this.url]);
     }
 
-    mouseover() {
+    mouseenter() {
+        this.backgroundColor = this._color;
+        this.iconColor = '#fff';
+        this.showInfo = true;
+    }
 
+    mouseleave() {
+        this.backgroundColor = '#fff';
+        this.iconColor = this._color;
+        this.showInfo = false;
     }
 }

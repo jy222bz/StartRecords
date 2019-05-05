@@ -4,27 +4,29 @@ export class Product extends Model {
     name: string;
     artist: string;
     producer: string;
-    //year: string; TODO Fix year
     cover: string;
     price: number;
     total: number;
     duration: number;
     description: string;
     createdAt: string;
+    rowSpan: number;
+    columnSpan: number;
 
-    constructor(id = '', name = '', producer = '', artist = ''/*,year = ''*/, price = 0, duration = 0, cover = '', description = '',
-                total = 0, createdAt = null
+    constructor(id = '', name = '', producer = '', artist = '', price = 0, duration = 0, cover = '', description = '',
+                total = 0, createdAt = null, columnSpan = 1, rowSpan = 1
     ) {
         super();
         this.id = id;
         this.name = name;
         this.artist = artist;
-        //this.year = year;
         this.price = price;
         this.total = total;
         this.duration = duration;
         this.description = description;
         this.cover = cover;
         this.createdAt = createdAt != null ? createdAt.toDate().toLocaleString() : '';
+        this.columnSpan = columnSpan;
+        this.rowSpan = rowSpan;
     }
 }

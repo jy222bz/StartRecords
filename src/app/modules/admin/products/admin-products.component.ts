@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AddComponent} from "./components/add/add.component";
-import {MatDialog} from "@angular/material";
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {ProductsService} from "../../../shared/services/products/products.service";
-import {Product} from "../../../shared/models/products/product";
-import {DeleteComponent} from "./components/delete/delete.component";
+import {AddComponent} from './components/add/add.component';
+import {MatDialog} from '@angular/material';
+import {ItemsComponent} from '../../../shared/components/items/items.component';
+import {ProductsService} from '../../../shared/services/products/products.service';
+import {Product} from '../../../shared/models/products/product';
+import {DeleteComponent} from './components/delete/delete.component';
 
 
 @Component({
@@ -13,6 +13,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
     styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
+    breadcrumbs = [{name: 'Admin', link: '/admin'}];
     displayedColumns = ['image', 'name', 'created_at', 'edit'];
 
     constructor(
@@ -71,7 +72,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
             (error) => {
 
             }
-        )
+        );
     }
 }
 
