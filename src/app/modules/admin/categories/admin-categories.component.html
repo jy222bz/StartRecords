@@ -38,6 +38,12 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="albums">
+            <mat-header-cell *matHeaderCellDef> Albums</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.count}}
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>

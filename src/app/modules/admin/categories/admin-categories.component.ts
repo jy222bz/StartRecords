@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
-import {AddComponent} from "./components/add/add.component";
-import {MatDialog} from "@angular/material";
-import {Category} from "../../../shared/models/categories/category";
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {DeleteComponent} from "./components/delete/delete.component";
+import {CategoriesService} from '../../../shared/services/categoreis/categories.service';
+import {AddComponent} from './components/add/add.component';
+import {MatDialog} from '@angular/material';
+import {Category} from '../../../shared/models/categories/category';
+import {ItemsComponent} from '../../../shared/components/items/items.component';
+import {DeleteComponent} from './components/delete/delete.component';
 
 
 @Component({
@@ -12,7 +12,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
     templateUrl: './admin-categories.component.html',
 })
 export class AdminCategoriesComponent extends ItemsComponent<Category> implements OnInit {
-    displayedColumns = ['name', 'description'];
+    displayedColumns = ['name', 'albums', 'description'];
 
     constructor(
         private categoriesService: CategoriesService,
