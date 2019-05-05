@@ -1,11 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
-import {ProductService} from "../../../../../../../shared/services/products/product.service";
-import {ProductCategoriesService} from "../../../../../../../shared/services/products/product-categories.service";
-import {CategoriesService} from "../../../../../../../shared/services/categoreis/categories.service";
-import {Category} from "../../../../../../../shared/models/categories/category";
+import {ProductCategoriesService} from '../../../../../../../shared/services/products/product-categories.service';
+import {CategoriesService} from '../../../../../../../shared/services/categoreis/categories.service';
 
 
 @Component({
@@ -26,7 +23,7 @@ export class CategoriesAddComponent implements OnInit {
         private dialog: MatDialogRef<CategoriesAddComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
         this.form = this.fb.group({
-            'category_id': ['', [Validators.required]],
+            category_id: ['', [Validators.required]],
         });
     }
 
@@ -35,12 +32,13 @@ export class CategoriesAddComponent implements OnInit {
     }
 
     getCategories() {
-        const subscription = this.categoriesService.get().subscribe(
-            (next) => {
+        this.productCategoriesService.getAvailable(this.data.productId)
+            .then((next) => {
                 this.categories = next;
-                subscription.unsubscribe();
-            }
-        )
+            })
+            .catch((error) => {
+
+            });
     }
 
     save() {
@@ -54,14 +52,12 @@ export class CategoriesAddComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        let data: any = {
-            category_id: this.form.controls.category_id.value,
-        };
-
-        this.productCategoriesService.add(this.data.productId, data)
+        this.productCategoriesService.add(this.data.productId, this.form.controls.category_id.value)
             .then((next) => {
                 this.working = false;
-                this.dialog.close(data);
+                this.dialog.close(this.categories.find((element) => {
+                    return element.id === this.form.controls.category_id.value;
+                }));
             })
             .catch((error) => {
                 this.error = (error.status === 0) ? error.message : error.error;
