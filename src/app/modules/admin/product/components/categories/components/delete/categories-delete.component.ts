@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder} from '@angular/forms';
-import {ProductService} from "../../../../../../../shared/services/products/product.service";
-import {ProductTrackService} from "../../../../../../../shared/services/products/product-track.service";
-import {ProductCategoriesService} from "../../../../../../../shared/services/products/product-categories.service";
+import {ProductService} from '../../../../../../../shared/services/products/product.service';
+import {ProductCategoriesService} from '../../../../../../../shared/services/products/product-categories.service';
 
 
 @Component({
@@ -28,20 +27,18 @@ export class CategoriesDeleteComponent implements OnInit {
     }
 
     save() {
+        console.log(this.data.categoryId);
         this.working = true;
         this.error = null;
-        /*
-        this.trackService.delete(this.data.id)
+        this.productCategoriesService.delete(this.data.productId, this.data.category.id)
             .then((next) => {
                 this.working = false;
-                this.productService.updateDuration(this.data.productId, -1 * this.data.duration).then();
-                this.dialog.close(this.data);
+                this.dialog.close(this.data.category);
             })
             .catch((error) => {
                 this.error = (error.status === 0) ? error.message : error.error;
                 this.working = false;
             });
-        */
         return false;
     }
 
