@@ -80,14 +80,32 @@ export class ProductsService {
         }
 
 
-
     }
 
     add(args) {
         args.createdAt = firestore.FieldValue.serverTimestamp();
-        return this.afs.collection<Product>('products').add(args)
+        return new Promise((resolve, reject) => {
+            this.afs.collection<Product>('products').add(args)
+                .then((next) => {
+                    this.afs.collection('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').update(
+                        {
+                            total: firestore.FieldValue.increment(1)
+                        })
+                        .then((next) => {
 
-            ;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                    args.id = next.id;
+                    args.createdAt = (new Date()).toLocaleString();
+                    resolve(args);
+
+                })
+                .catch((error) => {
+
+                })
+        });
     }
 
     getMeta() {
@@ -98,12 +116,5 @@ export class ProductsService {
                         actions.data().total,
                     );
                 }));
-    }
-
-    incrementTotal(count: number = 1) {
-        this.afs.collection('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').update(
-            {
-                total: firestore.FieldValue.increment(count)
-            }).then();
     }
 }

@@ -70,9 +70,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 /* Page styles */
 .page-content {
-    padding: 16px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    padding: 0 16px ;
 }
 
 .page-table {
@@ -91,12 +89,6 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 
 /* Extra */
-.container {
-    position: relative;
-    height: 100%;
-    padding: 16px;
-}
-
 .mat-toolbar {
     background-color: transparent;
 }

@@ -51,6 +51,18 @@ export class ProductService {
                 tracksSub.unsubscribe();
             });
 
+        // Decrease products
+        this.afs.collection('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').update(
+            {
+                total: firestore.FieldValue.increment(-1)
+            })
+            .then((next) => {
+
+            })
+            .catch((error) => {
+
+            });
+
         return new Promise((resolve, reject) => {
             this.afs.collection('products').doc(id).get()
                 .subscribe(
