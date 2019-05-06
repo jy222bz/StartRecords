@@ -6,6 +6,7 @@ import {ProductTracksService} from "../../../../../shared/services/products/prod
 import {Track} from "../../../../../shared/models/tracks/track";
 import {ActivatedRoute} from "@angular/router";
 import {TracksDeleteComponent} from "./components/delete/tracks-delete.component";
+import {TrackUploadComponent} from "./components/track-upload/track-upload.component";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {TracksDeleteComponent} from "./components/delete/tracks-delete.component
     templateUrl: './tracks.component.html',
 })
 export class TracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['name', 'created_at', 'duration'];
+    displayedColumns = ['name', 'created_at', 'file', 'duration', 'edit'];
 
     @Input() productId;
 
@@ -53,10 +54,20 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
         });
     }
 
+    openTrackUploadComponent(element) {
+        const ref = this.dialog.open(TrackUploadComponent, {autoFocus: true, width: '480px', data: element});
+        ref.afterClosed().subscribe(result => {
+            if (result) {
+                this.updateItem(result);
+            }
+        });
+    }
+
     // ----------------------
     get() {
         const subscription = this.tracksService.get(this.productId).subscribe(
             (data) => {
+                console.log(data);
                 this.set(data);
                 subscription.unsubscribe();
             },

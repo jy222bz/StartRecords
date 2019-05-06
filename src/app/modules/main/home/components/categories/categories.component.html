@@ -11,10 +11,10 @@
 
     <div class="menu-items">
         <div *ngFor="let element of categories" (click)="changeCategory(element)"
-             (mousemove)="elementMouseMove($event, element)"
-             (mouseleave)="elementMouseLeave(element)" class="menu-item">
-            <div class="app-home-products-categories-toolbar">
-                <div class="center"><span [style.transform]="getScale(element)">{{element.name}}</span></div>
+              class="menu-item">
+            <div [style.transform]="getScale(element)">
+                <div class="center"><span >{{element.name}}</span></div>
+
             </div>
         </div>
     </div>

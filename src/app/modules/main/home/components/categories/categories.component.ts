@@ -78,23 +78,6 @@ export class CategoriesComponent implements OnInit {
         this._visible = false;
     }
 
-    elementMouseMove(event, element) {
-        if (event.target.nodeName !== 'DIV') {
-            return;
-        }
-        let middle = event.target.offsetHeight / 2;
-        if (event.offsetY <= middle) {
-            element.scaleSize = 1 + (event.offsetY / middle);
-        } else {
-            element.scaleSize = (1 - ((event.offsetY - middle) / middle)) + 1;
-        }
-
-    }
-
-    elementMouseLeave(element) {
-        element.scaleSize = 1;
-    }
-
     getScale(element) {
         if (element.scale === undefined) {
             return 'scale(1.0)';

@@ -6,8 +6,9 @@ export class Track extends Model {
     productId: string;
     duration: number;
     createdAt: string;
+    file: string;
 
-    constructor(id = '', name = '', description = '', productId = '', duration = 0, createdAt = null) {
+    constructor(id = '', name = '', productId = '', description = '', duration = 0, createdAt = null, file = null) {
         super();
         this.id = id;
         this.name = name;
@@ -15,6 +16,7 @@ export class Track extends Model {
         this.productId = productId;
         this.duration = duration;
         this.createdAt = createdAt != null ? createdAt.toDate().toLocaleString() : '';
+        this.file = file;
     }
 
 }

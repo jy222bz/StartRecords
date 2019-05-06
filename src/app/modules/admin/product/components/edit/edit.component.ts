@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ImagesService} from '../../../../../shared/services/images.service';
+import {UploadService} from '../../../../../shared/services/upload.service';
 import {ProductService} from "../../../../../shared/services/products/product.service";
 
 
@@ -16,7 +16,7 @@ export class EditComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
-        private imagesService: ImagesService,
+        private imagesService: UploadService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<EditComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {

@@ -27,6 +27,7 @@ export class TracksDeleteComponent implements OnInit {
     save() {
         this.working = true;
         this.error = null;
+
         this.productTrackService.delete(this.data.productId, this.data.id, this.data.duration)
             .then((next) => {
                 this.working = false;

@@ -36,6 +36,7 @@ export class ProductTrackService {
                         });
                 })
                 .catch((error) => {
+                    console.log(error);
                     reject(error);
                 });
         });

@@ -47,13 +47,13 @@ export class TracksAddComponent implements OnInit {
             productId: this.data,
             name: this.form.controls.name.value,
             duration: this.form.controls.duration.value,
+            file: null,
         };
 
         this.productTracksService.add(data)
             .then((next) => {
                 this.working = false;
-                data.id = next.id;
-                this.dialog.close(data);
+                this.dialog.close(next);
             })
             .catch((error) => {
                 this.error = (error.status === 0) ? error.message : error.error;

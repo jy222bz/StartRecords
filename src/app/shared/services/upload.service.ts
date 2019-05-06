@@ -3,8 +3,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 
 
 @Injectable()
-export class ImagesService {
+export class UploadService {
     constructor(private afs: AngularFireStorage) {
+
 
     }
 

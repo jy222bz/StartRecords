@@ -18,8 +18,9 @@ import {CategoriesComponent} from "./components/categories/categories.component"
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {SharedModule} from "../../../shared.module";
 import {ImageUploadComponent} from "./components/image-upload/image-upload.component";
-import {ImagesService} from "../../../shared/services/images.service";
+import {UploadService} from "../../../shared/services/upload.service";
 import {EditComponent} from "./components/edit/edit.component";
+import {TrackUploadComponent} from "./components/tracks/components/track-upload/track-upload.component";
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {EditComponent} from "./components/edit/edit.component";
         TracksComponent,
         TracksAddComponent,
         TracksDeleteComponent,
+        TrackUploadComponent,
 
         CategoriesComponent,
         CategoriesAddComponent,
@@ -48,21 +50,24 @@ import {EditComponent} from "./components/edit/edit.component";
         ProductTracksService,
         ProductTrackService,
 
+
         CategoriesService,
 
-        ImagesService,
+        UploadService,
 
         ProductCategoriesService,
     ],
     entryComponents: [
         TracksAddComponent,
         TracksDeleteComponent,
+        TrackUploadComponent,
 
         CategoriesAddComponent,
         CategoriesDeleteComponent,
 
         EditComponent,
         ImageUploadComponent,
+
     ]
 
 })
