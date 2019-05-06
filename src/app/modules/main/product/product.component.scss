@@ -1,3 +1,24 @@
 .app-main-product {
     padding: 16px;
 }
+
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.app-main-product-img {
+
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    animation: slideDown 1s;
+}
+
+

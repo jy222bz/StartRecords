@@ -14,9 +14,8 @@
     </div>
 
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 8px;">
-        <div fxFlex="1 1 100%">
-            <img src="{{product.cover}} " fxFlex="1 1 100%"
-                 style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);">
+        <div fxFlex="1 1 100%" class="app-main-product-img">
+            <img [lazyLoad]="product.cover"  fxFlex="1 1 100%">
         </div>
         <div fxFlex="1 1 100%">
             <mat-toolbar style="height: 36px; min-height: 36px; ">

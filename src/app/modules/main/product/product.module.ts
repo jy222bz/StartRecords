@@ -9,6 +9,7 @@ import {MaterialModule} from "../../../material.module";
 import {RatingComponent} from "./components/rating/rating.component";
 import {TracksComponent} from "./components/tracks/tracks.component";
 import {ProductTracksService} from "../../../shared/services/products/product-tracks.service";
+import {SharedModule} from "../../../shared.module";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ProductTracksService} from "../../../shared/services/products/product-tr
         MaterialModule,
         ComponentsModule,
         CommonModule,
+        SharedModule,
         ProductRoutingModule,
     ],
     declarations: [
