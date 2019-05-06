@@ -31,10 +31,41 @@ export class CategoriesComponent implements OnInit {
     get() {
         const subscription = this.categoriesService.get()
             .subscribe((data) => {
-                this.categories = data;
+                this.updateElements(data);
+
                 subscription.unsubscribe();
             })
         ;
+    }
+
+    updateElements(data) {
+        // find the lowest count
+        //
+        let min, max;
+        if (data.length > 0) {
+            min = data[0].count;
+            max = data[0].count;
+        }
+        for (let i = 1; i < data.length; ++i) {
+            if (data[i].count < min) {
+                min = data[i].count;
+            }
+            if (data[i].count > max) {
+                max = data[i].count;
+            }
+        }
+        if (min == 0) {
+            min = 1;
+        }
+        if (max === 0) {
+            max = 1;
+        }
+
+
+        for (let i = 0; i < data.length; ++i) {
+            data[i].scale = 1 + data[i].count *  min / max;
+        }
+        this.categories = data;
     }
 
 
@@ -57,17 +88,18 @@ export class CategoriesComponent implements OnInit {
         } else {
             element.scaleSize = (1 - ((event.offsetY - middle) / middle)) + 1;
         }
+
     }
 
     elementMouseLeave(element) {
         element.scaleSize = 1;
     }
 
-    getScaleSize(element) {
-        if (element.scaleSize === undefined) {
+    getScale(element) {
+        if (element.scale === undefined) {
             return 'scale(1.0)';
         }
-         return 'scale(' + element.scaleSize + ')';
+         return 'scale(' + element.scale + ')';
     }
 }
 

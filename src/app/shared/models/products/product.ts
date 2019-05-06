@@ -30,5 +30,6 @@ export class Product extends Model {
         this.columnSpan = columnSpan;
         this.rowSpan = rowSpan;
         this.year = year;
+        this.producer = producer;
     }
 }

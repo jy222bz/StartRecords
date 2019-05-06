@@ -14,7 +14,7 @@
              (mousemove)="elementMouseMove($event, element)"
              (mouseleave)="elementMouseLeave(element)" class="menu-item">
             <div class="app-home-products-categories-toolbar">
-                <div class="center">{{element.name}}</div>
+                <div class="center"><span [style.transform]="getScale(element)">{{element.name}}</span></div>
             </div>
         </div>
     </div>
