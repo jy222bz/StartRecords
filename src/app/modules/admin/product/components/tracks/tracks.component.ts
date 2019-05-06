@@ -4,7 +4,7 @@ import {MatDialog} from "@angular/material";
 import {ItemsComponent} from "../../../../../shared/components/items/items.component";
 import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
 import {Track} from "../../../../../shared/models/tracks/track";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {TracksDeleteComponent} from "./components/delete/tracks-delete.component";
 
 

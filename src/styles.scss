@@ -16,7 +16,7 @@ a {
 /* Theme */
 @import '~@angular/material/theming';
 $custom-typography: mat-typography-config(
-    $font-family: 'Work Sans'
+    $font-family: 'Josefin Sans'
 );
 @include mat-core($custom-typography);
 
@@ -73,7 +73,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 }
 
 .page-table-pagination {
-    height: calc(100vh - 224px);
+    height: calc(100vh - 252px);
     overflow-y: auto;
 }
 

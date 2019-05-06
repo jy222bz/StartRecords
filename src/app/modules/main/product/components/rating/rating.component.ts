@@ -1,24 +1,21 @@
-import {Component} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+
 @Component({
-    selector: 'rating-app',
-    templateUrl: './rating.html',
-    styleUrls: ['./rating.component.css'],
+    selector: 'app-product-rating',
+    templateUrl: './rating.component.html',
+    styleUrls: ['./rating.component.scss'],
 })
-export class RatingComponent {
-    f = new FormGroup({
-        rateInput: new FormControl('')
-    });
+export class RatingComponent implements OnInit {
 
-    rate = 0;
+    constructor() {
 
-    constructor(private fb: FormBuilder) {
-        setTimeout(() => {
-            this.rate = 2.7;
-        }, 5000);
     }
 
-    onSubmit() {
-        console.log('Submitted value:', this.f.value);
+    ngOnInit(): void {
+
     }
+
+
 }
+
+

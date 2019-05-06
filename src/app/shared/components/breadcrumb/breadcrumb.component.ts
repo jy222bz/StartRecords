@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, PRIMARY_OUTLET, Router} from "@angular/router";
-import {filter, map} from "rxjs/operators";
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+
+class BreadCrumb {
+
+}
 
 @Component({
     selector: 'app-breadcrumb',
@@ -9,40 +12,19 @@ import {filter, map} from "rxjs/operators";
 })
 export class BreadcrumbComponent implements OnInit {
 
+    _breadcrumbs: [];
 
-    breadcrumbs = [];
+    @Input()
+    set breadcrumbs(value) {
+        this._breadcrumbs = value;
+    }
+
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
     ) {
-        this.router.events
-            .pipe(filter(event => event instanceof NavigationEnd))
-            .pipe(map(() => this.activatedRoute))
-            .pipe(map((route) => {
-                while (route.firstChild) {
-                    route = route.firstChild;
-                }
-                return route;
-            }))
-            .pipe(filter(route => route.outlet === PRIMARY_OUTLET))
-            .subscribe(route => {
 
-                let snapshot = this.router.routerState.snapshot;
-                this.breadcrumbs = [];
-                let url = snapshot.url;
-                let routeData = route.snapshot.data;
-
-                let label = routeData['breadcrumb'];
-                let params = snapshot.root.params;
-
-                this.breadcrumbs.push({
-                    url: url,
-                    label: label,
-                    params: params
-                });
-
-            });
     }
 
 
@@ -50,9 +32,11 @@ export class BreadcrumbComponent implements OnInit {
 
     }
 
-
-    navigate() {
-
+    navigate(element) {
+        if (element === undefined) {
+            return;
+        }
+        this.router.navigate([element.url]);
     }
 
 }

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AddComponent} from "./components/add/add.component";
-import {MatDialog} from "@angular/material";
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {ProductsService} from "../../../shared/services/products/products.service";
-import {Product} from "../../../shared/models/products/product";
-import {DeleteComponent} from "./components/delete/delete.component";
+import {AddComponent} from './components/add/add.component';
+import {MatDialog} from '@angular/material';
+import {ItemsComponent} from '../../../shared/components/items/items.component';
+import {ProductsService} from '../../../shared/services/products/products.service';
+import {Product} from '../../../shared/models/products/product';
+import {DeleteComponent} from './components/delete/delete.component';
 
 
 @Component({
@@ -13,6 +13,9 @@ import {DeleteComponent} from "./components/delete/delete.component";
     styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
+    breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
+        {label: 'Products', params: '', url: '/admin/products', home: false}
+    ];
     displayedColumns = ['image', 'name', 'created_at', 'edit'];
 
     constructor(
@@ -56,7 +59,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                     this.set(data);
                     subscription.unsubscribe();
                 },
-                (error) => {
+                () => {
                     subscription.unsubscribe();
                 }
             )
@@ -68,10 +71,10 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
             (data) => {
                 this.setTotal(data.total);
             },
-            (error) => {
+            () => {
 
             }
-        )
+        );
     }
 }
 

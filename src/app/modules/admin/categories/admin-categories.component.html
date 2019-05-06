@@ -1,5 +1,5 @@
 <div class="container">
-    <app-breadcrumb></app-breadcrumb>
+    <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
     <mat-toolbar class="toolbar-header">
         <mat-toolbar-row>
             <span class="font-larger" >Categories</span>
@@ -34,7 +34,13 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+            <mat-cell *matCellDef="let element"><strong> {{element.name}} </strong>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="albums">
+            <mat-header-cell *matHeaderCellDef> Albums</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.count}}
             </mat-cell>
         </ng-container>
 

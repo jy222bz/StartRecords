@@ -6,6 +6,7 @@ import {ProductComponent} from "./product.component";
 import {ProductService} from "../../../shared/services/products/product.service";
 import {ProductRoutingModule} from "./product.routing.module";
 import {MaterialModule} from "../../../material.module";
+import {RatingComponent} from "./components/rating/rating.component";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {MaterialModule} from "../../../material.module";
     ],
     declarations: [
         ProductComponent,
+        RatingComponent,
 
     ],
     providers: [

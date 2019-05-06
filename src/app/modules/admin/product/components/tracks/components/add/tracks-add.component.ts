@@ -22,7 +22,7 @@ export class TracksAddComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'name': ['Song 1', [Validators.required, Validators.minLength(4)]],
+            'name': ['Song 1', [Validators.required, Validators.minLength(1)]],
             'duration': [600, [Validators.required]],
             'description': ['This is our first track'],
         });
@@ -52,7 +52,6 @@ export class TracksAddComponent implements OnInit {
         this.productTracksService.add(data)
             .then((next) => {
                 this.working = false;
-                this.productService.updateDuration(this.data, this.form.controls.duration.value).then();
                 data.id = next.id;
                 this.dialog.close(data);
             })

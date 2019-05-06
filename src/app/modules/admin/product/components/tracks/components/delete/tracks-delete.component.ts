@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder} from '@angular/forms';
-import {ProductService} from "../../../../../../../shared/services/products/product.service";
 import {ProductTrackService} from "../../../../../../../shared/services/products/product-track.service";
 
 
@@ -15,7 +14,6 @@ export class TracksDeleteComponent implements OnInit {
 
     constructor(
         private productTrackService: ProductTrackService,
-        private productService: ProductService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<TracksDeleteComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any) {
@@ -29,10 +27,9 @@ export class TracksDeleteComponent implements OnInit {
     save() {
         this.working = true;
         this.error = null;
-        this.productTrackService.delete(this.data.id)
+        this.productTrackService.delete(this.data.productId, this.data.id, this.data.duration)
             .then((next) => {
                 this.working = false;
-                this.productService.updateDuration(this.data.productId, -1 * this.data.duration).then();
                 this.dialog.close(this.data);
             })
             .catch((error) => {
