@@ -67,7 +67,6 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     get() {
         const subscription = this.tracksService.get(this.productId).subscribe(
             (data) => {
-                console.log(data);
                 this.set(data);
                 subscription.unsubscribe();
             },

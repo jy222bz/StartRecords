@@ -3,9 +3,17 @@ h1 {
     text-align: left;
 }
 
+html {
+    height: 100%
+}
+
 body {
-    background-color: #fcfcfc;
     margin: 0;
+
+    background-repeat: no-repeat;
+    background: #D3CCE3; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 a {
@@ -46,7 +54,6 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #6a1b9a;
 }
 
 .app-content {
@@ -185,9 +192,102 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     animation-fill-mode: both;
 }
 
-.mat-header-row .mat-header-cell:nth-child(1) { animation-delay: .1s }
-.mat-header-row .mat-header-cell:nth-child(2) { animation-delay: .2s }
-.mat-header-row .mat-header-cell:nth-child(3) { animation-delay: .3s }
-.mat-header-row .mat-header-cell:nth-child(4) { animation-delay: .4s }
-.mat-header-row .mat-header-cell:nth-child(5) { animation-delay: .5s }
-.mat-header-row .mat-header-cell:nth-child(6) { animation-delay: .6s }
+.mat-header-row .mat-header-cell:nth-child(1) {
+    animation-delay: .1s
+}
+
+.mat-header-row .mat-header-cell:nth-child(2) {
+    animation-delay: .2s
+}
+
+.mat-header-row .mat-header-cell:nth-child(3) {
+    animation-delay: .3s
+}
+
+.mat-header-row .mat-header-cell:nth-child(4) {
+    animation-delay: .4s
+}
+
+.mat-header-row .mat-header-cell:nth-child(5) {
+    animation-delay: .5s
+}
+
+.mat-header-row .mat-header-cell:nth-child(6) {
+    animation-delay: .6s
+}
+
+.mat-table {
+    background-color: transparent;
+}
+
+.mat-paginator {
+    background-color: transparent;
+}
+
+
+@keyframes MatRowSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.mat-row {
+    opacity: 0;
+    animation: MatRowSlideIn 1s;
+    animation-fill-mode: forwards;
+}
+
+.mat-table .mat-row:nth-child(1) {
+    animation-delay: .1s
+}
+
+
+.mat-table .mat-row:nth-child(2) {
+    animation-delay: .2s
+}
+
+.mat-table .mat-row:nth-child(3) {
+    animation-delay: .3s
+}
+
+.mat-table .mat-row:nth-child(4) {
+    animation-delay: .4s
+}
+
+.mat-table .mat-row:nth-child(5) {
+    animation-delay: .5s
+}
+
+.mat-table .mat-row:nth-child(6) {
+    animation-delay: .6s
+}
+
+.mat-table .mat-row:nth-child(7) {
+    animation-delay: .7s
+}
+
+.mat-table .mat-row:nth-child(8) {
+    animation-delay: .8s
+}
+
+.mat-table .mat-row:nth-child(9) {
+    animation-delay: .9s
+}
+
+.mat-table .mat-row:nth-child(10) {
+    animation-delay: 1.0s
+}
+
+.mat-table .mat-row:nth-child(11) {
+    animation-delay: 1.1s
+}
+
+.mat-table .mat-row:nth-child(12) {
+    animation-delay: 1.2s
+}
+

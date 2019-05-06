@@ -52,6 +52,7 @@ export class ProductTracksService {
                         })
                 })
                 .catch((error) => {
+                    console.log(error);
                     reject(error);
                 })
             ;

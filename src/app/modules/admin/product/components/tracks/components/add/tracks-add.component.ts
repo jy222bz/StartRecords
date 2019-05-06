@@ -22,9 +22,9 @@ export class TracksAddComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'name': ['Song 1', [Validators.required, Validators.minLength(1)]],
-            'duration': [600, [Validators.required]],
-            'description': ['This is our first track'],
+            'name': ['', [Validators.required, Validators.minLength(1)]],
+            'duration': [0, [Validators.required]],
+            'description': [''],
         });
     }
 

@@ -1,6 +1,6 @@
 <mat-toolbar class="app-navbar">
     <img class="app-navbar-img" src="assets/images/star.png"/>
-    <span id="title" style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
+    <span id="title" style="cursor: pointer" [routerLink]="['/']">{{ title }}</span>
     <span class="mat-toolbar-spacer"></span>
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
@@ -8,13 +8,19 @@
         Register
     </button>
 
-    <button style="margin-right: 8px" mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
+    <button mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
             *ngIf="!authenticationService.isAuthenticated()">
         Login
     </button>
-    <button style="color: white" mat-icon-button [matMenuTriggerFor]="clientEditMenu"
+
+
+    <button mat-icon-button *ngIf="authenticationService.isAuthenticated()">
+        <mat-icon class="mat-24">shopping_cart</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"
             *ngIf="authenticationService.isAuthenticated()">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon class="mat-24">account_circle</mat-icon>
     </button>
     <mat-menu #clientEditMenu="matMenu">
         <button mat-menu-item (click)="navigateMyAccount()">
