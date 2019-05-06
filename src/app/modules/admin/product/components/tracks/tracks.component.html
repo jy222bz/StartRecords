@@ -38,7 +38,7 @@
 
     <ng-container matColumnDef="duration">
         <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
+        <mat-cell *matCellDef="let element"> <app-duration [value]="element.duration"></app-duration> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="file">
