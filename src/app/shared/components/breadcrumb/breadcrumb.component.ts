@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, PRIMARY_OUTLET, Router} from '@angular/router';
-import {filter, map} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 
 class BreadCrumb {
 
@@ -18,7 +17,6 @@ export class BreadcrumbComponent implements OnInit {
     @Input()
     set breadcrumbs(value) {
         this._breadcrumbs = value;
-        this.update();
     }
 
 
@@ -34,13 +32,11 @@ export class BreadcrumbComponent implements OnInit {
 
     }
 
-
-    update() {
-
-    }
-
-    navigate() {
-
+    navigate(element) {
+        if (element === undefined) {
+            return;
+        }
+        this.router.navigate([element.url]);
     }
 
 }

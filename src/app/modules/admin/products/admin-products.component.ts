@@ -13,7 +13,9 @@ import {DeleteComponent} from './components/delete/delete.component';
     styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    breadcrumbs = [{name: 'Admin', link: '/admin'}];
+    breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
+        {label: 'Products', params: '', url: '/admin/products', home: false}
+    ];
     displayedColumns = ['image', 'name', 'created_at', 'edit'];
 
     constructor(
@@ -57,7 +59,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                     this.set(data);
                     subscription.unsubscribe();
                 },
-                (error) => {
+                () => {
                     subscription.unsubscribe();
                 }
             )
@@ -69,7 +71,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
             (data) => {
                 this.setTotal(data.total);
             },
-            (error) => {
+            () => {
 
             }
         );

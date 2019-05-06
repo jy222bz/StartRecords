@@ -1,0 +1,12 @@
+<div (window:resize)="onResize($event)" class="app-main-home-products">
+    <app-main-home-products-toolbar (categoriesVisible)="showCategories()"></app-main-home-products-toolbar>
+    <app-main-home-products-categories *ngIf="categoriesVisible" (categoryChanged)="categoryChanged($event)"></app-main-home-products-categories>
+    <mat-grid-list [gutterSize]="8" [style.overflow-y]="categoriesVisible? 'none': 'auto'" [cols]="columns"  class="app-admin-tiles" rowHeight="290px">
+        <mat-grid-tile *ngFor="let element of products"
+                       [rowspan]="getRowSpan(element)"
+                       [colspan]="getColumnSpan(element)"
+                       class="app-product-tile">
+            <app-product [item]="element" style="width: 100%"></app-product>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

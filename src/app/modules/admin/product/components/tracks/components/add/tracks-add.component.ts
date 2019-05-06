@@ -52,7 +52,6 @@ export class TracksAddComponent implements OnInit {
         this.productTracksService.add(data)
             .then((next) => {
                 this.working = false;
-                this.productService.updateDuration(this.data, this.form.controls.duration.value).then();
                 data.id = next.id;
                 this.dialog.close(data);
             })

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../../shared/services/products/products.service";
+import {ProductsService} from "../../../../../shared/services/products/products.service";
 
 @Component({
-    selector: 'app-products',
+    selector: 'app-main-home-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss'],
 })
@@ -13,6 +13,7 @@ export class ProductsComponent implements OnInit {
     pageSize = 20;
 
     columns = 4;
+    categoriesVisible = false;
 
     constructor(
         private productsService: ProductsService,
@@ -40,6 +41,28 @@ export class ProductsComponent implements OnInit {
         if (event.target.innerWidth < 400) {
             this.columns = 1;
         }
+    }
+
+    getColumnSpan(element) {
+        if (this.columns == 1) {
+            return 1;
+        }
+        return element.columnSpan;
+    }
+
+    getRowSpan(element) {
+        if (this.columns == 1) {
+            return 1;
+        }
+        return element.rowSpan;
+    }
+
+    showCategories() {
+        this.categoriesVisible = true;
+    }
+
+    categoryChanged(element) {
+
     }
 
     // ----------------------

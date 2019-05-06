@@ -1,0 +1,25 @@
+<div class="app-home-products-categories">
+    <mat-toolbar class="app-home-products-categories-toolbar">
+        <div class="left"></div>
+        <div class="center"><span class="title">Choose a category</span></div>
+        <div class="right">
+            <button mat-icon-button (click)="hideCategories()">
+                <mat-icon class="mat-36">close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <ul>
+        <li *ngFor="let element of categories" (click)="changeCategory(element)"
+            (mousemove)="elementMouseMove($event, element)"
+            (mouseleave)="elementMouseLeave(element)"
+        >
+            <div class="app-home-products-categories-toolbar">
+                <div class="center"><p [style.transform]="getScaleSize(element)">{{element.name}}</p></div>
+                <div class="right">
+                    aaa
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>

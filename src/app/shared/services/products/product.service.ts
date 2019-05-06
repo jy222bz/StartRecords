@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../../models/products/product';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {firestore} from 'firebase/app';
 import {Track} from '../../models/tracks/track';
 import {map} from 'rxjs/operators';
+import {firestore} from 'firebase/app';
 
 
 @Injectable()
@@ -27,6 +27,7 @@ export class ProductService {
                         actions.data().description,
                         actions.data().total,
                         actions.data().createdAt,
+                        actions.data().year,
                         actions.data().columnSpan,
                         actions.data().rowSpan,
                     );
@@ -50,17 +51,37 @@ export class ProductService {
                 tracksSub.unsubscribe();
             });
 
-        // Reduce categories
+        return new Promise((resolve, reject) => {
+            this.afs.collection('products').doc(id).get()
+                .subscribe(
+                    (next) => {
+                        const categories = next.data().categories;
+                        if (categories !== undefined) {
+                            categories.forEach((categoryId) => {
+                                this.afs.collection('categories').doc(categoryId).update(
+                                    {
+                                        count: firestore.FieldValue.increment(-1)
+                                    })
+                                    .then(() => {
+                                        resolve();
+                                    })
+                                    .catch((error) => {
+                                        reject(error);
+                                    });
+                            });
+                        }
+                        this.afs.collection('products').doc(id).delete()
+                            .then(() => {
+                                resolve();
+                            })
+                            .catch((error) => {
+                                reject(error);
+                            })
+                        ;
+                    }
+                )
+            ;
 
-
-        // Delete product
-        return this.afs.collection('products').doc(id).delete();
-    }
-
-    updateDuration(id, duration) {
-        return this.afs.collection('products').doc(id).update(
-            {
-                duration: firestore.FieldValue.increment(duration)
-            });
+        });
     }
 }

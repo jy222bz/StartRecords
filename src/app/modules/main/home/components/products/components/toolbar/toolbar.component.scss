@@ -1,0 +1,32 @@
+.app-main-home-products-toolbar {
+    height: 128px;
+}
+
+.app-main-home-products-toolbar {
+    display: flex;
+    color: black;
+}
+
+.app-main-home-products-toolbar .left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.app-main-home-products-toolbar .center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-main-home-products-toolbar .center .title {
+    font-size: 72px;
+}
+
+.app-main-home-products-toolbar .right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}

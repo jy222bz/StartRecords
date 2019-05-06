@@ -18,10 +18,11 @@ export class ProductsService {
             ;
     }
 
-    get(pageIndex, pageSize, lastElement = null) {
+    get(pageIndex, pageSize, lastElement = '') {
         return this.afs.collection<Product>('products',
             ref => ref
                 .orderBy('name', 'asc')
+
                 .limit(pageSize)
         ).snapshotChanges()
             .pipe(map(
@@ -38,6 +39,7 @@ export class ProductsService {
                                 item.payload.doc.data().description,
                                 item.payload.doc.data().total,
                                 item.payload.doc.data().createdAt,
+                                item.payload.doc.data().year,
                                 item.payload.doc.data().columnSpan,
                                 item.payload.doc.data().rowSpan,
                             )

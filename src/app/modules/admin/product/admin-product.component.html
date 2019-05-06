@@ -1,19 +1,21 @@
 <div class="container">
-    <app-breadcrumb></app-breadcrumb>
+    <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
     <div class="page-toolbar">
         <mat-toolbar>
             <mat-toolbar-row>
                 <span class="font-larger">{{ product.name }}</span>
                 <span class="mat-toolbar-spacer"></span>
-                <button mat-icon-button (click)="openModifyDialog()">
+                <button mat-icon-button (click)="openEditComponent()">
                     <mat-icon>edit</mat-icon>
                 </button>
             </mat-toolbar-row>
         </mat-toolbar>
     </div>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
-        <app-admin-product-image [productId]="product.id" [cover]="product.cover"></app-admin-product-image>
+        <div >
 
+        </div>
+        <app-admin-product-image [productId]="product.id" [cover]="product.cover"></app-admin-product-image>
     </div>
     <div fxLayout="row" fxLayoutGap="16px">
         <app-product-categories [productId]="product.id" fxFill></app-product-categories>

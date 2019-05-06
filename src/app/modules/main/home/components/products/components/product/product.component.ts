@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Product} from '../../../../../shared/models/products/product';
+import {Product} from '../../../../../../../shared/models/products/product';
 
 @Component({
     selector: 'app-product',
@@ -25,6 +25,10 @@ export class ProductComponent implements OnInit {
 
     afterImageLoaded(event) {
 
+    }
+
+    getHeight() {
+        return 290 * this.item.rowSpan + 'px';
     }
 }
 

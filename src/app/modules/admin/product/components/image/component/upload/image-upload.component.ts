@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ImagesService} from "../../../../../../../shared/services/images.service";
 import {ProductService} from "../../../../../../../shared/services/products/product.service";
 
@@ -66,7 +66,7 @@ export class ImageUploadComponent implements OnInit {
             cover: cover,
         };
         this.productService.set(this.data.productId, data)
-            .then((next) => {
+            .then(() => {
                     this.working = false;
                     this.dialog.close(data);
                 }

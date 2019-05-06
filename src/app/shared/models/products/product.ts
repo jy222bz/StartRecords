@@ -12,9 +12,10 @@ export class Product extends Model {
     createdAt: string;
     rowSpan: number;
     columnSpan: number;
+    year: number;
 
     constructor(id = '', name = '', producer = '', artist = '', price = 0, duration = 0, cover = '', description = '',
-                total = 0, createdAt = null, columnSpan = 1, rowSpan = 1
+                total = 0, createdAt = null, year = null, columnSpan = 1, rowSpan = 1
     ) {
         super();
         this.id = id;
@@ -28,5 +29,6 @@ export class Product extends Model {
         this.createdAt = createdAt != null ? createdAt.toDate().toLocaleString() : '';
         this.columnSpan = columnSpan;
         this.rowSpan = rowSpan;
+        this.year = year;
     }
 }

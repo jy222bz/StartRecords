@@ -19,6 +19,8 @@ interface Tile {
     styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+    breadcrumbs = [{label: '', params: '', url: '/admin', home: true}
+    ];
 
     tools: Tile[] = [
         {

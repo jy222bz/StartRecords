@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/products/product.service";
-import {Product} from "../../../shared/models/products/product";
-import {ActivatedRoute, Route} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -33,7 +32,7 @@ export class ProductComponent implements OnInit {
                 this.product = next;
                 subscription.unsubscribe();
             },
-            (error) => {
+            () => {
                 subscription.unsubscribe();
             }
         )

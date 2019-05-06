@@ -12,6 +12,9 @@ import {DeleteComponent} from './components/delete/delete.component';
     templateUrl: './admin-categories.component.html',
 })
 export class AdminCategoriesComponent extends ItemsComponent<Category> implements OnInit {
+    breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
+        {label: 'Categories', params: '', url: '/admin/categories', home: false}
+    ];
     displayedColumns = ['name', 'albums', 'description'];
 
     constructor(

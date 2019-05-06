@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../../models/products/product';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {firestore} from 'firebase/app';
 
 
 @Injectable()
@@ -19,7 +20,24 @@ export class ProductTrackService {
         });
     }
 
-    delete(id) {
-        return this.afs.collection('product_tracks').doc(id).delete();
+    delete(productId, id, duration) {
+        return new Promise((resolve, reject) => {
+            this.afs.collection('product_tracks').doc(id).delete()
+                .then(() => {
+                    this.afs.collection('products').doc(productId).update(
+                        {
+                            duration: firestore.FieldValue.increment(-1 * duration)
+                        })
+                        .then(() => {
+                            resolve();
+                        })
+                        .catch((error) => {
+                            reject(error);
+                        });
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
     }
 }
