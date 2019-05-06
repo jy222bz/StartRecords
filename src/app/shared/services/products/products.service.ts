@@ -18,36 +18,69 @@ export class ProductsService {
             ;
     }
 
-    get(pageIndex, pageSize, lastElement = '') {
-        return this.afs.collection<Product>('products',
-            ref => ref
-                .orderBy('name', 'asc')
-
-                .limit(pageSize)
-        ).snapshotChanges()
-            .pipe(map(
-                actions => {
-                    return actions.map(item => (
-                            new Product(
-                                item.payload.doc.id,
-                                item.payload.doc.data().name,
-                                item.payload.doc.data().producer,
-                                item.payload.doc.data().artist,
-                                item.payload.doc.data().price,
-                                item.payload.doc.data().duration,
-                                item.payload.doc.data().cover,
-                                item.payload.doc.data().description,
-                                item.payload.doc.data().total,
-                                item.payload.doc.data().createdAt,
-                                item.payload.doc.data().year,
-                                item.payload.doc.data().columnSpan,
-                                item.payload.doc.data().rowSpan,
+    get(pageIndex, pageSize, categoryId = '') {
+        if (categoryId === '') {
+            return this.afs.collection<Product>('products',
+                ref => ref
+                    .orderBy('name', 'asc')
+                    .limit(pageSize)
+            ).snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => (
+                                new Product(
+                                    item.payload.doc.id,
+                                    item.payload.doc.data().name,
+                                    item.payload.doc.data().producer,
+                                    item.payload.doc.data().artist,
+                                    item.payload.doc.data().price,
+                                    item.payload.doc.data().duration,
+                                    item.payload.doc.data().cover,
+                                    item.payload.doc.data().description,
+                                    item.payload.doc.data().total,
+                                    item.payload.doc.data().createdAt,
+                                    item.payload.doc.data().year,
+                                    item.payload.doc.data().columnSpan,
+                                    item.payload.doc.data().rowSpan,
+                                )
                             )
-                        )
-                    );
-                }
-            ))
-            ;
+                        );
+                    }
+                ))
+                ;
+        } else {
+            return this.afs.collection<Product>('products',
+                ref => ref
+                    .where('categories', 'array-contains', categoryId)
+                    .limit(pageSize)
+            ).snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => (
+                                new Product(
+                                    item.payload.doc.id,
+                                    item.payload.doc.data().name,
+                                    item.payload.doc.data().producer,
+                                    item.payload.doc.data().artist,
+                                    item.payload.doc.data().price,
+                                    item.payload.doc.data().duration,
+                                    item.payload.doc.data().cover,
+                                    item.payload.doc.data().description,
+                                    item.payload.doc.data().total,
+                                    item.payload.doc.data().createdAt,
+                                    item.payload.doc.data().year,
+                                    item.payload.doc.data().columnSpan,
+                                    item.payload.doc.data().rowSpan,
+                                )
+                            )
+                        );
+                    }
+                ))
+                ;
+        }
+
+
+
     }
 
     add(args) {

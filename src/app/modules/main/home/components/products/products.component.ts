@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
 
 @Component({
@@ -13,12 +13,18 @@ export class ProductsComponent implements OnInit {
     pageSize = 20;
 
     columns = 4;
-    categoriesVisible = false;
+    _categoryId = '';
 
     constructor(
         private productsService: ProductsService,
     ) {
 
+    }
+
+    @Input()
+    set categoryId(value) {
+        this._categoryId = value;
+        this.get();
     }
 
     ngOnInit(): void {
@@ -57,22 +63,15 @@ export class ProductsComponent implements OnInit {
         return element.rowSpan;
     }
 
-    showCategories() {
-        this.categoriesVisible = true;
-    }
-
-    categoryChanged(element) {
-
-    }
-
     // ----------------------
     get() {
-        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
+        const subscription = this.productsService.get(this.pageIndex, this.pageSize, this._categoryId)
             .subscribe((data) => {
                     this.products = data;
                     subscription.unsubscribe();
                 },
                 (error) => {
+                    console.log(error);
                     subscription.unsubscribe();
                 }
             )

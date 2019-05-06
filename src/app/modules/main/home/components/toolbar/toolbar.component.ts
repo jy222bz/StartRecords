@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 
 @Component({
-    selector: 'app-main-home-products-toolbar',
+    selector: 'app-main-home-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 

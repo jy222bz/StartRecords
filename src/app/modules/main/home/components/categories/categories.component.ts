@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CategoriesService} from "../../../../../../../shared/services/categoreis/categories.service";
-import {Category} from "../../../../../../../shared/models/categories/category";
+import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
+import {Category} from "../../../../../shared/models/categories/category";
 
 @Component({
-    selector: 'app-main-home-products-categories',
+    selector: 'app-main-home-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss'],
 })
@@ -37,6 +37,8 @@ export class CategoriesComponent implements OnInit {
         ;
     }
 
+
+
     changeCategory(element) {
         this.categoryChanged.emit(element);
     }
@@ -46,7 +48,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     elementMouseMove(event, element) {
-        if (event.target.nodeName !== 'LI') {
+        if (event.target.nodeName !== 'DIV') {
             return;
         }
         let middle = event.target.offsetHeight / 2;

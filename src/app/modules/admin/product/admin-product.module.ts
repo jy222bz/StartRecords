@@ -17,8 +17,7 @@ import {ProductCategoriesService} from "../../../shared/services/products/produc
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {SharedModule} from "../../../shared.module";
-import {ImageComponent} from "./components/image/image.component";
-import {ImageUploadComponent} from "./components/image/component/upload/image-upload.component";
+import {ImageUploadComponent} from "./components/image-upload/image-upload.component";
 import {ImagesService} from "../../../shared/services/images.service";
 import {EditComponent} from "./components/edit/edit.component";
 
@@ -41,7 +40,6 @@ import {EditComponent} from "./components/edit/edit.component";
         CategoriesAddComponent,
         CategoriesDeleteComponent,
 
-        ImageComponent,
         ImageUploadComponent,
         EditComponent,
     ],

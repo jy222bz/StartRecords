@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../../shared/models/products/product";
 import {EditComponent} from "./components/edit/edit.component";
 import {MatDialog} from "@angular/material";
+import {ImageUploadComponent} from "./components/image-upload/image-upload.component";
 
 
 @Component({
@@ -16,7 +17,9 @@ export class AdminProductComponent implements OnInit {
     breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
         {label: 'Products', params: '', url: '/admin/products', home: false},
     ];
+    displayedColumns = ['name', 'value'];
     product: Product = new Product();
+    details = [];
 
     constructor(
         private productService: ProductService,
@@ -34,11 +37,23 @@ export class AdminProductComponent implements OnInit {
     }
 
     openEditComponent() {
-        console.log(this.product);
         const ref = this.dialog.open(EditComponent, {autoFocus: true, width: '480px', data: this.product});
         ref.afterClosed().subscribe(result => {
             if (result) {
-                console.log(result);
+                result.id = this.product.id;
+                result.cover = this.product.cover;
+                this.product = result;
+            }
+        });
+    }
+
+    openUploadComponent() {
+        const ref = this.dialog.open(ImageUploadComponent, {autoFocus: true, minWidth: 400, data: {
+                productId: this.product.id, cover: this.product.cover
+            }});
+        ref.afterClosed().subscribe(result => {
+            if (result) {
+                this.product.cover = result.cover;
             }
         });
     }
@@ -49,12 +64,21 @@ export class AdminProductComponent implements OnInit {
             (next) => {
                 this.product = next;
                 this.breadcrumbs.push({label: next.name, params: '', url: '/admin/products/' + next.id, home: false});
+                this.updateDetails();
                 subscription.unsubscribe();
+
             },
             () => {
                 subscription.unsubscribe();
             }
         )
+    }
+
+    updateDetails() {
+        this.details.push({
+            name: 'Artist',
+            value: this.product.artist
+        });
     }
 }
 

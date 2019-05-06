@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
     }
 
     getHeight() {
-        return 290 * this.item.rowSpan + 'px';
+        return 294 * this.item.rowSpan + 'px';
     }
 }
 

@@ -6,6 +6,9 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+    categoriesVisible = false;
+    categoryId = '';
+    categoryName = 'All';
 
     constructor() {
 
@@ -14,6 +17,16 @@ export class MainComponent implements OnInit {
     ngOnInit(): void {
     }
 
+
+    showCategories() {
+        this.categoriesVisible = true;
+    }
+
+    categoryChanged(element) {
+        this.categoryId = element.id;
+        this.categoryName = element.name;
+        this.categoriesVisible = false;
+    }
 }
 
 

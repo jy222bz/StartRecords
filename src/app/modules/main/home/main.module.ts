@@ -11,9 +11,9 @@ import {ProductsService} from "../../../shared/services/products/products.servic
 import {ProductComponent} from "./components/products/components/product/product.component";
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../../shared.module";
-import {ToolbarComponent} from "./components/products/components/toolbar/toolbar.component";
+import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {AdminProductsModule} from "../../admin/products/admin-products.module";
-import {CategoriesComponent} from "./components/products/components/categories/categories.component";
+import {CategoriesComponent} from "./components/categories/categories.component";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 
 

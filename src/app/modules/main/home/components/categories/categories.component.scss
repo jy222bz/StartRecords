@@ -33,41 +33,40 @@
     bottom: 0;
     z-index: 100;
 
-    background: #D3CCE3;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #D3CCE3; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     overflow-y: auto;
+    animation: flip3D 1.2s;
 
+    .menu-items {
 
-    ul {
-        list-style: none;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        display: block;
-
-        li {
-            padding: 2px;
-            text-align: center;
-            font-size: xx-large;
-            font-weight: lighter;
-            cursor: pointer;
-            transition: 1s ease-in-out;
-
-            animation-name: slideDown;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
+        div:nth-child(1) {
+            animation-delay: .1s
         }
 
-        li:nth-child(1) { animation-delay: .2s }
-        li:nth-child(2) { animation-delay: .4s }
-        li:nth-child(3) { animation-delay: .6s }
-        li:nth-child(4) { animation-delay: .8s }
-        li:nth-child(5) { animation-delay: 1s }
-        li:nth-child(6) { animation-delay: 1.2s }
+        div:nth-child(2) {
+            animation-delay: .2s
+        }
 
-        li:hover {
+        div:nth-child(3) {
+            animation-delay: .3s
+        }
+
+        div:nth-child(4) {
+            animation-delay: .4s
+        }
+
+        div:nth-child(5) {
+            animation-delay: 0.5s
+        }
+
+        div:nth-child(6) {
+            animation-delay: 0.6s
+        }
+
+        div:hover {
             background-image: radial-gradient(
                     rgba(0, 0, 0, 0.10),
                     rgba(0, 0, 0, 0.10),
@@ -75,7 +74,30 @@
         }
     }
 
-    animation: flip3D 1.2s;
+    .menu-items > * {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        opacity: 0;
+        padding: 16px 0;
+
+        justify-content: center;
+        align-items: center;
+
+        transition: 1s ease-in-out;
+
+        text-align: center;
+        font-size: xx-large;
+        font-weight: lighter;
+        cursor: pointer;
+        animation-name: slideDown;
+        animation-duration: 0.8s;
+        animation-fill-mode: forwards;
+    }
+
+
 }
 
 

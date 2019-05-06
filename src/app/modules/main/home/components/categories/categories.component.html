@@ -8,18 +8,14 @@
             </button>
         </div>
     </mat-toolbar>
-    <ul>
-        <li *ngFor="let element of categories" (click)="changeCategory(element)"
-            (mousemove)="elementMouseMove($event, element)"
-            (mouseleave)="elementMouseLeave(element)"
-        >
-            <div class="app-home-products-categories-toolbar">
-                <div class="center"><p [style.transform]="getScaleSize(element)">{{element.name}}</p></div>
-                <div class="right">
-                    aaa
-                </div>
-            </div>
 
-        </li>
-    </ul>
+    <div class="menu-items">
+        <div *ngFor="let element of categories" (click)="changeCategory(element)"
+             (mousemove)="elementMouseMove($event, element)"
+             (mouseleave)="elementMouseLeave(element)" class="menu-item">
+            <div class="app-home-products-categories-toolbar">
+                <div class="center">{{element.name}}</div>
+            </div>
+        </div>
+    </div>
 </div>
