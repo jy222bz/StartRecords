@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-    selector: 'app-product-rating',
+    selector: 'app-main-product-rating',
     templateUrl: './rating.component.html',
     styleUrls: ['./rating.component.scss'],
 })

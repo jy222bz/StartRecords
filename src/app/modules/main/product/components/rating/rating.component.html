@@ -1,21 +1,3 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Form Control</h1>
-            <form [formGroup]="form" (submit)="onSubmit()">
-                <star-rating-control
-                    [labelText]="'Rating'"
-                    [rating]="rating"
-                    formControlName="ratingInput"></star-rating-control>
-                <div class="stock-inventory__buttons">
-                    <button
-                        type="submit"
-                        [disabled]="form.invalid">
-                        Submit
-                    </button>
-                </div>
-                <pre>{{ form.value | json }}</pre>
-            </form>
-        </div>
-    </div>
+
 </div>

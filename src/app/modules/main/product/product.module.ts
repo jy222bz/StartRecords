@@ -8,6 +8,7 @@ import {ProductRoutingModule} from "./product.routing.module";
 import {MaterialModule} from "../../../material.module";
 import {RatingComponent} from "./components/rating/rating.component";
 import {TracksComponent} from "./components/tracks/tracks.component";
+import {ProductTracksService} from "../../../shared/services/products/product-tracks.service";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {TracksComponent} from "./components/tracks/tracks.component";
     ],
     providers: [
         ProductService,
+        ProductTracksService,
     ],
     entryComponents: []
 })
