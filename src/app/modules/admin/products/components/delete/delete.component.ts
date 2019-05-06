@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder} from '@angular/forms';
 import {ProductService} from "../../../../../shared/services/products/product.service";
+import {ProductsService} from "../../../../../shared/services/products/products.service";
 
 
 @Component({
@@ -14,6 +15,7 @@ export class DeleteComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private productsService: ProductsService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<DeleteComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any) {
@@ -29,6 +31,7 @@ export class DeleteComponent implements OnInit {
         this.productService.delete(this.data.id)
             .then((next) => {
                 this.working = false;
+                this.productsService.incrementTotal(-1);
                 this.dialog.close(this.data);
             })
             .catch((error) => {

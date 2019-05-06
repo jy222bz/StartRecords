@@ -24,16 +24,18 @@ import {
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    MatSidenavModule,
+    MatSidenavModule, MatChipsModule,
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {InputFileComponent} from "./shared/components/input-file/input-file.component";
+import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
     declarations: [
         InputFileComponent,
-
+        BreadcrumbComponent,
     ],
     imports: [
         FormsModule,
@@ -61,9 +63,11 @@ import {InputFileComponent} from "./shared/components/input-file/input-file.comp
         MatTabsModule,
         MatPaginatorModule,
         MatSnackBarModule,
+        MatChipsModule,
 
         FlexLayoutModule,
         CommonModule,
+        RouterModule,
     ],
     exports: [
         FormsModule,
@@ -92,9 +96,11 @@ import {InputFileComponent} from "./shared/components/input-file/input-file.comp
         MatPaginatorModule,
         MatSnackBarModule,
         MatSidenavModule,
+        MatChipsModule,
         FlexLayoutModule,
 
         InputFileComponent,
+        BreadcrumbComponent,
     ],
     providers: [],
     entryComponents: []

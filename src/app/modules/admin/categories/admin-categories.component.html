@@ -1,10 +1,12 @@
 <div class="container">
+    <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
     <mat-toolbar class="toolbar-header">
         <mat-toolbar-row>
-            <span>Categories</span>
+            <span class="font-larger" >Categories</span>
             <span class="mat-toolbar-spacer"></span>
-            <button mat-icon-button matTooltip="Add" (click)="openAddDialog()">
+            <button mat-flat-button color="primary" (click)="openAddDialog()">
                 <mat-icon>add</mat-icon>
+                Add
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
@@ -32,7 +34,13 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+            <mat-cell *matCellDef="let element"><strong> {{element.name}} </strong>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="albums">
+            <mat-header-cell *matHeaderCellDef> Albums</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.count}}
             </mat-cell>
         </ng-container>
 

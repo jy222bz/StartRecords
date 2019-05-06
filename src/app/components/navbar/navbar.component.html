@@ -1,9 +1,6 @@
-<mat-toolbar style="background-color: #cd5048">
-    <img src="assets/images/star.png"/>
+<mat-toolbar class="app-navbar">
+    <img class="app-navbar-img" src="assets/images/star.png"/>
     <span id="title" style="color: white; cursor: pointer" [routerLink]="['/']">{{ title }}</span>
-    <a href="navbar.component.html">HOME</a>
-    <a href="#">CONTACT</a>
-    <a href="#">ABOUT</a>
     <span class="mat-toolbar-spacer"></span>
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
@@ -28,7 +25,6 @@
             <mat-icon>exit_to_app</mat-icon>
             Logout
         </button>
-
     </mat-menu>
 </mat-toolbar>
 

@@ -1,0 +1,46 @@
+<div class="container" style="padding-bottom: 32px">
+    <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+    <div class="page-toolbar">
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <span class="font-larger">{{ product.name }}</span>
+                <span class="mat-toolbar-spacer"></span>
+                <button mat-icon-button (click)="openUploadComponent()">
+                    <mat-icon>cloud_upload</mat-icon>
+                </button>
+                <button mat-icon-button (click)="openEditComponent()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 8px;">
+        <div fxFlex="1 1 100%">
+            <ul>
+                <li>
+                    <div>
+                        Artist
+                    </div>
+                    <div>
+                        {{product.artist}}
+                    </div>
+                </li>
+                <li>
+                    Producer
+                </li>
+            </ul>
+        </div>
+        <div fxFlex="1 1 100%">
+            <img [lazyLoad]="this.product.cover" [style.animation-duration]="23" class="app-admin-product-image" alt=""
+            >
+        </div>
+
+    </div>
+    <div fxLayout="row" fxLayoutGap="16px">
+        <app-product-categories [productId]="product.id" fxFill></app-product-categories>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 24px;">
+        <app-product-tracks [productId]="product.id" fxFill></app-product-tracks>
+    </div>
+
+</div>

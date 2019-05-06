@@ -1,18 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {AddComponent} from "./components/add/add.component";
-import {MatDialog} from "@angular/material";
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {ProductsService} from "../../../shared/services/products/products.service";
-import {Product} from "../../../shared/models/products/product";
-import {DeleteComponent} from "./components/delete/delete.component";
+import {AddComponent} from './components/add/add.component';
+import {MatDialog} from '@angular/material';
+import {ItemsComponent} from '../../../shared/components/items/items.component';
+import {ProductsService} from '../../../shared/services/products/products.service';
+import {Product} from '../../../shared/models/products/product';
+import {DeleteComponent} from './components/delete/delete.component';
 
 
 @Component({
     selector: 'app-admin-products',
     templateUrl: './admin-products.component.html',
+    styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent extends ItemsComponent<Product> implements OnInit {
-    displayedColumns = ['image', 'name', 'artist', 'producer', 'price', 'duration', 'edit'];
+    breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
+        {label: 'Products', params: '', url: '/admin/products', home: false}
+    ];
+    displayedColumns = ['image', 'name', 'created_at', 'edit'];
 
     constructor(
         private productsService: ProductsService,
@@ -22,6 +26,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     }
 
     ngOnInit(): void {
+        this.getTotal();
         this.get();
     }
 
@@ -48,12 +53,28 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get()
-            .subscribe((data) => {
-                this.set(data);
-                subscription.unsubscribe();
-            })
+        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
+            .subscribe(
+                (data) => {
+                    this.set(data);
+                    subscription.unsubscribe();
+                },
+                () => {
+                    subscription.unsubscribe();
+                }
+            )
         ;
+    }
+
+    getTotal() {
+        this.productsService.getMeta().subscribe(
+            (data) => {
+                this.setTotal(data.total);
+            },
+            () => {
+
+            }
+        );
     }
 }
 

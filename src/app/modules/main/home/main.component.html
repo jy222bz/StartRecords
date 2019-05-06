@@ -1,0 +1,13 @@
+<div class="app-main-home">
+
+    <app-main-home-toolbar [name]="categoryName" (categoriesVisible)="showCategories()"></app-main-home-toolbar>
+
+
+    <app-main-home-categories *ngIf="categoriesVisible" (categoryChanged)="categoryChanged($event)">
+    </app-main-home-categories>
+
+    <app-main-home-products [categoryId]="categoryId"></app-main-home-products>
+    <app-main-home-footer></app-main-home-footer>
+</div>
+
+

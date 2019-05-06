@@ -12,6 +12,7 @@ export abstract class ItemsComponent<T extends Model> {
     total = 0;
     pageSize = 50;
     pageIndex = 0;
+    filterValue = '';
 
     protected constructor() {
 
@@ -20,7 +21,8 @@ export abstract class ItemsComponent<T extends Model> {
 
     // ---------------------
     onSearch(value) {
-        this.get(value);
+        this.filterValue = value;
+        this.get();
     }
 
     onSearchClose() {
@@ -30,6 +32,7 @@ export abstract class ItemsComponent<T extends Model> {
 
     onPageChange(pageEvent) {
         this.selection.clear();
+        this.pageSize = pageEvent.pageSize;
         this.pageIndex = pageEvent.pageIndex;
         this.get();
     }
@@ -70,11 +73,24 @@ export abstract class ItemsComponent<T extends Model> {
     }
 
     set(data) {
-        this.total = data.length;
         this.dataSource = new MatTableDataSource(data);
     }
 
+    setTotal(total) {
+        this.total = total;
+    }
+
     add(result) {
+        if (result instanceof Array) {
+            this.dataSource.data.push(...result);
+            this.total += result.length;
+        } else {
+            this.dataSource.data.push(result);
+            this.total += 1;
+        }
+        this.dataSource.filter = '';
+    }
+    modify(result) {
         if (result instanceof Array) {
             this.dataSource.data.push(...result);
             this.total += result.length;
@@ -106,8 +122,6 @@ export abstract class ItemsComponent<T extends Model> {
     }
 
     abstract get();
-    abstract get(filterValue);
-    abstract get(filterValue, sortOrder);
 }
 
 

@@ -1,0 +1,24 @@
+@keyframes showTile {
+    0% {
+        opacity: 1;
+        transform: scale(0, 0);
+    }
+    100% {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+.app-admin-tiles {
+    padding: 8px;
+}
+
+.app-admin-tile {
+    animation: showTile 0.3s cubic-bezier(.33,.04,.72,.45);
+    animation-fill-mode: both;
+}
+
+.app-admin-tiles .app-admin-tile:nth-child(1) { animation-delay: .1s }
+.app-admin-tiles .app-admin-tile:nth-child(2) { animation-delay: .2s }
+.app-admin-tiles .app-admin-tile:nth-child(2) { animation-delay: .3s }
+.app-admin-tiles .app-admin-tile:nth-child(2) { animation-delay: .4s }

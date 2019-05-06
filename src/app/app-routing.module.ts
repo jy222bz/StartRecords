@@ -5,11 +5,11 @@ import {PageNotFoundComponent} from './shared/components/page-not-found/page-not
 const routes: Routes = [
     {
         path: '',
-        loadChildren: './modules/main/main.module#MainModule',
+        loadChildren: './modules/main/home/main.module#MainModule',
     },
     {
         path: 'admin',
-        loadChildren: './modules/admin/admin.module#AdminModule',
+        loadChildren: './modules/admin/home/admin.module#AdminModule',
     },
     {
         path: 'admin/categories',
@@ -20,13 +20,20 @@ const routes: Routes = [
         loadChildren: './modules/admin/products/admin-products.module#AdminProductsModule',
     },
     {
-        path: 'admin/tracks/:id',
-        loadChildren: './modules/admin/tracks/admin-tracks.module#AdminTracksModule',
+        path: 'admin/products/:id',
+        loadChildren: './modules/admin/product/admin-product.module#AdminProductModule',
     },
+
     {
         path: 'user',
         loadChildren: './modules/user/user.module#UserModule',
     },
+
+    {
+        path: 'product/:id',
+        loadChildren: './modules/main/product/product.module#ProductModule',
+    },
+
     {path: '**', component: PageNotFoundComponent},
 ];
 

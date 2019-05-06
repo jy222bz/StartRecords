@@ -1,8 +1,8 @@
-*{
-margin: 0;
-padding: 3px;
+.app-navbar{
+    background-color: #102027;
 }
-img {
+
+.app-navbar-img {
     height: auto;
     float:left;
     width: 40px;
@@ -12,28 +12,7 @@ img {
     margin-left:  6px;
     margin-right:  6px;
     margin-top:  0;
-    font-family: "After Night", serif;
     font-size: 30px;
-    text-shadow: 3px 4px rgba(60, 30, 18, 0.33);
 
 }
-
-nav{
-    width: 100%;
-    height: 60%;
-    flex: 1 1 auto;
-}
-
-li a {
-
-    font-family: Arial Rounded MT, serif;
-    color: #0e1307;
-    font-size: 16px;
-    text-decoration: none;
-    flex: 1 1 auto;
-
-
-}
-
-
 

@@ -18,14 +18,6 @@ import {UserService} from "./shared/services/user/user.service";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavbarComponent,
-        LoginComponent,
-        RegisterComponent,
-        LogoutComponent,
-
-    ],
     imports: [
         BrowserModule,
         FormsModule,
@@ -35,15 +27,24 @@ import {UserService} from "./shared/services/user/user.service";
         FirebaseModule,
         MaterialModule,
         ComponentsModule,
-        AppRoutingModule
+        AppRoutingModule,
+    ],
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        LoginComponent,
+        RegisterComponent,
+        LogoutComponent
+
     ],
     providers: [
         UserService,
         AuthenticationService,
     ],
-    exports: [],
     bootstrap: [
         AppComponent,
+    ],
+    entryComponents: [
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
