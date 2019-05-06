@@ -1,24 +1,25 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {UploadService} from "../../../../../shared/services/upload.service";
-import {ProductService} from "../../../../../shared/services/products/product.service";
+import {UploadService} from "../../../../../../../shared/services/upload.service";
+import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
+import {ProductTrackService} from "../../../../../../../shared/services/products/product-track.service";
 
 
 @Component({
-    selector: 'app-admin-products-add',
-    templateUrl: './image-upload.component.html',
+    selector: 'app-admin-product-tracks-upload',
+    templateUrl: './track-upload.component.html',
 })
-export class ImageUploadComponent implements OnInit {
+export class TrackUploadComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
     constructor(
-        private productService: ProductService,
-        private imagesService: UploadService,
+        private productTrackService: ProductTrackService,
+        private uploadService: UploadService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<ImageUploadComponent>,
+        private dialog: MatDialogRef<TrackUploadComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
@@ -48,7 +49,7 @@ export class ImageUploadComponent implements OnInit {
     uploadImage() {
         if (this.form.controls.cover.value !== '') {
             const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
-            this.imagesService.upload('/products/covers/', name, this.form.controls.cover.value.files[0])
+            this.uploadService.upload('/products/' + this.data.productId + '/tracks/', name, this.form.controls.cover.value.files[0])
                 .then((data) => {
                     this.saveProduct(data);
                 })
@@ -61,14 +62,15 @@ export class ImageUploadComponent implements OnInit {
         }
     }
 
-    saveProduct(cover) {
+    saveProduct(file) {
         let data: any = {
-            cover: cover,
+            file: file,
         };
-        this.productService.set(this.data.productId, data)
+        this.productTrackService.set(this.data.id, data)
             .then(() => {
                     this.working = false;
-                    this.dialog.close(data);
+                    this.data.file = file;
+                    this.dialog.close(this.data);
                 }
             )
             .catch((error) => {

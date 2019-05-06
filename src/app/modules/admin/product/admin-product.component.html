@@ -16,23 +16,11 @@
     </div>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 8px;">
         <div fxFlex="1 1 100%">
-            <ul>
-                <li>
-                    <div>
-                        Artist
-                    </div>
-                    <div>
-                        {{product.artist}}
-                    </div>
-                </li>
-                <li>
-                    Producer
-                </li>
-            </ul>
+            <app-product-tracks [productId]="product.id" fxFill></app-product-tracks>
         </div>
         <div fxFlex="1 1 100%">
-            <img [lazyLoad]="this.product.cover" [style.animation-duration]="23" class="app-admin-product-image" alt=""
-            >
+            <img [lazyLoad]="this.product.cover" [style.animation-duration]="23" class="app-admin-product-image"
+                 alt="">
         </div>
 
     </div>
@@ -40,7 +28,7 @@
         <app-product-categories [productId]="product.id" fxFill></app-product-categories>
     </div>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 24px;">
-        <app-product-tracks [productId]="product.id" fxFill></app-product-tracks>
+
     </div>
 
 </div>

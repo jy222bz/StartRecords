@@ -26,6 +26,7 @@ export class ProductTracksService {
                             item.payload.doc.data().description,
                             item.payload.doc.data().duration,
                             item.payload.doc.data().createdAt,
+                            item.payload.doc.data().file,
                         )
                     ));
                 }));
@@ -36,15 +37,17 @@ export class ProductTracksService {
         return new Promise((resolve, reject) => {
             this.afs.collection('product_tracks').add(args)
                 .then((data) => {
-
                     this.afs.collection('products').doc(args.productId).update(
                         {
                             duration: firestore.FieldValue.increment(args.duration)
                         })
                         .then((next) => {
-                            resolve(data);
+                            args.id = data.id;
+                            args.createdAt = (new Date()).toLocaleString();
+                            resolve(args);
                         })
                         .catch((error) => {
+                            console.log(error);
                             reject(error);
                         })
                 })

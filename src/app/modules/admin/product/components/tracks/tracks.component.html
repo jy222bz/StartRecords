@@ -32,7 +32,7 @@
 
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-        <mat-cell *matCellDef="let element"><a routerLink="{{element.id}}"> <strong> {{element.name}} </strong></a>
+        <mat-cell *matCellDef="let element"> <strong> {{element.name}} </strong>
         </mat-cell>
     </ng-container>
 
@@ -41,9 +41,16 @@
         <mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="file">
+        <mat-header-cell *matHeaderCellDef> File</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <a *ngIf="element.file" href="{{element.file}}" download="{{element.name}}"><mat-icon>music_note
+            </mat-icon></a></mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="created_at">
         <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.created_at}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="edit">
@@ -53,8 +60,12 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #userMenu="matMenu">
+                <button mat-menu-item (click)="openTrackUploadComponent(element)">
+                    <mat-icon color="primary">cloud</mat-icon>
+                    <span>Upload</span>
+                </button>
                 <button mat-menu-item (click)="openTrackDeleteComponent(element)">
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon color="warn">delete</mat-icon>
                     <span>Delete</span>
                 </button>
             </mat-menu>

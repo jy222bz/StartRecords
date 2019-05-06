@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
-import {ImagesService} from "../../../../../shared/services/images.service";
+import {UploadService} from "../../../../../shared/services/upload.service";
 
 
 @Component({
@@ -16,7 +16,7 @@ export class AddComponent implements OnInit {
 
     constructor(
         private productsService: ProductsService,
-        private imagesService: ImagesService,
+        private imagesService: UploadService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<AddComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
