@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../../shared/services/products/product.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../../shared/services/authentication.service";
-import {MatDialog} from "@angular/material";
 
 
 @Component({
-    selector: 'app-basket',
+    selector: 'app-main-basket',
     templateUrl: './basket.component.html',
     styleUrls: ['./basket.component.scss']
 })
