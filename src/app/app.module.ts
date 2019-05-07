@@ -15,7 +15,7 @@ import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
-import {CartComponent} from "./modules/main/cart/cart.component";
+import {BasketComponent} from "./modules/main/basket/basket.component";
 
 
 @NgModule({
@@ -36,8 +36,6 @@ import {CartComponent} from "./modules/main/cart/cart.component";
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
-        CartComponent
-
     ],
     providers: [
         UserService,
