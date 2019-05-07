@@ -6,16 +6,29 @@ import {MatDialog} from "@angular/material";
 
 
 @Component({
-    selector: 'app-cart',
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.scss']
+    selector: 'app-basket',
+    templateUrl: './basket.component.html',
+    styleUrls: ['./basket.component.scss']
 })
 
-export class CartComponent implements OnInit {
+export class BasketComponent implements OnInit {
+    public itemCount: number;
 
-    ngOnInit(): void {
+
+    public constructor() {
     }
 
+    public emptyCart(): void {
+
+    }
+
+    public ngOnInit(): void {
+
+    }
+
+    public ngOnDestroy(): void {
+
+    }
 
 }
 
