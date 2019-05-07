@@ -9,7 +9,7 @@ const routes: Routes = [
     },
     {
         path: 'basket',
-        loadChildren: './modules/main/basket.module#BasketModule',
+        loadChildren: './modules/main/basket/basket.module#BasketModule',
     },
     {
         path: 'admin',
