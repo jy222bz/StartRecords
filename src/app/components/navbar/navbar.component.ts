@@ -63,4 +63,7 @@ export class NavbarComponent implements OnInit {
         this.router.navigate([this.authenticationService.isAdmin() ? 'admin' : 'user']);
     }
 
+    navigateBasket() {
+        this.router.navigate(['basket']);
+    }
 }
