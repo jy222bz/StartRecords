@@ -1,4 +1,11 @@
-module BasketComponent {
+import {Injectable} from "@angular/core";
+
+
+@Injectable()
+export class BasketService {
+
+
+    /*
     export interface IStorageItem {
         key: string;
         value: any;
@@ -84,5 +91,5 @@ module BasketComponent {
             }
         }
     }
-
+*/
 }
