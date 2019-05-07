@@ -20,7 +20,7 @@ export class AddComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'name': ['', [Validators.required, Validators.minLength(4)]],
+            'name': ['', [Validators.required, Validators.minLength(3)]],
             'description': [''],
             'count': [0],
         });
