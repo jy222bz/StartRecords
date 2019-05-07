@@ -8,7 +8,7 @@ import {MatDialog} from "@angular/material";
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.scss']
+    styleUrls: ['./cart.component.css']
 })
 
 export class CartComponent implements OnInit {
