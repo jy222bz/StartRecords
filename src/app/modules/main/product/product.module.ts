@@ -10,6 +10,8 @@ import {RatingComponent} from "./components/rating/rating.component";
 import {TracksComponent} from "./components/tracks/tracks.component";
 import {ProductTracksService} from "../../../shared/services/products/product-tracks.service";
 import {SharedModule} from "../../../shared.module";
+import {BasketService} from "../../../shared/services/basket/basket.service";
+import {LocalStorageService} from "../../../shared/services/local-storage.service";
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import {SharedModule} from "../../../shared.module";
     providers: [
         ProductService,
         ProductTracksService,
+        LocalStorageService,
+        BasketService,
     ],
     entryComponents: []
 })

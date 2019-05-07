@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
     templateUrl: './tracks.component.html',
 })
 export class TracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['name', 'created_at', 'duration'];
+    displayedColumns = ['name', 'created_at', 'duration', 'play'];
 
     @Input() productId;
 
@@ -24,6 +24,13 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     ngOnInit(): void {
         this.get();
     }
+
+    // ----------------------
+    play() {
+
+    }
+
+
 
     // ----------------------
     get() {

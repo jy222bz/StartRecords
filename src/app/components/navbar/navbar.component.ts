@@ -5,7 +5,7 @@ import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
 import {Router} from "@angular/router";
 import {RegisterComponent} from "../register/register.component";
-
+import {BasketService} from "../../shared/services/basket/basket.service";
 
 
 @Component({
@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
+        private basketService: BasketService,
         private dialog: MatDialog,
         private router: Router,
     ) {
@@ -25,6 +26,14 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void {
 
+    }
+
+    getBasketTotal() {
+        const total = this.basketService.getTotal();
+        if (total === 0) {
+            return '';
+        }
+        return String(total);
     }
 
     openRegisterComponent() {

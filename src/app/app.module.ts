@@ -15,6 +15,8 @@ import {LogoutComponent} from "./components/logout/logout.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
+import {BasketService} from "./shared/services/basket/basket.service";
+import {LocalStorageService} from "./shared/services/local-storage.service";
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import {UserService} from "./shared/services/user/user.service";
     providers: [
         UserService,
         AuthenticationService,
+        LocalStorageService,
+        BasketService,
     ],
     bootstrap: [
         AppComponent,

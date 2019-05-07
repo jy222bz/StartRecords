@@ -1,95 +1,68 @@
 import {Injectable} from "@angular/core";
+import {AngularFirestore} from "@angular/fire/firestore";
+import {Product} from "../../models/products/product";
+import {LocalStorageService} from "../local-storage.service";
 
 
 @Injectable()
 export class BasketService {
 
+    constructor(private afs: AngularFirestore,
+                private localStorageService: LocalStorageService,
+    ) {
 
-    /*
-    export interface IStorageItem {
-        key: string;
-        value: any;
     }
 
-    export class StorageItem {
-        key: string;
-        value: any;
 
-        constructor(data: IStorageItem) {
-            this.key = data.key;
-            this.value = data.value;
-        }
+    get() {
+        const items = this.localStorageService.getAllItems();
+        return new Promise((resolve, reject) => {
+            if (items === undefined || items === null) {
+                reject('items is undefined');
+            } else if (items.length === 0) {
+                resolve([]);
+            }
+            let productsPromises = [];
+            for (let i = 0; i < items.length; ++i) {
+                productsPromises.push(this.afs.collection<Product>('products').doc(items[i].key).get()
+                    .toPromise());
+            }
+            Promise.all(productsPromises)
+                .then((values) => {
+                    let products = [];
+                    for (let i = 0; i < values.length; ++i) {
+                        let result = items.find((a) => a.key === values[i].id);
+                        if (result === undefined) {
+                            continue;
+                        }
+
+                        products.push({
+                            id: values[i].id,
+                            name: values[i].data().name,
+                            price: values[i].data().price,
+                            count: result.value,
+                        });
+                    }
+                    resolve(products);
+                })
+                .catch((error) => {
+                    reject(error);
+                })
+            ;
+        });
     }
 
-    // class for working with local storage in browser (common that can use other classes for store some data)
-    export class LocalStorageWorker {
-        localStorageSupported: boolean;
 
-        constructor() {
-            this.localStorageSupported = typeof window.localStorage != 'undefined' && window.localStorage != null;
-        }
-
-        // add value to storage
-        add(key: string, item: string) {
-            if (this.localStorageSupported) {
-                localStorage.setItem(key, item);
-            }
-        }
-
-        // get all values from storage (all items)
-        getAllItems(): Array<StorageItem> {
-            const list = new Array<StorageItem>();
-
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                const value = localStorage.getItem(key);
-
-                list.push(new StorageItem({
-                    key,
-                    value
-                }));
-            }
-
-            return list;
-        }
-
-        // get only all values from localStorage
-        getAllValues(): Array<any> {
-            const list = new Array<any>();
-
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                const value = localStorage.getItem(key);
-
-                list.push(value);
-            }
-
-            return list;
-        }
-
-        // get one item by key from storage
-        get(key: string): string {
-            if (this.localStorageSupported) {
-                const item = localStorage.getItem(key);
-                return item;
-            } else {
-                return null;
-            }
-        }
-
-        // remove value from storage
-        remove(key: string) {
-            if (this.localStorageSupported) {
-                localStorage.removeItem(key);
-            }
-        }
-
-        // clear storage (remove all items from it)
-        clear() {
-            if (this.localStorageSupported) {
-                localStorage.clear();
-            }
-        }
+    add(id) {
+        this.localStorageService.add(id, 1);
     }
-*/
+
+
+    getTotal(): number {
+        return this.localStorageService.getTotal();
+    }
+
+    clear() {
+        this.localStorageService.clear();
+    }
 }

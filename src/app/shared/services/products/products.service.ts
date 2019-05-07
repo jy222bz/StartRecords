@@ -103,7 +103,7 @@ export class ProductsService {
 
                 })
                 .catch((error) => {
-
+                    reject(error);
                 })
         });
     }
