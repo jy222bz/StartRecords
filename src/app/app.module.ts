@@ -36,8 +36,6 @@ import {BasketComponent} from "./modules/main/basket/basket.component";
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
-        BasketComponent
-
     ],
     providers: [
         UserService,
