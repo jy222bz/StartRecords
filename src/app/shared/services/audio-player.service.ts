@@ -4,6 +4,7 @@ import {Howl, Howler} from 'howler';
 @Injectable()
 export class AudioPlayerService {
     sound = null;
+    playing = false;
 
     constructor() {
 
@@ -11,7 +12,7 @@ export class AudioPlayerService {
     }
 
     play(tracks) {
-
+        this.stop();
         if (tracks instanceof Array) {
             this.sound = new Howl({
                 src: tracks,
@@ -20,20 +21,40 @@ export class AudioPlayerService {
                 }
             });
         } else {
+
+            console.log(tracks);
             this.sound = new Howl({
                 src: [tracks],
-                onend: function () {
+                format: ['mp3', 'aac'],
+
+                onplayerror: (error) => {
+                    console.log(error);
+                },
+                onloaderror: (id, error) => {
+                    console.log(error);
+                },
+
+                onplay: (id) => {
+                    this.playing = true;
+                    console.log(id);
+                },
+                onend: () => {
+                    this.playing = false;
                     console.log('Finished!');
-                }
+                }, autoplay: true
             });
         }
         this.sound.play();
     }
 
-    pause() {
+    stop() {
         if (this.sound !== null) {
-            this.sound.pause();
+            this.sound.stop();
         }
+    }
+
+    isPlaying() {
+        return this.sound != null && this.playing;
     }
 
     setVolume(value: number) {
