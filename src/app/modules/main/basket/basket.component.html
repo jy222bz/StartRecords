@@ -31,8 +31,10 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a>
-            </strong>
+            <mat-cell *matCellDef="let element" style="  display:flex;
+    justify-content:center; flex-direction: column;align-items: flex-start;">
+                <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong></div>
+                <div><span class="font-smaller">{{element.artist}}</span></div>
             </mat-cell>
         </ng-container>
 
@@ -46,24 +48,29 @@
         <ng-container matColumnDef="price">
             <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
             <mat-cell *matCellDef="let element">
+                <app-counter [value]="element.price"></app-counter>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="mat-column-end">
                 <app-counter [value]="element.price * element.count"></app-counter>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="mat-column-end">
-                <button mat-icon-button [matMenuTriggerFor]="userMenu">
-                    <mat-icon>more_vert</mat-icon>
+            <mat-header-cell *matHeaderCellDef> Edit</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="">
+                <button mat-icon-button (click)="openProductDeleteComponent(element)">
+                    <mat-icon color="warn">delete</mat-icon>
                 </button>
-                <mat-menu #userMenu="matMenu">
-
-                </mat-menu>
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
 </div>
 
 

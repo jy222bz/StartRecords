@@ -39,6 +39,7 @@ export class BasketService {
                         products.push({
                             id: values[i].id,
                             name: values[i].data().name,
+                            artist: values[i].data().artist,
                             price: values[i].data().price,
                             count: result.value,
                         });
@@ -57,6 +58,9 @@ export class BasketService {
         this.localStorageService.add(id, 1);
     }
 
+    delete(id) {
+        this.localStorageService.remove(id);
+    }
 
     getTotal(): number {
         return this.localStorageService.getTotal();
