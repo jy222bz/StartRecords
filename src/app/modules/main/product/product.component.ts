@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/products/product.service";
 import {ActivatedRoute} from "@angular/router";
+import {BasketService} from "../../../shared/services/basket/basket.service";
 
 
 @Component({
-    selector: 'app-product',
+    selector: 'app-main-product',
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss']
 })
@@ -14,6 +15,7 @@ export class ProductComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private basketService: BasketService,
         private activatedRoute: ActivatedRoute,
     ) {
 
@@ -24,6 +26,10 @@ export class ProductComponent implements OnInit {
             this.product.id = params['id'];
             this.load();
         });
+    }
+
+    buy() {
+        this.basketService.add(this.product.id);
     }
 
     load() {

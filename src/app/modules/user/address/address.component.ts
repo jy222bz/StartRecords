@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from "../../../shared/services/authentication.service";
 import {UserAddressesService} from "../../../shared/services/user/user-addresses.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,6 +11,12 @@ import {UserAddressesService} from "../../../shared/services/user/user-addresses
     styleUrls: ['./address.component.scss']
 })
 export class AddressComponent implements OnInit {
+    breadcrumbs = [
+        {label: '', params: '', url: '/user', home: true},
+        {label: 'Address', params: '', url: '/user/address', home: false},
+    ];
+
+
     form: FormGroup;
     working = false;
     error = null;
@@ -18,9 +24,9 @@ export class AddressComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         private userAddressesService: UserAddressesService,
+        private router: Router,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<AddressComponent>,
-        @Inject(MAT_DIALOG_DATA) data) {
+    ) {
 
         this.form = this.fb.group({
             'city': ['', [Validators.required, Validators.minLength(1)]],
@@ -34,14 +40,17 @@ export class AddressComponent implements OnInit {
     }
 
     get() {
+        // ToDo: fix issue if page refreshed and account is null
         this.userAddressesService.get(this.authenticationService.getAccount().id).subscribe(
             (next) => {
-                this.form.controls.city.setValue(next.data().city);
-                this.form.controls.street.setValue(next.data().street);
-                this.form.controls.postalNumber.setValue(next.data().postalNumber);
+                if (next !== undefined) {
+                    this.form.controls.city.setValue(next.data().city);
+                    this.form.controls.street.setValue(next.data().street);
+                    this.form.controls.postalNumber.setValue(next.data().postalNumber);
+                }
             },
             (error) => {
-
+                console.log(error);
             }
         )
     }
@@ -57,7 +66,6 @@ export class AddressComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-
         this.userAddressesService.set(this.authenticationService.getAccount().id, {
             city: this.form.value.city,
             postalNumber: this.form.value.postalNumber,
@@ -65,7 +73,8 @@ export class AddressComponent implements OnInit {
 
         }).then(() => {
             this.working = false;
-            this.dialog.close();
+            this.navigateHome();
+
         }).catch((error) => {
             this.working = false;
             this.error = error;
@@ -73,7 +82,7 @@ export class AddressComponent implements OnInit {
         return false;
     }
 
-    close() {
-        this.dialog.close();
+    navigateHome() {
+        this.router.navigate(['/user']);
     }
 }

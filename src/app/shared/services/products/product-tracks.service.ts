@@ -26,7 +26,7 @@ export class ProductTracksService {
                             item.payload.doc.data().description,
                             item.payload.doc.data().duration,
                             item.payload.doc.data().createdAt,
-                            item.payload.doc.data().file,
+                            item.payload.doc.data().sample,
                         )
                     ));
                 }));

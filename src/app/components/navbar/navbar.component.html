@@ -1,6 +1,6 @@
 <mat-toolbar class="app-navbar">
-    <img class="app-navbar-img" src="assets/images/star.png"/>
-    <span id="title" style="cursor: pointer" [routerLink]="['/']">{{ title }}</span>
+    <!--<img class="app-navbar-img" src="assets/images/star.png"/>-->
+    <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
     <span class="mat-toolbar-spacer"></span>
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
@@ -15,18 +15,19 @@
 
 
     <button mat-icon-button *ngIf="authenticationService.isAuthenticated()" (click)="navigateBasket()">
-        <mat-icon class="mat-24">shopping_cart</mat-icon>
+        <mat-icon class="mat-24" matBadge="{{getBasketTotal()}}" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
 
     <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"
             *ngIf="authenticationService.isAuthenticated()">
-        <mat-icon class="mat-24">account_circle</mat-icon>
+        <mat-icon class="mat-24">person</mat-icon>
     </button>
     <mat-menu #clientEditMenu="matMenu">
         <button mat-menu-item (click)="navigateMyAccount()">
-            <mat-icon>account_box</mat-icon>
+            <mat-icon>account_circle</mat-icon>
             <span>My Account</span>
         </button>
+
         <button mat-menu-item (click)="openLogoutComponent()">
             <mat-icon>exit_to_app</mat-icon>
             Logout

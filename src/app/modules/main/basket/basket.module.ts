@@ -7,6 +7,9 @@ import {SharedModule} from "../../../shared.module";
 import {BasketService} from "../../../shared/services/basket/basket.service";
 import {BasketComponent} from "./basket.component";
 import {BasketRoutingModule} from "./basket.routing.module";
+import {TotalComponent} from "./components/total/total.component";
+import {DeleteComponent} from "./components/delete/delete.component";
+import {EditComponent} from "./components/edit/edit.component";
 
 
 @NgModule({
@@ -19,12 +22,18 @@ import {BasketRoutingModule} from "./basket.routing.module";
     ],
     declarations: [
         BasketComponent,
+        TotalComponent,
+        DeleteComponent,
+        EditComponent,
 
     ],
     providers: [
         BasketService,
     ],
-    entryComponents: []
+    entryComponents: [
+        DeleteComponent,
+        EditComponent,
+    ]
 })
 export class BasketModule {
 }

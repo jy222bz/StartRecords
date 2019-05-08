@@ -30,7 +30,11 @@ const routes: Routes = [
 
     {
         path: 'user',
-        loadChildren: './modules/user/user.module#UserModule',
+        loadChildren: './modules/user/home/user.module#UserModule',
+    },
+    {
+        path: 'user/address',
+        loadChildren: './modules/user/address/address.module#AddressModule',
     },
 
     {

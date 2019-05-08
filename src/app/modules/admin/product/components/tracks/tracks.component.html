@@ -41,10 +41,10 @@
         <mat-cell *matCellDef="let element"> <app-duration [value]="element.duration"></app-duration> </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="file">
-        <mat-header-cell *matHeaderCellDef> File</mat-header-cell>
+    <ng-container matColumnDef="sample">
+        <mat-header-cell *matHeaderCellDef> Sample</mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <a *ngIf="element.file" href="{{element.file}}" download="{{element.name}}"><mat-icon>music_note
+            <a *ngIf="element.sample" href="{{element.sample}}" download="{{element.name}}"><mat-icon>music_note
             </mat-icon></a></mat-cell>
     </ng-container>
 
