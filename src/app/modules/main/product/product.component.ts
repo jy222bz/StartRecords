@@ -3,6 +3,7 @@ import {ProductService} from "../../../shared/services/products/product.service"
 import {ActivatedRoute} from "@angular/router";
 import {BasketService} from "../../../shared/services/basket/basket.service";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
+import {EventsService} from "../../../shared/services/events.service";
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ProductComponent implements OnInit {
         private productService: ProductService,
         private basketService: BasketService,
         private authenticationService: AuthenticationService,
+        private eventsService: EventsService,
         private activatedRoute: ActivatedRoute,
     ) {
 
@@ -36,7 +38,7 @@ export class ProductComponent implements OnInit {
             return;
         }
         if (!this.authenticationService.isAuthenticated()) {
-
+            this.eventsService.emit('LOGIN-SHOW');
             return;
         }
         this.basketService.add(this.product.id);

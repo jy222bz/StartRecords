@@ -14,7 +14,7 @@
     </button>
 
 
-    <button mat-icon-button *ngIf="authenticationService.isAuthenticated()" (click)="navigateBasket()">
+    <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
         <mat-icon class="mat-24" matBadge="{{getBasketTotal()}}" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
 
