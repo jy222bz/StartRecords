@@ -9,6 +9,7 @@ import {UserService} from "./user/user.service";
 export class AuthenticationService {
     account: Account = null;
 
+
     constructor(private firebaseAuth: AngularFireAuth,
                 private afs: AngularFirestore,
                 private userService: UserService,
@@ -76,6 +77,11 @@ export class AuthenticationService {
         return this.account != null;
     }
 
+    isUser() {
+        return this.account != null && this.account.admin === false;
+
+    }
+
     isAdmin() {
         return this.account != null && this.account.admin === true;
     }
@@ -87,7 +93,6 @@ export class AuthenticationService {
     getName() {
         return this.account ? this.account.name : '';
     }
-
 
     //
     // -----------------------

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/products/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {BasketService} from "../../../shared/services/basket/basket.service";
+import {AuthenticationService} from "../../../shared/services/authentication.service";
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ProductComponent implements OnInit {
     constructor(
         private productService: ProductService,
         private basketService: BasketService,
+        private authenticationService: AuthenticationService,
         private activatedRoute: ActivatedRoute,
     ) {
 
@@ -29,6 +31,14 @@ export class ProductComponent implements OnInit {
     }
 
     buy() {
+        if (this.authenticationService.isAdmin()) {
+            alert('Login as user to be able to buy');
+            return;
+        }
+        if (!this.authenticationService.isAuthenticated()) {
+
+            return;
+        }
         this.basketService.add(this.product.id);
     }
 
