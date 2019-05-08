@@ -5,7 +5,7 @@ import {BasketService} from "../../../shared/services/basket/basket.service";
 
 
 @Component({
-    selector: 'app-product',
+    selector: 'app-main-product',
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss']
 })

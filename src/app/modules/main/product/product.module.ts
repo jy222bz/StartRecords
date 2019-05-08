@@ -12,6 +12,7 @@ import {ProductTracksService} from "../../../shared/services/products/product-tr
 import {SharedModule} from "../../../shared.module";
 import {BasketService} from "../../../shared/services/basket/basket.service";
 import {LocalStorageService} from "../../../shared/services/local-storage.service";
+import {InfoComponent} from "./components/info/info.component";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {LocalStorageService} from "../../../shared/services/local-storage.servic
         ProductComponent,
         TracksComponent,
         RatingComponent,
+        InfoComponent,
 
     ],
     providers: [

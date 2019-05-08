@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
         private dialog: MatDialogRef<EditComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any) {
         this.form = this.fb.group({
-            count: [data.count, [Validators.required, Validators.min(0)]],
+            count: [data.count, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]],
         });
     }
 
@@ -28,6 +28,13 @@ export class EditComponent implements OnInit {
     }
 
     save() {
+        if (!this.form.valid) {
+            Object.keys(this.form.controls).forEach(field => {
+                const control = this.form.get(field);
+                control.markAsTouched({onlySelf: true});
+            });
+            return false;
+        }
         this.working = true;
         this.error = null;
 
