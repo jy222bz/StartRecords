@@ -17,6 +17,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
 import {BasketService} from "./shared/services/basket/basket.service";
 import {LocalStorageService} from "./shared/services/local-storage.service";
+import {AudioPlayerService} from "./shared/services/audio-player.service";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {LocalStorageService} from "./shared/services/local-storage.service";
         AuthenticationService,
         LocalStorageService,
         BasketService,
+        AudioPlayerService,
     ],
     bootstrap: [
         AppComponent,

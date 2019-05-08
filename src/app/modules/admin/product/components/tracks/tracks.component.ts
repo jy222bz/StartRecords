@@ -14,7 +14,7 @@ import {TrackUploadComponent} from "./components/track-upload/track-upload.compo
     templateUrl: './tracks.component.html',
 })
 export class TracksComponent extends ItemsComponent<Track> implements OnInit {
-    displayedColumns = ['name', 'created_at', 'file', 'duration', 'edit'];
+    displayedColumns = ['name', 'created_at', 'sample', 'duration', 'edit'];
 
     @Input() productId;
 

@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UploadService} from "../../../../../../../shared/services/upload.service";
-import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
 import {ProductTrackService} from "../../../../../../../shared/services/products/product-track.service";
 
 
@@ -23,8 +22,9 @@ export class TrackUploadComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'cover': [''],
+            'file': [''],
         });
+
     }
 
     ngOnInit() {
@@ -42,14 +42,14 @@ export class TrackUploadComponent implements OnInit {
         this.working = true;
         this.error = null;
 
-        this.uploadImage();
+        this.uploadFile();
         return false;
     }
 
-    uploadImage() {
-        if (this.form.controls.cover.value !== '') {
+    uploadFile() {
+        if (this.form.controls.file.value !== '') {
             const name = new Date().getTime() + '-' + Math.random().toString(36).substring(2);
-            this.uploadService.upload('/products/' + this.data.productId + '/tracks/', name, this.form.controls.cover.value.files[0])
+            this.uploadService.upload('/products/' + this.data.productId + '/tracks/', name, this.form.controls.file.value.files[0])
                 .then((data) => {
                     this.saveProduct(data);
                 })
@@ -64,12 +64,12 @@ export class TrackUploadComponent implements OnInit {
 
     saveProduct(file) {
         let data: any = {
-            file: file,
+            sample: file,
         };
         this.productTrackService.set(this.data.id, data)
             .then(() => {
                     this.working = false;
-                    this.data.file = file;
+                    this.data.sample = file;
                     this.dialog.close(this.data);
                 }
             )

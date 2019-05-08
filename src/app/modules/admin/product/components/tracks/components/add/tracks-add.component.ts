@@ -46,8 +46,8 @@ export class TracksAddComponent implements OnInit {
         let data: any = {
             productId: this.data,
             name: this.form.controls.name.value,
-            duration: this.form.controls.duration.value,
-            file: null,
+            duration: parseInt(this.form.controls.duration.value, 10),
+            sample: null,
         };
 
         this.productTracksService.add(data)

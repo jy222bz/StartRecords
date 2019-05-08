@@ -3,6 +3,7 @@ import {ItemsComponent} from "../../../../../shared/components/items/items.compo
 import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
 import {Track} from "../../../../../shared/models/tracks/track";
 import {ActivatedRoute} from "@angular/router";
+import {AudioPlayerService} from "../../../../../shared/services/audio-player.service";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private tracksService: ProductTracksService,
+        private audioPlayerService: AudioPlayerService,
     ) {
         super();
     }
@@ -26,8 +28,8 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     }
 
     // ----------------------
-    play() {
-
+    play(item) {
+        this.audioPlayerService.play(item.sample);
     }
 
 
