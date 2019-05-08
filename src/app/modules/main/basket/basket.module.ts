@@ -9,6 +9,7 @@ import {BasketComponent} from "./basket.component";
 import {BasketRoutingModule} from "./basket.routing.module";
 import {TotalComponent} from "./components/total/total.component";
 import {DeleteComponent} from "./components/delete/delete.component";
+import {EditComponent} from "./components/edit/edit.component";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
         BasketComponent,
         TotalComponent,
         DeleteComponent,
+        EditComponent,
 
     ],
     providers: [
@@ -30,6 +32,7 @@ import {DeleteComponent} from "./components/delete/delete.component";
     ],
     entryComponents: [
         DeleteComponent,
+        EditComponent,
     ]
 })
 export class BasketModule {

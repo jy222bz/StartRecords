@@ -58,6 +58,10 @@ export class BasketService {
         this.localStorageService.add(id, 1);
     }
 
+    update(id, count) {
+        this.localStorageService.set(id, count);
+    }
+
     delete(id) {
         this.localStorageService.remove(id);
     }

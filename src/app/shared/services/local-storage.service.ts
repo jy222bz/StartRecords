@@ -14,7 +14,6 @@ export class LocalStorageService {
     // add value to storage
     add(key: string, item) {
         if (this.localStorageSupported) {
-
             let total = localStorage.getItem(key);
             if (total == null) {
                 total = '1';
@@ -23,6 +22,12 @@ export class LocalStorageService {
             }
 
             localStorage.setItem(key, total);
+        }
+    }
+
+    set(key: string, item) {
+        if (this.localStorageSupported) {
+            localStorage.setItem(key, item);
         }
     }
 

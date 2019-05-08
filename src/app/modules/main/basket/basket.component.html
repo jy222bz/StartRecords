@@ -31,8 +31,7 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element" style="  display:flex;
-    justify-content:center; flex-direction: column;align-items: flex-start;">
+            <mat-cell *matCellDef="let element" class="app-main-basket-product-name">
                 <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong></div>
                 <div><span class="font-smaller">{{element.artist}}</span></div>
             </mat-cell>
@@ -62,8 +61,8 @@
         <ng-container matColumnDef="edit">
             <mat-header-cell *matHeaderCellDef> Edit</mat-header-cell>
             <mat-cell *matCellDef="let element" class="">
-                <button mat-icon-button (click)="openProductDeleteComponent(element)">
-                    <mat-icon color="warn">delete</mat-icon>
+                <button mat-icon-button (click)="openProductEditComponent(element)">
+                    <mat-icon>edit</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>

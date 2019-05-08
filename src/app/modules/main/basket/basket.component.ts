@@ -4,6 +4,7 @@ import {BasketService} from "../../../shared/services/basket/basket.service";
 import {MatDialog} from "@angular/material";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {ProductBasket} from "../../../shared/models/products/product-basket";
+import {EditComponent} from "./components/edit/edit.component";
 
 @Component({
     selector: 'app-main-basket',
@@ -29,6 +30,22 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
     }
 
     // ----------------------
+    openProductEditComponent(element) {
+        const ref = this.dialog.open(EditComponent, {autoFocus: true, width: '480px', data: element});
+        ref.afterClosed()
+            .subscribe((next) => {
+                if (next) {
+                    if (next.count <= 0) {
+                        this.delete(next);
+                    } else {
+                        this.updateItem(next);
+                    }
+                    this.updateTotal();
+                }
+            });
+    }
+
+
     openProductDeleteComponent(element) {
         const ref = this.dialog.open(DeleteComponent, {autoFocus: true, width: '480px', data: element});
         ref.afterClosed()
