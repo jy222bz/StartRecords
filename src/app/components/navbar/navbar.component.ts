@@ -15,7 +15,7 @@ import {EventsService} from "../../shared/services/events.service";
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-    title = 'Star Records';
+    title = 'StarRecords';
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private dialog: MatDialog,
         private router: Router,
     ) {
-        eventsService.registerEvent('LOGIN-SHOW', this, (args: any) => {
+        eventsService.registerEvent('LOGIN-SHOW', this, () => {
             this.openLoginComponent();
         });
     }

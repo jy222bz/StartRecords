@@ -10,11 +10,13 @@
 }
 
 .app-navbar-title {
+    margin-left:  6px;
+    margin-top:  0;
+    font-family: Times, fantasy;
+    font-size: 30px;
     cursor: pointer;
-    font-family: 'Pacifico', cursive;
-    font-size: 24px;
     color: #263238;
-    text-shadow: rgba(0, 0, 0, .3) 3px 3px 3px;
-    text-transform: uppercase;
+
+    text-transform: full-width;
 
 }
