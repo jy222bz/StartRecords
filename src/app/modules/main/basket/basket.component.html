@@ -52,7 +52,7 @@
         </ng-container>
 
         <ng-container matColumnDef="total">
-            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
             <mat-cell *matCellDef="let element" class="mat-column-end">
                 <app-counter [value]="element.price * element.count"></app-counter>
             </mat-cell>
@@ -69,7 +69,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
+    <app-main-basket-total [total]="getTotal()"> </app-main-basket-total>
 </div>
 
 
