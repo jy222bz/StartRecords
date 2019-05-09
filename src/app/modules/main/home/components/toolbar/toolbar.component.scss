@@ -1,10 +1,11 @@
 .app-main-home-products-toolbar {
-    height: 64px;
+    height: 48px;
 }
 
 .app-main-home-products-toolbar {
     display: flex;
     color: black;
+    font-family: Garamond, serif;
 }
 
 .app-main-home-products-toolbar .left {
@@ -31,5 +32,5 @@
     justify-content: flex-end;
 }
 .title{
-    font-style: italic;
+    font-style: unset;
 }
