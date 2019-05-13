@@ -24,7 +24,7 @@ import {
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    MatSidenavModule, MatChipsModule,
+    MatSidenavModule, MatChipsModule, MatBadgeModule,
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -64,6 +64,7 @@ import {RouterModule} from "@angular/router";
         MatPaginatorModule,
         MatSnackBarModule,
         MatChipsModule,
+        MatBadgeModule,
 
         FlexLayoutModule,
         CommonModule,
@@ -98,6 +99,7 @@ import {RouterModule} from "@angular/router";
         MatSidenavModule,
         MatChipsModule,
         FlexLayoutModule,
+        MatBadgeModule,
 
         InputFileComponent,
         BreadcrumbComponent,

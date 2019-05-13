@@ -8,6 +8,8 @@ export class UserService {
 
     }
 
+
+
     get(id) {
         return this.afs.collection('users').doc(id).get();
     }

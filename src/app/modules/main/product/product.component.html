@@ -4,7 +4,7 @@
             <mat-toolbar-row>
                 <span class="app-main-product-title">{{ product.name }}</span>
                 <span class="mat-toolbar-spacer"></span>
-                <button mat-flat-button color="primary">
+                <button mat-flat-button color="primary" (click)="buy()">
                     <mat-icon>add_shopping_cart</mat-icon>
                 </button>
             </mat-toolbar-row>
@@ -26,49 +26,6 @@
         </div>
     </div>
 
-    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 8px;">
-        <mat-toolbar style="height: 36px; min-height: 36px; ">
-            <mat-toolbar-row>
-                <b>
-                    <span class="font-larger">General info</span>
-                    <span class="mat-toolbar-spacer"></span>
-                </b>
-
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-
-                <span class="font-larger">Artist: {{ product.artist }}</span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <span class="font-larger">Producer: {{ product.producer }}</span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <span class="font-larger">Description: {{ product.description }} </span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <span class="font-larger">Year: {{ product.year }}</span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <span class="font-larger">Price: {{ product.price }}</span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <span class="font-larger">In Stock: {{ product.total }} </span>
-                <span class="mat-toolbar-spacer"></span>
-            </mat-toolbar-row>
-
-        </mat-toolbar>
-        <div fxFlex="1 1 100%" class="">
-
-        </div>
-        <div fxFlex="1 1 100%" class="">
-
-        </div>
-    </div>
-
+    <app-main-product-info [product]="product"></app-main-product-info>
 </div>
 

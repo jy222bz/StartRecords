@@ -40,8 +40,8 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Description"
-                       [formControl]="form.controls.description">
+                <textarea matInput maxlength="2048" placeholder="Description"
+                          [formControl]="form.controls.description"></textarea>
             </mat-form-field>
         </div>
     </mat-dialog-content>

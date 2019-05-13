@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductTracksService} from "../../../../../../../shared/services/products/product-tracks.service";
@@ -23,7 +23,7 @@ export class TracksAddComponent implements OnInit {
 
         this.form = this.fb.group({
             'name': ['', [Validators.required, Validators.minLength(1)]],
-            'duration': [0, [Validators.required]],
+            'duration': [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
             'description': [''],
         });
     }
@@ -46,8 +46,8 @@ export class TracksAddComponent implements OnInit {
         let data: any = {
             productId: this.data,
             name: this.form.controls.name.value,
-            duration: this.form.controls.duration.value,
-            file: null,
+            duration: parseInt(this.form.controls.duration.value, 10),
+            sample: null,
         };
 
         this.productTracksService.add(data)

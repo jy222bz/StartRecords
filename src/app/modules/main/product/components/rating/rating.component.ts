@@ -1,21 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 @Component({
-    selector: 'app-main-product-rating',
+    selector: 'app-rating',
     templateUrl: './rating.component.html',
-    styleUrls: ['./rating.component.scss'],
+    styleUrls: ['./rating.component.css'],
 })
 export class RatingComponent implements OnInit {
+    @Input() rating: number;
+    @Input() productId: string;
+    @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor() {
-
+    inputName: string;
+    ngOnInit() {
+        this.inputName = this.productId + '_rating';
     }
-
-    ngOnInit(): void {
-
+    onClick(rating: number): void {
+        this.rating = rating;
+        this.ratingClick.emit({
+            itemId: this.productId,
+            rating: rating
+        });
     }
-
-
 }
-
 

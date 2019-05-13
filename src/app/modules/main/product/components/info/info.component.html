@@ -1,0 +1,74 @@
+<div class="" >
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span class="font-larger">Album Information</span>
+            <span class="mat-toolbar-spacer"></span>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+    <div fxFlex="1 1 100%" >
+        <mat-list>
+            <mat-list-item class="info-style">
+                <strong>Description</strong>
+            </mat-list-item>
+            <mat-list-item>
+                {{ product.description }}
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div fxFlex="1 1 100%">
+        <mat-list>
+            <mat-list-item>
+                <div fxFlex="1 1 100%" class="info-style">
+                    <strong>Artist</strong>
+                </div>
+                <div fxFlex="1 1 100%">
+                    {{ product.artist }}
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div fxFlex="1 1 100%" class="info-style">
+                    <strong>Producer</strong>
+                </div>
+                <div fxFlex="1 1 100%">
+                    {{ product.producer }}
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div fxFlex="1 1 100%" class="info-style">
+                    <strong>Price</strong>
+                </div>
+                <div fxFlex="1 1 100%">
+                    {{ product.price }}
+                    kr
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div fxFlex="1 1 100%" class="info-style">
+                    <strong>Year</strong>
+                </div>
+                <div fxFlex="1 1 100%">
+                    {{ product.year }}
+                </div>
+
+
+            </mat-list-item>
+            <mat-list-item>
+                <div fxFlex="1 1 100%" class="info-style">
+                    <strong>The available amount in the stock:</strong>
+                </div>
+                <div fxFlex="1 1 100%">
+                    {{ product.total}}
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>
+
+
+
