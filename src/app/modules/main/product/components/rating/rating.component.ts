@@ -1,10 +1,5 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {element} from "protractor";
-import {ProductService} from "../../../../../shared/services/products/product.service";
-import {BasketService} from "../../../../../shared/services/basket/basket.service";
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../../../../shared/services/authentication.service";
-import {EventsService} from "../../../../../shared/services/events.service";
-import {ActivatedRoute} from "@angular/router";
 import {ProductRatingsService} from "../../../../../shared/services/products/product-ratings.service";
 
 class RateElement {
@@ -18,7 +13,8 @@ class RateElement {
     styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent implements OnInit {
-    @Input() rating = -1;
+    rating = 3;
+    rated = false;
     @Input() productId: string;
 
     stars: RateElement[] = [
@@ -37,14 +33,15 @@ export class RatingComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getUserRating();
         this.getRating();
     }
 
-    getRating() {
+    getUserRating() {
         let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccount().id)
             .subscribe((next) => {
                     if (next.size > 0) {
-                        this.rating = 5;
+                        this.rated = true;
                         this.updateRating(5);
                     }
                     subscription.unsubscribe();
@@ -55,6 +52,10 @@ export class RatingComponent implements OnInit {
             );
     }
 
+    getRating() {
+        this.updateRating(this.rating);
+    }
+
     updateRating(rate: number, rated: boolean = true) {
         for (let i = 0; i < rate; ++i) {
             this.stars[i].rated = rated;
@@ -62,7 +63,7 @@ export class RatingComponent implements OnInit {
     }
 
     rate(elem: RateElement): void {
-        if (this.rating != -1) {
+        if (this.rated) {
             return;
         }
         this.updateRating(elem.id);
@@ -78,14 +79,14 @@ export class RatingComponent implements OnInit {
     }
 
     mouseOver(elem: RateElement) {
-        if (this.rating != -1) {
+        if (this.rated) {
             return;
         }
         this.updateRating(elem.id);
     }
 
     mouseLeave(elem: RateElement) {
-        if (this.rating != -1) {
+        if (this.rated) {
             return;
         }
         this.updateRating(elem.id, false);
