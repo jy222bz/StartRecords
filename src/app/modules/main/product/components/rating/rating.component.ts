@@ -1,5 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {element} from "protractor";
+import {ProductService} from "../../../../../shared/services/products/product.service";
+import {BasketService} from "../../../../../shared/services/basket/basket.service";
+import {AuthenticationService} from "../../../../../shared/services/authentication.service";
+import {EventsService} from "../../../../../shared/services/events.service";
+import {ActivatedRoute} from "@angular/router";
 
 class RateElement {
     id: number;
@@ -14,7 +19,6 @@ class RateElement {
 export class RatingComponent implements OnInit {
     @Input() rating = -1;
     @Input() productId: string;
-    @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
 
     stars: RateElement[] = [
         {id: 1, rated: false},
@@ -24,15 +28,19 @@ export class RatingComponent implements OnInit {
         {id: 5, rated: false},
     ];
 
-    inputName: string;
+    constructor(
+        // private productService: RatingService,
+    ) {
+
+    }
+
     ngOnInit() {
-        this.inputName = this.productId + '_rating';
+
     }
     rate(elem: RateElement): void {
         if (this.rating != -1) {
             return;
         }
-        console.log(elem.id);
         for (let i = 0; i < elem.id; ++i) {
             this.stars[i].rated = true;
         }
