@@ -10,9 +10,13 @@
     }
 }
 
-.rating {
+.star {
     float:left;
+    cursor: pointer;
+
 }
+
+
 
 .rating:not(:checked) > input {
     position:absolute;
@@ -30,10 +34,6 @@
     font-size:200%;
     line-height:1.2;
     color:#ddd;
-}
-
-.rating:not(:checked) > label:before {
-    content: '★ ';
 }
 
 .rating > input:checked ~ label {

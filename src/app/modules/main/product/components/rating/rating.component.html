@@ -1,18 +1,9 @@
 <div>
-    <fieldset class="rating">
-        <input type="radio" [name]="inputName" value="5" [checked]="rating===5" />
-        <label title="Great!" (click)='onClick(5)'>5 stars</label>
+    <mat-icon *ngFor="let elem of stars" class="star"
+              [style.color]="elem.rated? '#ffd740': '#000'"
+              (click)="rate(elem)"
+              (mouseleave)="mouseLeave(elem)"
+              (mouseover)="mouseOver(elem)"
+    >star_rate</mat-icon>
 
-        <input type="radio" [name]="inputName" value="4" [checked]="rating===4" />
-        <label title="Pretty good!" (click)='onClick(4)'>4 stars</label>
-
-        <input type="radio" [name]="inputName" value="3" [checked]="rating===3" />
-        <label title="Good!" (click)='onClick(3)'>3 stars</label>
-
-        <input type="radio" [name]="inputName" value="2" [checked]="rating===2" />
-        <label title="Not good!" (click)='onClick(2)'>2 stars</label>
-
-        <input type="radio" [name]="inputName" value="1" [checked]="rating===1" />
-        <label title="Bad!" (click)='onClick(1)'>1 star</label>
-    </fieldset>
 </div>
