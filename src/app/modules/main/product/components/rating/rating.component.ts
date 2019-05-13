@@ -13,7 +13,17 @@ class RateElement {
     styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent implements OnInit {
-    rating = 3;
+    _rating = 0;
+
+    @Input()
+    set rating(value: number) {
+        if (value === undefined) {
+            return;
+        }
+        this._rating = value;
+        this.updateRating(value);
+    }
+
     rated = false;
     @Input() productId: string;
 
@@ -34,48 +44,12 @@ export class RatingComponent implements OnInit {
 
     ngOnInit() {
         this.getUserRating();
-        this.getRating();
     }
 
-    getUserRating() {
-        let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccount().id)
-            .subscribe((next) => {
-                    if (next.size > 0) {
-                        this.rated = true;
-                        this.updateRating(5);
-                    }
-                    subscription.unsubscribe();
-                },
-                (error) => {
-                    subscription.unsubscribe();
-                }
-            );
-    }
-
-    getRating() {
-        this.updateRating(this.rating);
-    }
-
-    updateRating(rate: number, rated: boolean = true) {
-        for (let i = 0; i < rate; ++i) {
+    updateRating(value: number, rated: boolean = true) {
+        for (let i = 0; i < value; ++i) {
             this.stars[i].rated = rated;
         }
-    }
-
-    rate(elem: RateElement): void {
-        if (this.rated) {
-            return;
-        }
-        this.updateRating(elem.id);
-        this.rating = elem.id;
-
-        this.productRatingsService.add(this.productId, this.authenticationService.getAccount().id, this.rating)
-            .then((next) => {
-
-            })
-            .catch((error) => {
-
-            })
     }
 
     mouseOver(elem: RateElement) {
@@ -90,6 +64,39 @@ export class RatingComponent implements OnInit {
             return;
         }
         this.updateRating(elem.id, false);
+    }
+
+    // -----------------
+    getUserRating() {
+        let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
+            .subscribe((next) => {
+                    if (next.size > 0) {
+                        this.rated = true;
+
+                    }
+                    subscription.unsubscribe();
+                },
+                (error) => {
+                    subscription.unsubscribe();
+                }
+            );
+    }
+
+    setUserRating(elem: RateElement): void {
+        if (this.rated) {
+            return;
+        }
+        this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
+            .then((next) => {
+                this.rated = true;
+
+                // get total rating
+
+                this.updateRating(elem.id);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 

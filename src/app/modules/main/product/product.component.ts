@@ -44,6 +44,17 @@ export class ProductComponent implements OnInit {
         this.basketService.add(this.product.id);
     }
 
+    getRating() {
+        if (this.product == null) {
+            return;
+        }
+        if (this.product.numberOfRatings === 0) {
+            return 0;
+        }
+        return this.product.totalRatings / this.product.numberOfRatings;
+
+    }
+
     load() {
         const subscription = this.productService.get(this.product.id).subscribe(
             (next) => {

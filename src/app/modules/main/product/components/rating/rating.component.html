@@ -1,7 +1,7 @@
 <div>
     <mat-icon *ngFor="let elem of stars" class="star"
               [style.color]="elem.rated? '#ffd740': '#000'"
-              (click)="rate(elem)"
+              (click)="setUserRating(elem)"
               (mouseleave)="mouseLeave(elem)"
               (mouseover)="mouseOver(elem)"
     >star_rate</mat-icon>

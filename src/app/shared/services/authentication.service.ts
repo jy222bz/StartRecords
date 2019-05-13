@@ -90,6 +90,13 @@ export class AuthenticationService {
         return this.account;
     }
 
+    getAccountId() {
+        if (this.account === null) {
+            return '';
+        }
+        return this.account.id;
+    }
+
     getName() {
         return this.account ? this.account.name : '';
     }

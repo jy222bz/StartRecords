@@ -30,6 +30,8 @@ export class ProductService {
                         actions.data().year,
                         actions.data().columnSpan,
                         actions.data().rowSpan,
+                        actions.data().totalRatings,
+                        actions.data().numberOfRatings,
                     );
                 }));
     }

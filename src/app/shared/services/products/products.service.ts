@@ -42,6 +42,8 @@ export class ProductsService {
                                     item.payload.doc.data().year,
                                     item.payload.doc.data().columnSpan,
                                     item.payload.doc.data().rowSpan,
+                                    item.payload.doc.data().totalRatings,
+                                    item.payload.doc.data().numberOfRatings,
                                 )
                             )
                         );
@@ -71,6 +73,8 @@ export class ProductsService {
                                     item.payload.doc.data().year,
                                     item.payload.doc.data().columnSpan,
                                     item.payload.doc.data().rowSpan,
+                                    item.payload.doc.data().totalRatings,
+                                    item.payload.doc.data().numberOfRatings,
                                 )
                             )
                         );

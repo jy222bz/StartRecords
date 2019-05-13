@@ -29,6 +29,8 @@ export class AddComponent implements OnInit {
             'price': [0, [Validators.required]],
             'duration': [0],
             'total': [0],
+            'totalRatings': [0],
+            'numberOfRatings': [0],
             'cover': [''],
             'description': [''],
         });

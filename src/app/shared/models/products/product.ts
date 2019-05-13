@@ -14,8 +14,12 @@ export class Product extends Model {
     columnSpan: number;
     year: number;
 
+    numberOfRatings: number;
+    totalRatings: number;
+
     constructor(id = '', name = '', producer = '', artist = '', price = 0, duration = 0, cover = '', description = '',
-                total = 0, createdAt = null, year = null, columnSpan = 1, rowSpan = 1
+                total = 0, createdAt = null, year = null, columnSpan = 1, rowSpan = 1,
+                totalRatings = 0, numberOfRatings = 0
     ) {
         super();
         this.id = id;
@@ -31,5 +35,8 @@ export class Product extends Model {
         this.rowSpan = rowSpan;
         this.year = year;
         this.producer = producer;
+
+        this.totalRatings = totalRatings;
+        this.numberOfRatings = numberOfRatings;
     }
 }
