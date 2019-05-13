@@ -14,7 +14,7 @@ export class ProductRatingsService {
             users: firebase.firestore.FieldValue.arrayUnion(userId)
         }, {
             merge: true
-        })
+        });
     }
 
 }

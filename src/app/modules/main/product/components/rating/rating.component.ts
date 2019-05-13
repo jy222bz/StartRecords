@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {element} from "protractor";
 import {ProductService} from "../../../../../shared/services/products/product.service";
 import {BasketService} from "../../../../../shared/services/basket/basket.service";
 import {AuthenticationService} from "../../../../../shared/services/authentication.service";
 import {EventsService} from "../../../../../shared/services/events.service";
 import {ActivatedRoute} from "@angular/router";
+import {ProductRatingsService} from "../../../../../shared/services/products/product-ratings.service";
 
 class RateElement {
     id: number;
@@ -29,7 +30,8 @@ export class RatingComponent implements OnInit {
     ];
 
     constructor(
-        // private productService: RatingService,
+        private productRatingsService: ProductRatingsService,
+        private authenticationService: AuthenticationService,
     ) {
 
     }
@@ -37,6 +39,7 @@ export class RatingComponent implements OnInit {
     ngOnInit() {
 
     }
+
     rate(elem: RateElement): void {
         if (this.rating != -1) {
             return;
@@ -45,6 +48,14 @@ export class RatingComponent implements OnInit {
             this.stars[i].rated = true;
         }
         this.rating = elem.id;
+
+        this.productRatingsService.add(this.productId, this.authenticationService.getAccount().id, this.rating)
+            .then((next) => {
+
+            })
+            .catch((error) => {
+
+            })
     }
 
     mouseOver(elem: RateElement) {
