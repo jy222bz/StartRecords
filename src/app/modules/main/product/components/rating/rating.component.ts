@@ -37,16 +37,35 @@ export class RatingComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getRating();
+    }
 
+    getRating() {
+        let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccount().id)
+            .subscribe((next) => {
+                    if (next.size > 0) {
+                        this.rating = 5;
+                        this.updateRating(5);
+                    }
+                    subscription.unsubscribe();
+                },
+                (error) => {
+                    subscription.unsubscribe();
+                }
+            );
+    }
+
+    updateRating(rate: number, rated: boolean = true) {
+        for (let i = 0; i < rate; ++i) {
+            this.stars[i].rated = rated;
+        }
     }
 
     rate(elem: RateElement): void {
         if (this.rating != -1) {
             return;
         }
-        for (let i = 0; i < elem.id; ++i) {
-            this.stars[i].rated = true;
-        }
+        this.updateRating(elem.id);
         this.rating = elem.id;
 
         this.productRatingsService.add(this.productId, this.authenticationService.getAccount().id, this.rating)
@@ -62,18 +81,14 @@ export class RatingComponent implements OnInit {
         if (this.rating != -1) {
             return;
         }
-        for (let i = 0; i < elem.id; ++i) {
-            this.stars[i].rated = true;
-        }
+        this.updateRating(elem.id);
     }
 
     mouseLeave(elem: RateElement) {
         if (this.rating != -1) {
             return;
         }
-        for (let i = 0; i < elem.id; ++i) {
-            this.stars[i].rated = false;
-        }
+        this.updateRating(elem.id, false);
     }
 }
 
