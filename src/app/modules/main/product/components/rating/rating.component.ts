@@ -65,7 +65,7 @@ export class RatingComponent implements OnInit {
         if (this.rated) {
             return;
         }
-        this.updateRating(elem.id, false);
+        this.updateRating(this._rating);
     }
 
     // -----------------
