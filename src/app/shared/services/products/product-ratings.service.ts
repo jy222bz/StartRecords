@@ -8,7 +8,7 @@ export class ProductRatingsService {
 
     }
 
-    add(productId: string, userId: string, rate: number) {
+    add(productId: string, userId: string, rate: number): Promise<number> {
         return new Promise((resolve, reject) => {
             this.afs.collection('product_ratings').add({
                 userId: userId,
@@ -23,7 +23,17 @@ export class ProductRatingsService {
                         merge: true
                     })
                         .then((data) => {
-                            resolve();
+                            let subscription = this.afs.collection('products').doc(productId).get()
+                                .subscribe(
+                                    (next) => {
+                                        resolve(next.data().totalRatings / next.data().numberOfRatings);
+                                        subscription.unsubscribe();
+                                    },
+                                    (error) => {
+                                        subscription.unsubscribe();
+                                        reject(error);
+                                    }
+                                );
                         })
                         .catch((error) => {
                             reject(error);

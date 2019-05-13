@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../../../../shared/services/authentication.service";
 import {ProductRatingsService} from "../../../../../shared/services/products/product-ratings.service";
+import {EventsService} from "../../../../../shared/services/events.service";
 
 class RateElement {
     id: number;
@@ -38,6 +39,7 @@ export class RatingComponent implements OnInit {
     constructor(
         private productRatingsService: ProductRatingsService,
         private authenticationService: AuthenticationService,
+        private eventsService: EventsService,
     ) {
 
     }
@@ -47,8 +49,8 @@ export class RatingComponent implements OnInit {
     }
 
     updateRating(value: number, rated: boolean = true) {
-        for (let i = 0; i < value; ++i) {
-            this.stars[i].rated = rated;
+        for (let i = 0; i < 5; ++i) {
+            this.stars[i].rated = i < value ? rated : false;
         }
     }
 
@@ -83,16 +85,21 @@ export class RatingComponent implements OnInit {
     }
 
     setUserRating(elem: RateElement): void {
+        if (this.authenticationService.isAdmin()) {
+            alert('Login as user to be able to rate');
+            return;
+        }
+        if (!this.authenticationService.isAuthenticated()) {
+            this.eventsService.emit('LOGIN-SHOW');
+            return;
+        }
         if (this.rated) {
             return;
         }
         this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
             .then((next) => {
                 this.rated = true;
-
-                // get total rating
-
-                this.updateRating(elem.id);
+                this.updateRating(next);
             })
             .catch((error) => {
                 console.log(error);
