@@ -5,6 +5,7 @@ import {Product} from "../../../shared/models/products/product";
 import {EditComponent} from "./components/edit/edit.component";
 import {MatDialog} from "@angular/material";
 import {ImageUploadComponent} from "./components/image-upload/image-upload.component";
+import {DealOfDayComponent} from "./components/deal-of-day/deal-of-day.component";
 
 
 @Component({
@@ -59,7 +60,7 @@ export class AdminProductComponent implements OnInit {
     }
 
     openDealOfDayComponent() {
-        const ref = this.dialog.open(EditComponent, {autoFocus: true, width: '480px', data: this.product});
+        const ref = this.dialog.open(DealOfDayComponent, {autoFocus: true, width: '480px', data: this.product});
         ref.afterClosed().subscribe(result => {
             if (result) {
 

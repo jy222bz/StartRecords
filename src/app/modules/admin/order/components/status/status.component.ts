@@ -1,28 +1,26 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UploadService} from '../../../../../shared/services/upload.service';
-import {ProductService} from "../../../../../shared/services/products/product.service";
+import {OrderService} from "../../../../../shared/services/orders/order.service";
 
 
 @Component({
-    selector: 'app-admin-product-deal-of-day',
-    templateUrl: './deal-of-day.component.html',
+    selector: 'app-admin-orders-status',
+    templateUrl: './status.component.html',
 })
-export class DealOfDayComponent implements OnInit {
+export class StatusComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
     constructor(
-        private productService: ProductService,
-        private imagesService: UploadService,
+        private orderService: OrderService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<DealOfDayComponent>,
+        private dialog: MatDialogRef<StatusComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            name: [data.name, [Validators.required, Validators.minLength(1)]],
+            'status': [data.status, [Validators.required]],
         });
     }
 
@@ -40,8 +38,17 @@ export class DealOfDayComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-
-    
+        let data: any = this.form.value;
+        this.orderService.set(data)
+            .then((next) => {
+                    this.working = false;
+                    this.dialog.close(data);
+                }
+            )
+            .catch((error) => {
+                this.error = (error.status === 0) ? error.message : error.error;
+                this.working = false;
+            });
         return false;
     }
 

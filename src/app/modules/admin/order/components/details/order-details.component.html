@@ -1,0 +1,46 @@
+<mat-table [dataSource]="dataSource" class="mat-table-content">
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> <strong> {{element.name}} </strong>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+        <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
+        <mat-cell *matCellDef="let element"> <app-duration [value]="element.count"></app-duration> </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+        <mat-cell *matCellDef="let element"> <app-duration [value]="element.price"></app-duration> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

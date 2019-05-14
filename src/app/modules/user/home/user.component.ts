@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
 
 
@@ -31,7 +30,7 @@ export class UserComponent implements OnInit {
             color: '#6a1b9a',
         },
         {
-            text: 'Shopping',
+            text: 'Orders',
             url: '/user/orders',
             cols: 1,
             rows: 1,
@@ -42,7 +41,6 @@ export class UserComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-        private dialog: MatDialog,
     ) {
 
     }

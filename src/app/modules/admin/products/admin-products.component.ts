@@ -67,9 +67,9 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
     }
 
     getTotal() {
-        this.productsService.getMeta().subscribe(
+        this.productsService.getTotal().subscribe(
             (data) => {
-                this.setTotal(data.total);
+                this.setTotal(data);
             },
             () => {
 
