@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-    selector: 'app-main-basket-stepper',
-    templateUrl: './stepper.html',
-    styleUrls: ['./stepper.scss'],
+    selector: 'app-main-basket-address',
+    templateUrl: './address.html',
+    styleUrls: ['./address.scss'],
 })
-export class StepperOrder implements OnInit {
+export class AddressOrder implements OnInit {
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
