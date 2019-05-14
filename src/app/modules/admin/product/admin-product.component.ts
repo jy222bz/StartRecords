@@ -58,6 +58,15 @@ export class AdminProductComponent implements OnInit {
         });
     }
 
+    openDealOfDayComponent() {
+        const ref = this.dialog.open(EditComponent, {autoFocus: true, width: '480px', data: this.product});
+        ref.afterClosed().subscribe(result => {
+            if (result) {
+
+            }
+        });
+    }
+
     // -----------------------
     load() {
         const subscription = this.productService.get(this.product.id).subscribe(

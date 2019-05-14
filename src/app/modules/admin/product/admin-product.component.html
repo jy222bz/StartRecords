@@ -5,6 +5,9 @@
             <mat-toolbar-row>
                 <span class="font-larger">{{ product.name }}</span>
                 <span class="mat-toolbar-spacer"></span>
+                <button mat-icon-button (click)="openDealOfDayComponent()">
+                    <mat-icon>card_giftcard</mat-icon>
+                </button>
                 <button mat-icon-button (click)="openUploadComponent()">
                     <mat-icon>cloud_upload</mat-icon>
                 </button>
