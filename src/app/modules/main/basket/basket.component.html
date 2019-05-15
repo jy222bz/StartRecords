@@ -92,10 +92,13 @@
             <ng-template matStepLabel>You have put a order</ng-template>
             You are now done.
             <div>
-                <button mat-raised-button className="BuyNowButton" color="warn">Buy now</button>
+                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirmBuy()" [disabled]="working">
+                        <span *ngIf="!working">Confirm</span>
+                        <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>
+                    </button>
+            </div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
         </mat-step>
     </mat-horizontal-stepper>
 </div>

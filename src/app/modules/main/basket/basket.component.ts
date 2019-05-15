@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsComponent} from "../../../shared/components/items/items.component";
-import {BasketService} from "../../../shared/services/basket/basket.service";
-import {MatDialog} from "@angular/material";
-import {DeleteComponent} from "./components/delete/delete.component";
-import {ProductBasket} from "../../../shared/models/products/product-basket";
-import {EditComponent} from "./components/edit/edit.component";
+import {ItemsComponent} from '../../../shared/components/items/items.component';
+import {BasketService} from '../../../shared/services/basket/basket.service';
+import {MatDialog} from '@angular/material';
+import {DeleteComponent} from './components/delete/delete.component';
+import {ProductBasket} from '../../../shared/models/products/product-basket';
+import {EditComponent} from './components/edit/edit.component';
 
 @Component({
     selector: 'app-main-basket',
@@ -82,6 +82,9 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
 
     getTotal() {
         return this.total;
+    }
+    confirmBuy() {
+        alert('Your buy has been confirmed.');
     }
 }
 
