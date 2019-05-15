@@ -78,7 +78,7 @@
                     <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
                 </div>
                 <div fxFlex>
-                    <button mat-button matStepperNext class="mat-raised-button mat-primary" >Next</button>
+                    <button mat-button matStepperNext class="mat-raised-button mat-primary">Next</button>
                 </div>
             </div>
         </mat-step>
@@ -90,19 +90,36 @@
                 </div>
                 <div fxFlex>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext class="mat-raised-button mat-primary" >Next</button>
+                    <button mat-button matStepperNext class="mat-raised-button mat-primary">Next</button>
                 </div>
             </div>
         </mat-step>
         <mat-step>
             <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px;">
                 <ng-template matStepLabel>You have put a order</ng-template>
-                <div> You are now done. </div>
-                <div>
-                    Total price: {{total}} kr
-                </div>
                 <div fxFlex="66">
-
+                    <div fxFlex="1 1 100%">
+                        <mat-list>
+                            <mat-list-item>
+                                <div fxFlex="1 1 100%" class="info-style">
+                                    <strong>Amount of products</strong>
+                                </div>
+                                <div fxFlex="1 1 100%">
+                                    {{ basketService.getTotal() }}
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <div fxFlex="1 1 100%" class="info-style">
+                                    <strong>Total</strong>
+                                </div>
+                                <div fxFlex="1 1 100%">
+                                    {{ total }}
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-list>
+                    </div>
                 </div>
                 <div fxFlex>
                     <button mat-button matStepperPrevious>Back</button>

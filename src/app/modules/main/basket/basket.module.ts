@@ -12,6 +12,8 @@ import {DeleteComponent} from "./components/delete/delete.component";
 import {EditComponent} from "./components/edit/edit.component";
 import {AddressComponent} from "./components/address/address.component";
 import {UserAddressesService} from "../../../shared/services/user/user-addresses.service";
+import {OrdersService} from "../../../shared/services/orders/orders.service";
+import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import {UserAddressesService} from "../../../shared/services/user/user-addresses
     providers: [
         BasketService,
         UserAddressesService,
+        OrdersService,
+        OrderDetailsService,
     ],
     entryComponents: [
         DeleteComponent,

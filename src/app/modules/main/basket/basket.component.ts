@@ -5,6 +5,9 @@ import {MatDialog} from '@angular/material';
 import {DeleteComponent} from './components/delete/delete.component';
 import {ProductBasket} from '../../../shared/models/products/product-basket';
 import {EditComponent} from './components/edit/edit.component';
+import {OrdersService} from "../../../shared/services/orders/orders.service";
+import {OrderDetails} from "../../../shared/models/orders/order-details";
+import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 
 @Component({
     selector: 'app-main-basket',
@@ -20,6 +23,8 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
 
     constructor(
         private basketService: BasketService,
+        private ordersService: OrdersService,
+        private orderDetailsService: OrderDetailsService,
         private dialog: MatDialog,
     ) {
         super();
