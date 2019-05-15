@@ -1,24 +1,41 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserAddressesService} from "../../../../../shared/services/user/user-addresses.service";
+import {AuthenticationService} from "../../../../../shared/services/authentication.service";
 
 @Component({
     selector: 'app-main-basket-address',
-    templateUrl: './address.html',
-    styleUrls: ['./address.scss'],
+    templateUrl: './address.component.html',
+    styleUrls: ['./address.component.scss'],
 })
-export class AddressOrder implements OnInit {
-    isLinear = false;
-    firstFormGroup: FormGroup;
-    secondFormGroup: FormGroup;
+export class AddressComponent implements OnInit {
 
-    constructor(private _formBuilder: FormBuilder) {}
+    city: string = "";
+    street: string = "";
+    postalNumber: string = "";
+    constructor(
+        private userAddressesService: UserAddressesService,
+        private authenticationService: AuthenticationService,
+    ) {
 
-    ngOnInit() {
-        this.firstFormGroup = this._formBuilder.group({
-            firstCtrl: ['', Validators.required]
-        });
-        this.secondFormGroup = this._formBuilder.group({
-            secondCtrl: ['', Validators.required]
-        });
+    }
+
+    getAddress() {
+        // ToDo: fix issue if page refreshed and account is null
+        this.userAddressesService.get(this.authenticationService.getAccountId()).subscribe(
+            (next) => {
+                if (next !== undefined) {
+                    this.city = (next.data().city);
+                    this.street = (next.data().street);
+                    this.postalNumber = (next.data().postalNumber);
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        )
+    }
+
+    ngOnInit(): void {
+        this.getAddress();
     }
 }

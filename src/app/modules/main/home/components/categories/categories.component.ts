@@ -85,5 +85,3 @@ export class CategoriesComponent implements OnInit {
          return 'scale(' + element.scale + ')';
     }
 }
-
-
