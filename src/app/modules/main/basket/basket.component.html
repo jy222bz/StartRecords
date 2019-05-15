@@ -7,102 +7,112 @@
 
         </mat-toolbar-row>
     </mat-toolbar>
-
-    <!--<button mat-menu-item>
-        <mat-icon class="buy">shop</mat-icon>
-    </button> -->
     <mat-horizontal-stepper #stepper>
         <mat-step>
-            <ng-template matStepLabel>Your order</ng-template>
-            <mat-table [dataSource]="dataSource" class="mat-table-content">
-                <ng-container matColumnDef="select">
-                    <mat-header-cell *matHeaderCellDef>
-                        <mat-checkbox (change)="$event ? masterToggle() : null"
-                                      [checked]="selection.hasValue() && isAllSelected()"
-                                      [indeterminate]="selection.hasValue() && !isAllSelected()">
-                        </mat-checkbox>
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                        <mat-checkbox (click)="$event.stopPropagation()"
-                                      (change)="$event ? selection.toggle(row) : null"
-                                      [checked]="selection.isSelected(row)">
-                        </mat-checkbox>
-                    </mat-cell>
-                </ng-container>
+            <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px;">
 
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-                </ng-container>
+                <div fxFlex="66">
+                    <ng-template matStepLabel>Your order</ng-template>
+                    <mat-table [dataSource]="dataSource" class="mat-table-content">
+                        <ng-container matColumnDef="select">
+                            <mat-header-cell *matHeaderCellDef>
+                                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                              [checked]="selection.hasValue() && isAllSelected()"
+                                              [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                </mat-checkbox>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                              (change)="$event ? selection.toggle(row) : null"
+                                              [checked]="selection.isSelected(row)">
+                                </mat-checkbox>
+                            </mat-cell>
+                        </ng-container>
 
-                <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="app-main-basket-product-name">
-                        <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong></div>
-                        <div><span class="font-smaller">{{element.artist}}</span></div>
-                    </mat-cell>
-                </ng-container>
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                        </ng-container>
 
-                <ng-container matColumnDef="count">
-                    <mat-header-cell *matHeaderCellDef> Count</mat-header-cell>
-                    <mat-cell *matCellDef="let element">
-                        <app-counter [value]="element.count"></app-counter>
-                    </mat-cell>
-                </ng-container>
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="app-main-basket-product-name">
+                                <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong>
+                                </div>
+                                <div><span class="font-smaller">{{element.artist}}</span></div>
+                            </mat-cell>
+                        </ng-container>
 
-                <ng-container matColumnDef="price">
-                    <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-                    <mat-cell *matCellDef="let element">
-                        <app-counter [value]="element.price"></app-counter>
-                    </mat-cell>
-                </ng-container>
+                        <ng-container matColumnDef="count">
+                            <mat-header-cell *matHeaderCellDef> Count</mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <app-counter [value]="element.count"></app-counter>
+                            </mat-cell>
+                        </ng-container>
 
-                <ng-container matColumnDef="total">
-                    <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="mat-column-end">
-                        <app-counter [value]="element.price * element.count"></app-counter>
-                    </mat-cell>
-                </ng-container>
+                        <ng-container matColumnDef="price">
+                            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <app-counter [value]="element.price"></app-counter>
+                            </mat-cell>
+                        </ng-container>
 
-                <ng-container matColumnDef="edit">
-                    <mat-header-cell *matHeaderCellDef> Edit</mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="">
-                        <button mat-icon-button (click)="openProductEditComponent(element)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </mat-cell>
-                </ng-container>
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-            <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
-            <div>
-                <button mat-button matStepperNext>Next</button>
+                        <ng-container matColumnDef="total">
+                            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="mat-column-end">
+                                <app-counter [value]="element.price * element.count"></app-counter>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="edit">
+                            <mat-header-cell *matHeaderCellDef> Edit</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="">
+                                <button mat-icon-button (click)="openProductEditComponent(element)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
+                </div>
+                <div fxFlex>
+                    <button mat-button matStepperNext class="mat-raised-button mat-primary" >Next</button>
+                </div>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Your address</ng-template>
             <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px;">
-                <div fxLayout="1 1 66%">
+                <div fxFlex="66">
                     <app-main-basket-address></app-main-basket-address>
                 </div>
-                <div fxLayout="66 1 100%">
+                <div fxFlex>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperNext class="mat-raised-button mat-primary" >Next</button>
                 </div>
             </div>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>You have put a order</ng-template>
-            You are now done.
-            <div>
-                <button type="submit" class="mat-raised-button mat-primary" (click)="confirmBuy()" [disabled]="working">
-                    <span *ngIf="!working">Confirm</span>
-                    <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>
-                </button>
+            <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px;">
+                <ng-template matStepLabel>You have put a order</ng-template>
+                <div> You are now done. </div>
+                <div>
+                    Total price: {{total}} kr
+                </div>
+                <div fxFlex="66">
+
+                </div>
+                <div fxFlex>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirmBuy()"
+                            [disabled]="working">
+                        <span *ngIf="!working">Confirm</span>
+                        <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>
+                    </button>
+                </div>
             </div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
         </mat-step>
     </mat-horizontal-stepper>
 </div>
