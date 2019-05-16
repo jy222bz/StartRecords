@@ -1,5 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import {ProductComponent} from "./product.component";
+import {ProductService} from "../../../../../../../shared/services/products/product.service";
 
 describe('ProductISShown', () => {
     beforeEach(() => {
@@ -8,7 +9,7 @@ describe('ProductISShown', () => {
         });
     });
 
-    it('Product be Shown', inject([ProductComponent], (service: ProductComponent) => {
+    it('Product be Shown', inject([ProductComponent], (service: ProductService) => {
         expect(service).toBeTruthy();
     }));
 });
