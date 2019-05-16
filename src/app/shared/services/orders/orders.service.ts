@@ -37,25 +37,20 @@ export class OrdersService {
                         item.orderId = next.id;
                         detailsPromises.push(this.afs.collection('order_details').add(item));
                     });
-
                     Promise.all(detailsPromises)
-                        .then((data) => {{
-
-                        }})
+                        .then((data) => {
+                            {
+                                resolve(next.id);
+                            }
+                        })
                         .catch((error) => {
                             reject(error);
                         })
-
-
                 })
                 .catch((error) => {
                     reject(error);
                 })
         });
-
-    }
-
-    private addDetails() {
 
     }
 }
