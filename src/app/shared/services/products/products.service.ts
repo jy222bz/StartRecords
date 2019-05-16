@@ -3,7 +3,6 @@ import {Product} from '../../models/products/product';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {firestore} from 'firebase/app';
-import {ProductMeta} from '../../models/products/product-meta';
 
 
 @Injectable()
@@ -25,29 +24,12 @@ export class ProductsService {
                     .orderBy('name', 'asc')
                     .limit(pageSize)
             ).snapshotChanges()
-                .pipe(map(
-                    actions => {
-                        return actions.map(item => (
-                                new Product(
-                                    item.payload.doc.id,
-                                    item.payload.doc.data().name,
-                                    item.payload.doc.data().producer,
-                                    item.payload.doc.data().artist,
-                                    item.payload.doc.data().price,
-                                    item.payload.doc.data().duration,
-                                    item.payload.doc.data().cover,
-                                    item.payload.doc.data().description,
-                                    item.payload.doc.data().total,
-                                    item.payload.doc.data().createdAt,
-                                    item.payload.doc.data().year,
-                                    item.payload.doc.data().columnSpan,
-                                    item.payload.doc.data().rowSpan,
-                                )
-                            )
-                        );
+                .pipe(map(actions => {
+                        return actions.map(item => {
+                            return new Product(item.payload.doc);
+                        });
                     }
-                ))
-                ;
+                ));
         } else {
             return this.afs.collection<Product>('products',
                 ref => ref
@@ -56,30 +38,12 @@ export class ProductsService {
             ).snapshotChanges()
                 .pipe(map(
                     actions => {
-                        return actions.map(item => (
-                                new Product(
-                                    item.payload.doc.id,
-                                    item.payload.doc.data().name,
-                                    item.payload.doc.data().producer,
-                                    item.payload.doc.data().artist,
-                                    item.payload.doc.data().price,
-                                    item.payload.doc.data().duration,
-                                    item.payload.doc.data().cover,
-                                    item.payload.doc.data().description,
-                                    item.payload.doc.data().total,
-                                    item.payload.doc.data().createdAt,
-                                    item.payload.doc.data().year,
-                                    item.payload.doc.data().columnSpan,
-                                    item.payload.doc.data().rowSpan,
-                                )
-                            )
-                        );
+                        return actions.map(item => {
+                            return new Product(item.payload.doc);
+                        });
                     }
-                ))
-                ;
+                ));
         }
-
-
     }
 
     add(args) {
@@ -104,17 +68,26 @@ export class ProductsService {
                 })
                 .catch((error) => {
                     reject(error);
-                })
+                });
         });
     }
 
-    getMeta() {
-        return this.afs.collection<ProductMeta>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').get()
+    getTotal() {
+        return this.afs.collection<any>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').get()
             .pipe(map(
                 actions => {
-                    return new ProductMeta(
-                        actions.data().total,
-                    );
+                    return actions.data().total;
+                }));
+    }
+
+    getDealOfDay() {
+        return this.afs.collection<any>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').get()
+            .pipe(map(
+                actions => {
+                    return {
+                        productId: actions.data().dealOfDay,
+                        discount: actions.data().dealOfDayDiscount,
+                    };
                 }));
     }
 }

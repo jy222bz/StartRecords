@@ -2,6 +2,7 @@
     <ul class="app-product-title">
         <li class="name">{{item.name}}</li>
         <li class="artist">{{item.artist}}</li>
+        <!-- <li class="price">{{item.price}}</li> -->
     </ul>
 
     <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)"
@@ -9,7 +10,6 @@
 
          alt="">
 
-    <span class="app-product-artist"></span>
 </div>
 
 

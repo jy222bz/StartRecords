@@ -8,15 +8,20 @@ export class Track extends Model {
     createdAt: string;
     sample: string;
 
-    constructor(id = '', name = '', productId = '', description = '', duration = 0, createdAt = null, sample = null) {
+    constructor(document = null) {
         super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.productId = productId;
-        this.duration = duration;
-        this.createdAt = createdAt != null ? createdAt.toDate().toLocaleString() : '';
-        this.sample = sample;
+        if (document != null) {
+            this.fromDocument(document);
+        }
     }
 
+    fromDocument(document) {
+        this.id = document.id;
+        this.name = document.data().name;
+        this.productId = document.data().productId;
+        this.sample = document.data().sample;
+        this.duration = document.data().duration;
+        this.description = document.data().description;
+        this.createdAt = document.data().createdAt != null ? document.data().createdAt.toDate().toLocaleString() : '';
+    }
 }

@@ -21,6 +21,7 @@ import {ImageUploadComponent} from "./components/image-upload/image-upload.compo
 import {UploadService} from "../../../shared/services/upload.service";
 import {EditComponent} from "./components/edit/edit.component";
 import {TrackUploadComponent} from "./components/tracks/components/track-upload/track-upload.component";
+import {DealOfDayComponent} from "./components/deal-of-day/deal-of-day.component";
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {TrackUploadComponent} from "./components/tracks/components/track-upload/
 
         ImageUploadComponent,
         EditComponent,
+        DealOfDayComponent,
     ],
     providers: [
         ProductService,
@@ -67,7 +69,7 @@ import {TrackUploadComponent} from "./components/tracks/components/track-upload/
 
         EditComponent,
         ImageUploadComponent,
-
+        DealOfDayComponent,
     ]
 
 })

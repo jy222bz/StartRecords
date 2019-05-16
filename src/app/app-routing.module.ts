@@ -27,6 +27,14 @@ const routes: Routes = [
         path: 'admin/products/:id',
         loadChildren: './modules/admin/product/admin-product.module#AdminProductModule',
     },
+    {
+        path: 'admin/orders',
+        loadChildren: './modules/admin/orders/admin-orders.module#AdminOrdersModule',
+    },
+    {
+        path: 'admin/orders/:id',
+        loadChildren: './modules/admin/order/admin-order.module#AdminOrderModule',
+    },
 
     {
         path: 'user',
@@ -35,6 +43,10 @@ const routes: Routes = [
     {
         path: 'user/address',
         loadChildren: './modules/user/address/address.module#AddressModule',
+    },
+    {
+        path: 'user/orders',
+        loadChildren: './modules/user/orders/user-orders.module#UserOrdersModule',
     },
 
     {

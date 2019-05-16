@@ -1,5 +1,5 @@
 <mat-toolbar class="app-navbar">
-    <!--<img class="app-navbar-img" src="assets/images/star.png"/>-->
+    <img class="app-navbar-img" src="assets/images/star.png" alt=""/>
     <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
     <span class="mat-toolbar-spacer"></span>
 
@@ -14,8 +14,8 @@
     </button>
 
 
-    <button mat-icon-button *ngIf="authenticationService.isAuthenticated()" (click)="navigateBasket()">
-        <mat-icon class="mat-24" matBadge="{{getBasketTotal()}}" matBadgeColor="warn">shopping_cart</mat-icon>
+    <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
+        <mat-icon class="mat-24" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">shopping_cart</mat-icon>
     </button>
 
     <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"

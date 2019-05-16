@@ -51,6 +51,9 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     justify-content: flex-end;
 }
 
+.mat-stepper-horizontal {
+    background-color: transparent;
+}
 
 /* App styles */
 .app-toolbar {

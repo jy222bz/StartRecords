@@ -10,6 +10,10 @@ import {BasketRoutingModule} from "./basket.routing.module";
 import {TotalComponent} from "./components/total/total.component";
 import {DeleteComponent} from "./components/delete/delete.component";
 import {EditComponent} from "./components/edit/edit.component";
+import {AddressComponent} from "./components/address/address.component";
+import {UserAddressesService} from "../../../shared/services/user/user-addresses.service";
+import {OrdersService} from "../../../shared/services/orders/orders.service";
+import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 
 
 @NgModule({
@@ -25,10 +29,14 @@ import {EditComponent} from "./components/edit/edit.component";
         TotalComponent,
         DeleteComponent,
         EditComponent,
+        AddressComponent,
 
     ],
     providers: [
         BasketService,
+        UserAddressesService,
+        OrdersService,
+        OrderDetailsService,
     ],
     entryComponents: [
         DeleteComponent,

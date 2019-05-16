@@ -16,21 +16,7 @@ export class ProductService {
         return this.afs.collection<Product>('products').doc(id).get()
             .pipe(map(
                 actions => {
-                    return new Product(
-                        actions.id,
-                        actions.data().name,
-                        actions.data().producer,
-                        actions.data().artist,
-                        actions.data().price,
-                        actions.data().duration,
-                        actions.data().cover,
-                        actions.data().description,
-                        actions.data().total,
-                        actions.data().createdAt,
-                        actions.data().year,
-                        actions.data().columnSpan,
-                        actions.data().rowSpan,
-                    );
+                    return new Product(actions);
                 }));
     }
 

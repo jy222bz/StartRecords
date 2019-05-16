@@ -18,17 +18,9 @@ export class ProductTracksService {
             ref => ref.where('productId', '==', id)).snapshotChanges()
             .pipe(map(
                 actions => {
-                    return actions.map(item => (
-                        new Track(
-                            item.payload.doc.id,
-                            item.payload.doc.data().name,
-                            item.payload.doc.data().productId,
-                            item.payload.doc.data().description,
-                            item.payload.doc.data().duration,
-                            item.payload.doc.data().createdAt,
-                            item.payload.doc.data().sample,
-                        )
-                    ));
+                    return actions.map(item => {
+                        return new Track(item.payload.doc)
+                    })
                 }));
     }
 
