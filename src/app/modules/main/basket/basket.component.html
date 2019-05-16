@@ -77,7 +77,8 @@
                     <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
                 </div>
                 <div fxFlex fxLayout="column">
-                    <button mat-button matStepperNext class="mat-raised-button mat-primary" fxFlex="1 1 20%" >Next</button>
+                    <button mat-button matStepperNext class="mat-raised-button mat-primary" fxFlex="1 1 20%">Next
+                    </button>
                 </div>
             </div>
         </mat-step>
@@ -89,9 +90,11 @@
                     <app-main-basket-address></app-main-basket-address>
                 </div>
                 <div fxFlex fxLayout="column" fxLayoutGap="5px">
-                    <button mat-button matStepperPrevious>Back</button>
+                    <button class="mat-raised-button "  fxFlex="1 1 30%" (click)="navigateAddress()">Edit
+                    </button>
+
                     <button mat-button matStepperNext class="mat-raised-button mat-primary">Next</button>
-                    <button class="mat-raised-button mat-primary" fxFlex="1 1 30%" (click)="navigateAddress()">Edit</button>
+
                 </div>
             </div>
         </mat-step>
@@ -107,7 +110,7 @@
                                     <strong>Amount of products</strong>
                                 </div>
                                 <div fxFlex="1 1 100%">
-                                    {{ basketService.getTotal() }}
+                                    {{ basketService.getCount() }}
                                 </div>
                             </mat-list-item>
                             <mat-divider></mat-divider>
@@ -125,7 +128,7 @@
                 </div>
                 <div fxFlex fxLayout="column" fxLayoutGap="5px">
                     <button mat-button matStepperPrevious>Back</button>
-                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirmBuy()" fxFlex="1 1 100%"
+                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirm()" fxFlex="1 1 100%"
                             [disabled]="working">
                         <span *ngIf="!working">Confirm</span>
                         <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>

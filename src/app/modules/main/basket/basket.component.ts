@@ -6,9 +6,9 @@ import {DeleteComponent} from './components/delete/delete.component';
 import {ProductBasket} from '../../../shared/models/products/product-basket';
 import {EditComponent} from './components/edit/edit.component';
 import {OrdersService} from "../../../shared/services/orders/orders.service";
-import {OrderDetails} from "../../../shared/models/orders/order-details";
 import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../../shared/services/authentication.service";
 
 @Component({
     selector: 'app-main-basket',
@@ -22,12 +22,15 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
     displayedColumns = ['name', 'price', 'count', 'edit', 'total'];
     total = 0;
 
+    working = false;
+
     constructor(
         private basketService: BasketService,
         private ordersService: OrdersService,
         private orderDetailsService: OrderDetailsService,
+        private authenticationService: AuthenticationService,
         private dialog: MatDialog,
-        private router :Router
+        private router: Router
     ) {
         super();
     }
@@ -90,10 +93,45 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
     getTotal() {
         return this.total;
     }
-    confirmBuy() {
-        alert('Your buy has been confirmed.');
+
+
+    confirm() {
+        //
+        this.working = true;
+
+        let items = [];
+        this.dataSource.data.forEach(item => {
+            items.push({
+                id: item.id,
+                count: item.count,
+                price: item.price,
+            });
+        });
+        console.log(items);
+
+
+        this.ordersService.add({
+                albums: this.basketService.getCount(),
+                price: this.total,
+                userId: this.authenticationService.getAccountId(),
+                status: 0,
+            },
+            items
+        )
+            .then((next) => {
+                console.log(next);
+
+
+            })
+            .catch((error) => {
+
+                this.working = false;
+                console.log(error);
+            })
+
     }
-    navigateAddress(){
+
+    navigateAddress() {
         this.router.navigate(['/user/address']);
     }
 }

@@ -66,7 +66,7 @@ export class BasketService {
         this.localStorageService.remove(id);
     }
 
-    getTotal(): number {
+    getCount(): number {
         return this.localStorageService.getTotal();
     }
 

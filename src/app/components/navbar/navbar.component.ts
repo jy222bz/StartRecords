@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
 
     getBasketTotal() {
-        const total = this.basketService.getTotal();
+        const total = this.basketService.getCount();
         if (total === 0) {
             return '';
         }
