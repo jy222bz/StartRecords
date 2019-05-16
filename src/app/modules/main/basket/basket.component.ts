@@ -8,6 +8,7 @@ import {EditComponent} from './components/edit/edit.component';
 import {OrdersService} from "../../../shared/services/orders/orders.service";
 import {OrderDetails} from "../../../shared/models/orders/order-details";
 import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-main-basket',
@@ -26,6 +27,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         private ordersService: OrdersService,
         private orderDetailsService: OrderDetailsService,
         private dialog: MatDialog,
+        private router :Router
     ) {
         super();
     }
@@ -90,6 +92,9 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
     }
     confirmBuy() {
         alert('Your buy has been confirmed.');
+    }
+    navigateAddress(){
+        this.router.navigate(['/user/address']);
     }
 }
 
