@@ -102,13 +102,11 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         let items = [];
         this.dataSource.data.forEach(item => {
             items.push({
-                id: item.id,
+                productId: item.id,
                 count: item.count,
                 price: item.price,
             });
         });
-        console.log(items);
-
 
         this.ordersService.add({
                 albums: this.basketService.getCount(),
@@ -119,12 +117,11 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
             items
         )
             .then((next) => {
+                this.working = false;
+
                 console.log(next);
-
-
             })
             .catch((error) => {
-
                 this.working = false;
                 console.log(error);
             })

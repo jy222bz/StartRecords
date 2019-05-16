@@ -13,15 +13,25 @@ export class OrdersService {
     }
 
     get(userId = '') {
-        return this.afs.collection<Order>('orders',
-            ref => ref.where('userId', '==', userId)
-        ).snapshotChanges()
-            .pipe(map(
-                actions => {
-                    return actions.map(item => {
-                        return new Order(item.payload.doc);
-                    });
-                }));
+        if (userId === '') {
+            return this.afs.collection<Order>('orders').snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => {
+                            return new Order(item.payload.doc);
+                        });
+                    }));
+        } else {
+            return this.afs.collection<Order>('orders',
+                ref => ref.where('userId', '==', userId)
+            ).snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => {
+                            return new Order(item.payload.doc);
+                        });
+                    }));
+        }
     }
 
     add(order, details) {
