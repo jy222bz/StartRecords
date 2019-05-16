@@ -55,7 +55,7 @@ export class RatingComponent implements OnInit {
     }
 
     mouseOver(elem: RateElement) {
-        if (this.rated) {
+        if (this.rated) { 
             return;
         }
         this.updateRating(elem.id);
@@ -93,7 +93,8 @@ export class RatingComponent implements OnInit {
             this.eventsService.emit('LOGIN-SHOW');
             return;
         }
-        if (this.rated) {
+        if (this.rated) {           
+            alert('You have already rated this product!');
             return;
         }
         this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
