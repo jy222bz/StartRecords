@@ -90,4 +90,31 @@ export class ProductsService {
                     };
                 }));
     }
+
+    getDealOfDayProduct() {
+        return new Promise((resolve, reject) => {
+            this.getDealOfDay().subscribe(
+                (next) => {
+                    this.afs.collection<any>('products').doc(next.productId).get()
+                        .pipe(map(
+                            actions => {
+                                return new Product(actions);
+                            }))
+                        .subscribe(
+                            (product) => {
+                                product.discount = next.discount;
+                                return product;
+                            },
+                            (error) => {
+                                reject(error);
+                            }
+                        )
+
+                },
+                (error) => {
+                    reject(error);
+                }
+            )
+        });
+    }
 }
