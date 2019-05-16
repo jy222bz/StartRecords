@@ -16,6 +16,7 @@ export class Product extends Model {
 
     numberOfRatings: number;
     totalRatings: number;
+    discount: any;
 
     constructor(document = null) {
         super();
