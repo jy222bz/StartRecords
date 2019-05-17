@@ -1,27 +1,28 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OrderService} from "../../../../../shared/services/orders/order.service";
 
 
 @Component({
-    selector: 'app-admin-orders-status',
-    templateUrl: './status.component.html',
+    selector: 'app-admin-products-filter',
+    templateUrl: './filter.component.html',
 })
-export class StatusComponent implements OnInit {
+export class FilterComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
 
     constructor(
-        private orderService: OrderService,
         private fb: FormBuilder,
-        private dialog: MatDialogRef<StatusComponent>,
+        private dialog: MatDialogRef<FilterComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
-        this.form = this.fb.group({
-            'status': [data.status, [Validators.required]],
-        });
 
+        this.form = this.fb.group({
+            'filter': [data.filter, [Validators.pattern("^[0-9]*$")]],
+            'value': [data.value, [Validators.pattern("^[0-9]*$")]],
+            'sortType': [data.sortType, [Validators.required]],
+            'sortField': [data.sortField, [Validators.required]],
+        });
     }
 
     ngOnInit() {
@@ -29,6 +30,7 @@ export class StatusComponent implements OnInit {
     }
 
     save() {
+
         if (!this.form.valid) {
             Object.keys(this.form.controls).forEach(field => {
                 const control = this.form.get(field);
@@ -38,19 +40,13 @@ export class StatusComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        let data = {
-            status: parseInt(this.form.controls.status.value, 10)
-        };
-        this.orderService.set(this.data.id, data)
-            .then((next) => {
-                    this.working = false;
-                    this.dialog.close(data);
-                }
-            )
-            .catch((error) => {
-                this.error = (error.status === 0) ? error.message : error.error;
-                this.working = false;
-            });
+
+        this.data.filter = this.form.controls.filter.value;
+        this.data.value = parseInt(this.form.controls.value.value, 10);
+        this.data.sortType = this.form.controls.sortType.value;
+        this.data.sortField = parseInt(this.form.controls.sortField.value, 10);
+        this.dialog.close(this.data);
+
         return false;
     }
 

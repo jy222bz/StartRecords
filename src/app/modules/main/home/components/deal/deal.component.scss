@@ -1,0 +1,75 @@
+@keyframes SlideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.app-main-home-deal {
+    /* Full height */
+    height: 100%;
+    background-color: black;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    img {
+        width: 100%;
+        height: inherit;
+
+        opacity: 0.7;
+    }
+
+    img.ng-lazyloaded {
+        width: 100%;
+        border: transparent;
+        object-fit: fill;
+        animation: fadein 1.2s;
+        transition: all .2s ease-in-out;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-main-home-deal-info {
+    position: absolute;
+
+    color: white;
+
+    border-left: 6px solid white;
+
+
+
+    div {
+        opacity: 0;
+        padding-left: 8px;
+        animation: fadein 1.2s;
+        animation-fill-mode: forwards;
+    }
+
+    div:nth-child(1) {
+        font-size: 48px;
+        animation-delay: 0.2s;
+    }
+
+    div:nth-child(2) {
+        font-size: 24px;
+        animation-delay: 0.4s;
+    }
+
+    div:nth-child(3) {
+        font-size: 24px;
+        animation-delay: 0.6s;
+    }
+}
+
+

@@ -55,6 +55,7 @@ export class EventsService {
 
 
     emit(name: string, ...args: any[]) {
+        console.log('sending ' + name);
         this.subject.next({name, args});
     }
 }

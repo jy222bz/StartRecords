@@ -42,6 +42,7 @@ export class BasketService {
                             artist: values[i].data().artist,
                             price: values[i].data().price,
                             count: result.value,
+                            discount: 0,
                         });
                     }
                     resolve(products);
@@ -66,7 +67,7 @@ export class BasketService {
         this.localStorageService.remove(id);
     }
 
-    getTotal(): number {
+    getCount(): number {
         return this.localStorageService.getTotal();
     }
 

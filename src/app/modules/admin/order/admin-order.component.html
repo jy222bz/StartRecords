@@ -3,19 +3,17 @@
     <div class="page-toolbar">
         <mat-toolbar>
             <mat-toolbar-row>
-                <span class="font-larger">{{ order.id }}</span>
+                <span class="font-larger">{{ order.createdAt }}</span>
                 <span class="mat-toolbar-spacer"></span>
-                <button mat-icon-button (click)="openStatusComponent()">
-                    <mat-icon>edit</mat-icon>
+                <button mat-icon-button (click)="openSendComponent()">
+                    <mat-icon>send</mat-icon>
                 </button>
                 <button mat-icon-button (click)="openStatusComponent()">
-                    <mat-icon>send</mat-icon>
+                    <mat-icon>edit</mat-icon>
                 </button>
             </mat-toolbar-row>
         </mat-toolbar>
     </div>
 
-
-
-
+    <app-admin-order-details [orderId]="order.id"></app-admin-order-details>
 </div>

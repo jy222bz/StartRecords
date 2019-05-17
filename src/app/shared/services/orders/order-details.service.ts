@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Category} from "../../models/categories/category";
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
-import {firestore} from 'firebase/app';
-import {Order} from "../../models/orders/order";
 import {OrderDetails} from "../../models/orders/order-details";
+import {Product} from "../../models/products/product";
 
 @Injectable()
 export class OrderDetailsService {
@@ -14,22 +12,55 @@ export class OrderDetailsService {
     }
 
     get(orderId, args = null) {
-        return this.afs.collection<OrderDetails>('order_details',
-            ref => ref.where('orderId', '==', orderId)
+        return new Promise((resolve, reject) => {
+            const subscription = this.afs.collection<OrderDetails>('order_details',
+                ref => ref.where('orderId', '==', orderId)
             ).snapshotChanges()
-            .pipe(map(
-                actions => {
-                    return actions.map(item => ({
-                        id: item.payload.doc.id,
-                        orderId: item.payload.doc.data().orderId,
-                        productId: item.payload.doc.data().productId,
-                        price: item.payload.doc.data().price,
-                        count: item.payload.doc.data().count,
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => {
+                            return new OrderDetails(item.payload.doc);
+                        });
                     }))
-                }));
-    }
+                .subscribe(
+                    ((items) => {
+                        subscription.unsubscribe();
 
-    add(id, args) {
-        return this.afs.collection('order_details').add(args);
+                        let promises = [];
+                        items.forEach((item) => {
+                            promises.push(this.afs.collection('products').doc(item.productId)
+                                .get()
+                                .pipe(map(
+                                    actions => {
+                                        return new Product(actions);
+                                    }))
+                                .toPromise()
+                            )
+                            ;
+
+                        });
+
+                        Promise.all(promises)
+                            .then((next) => {
+                                next.forEach((item) => {
+                                   items.forEach((orderDetail) => {
+                                       if (orderDetail.productId === item.id) {
+                                           orderDetail.productName = item.name;
+                                       }
+                                   })
+                                });
+                                resolve(items);
+                            })
+                            .catch((error) => {
+                                reject(error);
+                            })
+
+                    }),
+                    ((error) => {
+                        subscription.unsubscribe();
+                        reject(error);
+                    })
+                )
+        });
     }
 }

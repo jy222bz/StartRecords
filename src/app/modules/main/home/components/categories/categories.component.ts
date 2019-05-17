@@ -1,30 +1,36 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
 import {Category} from "../../../../../shared/models/categories/category";
+import {EventsService} from "../../../../../shared/services/events.service";
 
 @Component({
     selector: 'app-main-home-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss'],
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
-    _visible = false;
+    visible = false;
     categories: Category[] = [];
-
-    constructor(private categoriesService: CategoriesService) {
-
-    }
-
-    @Input()
-    set visible(value) {
-        this._visible = value;
-    }
 
     @Output() categoryChanged = new EventEmitter<Category>();
 
+    constructor(
+        private categoriesService: CategoriesService,
+        private eventsService: EventsService,
+        ) {
+
+        eventsService.registerEvent('HOME-CATEGORIES-SHOW', this, () => {
+            this.visible = true;
+        });
+    }
+
     ngOnInit(): void {
         this.get();
+    }
+
+    ngOnDestroy(): void {
+        this.eventsService.unregisterEvent('HOME-CATEGORIES-SHOW', this);
     }
 
 
@@ -71,11 +77,12 @@ export class CategoriesComponent implements OnInit {
 
 
     changeCategory(element) {
+        this.hideCategories();
         this.categoryChanged.emit(element);
     }
 
     hideCategories() {
-        this._visible = false;
+        this.visible = false;
     }
 
     getScale(element) {

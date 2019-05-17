@@ -21,24 +21,18 @@
 
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-        <mat-cell *matCellDef="let element"> <strong> {{element.name}} </strong>
+        <mat-cell *matCellDef="let element"> <strong> {{ element.productName}}  </strong>
         </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="count">
-        <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
-        <mat-cell *matCellDef="let element"> <app-duration [value]="element.count"></app-duration> </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Count</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.count}} </mat-cell>
     </ng-container>
-
 
     <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-        <mat-cell *matCellDef="let element"> <app-duration [value]="element.price"></app-duration> </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="created_at">
-        <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

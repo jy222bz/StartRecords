@@ -12,19 +12,53 @@ export class OrdersService {
     }
 
     get(userId = '') {
-        return this.afs.collection<Order>('orders',
-            ref => ref.where('userId', '==', userId)
-        ).snapshotChanges()
-            .pipe(map(
-                actions => {
-                    return actions.map(item => {
-                        return new Order(item.payload.doc);
-                    });
-                }));
+        if (userId === '') {
+            return this.afs.collection<Order>('orders').snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => {
+                            return new Order(item.payload.doc);
+                        });
+                    }));
+        } else {
+            return this.afs.collection<Order>('orders',
+                ref => ref.where('userId', '==', userId)
+            ).snapshotChanges()
+                .pipe(map(
+                    actions => {
+                        return actions.map(item => {
+                            return new Order(item.payload.doc);
+                        });
+                    }));
+        }
     }
 
-    add(args) {
-        args.created_at = firestore.FieldValue.serverTimestamp();
-        return this.afs.collection('orders').add(args);
+    add(order, details) {
+        return new Promise((resolve, reject) => {
+            order.createdAt = firestore.FieldValue.serverTimestamp();
+            this.afs.collection('orders').add(order)
+                .then((next) => {
+                    let detailsPromises = [];
+
+                    details.forEach((item) => {
+                        item.orderId = next.id;
+                        detailsPromises.push(this.afs.collection('order_details').add(item));
+                    });
+                    Promise.all(detailsPromises)
+                        .then((data) => {
+                            {
+                                resolve(next.id);
+
+                            }
+                        })
+                        .catch((error) => {
+                            reject(error);
+                        })
+                })
+                .catch((error) => {
+                    reject(error);
+                })
+        });
+
     }
 }

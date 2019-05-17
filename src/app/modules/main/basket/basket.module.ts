@@ -14,6 +14,8 @@ import {AddressComponent} from "./components/address/address.component";
 import {UserAddressesService} from "../../../shared/services/user/user-addresses.service";
 import {OrdersService} from "../../../shared/services/orders/orders.service";
 import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
+import {BillComponent} from "./components/bill/bill.component";
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {OrderDetailsService} from "../../../shared/services/orders/order-details
     declarations: [
         BasketComponent,
         TotalComponent,
+        BillComponent,
         DeleteComponent,
         EditComponent,
         AddressComponent,
@@ -37,6 +40,7 @@ import {OrderDetailsService} from "../../../shared/services/orders/order-details
         UserAddressesService,
         OrdersService,
         OrderDetailsService,
+        ProductsService,
     ],
     entryComponents: [
         DeleteComponent,

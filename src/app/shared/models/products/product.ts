@@ -16,6 +16,7 @@ export class Product extends Model {
 
     numberOfRatings: number;
     totalRatings: number;
+    discount: any;
 
     constructor(document = null) {
         super();
@@ -29,7 +30,7 @@ export class Product extends Model {
         this.name = document.data().name;
         this.producer = document.data().producer;
         this.artist = document.data().artist;
-        this.price = document.data().price;
+        this.price = parseInt(document.data().price, 10);
         this.duration = document.data().duration;
         this.cover = document.data().cover;
         this.description = document.data().description;
