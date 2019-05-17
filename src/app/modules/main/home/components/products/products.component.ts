@@ -92,7 +92,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     // ----------------------
-
     get() {
         const subscription = this.productsService.get(this.pageIndex, this.pageSize, this._categoryId)
             .subscribe((data) => {
@@ -103,7 +102,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                             } else if (this.filterData.filter === 2) {
                                 return item.year == this.filterData.value;
                             } else if (this.filterData.filter === 3) {
-                                return (item.totalRatings / item.numberOfRatings) == this.filterData.value;
+                                return item.getRating() == this.filterData.value;
                             }
                         });
                     }
@@ -127,10 +126,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
                                     ret = 1;
                                 }
                             } else if (this.filterData.sortField === 3) {
-                                if (a.totalRatings / a.numberOfRatings < b.totalRatings / b.numberOfRatings) {
+                                if (a.getRating() < b.getRating()) {
                                     ret = -1;
                                 }
-                                if (a.totalRatings / a.numberOfRatings > b.totalRatings / b.numberOfRatings) {
+                                if (a.getRating() > b.getRating()) {
                                     ret = 1;
                                 }
                             }
