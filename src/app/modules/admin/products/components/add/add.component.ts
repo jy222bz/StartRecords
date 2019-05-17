@@ -92,6 +92,8 @@ export class AddComponent implements OnInit {
             price: this.form.controls.price.value,
             duration: this.form.controls.duration.value,
             description: this.form.controls.description.value,
+            numberOfRatings: this.form.controls.numberOfRatings.value,
+            totalRatings: this.form.controls.totalRatings.value,
             cover: cover,
             total: 0,
         };

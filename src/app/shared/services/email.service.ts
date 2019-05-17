@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 
-
 @Injectable()
 export class EmailService {
     constructor() {
@@ -21,15 +20,15 @@ export class EmailService {
 
         const mailOptions = {
             from: '"Dave" <dave@example.net>',
-            to: '${user.email}',
+            to: email,
             subject: 'Welcome!',
             html: `<YOUR-WELCOME-MESSAGE-HERE>`
         };
         return transporter.sendMail(mailOptions)
             .then(() => console.log('dbCompaniesOnUpdate:Welcome confirmation email'))
             .catch((error) => console.error('There was an error while sending the email:', error))
+        */
 
-*/
     }
 
 }
