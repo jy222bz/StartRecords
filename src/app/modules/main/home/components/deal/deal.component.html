@@ -1,4 +1,4 @@
-<div *ngIf="product != null" class="app-main-home-deal">
+<div *ngIf="product != null" class="app-main-home-deal" (click)="navigate()">
     <img [lazyLoad]="product.cover" (onLoad)="afterImageLoaded($event)">
     <div class="app-main-home-deal-info">
         <div>{{product.name}}</div>
