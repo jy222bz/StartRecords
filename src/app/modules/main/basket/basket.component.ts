@@ -149,8 +149,9 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
                     if (next.productId !== undefined) {
                         let item = this.findById(next.productId);
                         if (item !== undefined) {
-                            item.price = item.price - item.price / next.discount;
+                            item.price = item.price - (item.price * parseInt(next.discount, 10) / 100 );
                             item.discount = next.discount;
+                            this.updateItem(item);
                             this.updateTotal();
                         }
                     }
