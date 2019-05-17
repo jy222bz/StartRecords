@@ -118,14 +118,19 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         )
             .then((next) => {
                 this.working = false;
-
-                console.log(next);
+                this.completed();
             })
             .catch((error) => {
                 this.working = false;
                 console.log(error);
             })
 
+    }
+
+    completed() {
+        this.basketService.clear();
+        this.updateTotal();
+        this.router.navigate(['']);
     }
 
     navigateAddress() {

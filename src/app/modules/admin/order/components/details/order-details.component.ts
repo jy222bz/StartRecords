@@ -11,7 +11,7 @@ import {OrderDetails} from "../../../../../shared/models/orders/order-details";
     templateUrl: './order-details.component.html',
 })
 export class OrderDetailsComponent extends ItemsComponent<OrderDetails> implements OnInit {
-    displayedColumns = ['name', 'count', 'created_at'];
+    displayedColumns = ['name', 'count', 'price'];
 
     @Input() orderId;
 
@@ -29,16 +29,13 @@ export class OrderDetailsComponent extends ItemsComponent<OrderDetails> implemen
 
     // ----------------------
     get() {
-        const subscription = this.orderDetailsService.get(this.orderId).subscribe(
-            (data) => {
+        this.orderDetailsService.get(this.orderId)
+            .then((data) => {
                 this.set(data);
-                subscription.unsubscribe();
-            },
-            (error) => {
-                subscription.unsubscribe();
-            }
-        );
-
+            })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 }
 

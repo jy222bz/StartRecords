@@ -76,7 +76,7 @@
                     </mat-table>
                     <app-main-basket-total [total]="getTotal()"></app-main-basket-total>
                 </div>
-                <div fxFlex fxLayout="column">
+                <div fxFlex fxLayout="column" *ngIf="basketService.getCount() > 0">
                     <button mat-button matStepperNext class="mat-raised-button mat-primary" fxFlex="1 1 20%">Next
                     </button>
                 </div>
@@ -90,11 +90,9 @@
                     <app-main-basket-address></app-main-basket-address>
                 </div>
                 <div fxFlex fxLayout="column" fxLayoutGap="5px">
-                    <button class="mat-raised-button "  fxFlex="1 1 30%" (click)="navigateAddress()">Edit
+                    <button class="mat-raised-button " (click)="navigateAddress()">Edit
                     </button>
-                    <button mat-button matStepperPrevious class="mat-raised-button mat-primary">Back</button>
                     <button mat-button matStepperNext class="mat-raised-button mat-primary">Next</button>
-
                 </div>
             </div>
         </mat-step>
@@ -104,31 +102,13 @@
                 <ng-template matStepLabel>You have put a order</ng-template>
                 <div fxFlex="66">
                     <div fxFlex="1 1 100%">
-                        <mat-list>
-                            <mat-list-item>
-                                <div fxFlex="1 1 100%" class="info-style">
-                                    <strong>Amount of products</strong>
-                                </div>
-                                <div fxFlex="1 1 100%">
-                                    {{ basketService.getCount() }}
-                                </div>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item>
-                                <div fxFlex="1 1 100%" class="info-style">
-                                    <strong>Total</strong>
-                                </div>
-                                <div fxFlex="1 1 100%">
-                                    {{ total }}
-                                </div>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                        </mat-list>
+                        <app-main-basket-bill [count]="basketService.getCount()"
+                                              [total]="total"
+                        ></app-main-basket-bill>
                     </div>
                 </div>
                 <div fxFlex fxLayout="column" fxLayoutGap="5px">
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirm()" fxFlex="1 1 100%"
+                    <button type="submit" class="mat-raised-button mat-primary" (click)="confirm()"
                             [disabled]="working">
                         <span *ngIf="!working">Confirm</span>
                         <mat-spinner diameter="20" *ngIf="working" style="margin: auto;"></mat-spinner>

@@ -15,7 +15,7 @@ export class AdminOrdersComponent extends ItemsComponent<Order> implements OnIni
         {label: 'Orders', params: '', url: '/admin/orders', home: false}
     ];
 
-    displayedColumns = ['created_at', 'user', 'albums', 'price', 'edit'];
+    displayedColumns = ['created_at', 'albums', 'price', 'status'];
 
     constructor(
         private authenticationService: AuthenticationService,
