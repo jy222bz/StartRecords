@@ -12,6 +12,8 @@ import {CommonModule} from "@angular/common";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {UploadService} from "../../../shared/services/upload.service";
 import {ProductService} from "../../../shared/services/products/product.service";
+import {DealComponent} from "./components/deal/deal.component";
+import {UnDealComponent} from "./components/undeal/un-deal.component";
 
 
 @NgModule({
@@ -25,8 +27,8 @@ import {ProductService} from "../../../shared/services/products/product.service"
         AdminProductsComponent,
         AddComponent,
         DeleteComponent,
-        AdminProductsComponent,
-
+        DealComponent,
+        UnDealComponent,
     ],
     providers: [
         ProductsService,
@@ -36,6 +38,8 @@ import {ProductService} from "../../../shared/services/products/product.service"
     entryComponents: [
         AddComponent,
         DeleteComponent,
+        DealComponent,
+        UnDealComponent,
     ]
 })
 export class AdminProductsModule {

@@ -41,8 +41,10 @@
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="/admin/products/{{element.id}}">
+            <mat-cell *matCellDef="let element">
+                <a routerLink="/admin/products/{{element.id}}">
                 <strong> {{element.name}} </strong></a>
+                <mat-icon *ngIf="dealOfDay === element.id" style="padding-left: 16px">card_giftcard</mat-icon>
             </mat-cell>
         </ng-container>
 
@@ -82,6 +84,14 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #userMenu="matMenu">
+                    <button *ngIf="element.id !== dealOfDay" mat-menu-item (click)="openProductDealComponent(element)">
+                        <mat-icon color="primary">card_giftcard</mat-icon>
+                        <span>Deal</span>
+                    </button>
+                    <button *ngIf="element.id === dealOfDay" mat-menu-item (click)="openProductUnDealComponent(element)">
+                        <mat-icon color="warn">card_giftcard</mat-icon>
+                        <span>Reset</span>
+                    </button>
                     <button mat-menu-item (click)="openProductDeleteComponent(element)">
                         <mat-icon color="warn">delete</mat-icon>
                         <span>Delete</span>

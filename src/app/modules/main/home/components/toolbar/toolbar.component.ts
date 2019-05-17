@@ -28,4 +28,8 @@ export class ToolbarComponent implements OnInit {
     showCategories() {
         this.categoriesVisible.emit(true);
     }
+
+    showFilter() {
+
+    }
 }

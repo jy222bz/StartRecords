@@ -15,6 +15,7 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {AdminProductsModule} from "../../admin/products/admin-products.module";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
+import {DealComponent} from "./components/deal/deal.component";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {CategoriesService} from "../../../shared/services/categoreis/categories.
         ProductComponent,
         ToolbarComponent,
         CategoriesComponent,
+        DealComponent,
     ],
     providers: [
         ProductsService,

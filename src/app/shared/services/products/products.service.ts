@@ -80,6 +80,15 @@ export class ProductsService {
                 }));
     }
 
+    setDealOfDay(productId, discount) {
+        return this.afs.collection<any>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').set({
+            dealOfDay: productId,
+            dealOfDayDiscount: discount
+        }, {
+            merge: true
+        });
+    }
+
     getDealOfDay() {
         return this.afs.collection<any>('products_meta').doc('Pi6SrXqroqWqdzhPsUD4').get()
             .pipe(map(
@@ -91,30 +100,37 @@ export class ProductsService {
                 }));
     }
 
-    getDealOfDayProduct() {
-        return new Promise((resolve, reject) => {
-            this.getDealOfDay().subscribe(
-                (next) => {
-                    this.afs.collection<any>('products').doc(next.productId).get()
-                        .pipe(map(
-                            actions => {
-                                return new Product(actions);
-                            }))
-                        .subscribe(
-                            (product) => {
-                                product.discount = next.discount;
-                                return product;
-                            },
-                            (error) => {
-                                reject(error);
-                            }
-                        )
+    getDealOfDayProduct(): Promise<Product> {
 
-                },
-                (error) => {
-                    reject(error);
-                }
-            )
+        return new Promise((resolve, reject) => {
+            const subscription = this.getDealOfDay()
+                .subscribe(
+                    (next) => {
+                        subscription.unsubscribe();
+                        if (next.productId === undefined) {
+                            reject('deal of day is not set');
+                            return;
+                        }
+                        this.afs.collection<any>('products').doc(next.productId).get()
+                            .pipe(map(
+                                actions => {
+                                    return new Product(actions);
+                                }))
+                            .subscribe(
+                                (product) => {
+                                    product.discount = next.discount;
+                                    resolve(product);
+                                },
+                                (error) => {
+                                    reject(error);
+                                }
+                            )
+                    },
+                    (error) => {
+                        subscription.unsubscribe();
+                        reject(error);
+                    }
+                )
         });
     }
 }
