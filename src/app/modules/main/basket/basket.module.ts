@@ -15,6 +15,7 @@ import {UserAddressesService} from "../../../shared/services/user/user-addresses
 import {OrdersService} from "../../../shared/services/orders/orders.service";
 import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 import {BillComponent} from "./components/bill/bill.component";
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {BillComponent} from "./components/bill/bill.component";
         UserAddressesService,
         OrdersService,
         OrderDetailsService,
+        ProductsService,
     ],
     entryComponents: [
         DeleteComponent,

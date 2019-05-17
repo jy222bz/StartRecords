@@ -33,7 +33,7 @@ export class DealComponent implements OnInit {
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 
 }

@@ -39,6 +39,7 @@
                                 <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong>
                                 </div>
                                 <div><span class="font-smaller">{{element.artist}}</span></div>
+                                <div *ngIf="element.discount > 0"><span class="font-smaller">{{element.discount}}%</span></div>
                             </mat-cell>
                         </ng-container>
 
