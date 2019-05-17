@@ -16,6 +16,7 @@ import {AdminProductsModule} from "../../admin/products/admin-products.module";
 import {CategoriesComponent} from "./components/categories/categories.component";
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {DealComponent} from "./components/deal/deal.component";
+import {FilterComponent} from "./components/products/components/filter/filter.component";
 
 
 @NgModule({
@@ -35,12 +36,15 @@ import {DealComponent} from "./components/deal/deal.component";
         ToolbarComponent,
         CategoriesComponent,
         DealComponent,
+        FilterComponent,
     ],
     providers: [
         ProductsService,
         CategoriesService,
     ],
-    entryComponents: []
+    entryComponents: [
+        FilterComponent,
+    ]
 })
 export class MainModule {
 }

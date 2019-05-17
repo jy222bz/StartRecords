@@ -107,7 +107,7 @@ export class ProductsService {
                 .subscribe(
                     (next) => {
                         subscription.unsubscribe();
-                        if (next.productId === undefined) {
+                        if (next.productId === undefined || next.productId === '') {
                             reject('deal of day is not set');
                             return;
                         }

@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {EventsService} from "../../../../../shared/services/events.service";
 
 
 @Component({
@@ -15,9 +16,7 @@ export class ToolbarComponent implements OnInit {
         this._name = value;
     }
 
-    @Output() categoriesVisible = new EventEmitter<boolean>();
-
-    constructor() {
+    constructor(private eventsService: EventsService) {
     }
 
 
@@ -26,10 +25,10 @@ export class ToolbarComponent implements OnInit {
     }
 
     showCategories() {
-        this.categoriesVisible.emit(true);
+        this.eventsService.emit('HOME-CATEGORIES-SHOW');
     }
 
     showFilter() {
-
+        this.eventsService.emit('HOME-FILTER-SHOW');
     }
 }
