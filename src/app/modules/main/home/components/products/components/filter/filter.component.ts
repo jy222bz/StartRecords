@@ -18,8 +18,10 @@ export class FilterComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'filter': [data.filter, [Validators.minLength(1)]],
-            'value': [data.value, [Validators.minLength(1), Validators.pattern("^[0-9]*$")]],
+            'filter': [data.filter, [Validators.pattern("^[0-9]*$")]],
+            'value': [data.value, [Validators.pattern("^[0-9]*$")]],
+            'sortType': [data.sortType, [Validators.required]],
+            'sortField': [data.sortField, [Validators.required]],
         });
     }
 
@@ -41,6 +43,8 @@ export class FilterComponent implements OnInit {
 
         this.data.filter = this.form.controls.filter.value;
         this.data.value = parseInt(this.form.controls.value.value, 10);
+        this.data.sortType = this.form.controls.sortType.value;
+        this.data.sortField = parseInt(this.form.controls.sortField.value, 10);
         this.dialog.close(this.data);
 
         return false;

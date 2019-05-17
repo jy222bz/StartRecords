@@ -18,6 +18,24 @@
                        [formControl]="form.controls.value">
             </mat-form-field>
         </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 100%">
+                <mat-select [formControl]="form.controls.sortField" placeholder="Sort Field">
+                    <mat-option [value]="0">-</mat-option>
+                    <mat-option [value]="1">Price</mat-option>
+                    <mat-option [value]="2">Year</mat-option>
+                    <mat-option [value]="3">Rating</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 100%">
+                <mat-select [formControl]="form.controls.sortType">
+                    <mat-option value="asc">Ascending</mat-option>
+                    <mat-option value="desc">Descending</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button type="button" class="mat-raised-button" (click)="close()">Close</button>

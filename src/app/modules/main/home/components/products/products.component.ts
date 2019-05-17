@@ -21,6 +21,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     filterData = {
         filter: 0,
         value: 0,
+        sortType: 'asc',
+        sortField: 0,
     };
 
     constructor(
@@ -90,6 +92,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     // ----------------------
+
     get() {
         const subscription = this.productsService.get(this.pageIndex, this.pageSize, this._categoryId)
             .subscribe((data) => {
@@ -102,7 +105,40 @@ export class ProductsComponent implements OnInit, OnDestroy {
                             } else if (this.filterData.filter === 3) {
                                 return (item.totalRatings / item.numberOfRatings) == this.filterData.value;
                             }
-                        })
+                        });
+                    }
+
+                    if (this.filterData.sortField > 0) {
+                        data.sort((a, b) => {
+                            let ret = 0;
+                            if (this.filterData.sortField === 1) {
+
+                                if (a.price < b.price) {
+                                    ret = -1;
+                                }
+                                if (a.price > b.price) {
+                                    ret = 1;
+                                }
+                            } else if (this.filterData.sortField === 2) {
+                                if (a.year < b.year) {
+                                    ret = -1;
+                                }
+                                if (a.year > b.year) {
+                                    ret = 1;
+                                }
+                            } else if (this.filterData.sortField === 3) {
+                                if (a.totalRatings / a.numberOfRatings < b.totalRatings / b.numberOfRatings) {
+                                    ret = -1;
+                                }
+                                if (a.totalRatings / a.numberOfRatings > b.totalRatings / b.numberOfRatings) {
+                                    ret = 1;
+                                }
+                            }
+                            if (this.filterData.sortType === 'desc') {
+                                ret = -1 * ret;
+                            }
+                            return ret;
+                        });
                     }
                     this.products = data;
                     subscription.unsubscribe();
