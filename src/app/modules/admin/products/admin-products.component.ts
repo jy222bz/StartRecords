@@ -93,8 +93,8 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
             (data) => {
                 this.setTotal(data);
             },
-            () => {
-
+            (error) => {
+                console.log(error);
             }
         );
     }
@@ -105,7 +105,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
                 this.dealOfDay = next.productId;
             },
             (error) => {
-
+                console.log(error);
             }
         )
     }
