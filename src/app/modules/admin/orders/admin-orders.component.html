@@ -31,7 +31,8 @@
 
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+            <mat-cell *matCellDef="let element"><a routerLink="/admin/orders/{{element.id}}">
+                <strong>{{element.createdAt}}</strong> </a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="user">
@@ -53,8 +54,8 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.status}}
+            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.statusToString()}}
             </mat-cell>
         </ng-container>
 

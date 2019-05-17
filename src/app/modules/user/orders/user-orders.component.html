@@ -31,7 +31,7 @@
 
         <ng-container matColumnDef="created_at">
             <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+            <mat-cell *matCellDef="let element"><strong>{{element.createdAt}} </strong></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="albums">
@@ -47,8 +47,8 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.status}}
+            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.statusToString()}}
             </mat-cell>
         </ng-container>
 

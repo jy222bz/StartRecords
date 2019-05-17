@@ -1,9 +1,8 @@
+<app-main-home-deal></app-main-home-deal>
 <div class="page-content">
-    <app-main-home-toolbar [name]="categoryName" (categoriesVisible)="showCategories()">
-    </app-main-home-toolbar>
+    <app-main-home-toolbar [name]="categoryName"></app-main-home-toolbar>
 
-    <app-main-home-categories *ngIf="categoriesVisible" (categoryChanged)="categoryChanged($event)">
-    </app-main-home-categories>
+    <app-main-home-categories (categoryChanged)="categoryChanged($event)"></app-main-home-categories>
 
     <app-main-home-products [categoryId]="categoryId"></app-main-home-products>
     <app-main-home-footer></app-main-home-footer>

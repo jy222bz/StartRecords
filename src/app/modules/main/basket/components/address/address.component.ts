@@ -19,8 +19,11 @@ export class AddressComponent implements OnInit {
 
     }
 
+    ngOnInit(): void {
+        this.getAddress();
+    }
+
     getAddress() {
-        // ToDo: fix issue if page refreshed and account is null
         this.userAddressesService.get(this.authenticationService.getAccountId()).subscribe(
             (next) => {
                 if (next !== undefined) {
@@ -33,9 +36,5 @@ export class AddressComponent implements OnInit {
                 console.log(error);
             }
         )
-    }
-
-    ngOnInit(): void {
-        this.getAddress();
     }
 }
