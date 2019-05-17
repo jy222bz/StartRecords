@@ -93,14 +93,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     get() {
         const subscription = this.productsService.get(this.pageIndex, this.pageSize, this._categoryId)
             .subscribe((data) => {
-                console.log(this.filterData);
                     if (this.filterData.filter !== 0) {
                         data = data.filter((item) => {
-                            console.log(item);
                             if (this.filterData.filter === 1) {
                                 return item.price == this.filterData.value;
                             } else if (this.filterData.filter === 2) {
                                 return item.year == this.filterData.value;
+                            } else if (this.filterData.filter === 3) {
+                                return (item.totalRatings / item.numberOfRatings) == this.filterData.value;
                             }
                         })
                     }
