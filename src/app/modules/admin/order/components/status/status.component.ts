@@ -18,10 +18,10 @@ export class StatusComponent implements OnInit {
         private fb: FormBuilder,
         private dialog: MatDialogRef<StatusComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
-
         this.form = this.fb.group({
             'status': [data.status, [Validators.required]],
         });
+
     }
 
     ngOnInit() {
@@ -38,8 +38,10 @@ export class StatusComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        let data: any = this.form.value;
-        this.orderService.set(data)
+        let data = {
+            status: parseInt(this.form.controls.status.value, 10)
+        };
+        this.orderService.set(this.data.id, data)
             .then((next) => {
                     this.working = false;
                     this.dialog.close(data);

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "./shared/services/authentication.service";
-import {MatDialog} from "@angular/material";
+import {EmailService} from "./shared/services/email.service";
 
 @Component({
     selector: 'app-root',
@@ -10,14 +9,13 @@ import {MatDialog} from "@angular/material";
 export class AppComponent implements OnInit {
 
     constructor(
-        private authenticationService: AuthenticationService,
-        private dialog: MatDialog
+        private emailService: EmailService,
     ) {
 
     }
 
     ngOnInit(): void {
-
+        this.emailService.send('oz222am@student.lnu.se');
     }
 
 }

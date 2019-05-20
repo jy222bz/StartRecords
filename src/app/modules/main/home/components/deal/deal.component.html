@@ -1,0 +1,9 @@
+<div *ngIf="product != null" class="app-main-home-deal" (click)="navigate()">
+    <img [lazyLoad]="product.cover" (onLoad)="afterImageLoaded($event)">
+    <div class="app-main-home-deal-info">
+        <div>{{product.name}}</div>
+        <div>{{product.artist}}</div>
+        <div>Discount <app-counter [value]="product.discount"></app-counter>%</div>
+    </div>
+
+</div>

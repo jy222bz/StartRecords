@@ -30,7 +30,7 @@ export class Product extends Model {
         this.name = document.data().name;
         this.producer = document.data().producer;
         this.artist = document.data().artist;
-        this.price = document.data().price;
+        this.price = parseInt(document.data().price, 10);
         this.duration = document.data().duration;
         this.cover = document.data().cover;
         this.description = document.data().description;
@@ -39,7 +39,14 @@ export class Product extends Model {
         this.year = document.data().year;
         this.columnSpan = document.data().columnSpan === undefined ? 1 : document.data().columnSpan;
         this.rowSpan = document.data().rowSpan === undefined ? 1 : document.data().rowSpan;
-        this.totalRatings = document.data().totalRatings;
-        this.numberOfRatings = document.data().numberOfRatings;
+        this.totalRatings = parseInt(document.data().totalRatings, 10);
+        this.numberOfRatings = parseInt(document.data().numberOfRatings, 10);
+    }
+
+    getRating() {
+        if (this.numberOfRatings === undefined || this.numberOfRatings === 0) {
+            return 0;
+        }
+        return Math.floor(this.totalRatings / this.numberOfRatings);
     }
 }

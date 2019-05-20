@@ -3,7 +3,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
 import {firestore} from 'firebase/app';
 import {Order} from "../../models/orders/order";
-import {Product} from "../../models/products/product";
 
 @Injectable()
 export class OrdersService {
@@ -39,8 +38,6 @@ export class OrdersService {
             order.createdAt = firestore.FieldValue.serverTimestamp();
             this.afs.collection('orders').add(order)
                 .then((next) => {
-                    console.log(next);
-
                     let detailsPromises = [];
 
                     details.forEach((item) => {
@@ -51,6 +48,7 @@ export class OrdersService {
                         .then((data) => {
                             {
                                 resolve(next.id);
+
                             }
                         })
                         .catch((error) => {

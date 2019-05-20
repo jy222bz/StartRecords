@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit</h2>
+<h2 mat-dialog-title>Deal Of Day</h2>
 <app-alert *ngIf="error != null" [value]="error"></app-alert>
 <form novalidate (ngSubmit)="save()">
     <mat-dialog-content [formGroup]="form">
@@ -6,9 +6,11 @@
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Discount percentage"
                        [formControl]="form.controls.discount">
+                <mat-error *ngIf="form.controls.discount.hasError('required') ||
+               form.controls.discount.hasError('min')">required
+                </mat-error>
             </mat-form-field>
         </div>
-
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button type="button" class="mat-raised-button" (click)="close()">Close</button>

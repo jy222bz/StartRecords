@@ -9,6 +9,7 @@ import {OrdersService} from "../../../shared/services/orders/orders.service";
 import {OrderDetailsService} from "../../../shared/services/orders/order-details.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 @Component({
     selector: 'app-main-basket',
@@ -28,6 +29,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         private basketService: BasketService,
         private ordersService: OrdersService,
         private orderDetailsService: OrderDetailsService,
+        private productsService: ProductsService,
         private authenticationService: AuthenticationService,
         private dialog: MatDialog,
         private router: Router
@@ -37,6 +39,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
 
     ngOnInit(): void {
         this.get();
+        this.getDeal();
     }
 
     // ----------------------
@@ -105,6 +108,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
                 productId: item.id,
                 count: item.count,
                 price: item.price,
+                discount: item.discount,
             });
         });
 
@@ -118,8 +122,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         )
             .then((next) => {
                 this.working = false;
-
-                console.log(next);
+                this.completed();
             })
             .catch((error) => {
                 this.working = false;
@@ -128,8 +131,34 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
 
     }
 
+    completed() {
+        this.basketService.clear();
+        this.updateTotal();
+        this.router.navigate(['']);
+    }
+
     navigateAddress() {
         this.router.navigate(['/user/address']);
+    }
+
+    getDeal() {
+        const subscription = this.productsService.getDealOfDay()
+            .subscribe(
+                (next) => {
+                    subscription.unsubscribe();
+                    if (next.productId !== undefined) {
+                        let item = this.findById(next.productId);
+                        if (item !== undefined) {
+                            item.price = item.price - (item.price * parseInt(next.discount, 10) / 100 );
+                            item.discount = next.discount;
+                            this.updateItem(item);
+                            this.updateTotal();
+                        }
+                    }
+                }, (error) => {
+                    subscription.unsubscribe();
+                    console.log(error);
+                });
     }
 }
 

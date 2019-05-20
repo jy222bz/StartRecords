@@ -100,7 +100,7 @@ export class LocalStorageService {
     // clear storage (remove all items from it)
     clear() {
         if (this.localStorageSupported) {
-            for (let i = 0; i < localStorage.length; i++) {
+            for (let i = localStorage.length - 1; i >= 0 ; i--) {
                 const key = localStorage.key(i);
                 if (!key.startsWith('product:')) {
                     continue;
