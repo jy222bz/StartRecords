@@ -20,7 +20,7 @@ import {LocalStorageService} from "./shared/services/local-storage.service";
 import {AudioPlayerService} from "./shared/services/audio-player.service";
 import {EventsService} from "./shared/services/events.service";
 import {EmailService} from "./shared/services/email.service";
-
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
     imports: [
@@ -33,6 +33,7 @@ import {EmailService} from "./shared/services/email.service";
         MaterialModule,
         ComponentsModule,
         AppRoutingModule,
+        NgxAudioPlayerModule,
     ],
     declarations: [
         AppComponent,
