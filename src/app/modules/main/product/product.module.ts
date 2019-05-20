@@ -14,6 +14,7 @@ import {BasketService} from "../../../shared/services/basket/basket.service";
 import {LocalStorageService} from "../../../shared/services/local-storage.service";
 import {InfoComponent} from "./components/info/info.component";
 import {ProductRatingsService} from "../../../shared/services/products/product-ratings.service";
+import {AudioControlComponent} from "./components/audio-control/audio-control.component";
 
 
 @NgModule({
@@ -29,6 +30,8 @@ import {ProductRatingsService} from "../../../shared/services/products/product-r
         TracksComponent,
         RatingComponent,
         InfoComponent,
+        AudioControlComponent,
+
 
     ],
     providers: [
