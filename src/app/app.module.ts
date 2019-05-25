@@ -19,6 +19,7 @@ import {BasketService} from "./shared/services/basket/basket.service";
 import {LocalStorageService} from "./shared/services/local-storage.service";
 import {AudioPlayerService} from "./shared/services/audio-player.service";
 import {EventsService} from "./shared/services/events.service";
+import {EmailService} from "./shared/services/email.service";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {EventsService} from "./shared/services/events.service";
         BasketService,
         AudioPlayerService,
         EventsService,
+        EmailService,
     ],
     bootstrap: [
         AppComponent,

@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-class BreadCrumb {
-
-}
-
 @Component({
     selector: 'app-breadcrumb',
     templateUrl: './breadcrumb.component.html',

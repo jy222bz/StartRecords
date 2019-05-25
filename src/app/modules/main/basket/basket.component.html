@@ -34,7 +34,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Name</mat-header-cell>
                             <mat-cell *matCellDef="let element" class="app-main-basket-product-name">
                                 <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong>
                                 </div>
@@ -44,29 +44,29 @@
                         </ng-container>
 
                         <ng-container matColumnDef="count">
-                            <mat-header-cell *matHeaderCellDef> Count</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
+                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Count</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
                                 <app-counter [value]="element.count"></app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="price">
-                            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
+                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Price</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
                                 <app-counter [value]="element.price"></app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="total">
                             <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="mat-column-end">
+                            <mat-cell *matCellDef="let element" class="app-main-basket-end-size">
                                 <app-counter [value]="element.price * element.count"></app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="edit">
-                            <mat-header-cell *matHeaderCellDef> Edit</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="">
+                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Edit</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
                                 <button mat-icon-button (click)="openProductEditComponent(element)">
                                     <mat-icon>edit</mat-icon>
                                 </button>

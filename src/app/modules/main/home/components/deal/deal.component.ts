@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../../../../shared/services/products/products.service";
 import {Product} from "../../../../../shared/models/products/product";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-main-home-deal',
@@ -12,6 +13,7 @@ export class DealComponent implements OnInit {
 
     constructor(
         private productsService: ProductsService,
+        private router: Router,
     ) {
 
     }
@@ -22,6 +24,10 @@ export class DealComponent implements OnInit {
 
     afterImageLoaded(event) {
 
+    }
+
+    navigate() {
+        this.router.navigate(['/product/' + this.product.id]);
     }
 
     // ----------------------
