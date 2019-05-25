@@ -18,7 +18,10 @@ body {
     background: linear-gradient(to right, #ece9e6, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+*img{
+    margin-top: 20px;
 
+}
 a {
     color: #37474f;
     text-decoration: none;
@@ -49,6 +52,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 .mat-column-end {
     display: flex;
     justify-content: flex-end;
+    font-size: 20px;
 }
 
 .mat-stepper-horizontal {
@@ -148,6 +152,9 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     font-size: 36px;
     width: 36px;
     height: 36px;
+}
+.material-icons.mat-36:hover{
+    color: grey;
 }
 
 .material-icons.mat-48 {
