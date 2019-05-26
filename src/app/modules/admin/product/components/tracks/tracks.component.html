@@ -1,10 +1,10 @@
 <mat-toolbar class="toolbar-header">
     <mat-toolbar-row>
-        <span class="font-large" >Tracks</span>
+        <span class="font-large">Tracks</span>
         <span class="mat-toolbar-spacer"></span>
         <button mat-flat-button color="primary" (click)="openAddDialog()">
-            <mat-icon>add</mat-icon>
-            Add
+            <mat-icon class="mat-36">add</mat-icon>
+            <span class="biggest-size-text">Add</span>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -31,26 +31,30 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-        <mat-cell *matCellDef="let element"> <strong> {{element.name}} </strong>
+        <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="small-size-text"><strong> {{element.name}} </strong>
         </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="duration">
-        <mat-header-cell *matHeaderCellDef> Duration</mat-header-cell>
-        <mat-cell *matCellDef="let element"> <app-duration [value]="element.duration"></app-duration> </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Duration</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="small-size-text">
+            <app-duration [value]="element.duration"></app-duration>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="sample">
-        <mat-header-cell *matHeaderCellDef> Sample</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <a *ngIf="element.sample" href="{{element.sample}}" download="{{element.name}}"><mat-icon>music_note
-            </mat-icon></a></mat-cell>
+        <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Sample</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="small-size-text">
+            <a *ngIf="element.sample" href="{{element.sample}}" download="{{element.name}}">
+                <mat-icon>music_note
+                </mat-icon>
+            </a></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="created_at">
-        <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Created</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="small-size-text"> {{element.createdAt}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="edit">
@@ -62,11 +66,11 @@
             <mat-menu #userMenu="matMenu">
                 <button mat-menu-item (click)="openTrackUploadComponent(element)">
                     <mat-icon color="primary">cloud</mat-icon>
-                    <span>Upload</span>
+                    <span class="bigger-size-text">Upload</span>
                 </button>
                 <button mat-menu-item (click)="openTrackDeleteComponent(element)">
                     <mat-icon color="warn">delete</mat-icon>
-                    <span>Delete</span>
+                    <span class="bigger-size-text">Delete</span>
                 </button>
             </mat-menu>
         </mat-cell>
