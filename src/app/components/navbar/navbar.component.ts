@@ -24,13 +24,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private dialog: MatDialog,
         private router: Router,
     ) {
-        eventsService.registerEvent('LOGIN-SHOW', this, () => {
-            this.openLoginComponent();
-        });
+
     }
 
     ngOnInit(): void {
+        this.registerLoginShowEvent();
+    }
 
+    private registerLoginShowEvent() {
+        this.eventsService.registerEvent('LOGIN-SHOW', this, () => {
+            this.openLoginComponent();
+        });
     }
 
     ngOnDestroy(): void {

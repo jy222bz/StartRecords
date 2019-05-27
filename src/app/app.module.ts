@@ -17,9 +17,11 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./shared/services/user/user.service";
 import {BasketService} from "./shared/services/basket/basket.service";
 import {LocalStorageService} from "./shared/services/local-storage.service";
-import {AudioPlayerService} from "./shared/services/audio-player.service";
+import {PlayerService} from "./shared/services/player.service";
 import {EventsService} from "./shared/services/events.service";
-import {EmailService} from "./shared/services/email.service";
+import {NotificationsService} from "./shared/services/notifications.service";
+import {PlayerComponent} from "./components/player/player.component";
+import {SessionService} from "./shared/services/session.service";
 
 
 @NgModule({
@@ -40,15 +42,17 @@ import {EmailService} from "./shared/services/email.service";
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
+        PlayerComponent,
     ],
     providers: [
         UserService,
         AuthenticationService,
         LocalStorageService,
         BasketService,
-        AudioPlayerService,
+        PlayerService,
         EventsService,
-        EmailService,
+        NotificationsService,
+        SessionService,
     ],
     bootstrap: [
         AppComponent,
