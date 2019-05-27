@@ -30,32 +30,32 @@
         </ng-container>
 
         <ng-container matColumnDef="created_at">
-            <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-            <mat-cell *matCellDef="let element"><a routerLink="/admin/orders/{{element.id}}">
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Created</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"><a routerLink="/admin/orders/{{element.id}}">
                 <strong>{{element.createdAt}}</strong> </a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="user">
-            <mat-header-cell *matHeaderCellDef> User</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.userId}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> User</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.userId}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="albums">
-            <mat-header-cell *matHeaderCellDef> Albums</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.albums}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Albums</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.albums}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.price}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Price</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.price}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.statusToString()}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Status</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.statusToString()}}
             </mat-cell>
         </ng-container>
 
