@@ -3,6 +3,7 @@ import {ProductsService} from "../../../../../shared/services/products/products.
 import {EventsService} from "../../../../../shared/services/events.service";
 import {MatDialog} from "@angular/material";
 import {FilterComponent} from "./components/filter/filter.component";
+import {WindowRef} from "../../../../../shared/directives/WindowRef";
 
 @Component({
     selector: 'app-main-home-products',
@@ -15,7 +16,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     pageIndex = 0;
     pageSize = 20;
 
-    columns = 4;
+    columns = 3;
+    rowHeight = 42;
+
     _categoryId = '';
 
     filterData = {
@@ -29,10 +32,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
         private productsService: ProductsService,
         private eventsService: EventsService,
         private dialog: MatDialog,
+        private winRef: WindowRef,
     ) {
         eventsService.registerEvent('HOME-FILTER-SHOW', this, () => {
             this.openFilterComponent();
         });
+        this.calcHeight(winRef.nativeWindow.innerWidth);
     }
 
     @Input()
@@ -50,20 +55,26 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     onResize(event) {
-        if (event.target.innerWidth < 1920) {
-            this.columns = 6;
-        }
-        if (event.target.innerWidth < 1280) {
-            this.columns = 4;
-        }
-        if (event.target.innerWidth < 960) {
+        this.calcHeight(event.target.innerWidth);
+    }
+
+    calcHeight(width) {
+        if (width < 400) {
+            this.columns = 1;
+        } else if (width < 600) {
+            this.columns = 1;
+        } else if (width < 960) {
+            this.columns = 2;
+        } else if (width < 1280) {
+            this.columns = 3;
+        } else {
             this.columns = 3;
         }
-        if (event.target.innerWidth < 600) {
-            this.columns = 2;
-        }
-        if (event.target.innerWidth < 400) {
-            this.columns = 1;
+
+        if (this.columns < 3) {
+            this.rowHeight = 49;
+        } else {
+            this.rowHeight = 29;
         }
     }
 
@@ -79,6 +90,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
             return 1;
         }
         return element.rowSpan;
+    }
+
+    getRowHeight() {
+        return this.rowHeight + 'vw';
     }
 
     openFilterComponent() {

@@ -20,19 +20,22 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         private eventsService: EventsService,
         ) {
 
-        eventsService.registerEvent('HOME-CATEGORIES-SHOW', this, () => {
-            this.visible = true;
-        });
     }
 
     ngOnInit(): void {
         this.get();
+        this.registerShowEvent();
     }
 
     ngOnDestroy(): void {
         this.eventsService.unregisterEvent('HOME-CATEGORIES-SHOW', this);
     }
 
+    private registerShowEvent() {
+        this.eventsService.registerEvent('HOME-CATEGORIES-SHOW', this, () => {
+            this.visible = true;
+        });
+    }
 
     get() {
         const subscription = this.categoriesService.get()

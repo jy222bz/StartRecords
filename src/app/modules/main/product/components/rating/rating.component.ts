@@ -26,6 +26,7 @@ export class RatingComponent implements OnInit {
     }
 
     rated = false;
+    @Input() clickable = true;
     @Input() productId: string;
 
     stars: RateElement[] = [
@@ -55,14 +56,14 @@ export class RatingComponent implements OnInit {
     }
 
     mouseOver(elem: RateElement) {
-        if (this.rated) {
+        if (!this.clickable || this.rated) {
             return;
         }
         this.updateRating(elem.id);
     }
 
     mouseLeave(elem: RateElement) {
-        if (this.rated) {
+        if (!this.clickable || this.rated) {
             return;
         }
         this.updateRating(this._rating);
@@ -85,6 +86,9 @@ export class RatingComponent implements OnInit {
     }
 
     setUserRating(elem: RateElement): void {
+        if (!this.clickable) {
+            return;
+        }
         if (this.authenticationService.isAdmin()) {
             alert('Login as user to be able to rate');
             return;

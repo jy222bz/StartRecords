@@ -26,7 +26,8 @@ export class ProductTrackService {
                 .then(() => {
                     this.afs.collection('products').doc(productId).update(
                         {
-                            duration: firestore.FieldValue.increment(-1 * duration)
+                            duration: firestore.FieldValue.increment(-1 * duration),
+                            tracks: firestore.FieldValue.increment(-1 ),
                         })
                         .then(() => {
                             resolve();

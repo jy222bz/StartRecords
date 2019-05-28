@@ -3,7 +3,7 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 import {MatDialog} from "@angular/material";
 import {LoginComponent} from "../login/login.component";
 import {LogoutComponent} from "../logout/logout.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RegisterComponent} from "../register/register.component";
 import {BasketService} from "../../shared/services/basket/basket.service";
 import {EventsService} from "../../shared/services/events.service";
@@ -16,6 +16,7 @@ import {EventsService} from "../../shared/services/events.service";
 })
 export class NavbarComponent implements OnInit, OnDestroy {
     title = 'StarRecords';
+    homePage = false;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -23,17 +24,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private eventsService: EventsService,
         private dialog: MatDialog,
         private router: Router,
+        private route: ActivatedRoute,
     ) {
 
     }
 
     ngOnInit(): void {
         this.registerLoginShowEvent();
+        this.registerRouteChanges();
     }
 
     private registerLoginShowEvent() {
         this.eventsService.registerEvent('LOGIN-SHOW', this, () => {
             this.openLoginComponent();
+        });
+    }
+
+    private registerRouteChanges() {
+        this.router.events.subscribe((val) => {
+            this.homePage = this.router.url == '/';
         });
     }
 
@@ -76,6 +85,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+    openCategories() {
+        this.eventsService.emit('HOME-CATEGORIES-SHOW');
+    }
+
+    openSearch() {
+        this.eventsService.emit('HOME-CATEGORIES-SHOW');
+    }
+
 
     // ----------------
     navigateHome() {
