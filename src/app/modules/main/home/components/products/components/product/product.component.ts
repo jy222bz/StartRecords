@@ -9,6 +9,7 @@ import {Product} from '../../../../../../../shared/models/products/product';
 })
 export class ProductComponent implements OnInit {
     @Input() item: Product;
+    @Input() height: string;
 
     constructor(
         private router: Router,
@@ -27,8 +28,8 @@ export class ProductComponent implements OnInit {
 
     }
 
-    getHeight() {
-        return 294 * this.item.rowSpan + 'px';
+    getDuration() {
+        return Math.floor(this.item.duration / 60);
     }
 }
 

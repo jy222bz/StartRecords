@@ -9,7 +9,7 @@ import {EventsService} from "../../../../../shared/services/events.service";
 
 })
 export class ToolbarComponent implements OnInit {
-    _name = 'All';
+    _name = 'All Albums';
 
     @Input()
     set name(value) {

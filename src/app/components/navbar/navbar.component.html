@@ -14,6 +14,11 @@
     </button>
 
 
+    <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
+        <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">category</mat-icon>
+    </button>
+
+
     <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
         <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">shopping_cart</mat-icon>
     </button>

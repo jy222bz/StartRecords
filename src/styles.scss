@@ -61,7 +61,8 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 .app-content {
     position: fixed;
-    top: 64px;
+    top: 0;
+
     bottom: 0;
     left: 0;
     right: 0;
@@ -312,4 +313,17 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     font-size: 15px;
     display: flex;
     justify-content: flex-end;
+}
+
+
+@media (max-width: 699px) {
+    .svg--lg {
+        display: none;
+    }
+}
+
+@media (min-width: 700px) {
+    .svg--sm {
+        display: none;
+    }
 }

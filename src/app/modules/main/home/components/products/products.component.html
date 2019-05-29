@@ -1,10 +1,10 @@
 <div (window:resize)="onResize($event)" class="app-main-home-products">
-    <mat-grid-list [gutterSize]="8" [cols]="columns"  class="app-main-home-products-list" rowHeight="290px">
+    <mat-grid-list [gutterSize]="8" [cols]="columns" class="app-main-home-products-list" rowHeight="{{getRowHeight()}}">
         <mat-grid-tile *ngFor="let element of products"
                        [rowspan]="getRowSpan(element)"
                        [colspan]="getColumnSpan(element)"
                        class="app-main-home-products-product">
-            <app-product [item]="element" style="width: 100%"></app-product>
+            <app-product [item]="element" style="width: 100%" [height]="getRowHeight()"></app-product>
         </mat-grid-tile>
     </mat-grid-list>
 </div>

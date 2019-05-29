@@ -8,6 +8,7 @@ export class Product extends Model {
     price: number;
     total: number;
     duration: number;
+    tracks: number;
     description: string;
     createdAt: string;
     rowSpan: number;
@@ -35,6 +36,7 @@ export class Product extends Model {
         this.cover = document.data().cover;
         this.description = document.data().description;
         this.total = document.data().total;
+        this.tracks = document.data().tracks;
         this.createdAt = document.data().createdAt != null ? document.data().createdAt.toDate().toLocaleString() : '';
         this.year = document.data().year;
         this.columnSpan = document.data().columnSpan === undefined ? 1 : document.data().columnSpan;

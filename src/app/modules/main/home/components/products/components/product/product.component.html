@@ -1,15 +1,26 @@
 <div class="app-main-home-products-product" (click)="navigate()">
-    <ul class="app-product-title">
-        <li class="name">{{item.name}}</li>
-        <li class="artist">{{item.artist}}</li>
-        <!-- <li class="price">{{item.price}}</li> -->
-    </ul>
-
-    <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)"
-         [style.height]="getHeight()"
-
-         alt="">
-
+    <div class="app-product-title">
+        <div class="title">
+            <div class="name">{{item.name}}</div>
+            <div class="artist">{{item.artist}}</div>
+        </div>
+    </div>
+    <div class="app-product-bottom">
+        <div class="tracks">
+            <app-counter [value]="item.tracks"></app-counter>
+            Tracks |
+            <app-counter [value]="getDuration()"></app-counter>
+            min
+        </div>
+        <div class="rating">
+            <app-rating style="float: right; margin: 1em"
+                        [productId]="item.id"
+                        [rating]="item.getRating()"
+                        [clickable]="false"
+            ></app-rating>
+        </div>
+    </div>
+    <img [lazyLoad]="item.cover" (onLoad)="afterImageLoaded($event)" [style.height]="height" alt="">
 </div>
 
 

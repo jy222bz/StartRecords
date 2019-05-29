@@ -37,6 +37,9 @@ import {ProductRatingsService} from "../../../shared/services/products/product-r
         LocalStorageService,
         BasketService,
     ],
+    exports: [
+        RatingComponent
+    ],
     entryComponents: []
 })
 export class ProductModule {

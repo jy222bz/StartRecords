@@ -17,6 +17,8 @@ import {CategoriesComponent} from "./components/categories/categories.component"
 import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {DealComponent} from "./components/deal/deal.component";
 import {FilterComponent} from "./components/products/components/filter/filter.component";
+import {ProductModule} from "../product/product.module";
+import {WindowRef} from "../../../shared/directives/WindowRef";
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {FilterComponent} from "./components/products/components/filter/filter.co
         CommonModule,
         SharedModule,
         AdminProductsModule,
+        ProductModule,
     ],
     declarations: [
         MainComponent,
@@ -41,6 +44,7 @@ import {FilterComponent} from "./components/products/components/filter/filter.co
     providers: [
         ProductsService,
         CategoriesService,
+        WindowRef,
     ],
     entryComponents: [
         FilterComponent,

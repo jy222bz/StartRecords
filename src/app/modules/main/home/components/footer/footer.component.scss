@@ -1,23 +1,22 @@
-.app-main-footer-title{
-    font-size: 28px;
-    font-weight: bold;
-    margin: 5px;
-    color: white;
-    font-family: "Times New Roman", fantasy;
-}
-.app-main-footer-big-text{
-    font-size: 20px;
-    font-weight: bold;
-    margin: 5px;
-    color: white;
-    font-family: "Times New Roman", fantasy;
+.app-main-footer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    height: 300px;
+    background-image: linear-gradient(#ff9d2f, #ff6126);
+
+    div {
+        flex: 1;
+
+    }
+
+    svg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+    }
 
 }
-.app-main-footer-small-text{
-    font-style: italic;
-    font-size: 18px;
-    margin: 5px;
-    color: white;
-    font-family: "Times New Roman", fantasy;
-}
-
