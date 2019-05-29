@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import {ProductComponent} from "./product.component";
-import {ProductService} from "../../../../../../../shared/services/products/product.service";
+import {ProductService} from "../../../../../shared/services/products/product.service";
 
 describe('ProductISShown', () => {
     beforeEach(() => {

@@ -3,17 +3,8 @@ h1 {
     text-align: left;
 }
 
-html {
-    height: 100%
-}
-
 body {
     margin: 0;
-
-    background-repeat: no-repeat;
-
-
-
 }
 
 a {
@@ -67,7 +58,6 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     left: 0;
     right: 0;
     z-index: -1;
-    background: white;
     overflow-y: auto;
     overflow-x: hidden;
 }

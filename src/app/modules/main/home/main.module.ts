@@ -1,22 +1,12 @@
 import {NgModule} from '@angular/core';
 import {MaterialModule} from '../../../material.module';
-
 import {MainRoutingModule} from './main.routing.module';
-
 import {MainComponent} from './main.component';
 import {ComponentsModule} from "../../../components.module";
-import {FooterComponent} from "./components/footer/footer.component";
-import {ProductsComponent} from "./components/products/products.component";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {ProductComponent} from "./components/products/components/product/product.component";
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../../shared.module";
-import {ToolbarComponent} from "./components/toolbar/toolbar.component";
-import {AdminProductsModule} from "../../admin/products/admin-products.module";
-import {CategoriesComponent} from "./components/categories/categories.component";
-import {CategoriesService} from "../../../shared/services/categoreis/categories.service";
 import {DealComponent} from "./components/deal/deal.component";
-import {FilterComponent} from "./components/products/components/filter/filter.component";
 import {ProductModule} from "../product/product.module";
 import {WindowRef} from "../../../shared/directives/WindowRef";
 
@@ -28,27 +18,17 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
         MainRoutingModule,
         CommonModule,
         SharedModule,
-        AdminProductsModule,
         ProductModule,
     ],
     declarations: [
         MainComponent,
-        FooterComponent,
-        ProductsComponent,
-        ProductComponent,
-        ToolbarComponent,
-        CategoriesComponent,
         DealComponent,
-        FilterComponent,
     ],
     providers: [
         ProductsService,
-        CategoriesService,
         WindowRef,
     ],
-    entryComponents: [
-        FilterComponent,
-    ]
+    entryComponents: []
 })
 export class MainModule {
 }

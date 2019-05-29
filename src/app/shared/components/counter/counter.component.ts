@@ -29,7 +29,7 @@ export class CounterComponent implements OnInit {
     animate(start, end): void {
         const range = end - start;
         // no timer shorter than 50ms (not really visible any way)
-        const minTimer = 50;
+        const minTimer = 100;
         // calc step time to show all interediate values
         let stepTime = Math.abs(Math.floor(this.duration / range));
 

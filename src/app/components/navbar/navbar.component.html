@@ -1,7 +1,14 @@
 <mat-toolbar class="app-navbar">
-    <img class="app-navbar-img" src="assets/images/star.png" alt=""/>
     <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
+    <span [routerLink]="['/products']">Albums</span>
+    <span [routerLink]="['/products']">About</span>
     <span class="mat-toolbar-spacer"></span>
+
+
+    <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
+        <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">menu</mat-icon>
+    </button>
+
 
     <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
             *ngIf="!authenticationService.isAuthenticated()">
@@ -14,13 +21,10 @@
     </button>
 
 
-    <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
-        <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">category</mat-icon>
-    </button>
-
-
     <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
-        <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">shopping_cart</mat-icon>
+        <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">
+            shopping_cart
+        </mat-icon>
     </button>
 
     <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"

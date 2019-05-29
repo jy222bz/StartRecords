@@ -3,7 +3,7 @@ import {EventsService} from "../../../../../shared/services/events.service";
 
 
 @Component({
-    selector: 'app-main-home-toolbar',
+    selector: 'app-products-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 

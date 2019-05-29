@@ -1,33 +1,13 @@
 .app-navbar {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    background-color: transparent;
-
-}
-
-.app-navbar-img {
-    height: auto;
-    float: left;
-    width: 40px;
-    margin-bottom: 5px;
-    color: white;
+    color: #ffffff;
 }
 
 .app-navbar-title {
-    margin-left:  6px;
-    margin-top:  0;
-    font-family: "Times New Roman", fantasy;
+    margin-left: 2em;
+    margin-top: 0;
+    font-family: 'Arvo', fantasy;
     font-size: 30px;
     cursor: pointer;
-    color: #ffffff;
-
-   // text-transform: full-width;
-
-}
-.app-component-navbar-icon{
-    font-size: 36px;
-    width: 36px;
-    height: 36px;
-}
-.app-component-navbar-icon:hover{
-    color: grey;
+    font-weight: bold;
 }

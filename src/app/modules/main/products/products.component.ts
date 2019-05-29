@@ -1,20 +1,19 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ProductsService} from "../../../../../shared/services/products/products.service";
-import {EventsService} from "../../../../../shared/services/events.service";
-import {MatDialog} from "@angular/material";
+import {Component, Input, OnInit} from '@angular/core';
 import {FilterComponent} from "./components/filter/filter.component";
-import {WindowRef} from "../../../../../shared/directives/WindowRef";
+import {ProductsService} from "../../../shared/services/products/products.service";
+import {EventsService} from "../../../shared/services/events.service";
+import {MatDialog} from "@angular/material";
+import {WindowRef} from "../../../shared/directives/WindowRef";
 
 @Component({
-    selector: 'app-main-home-products',
+    selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
+    categoryName = 'All Albums';
 
     products = [];
-    pageIndex = 0;
-    pageSize = 20;
 
     columns = 3;
     rowHeight = 42;
@@ -28,22 +27,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
         sortField: 0,
     };
 
-    constructor(
-        private productsService: ProductsService,
-        private eventsService: EventsService,
-        private dialog: MatDialog,
-        private winRef: WindowRef,
-    ) {
-        eventsService.registerEvent('HOME-FILTER-SHOW', this, () => {
-            this.openFilterComponent();
-        });
-        this.calcHeight(winRef.nativeWindow.innerWidth);
-    }
 
-    @Input()
-    set categoryId(value) {
-        this._categoryId = value;
-        this.get();
+    constructor(private productsService: ProductsService,
+                private eventsService: EventsService,
+                private dialog: MatDialog,
+                private winRef: WindowRef,) {
+
     }
 
     ngOnInit(): void {
@@ -53,6 +42,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.eventsService.unregisterEvent('HOME-FILTER-SHOW', this);
     }
+
+    categoryChanged(element) {
+        this.categoryId = element.id;
+        this.categoryName = element.name;
+    }
+
+    @Input()
+    set categoryId(value) {
+        this._categoryId = value;
+        this.get();
+    }
+
 
     onResize(event) {
         this.calcHeight(event.target.innerWidth);
@@ -78,7 +79,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
     }
 
-    getColumnSpan(element) {
+    getColumnSpan(element) : number {
         if (this.columns == 1) {
             return 1;
         }
@@ -108,7 +109,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get(this.pageIndex, this.pageSize, this._categoryId)
+        const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
                     if (this.filterData.filter !== 0) {
                         data = data.filter((item) => {
@@ -164,6 +165,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
             )
         ;
     }
+
 
 }
 

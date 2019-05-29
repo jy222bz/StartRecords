@@ -17,12 +17,11 @@ export class ProductsService {
             ;
     }
 
-    get(pageIndex, pageSize, categoryId = '') {
+    get(categoryId = '') {
         if (categoryId === '') {
             return this.afs.collection<Product>('products',
                 ref => ref
                     .orderBy('name', 'asc')
-                    .limit(pageSize)
             ).snapshotChanges()
                 .pipe(map(actions => {
                         return actions.map(item => {
@@ -34,7 +33,6 @@ export class ProductsService {
             return this.afs.collection<Product>('products',
                 ref => ref
                     .where('categories', 'array-contains', categoryId)
-                    .limit(pageSize)
             ).snapshotChanges()
                 .pipe(map(
                     actions => {

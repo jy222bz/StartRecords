@@ -75,7 +75,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
+        const subscription = this.productsService.get()
             .subscribe(
                 (data) => {
                     this.set(data);

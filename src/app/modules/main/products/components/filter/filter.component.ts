@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
-    selector: 'app-admin-products-filter',
+    selector: 'app-products-filter',
     templateUrl: './filter.component.html',
 })
 export class FilterComponent implements OnInit {
@@ -48,6 +48,7 @@ export class FilterComponent implements OnInit {
         this.dialog.close(this.data);
 
         return false;
+
     }
 
     close() {

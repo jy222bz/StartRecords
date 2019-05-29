@@ -1,4 +1,7 @@
 <div *ngIf="product != null" class="app-main-home-deal">
+    <span class="app-main-home-deal-discount">
+        <app-counter [value]="product.discount">%</app-counter>
+    </span>
     <div>
         <div class="app-main-home-deal-info">
             <div>{{product.name}}</div>
@@ -8,14 +11,9 @@
                     SHOP NOW
                 </button>
             </div>
-            <div>Discount <app-counter [value]="product.discount"></app-counter> %</div>
         </div>
     </div>
-
-    <div>
-        <img [lazyLoad]="product.cover" (onLoad)="afterImageLoaded($event)">
-    </div>
-
+    <img [lazyLoad]="product.cover" (onLoad)="afterImageLoaded($event)">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
         <polygon class="svg--sm" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"></polygon>
         <polygon class="svg--lg" fill="white"

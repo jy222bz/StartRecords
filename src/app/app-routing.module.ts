@@ -8,6 +8,10 @@ const routes: Routes = [
         loadChildren: './modules/main/home/main.module#MainModule',
     },
     {
+        path: 'products',
+        loadChildren: './modules/main/products/products.module#ProductsModule',
+    },
+    {
         path: 'basket',
         loadChildren: './modules/main/basket/basket.module#BasketModule',
     },

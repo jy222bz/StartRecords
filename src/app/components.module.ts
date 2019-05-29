@@ -4,6 +4,7 @@ import {PageNotFoundComponent} from "./shared/components/page-not-found/page-not
 import {CounterComponent} from "./shared/components/counter/counter.component";
 import {DurationComponent} from "./shared/components/duration/duration.component";
 import {SvgLoaderComponent} from "./shared/components/svg-loader/svg-loader.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 @NgModule({
     declarations: [
@@ -12,6 +13,7 @@ import {SvgLoaderComponent} from "./shared/components/svg-loader/svg-loader.comp
         CounterComponent,
         DurationComponent,
         SvgLoaderComponent,
+        FooterComponent,
     ],
     imports: [],
     exports: [
@@ -20,6 +22,7 @@ import {SvgLoaderComponent} from "./shared/components/svg-loader/svg-loader.comp
         CounterComponent,
         DurationComponent,
         SvgLoaderComponent,
+        FooterComponent,
     ]
 })
 export class ComponentsModule {

@@ -1,0 +1,20 @@
+<div class="page-content">
+    <app-products-toolbar [name]="categoryName"></app-products-toolbar>
+
+    <app-main-home-categories (categoryChanged)="categoryChanged($event)"></app-main-home-categories>
+
+    <div (window:resize)="onResize($event)" class="app-products">
+        <mat-grid-list [gutterSize]="8" [cols]="columns" class="app-products-list"
+                       rowHeight="{{getRowHeight()}}">
+            <mat-grid-tile *ngFor="let element of products"
+                           [rowspan]="getRowSpan(element)"
+                           [colspan]="getColumnSpan(element)"
+                           class="app-products-product">
+                <app-products-product [item]="element" style="width: 100%"
+                                      [height]="getRowHeight()"></app-products-product>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+</div>
+<app-footer></app-footer>
