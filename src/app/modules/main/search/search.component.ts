@@ -22,7 +22,7 @@ export class searchComponent {
     rating = '';
     items: any;
 
-    constructor(private readonly fs: firestore,
+    constructor(private readonly fs,
                 private route: ActivatedRoute,
                 private authService: AuthenticationService) {
         this.keyword = this.route.snapshot.queryParams.keyword;
