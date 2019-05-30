@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BasketService} from "../../../shared/services/basket/basket.service";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
 import {EventsService} from "../../../shared/services/events.service";
+import {WindowRef} from "../../../shared/directives/WindowRef";
 
 
 @Component({
@@ -14,6 +15,7 @@ import {EventsService} from "../../../shared/services/events.service";
 
 export class ProductComponent implements OnInit {
     product: any = {};
+    imageWidth = 30;
 
     constructor(
         private productService: ProductService,
@@ -21,8 +23,9 @@ export class ProductComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private eventsService: EventsService,
         private activatedRoute: ActivatedRoute,
+        private winRef: WindowRef,
     ) {
-
+        this.calcDimension(winRef.nativeWindow.innerWidth);
     }
 
     ngOnInit(): void {
@@ -44,15 +47,22 @@ export class ProductComponent implements OnInit {
         this.basketService.add(this.product.id);
     }
 
-    getRating() {
-        if (this.product == null) {
-            return;
-        }
-        if (this.product.numberOfRatings === 0) {
-            return 0;
-        }
-        return this.product.totalRatings / this.product.numberOfRatings;
+    onResize(event) {
+        this.calcDimension(event.target.innerWidth);
+    }
 
+    calcDimension(width) {
+        if (width < 400) {
+            this.imageWidth = 300;
+        } else if (width < 600) {
+            this.imageWidth = 300;
+        } else if (width < 960) {
+            this.imageWidth = 400;
+        } else if (width < 1280) {
+            this.imageWidth = 500;
+        } else {
+            this.imageWidth = 600;
+        }
     }
 
     load() {

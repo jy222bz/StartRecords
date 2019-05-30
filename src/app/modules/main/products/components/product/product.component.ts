@@ -27,10 +27,6 @@ export class ProductComponent implements OnInit {
     afterImageLoaded(event) {
 
     }
-
-    getDuration() {
-        return Math.floor(this.item.duration / 60);
-    }
 }
 
 

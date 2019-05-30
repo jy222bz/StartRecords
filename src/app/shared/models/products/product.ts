@@ -51,4 +51,8 @@ export class Product extends Model {
         }
         return Math.floor(this.totalRatings / this.numberOfRatings);
     }
+
+    getDurationInMinutes() {
+        return Math.floor(this.duration / 60);
+    }
 }

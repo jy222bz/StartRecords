@@ -1,11 +1,11 @@
-.info-style{
-    font-family: Georgia, serif;
-    font-size: 18px;
-    //Could comment away shadow if we don't want it Regards, Ville.
-    //text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+.app-product-info-title {
+    text-align: center;
+    padding: 32px;
+    background-color: white;
+    font-size: 48px;
 }
-.font-larger{
-    font-family: Georgia, serif;
-    font-size: 28px;
-    font-weight: unset;
+
+.app-product-info-extra {
+    background-color: white;
+    padding: 0 32px 0 32px;
 }
