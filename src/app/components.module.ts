@@ -5,6 +5,7 @@ import {CounterComponent} from "./shared/components/counter/counter.component";
 import {DurationComponent} from "./shared/components/duration/duration.component";
 import {SvgLoaderComponent} from "./shared/components/svg-loader/svg-loader.component";
 import {FooterComponent} from "./components/footer/footer.component";
+import {MatIconModule} from "@angular/material";
 
 @NgModule({
     declarations: [
@@ -15,7 +16,9 @@ import {FooterComponent} from "./components/footer/footer.component";
         SvgLoaderComponent,
         FooterComponent,
     ],
-    imports: [],
+    imports: [
+        MatIconModule
+    ],
     exports: [
         AlertComponent,
         PageNotFoundComponent,

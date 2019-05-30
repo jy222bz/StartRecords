@@ -1,5 +1,5 @@
 .app-products {
-    padding: 8px;
+    padding: 16px 0 16px 0;
 }
 
 @keyframes ProductShow {
@@ -13,9 +13,20 @@
     }
 }
 
+.app-products-container {
+    margin-top: 80px;
+}
+
 .app-products-product {
     opacity: 0;
     width: 100%;
     animation: ProductShow 1s;
     animation-fill-mode: forwards;
+}
+
+$elements: 15;
+@for $i from 0 to 50 {
+    .app-products-list .app-products-product:nth-child(#{$i + 1}) {
+        animation-delay: $i + 's'
+    }
 }

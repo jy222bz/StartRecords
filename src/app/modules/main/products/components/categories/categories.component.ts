@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
 import {Category} from "../../../../../shared/models/categories/category";
 import {EventsService} from "../../../../../shared/services/events.service";
 
 @Component({
-    selector: 'app-main-home-categories',
+    selector: 'app-products-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss'],
 })
@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     constructor(
         private categoriesService: CategoriesService,
         private eventsService: EventsService,
-        ) {
+    ) {
 
     }
 
@@ -72,11 +72,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
 
         for (let i = 0; i < data.length; ++i) {
-            data[i].scale = 1 + data[i].count *  min / max;
+            data[i].scale = 1 + data[i].count * min / max;
         }
         this.categories = data;
     }
-
 
 
     changeCategory(element) {
@@ -92,6 +91,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         if (element.scale === undefined) {
             return 'scale(1.0)';
         }
-         return 'scale(' + element.scale + ')';
+        return 'scale(' + element.scale + ')';
     }
 }

@@ -1,46 +1,50 @@
-<mat-toolbar class="app-navbar">
-    <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
-    <span [routerLink]="['/products']">Albums</span>
-    <span [routerLink]="['/products']">About</span>
-    <span class="mat-toolbar-spacer"></span>
+<div [className]="'app-navbar ' + className" [style.color]="fontColor">
+    <div class="title">
+        <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
 
+        <div class="option">
+            <span [routerLink]="['/products']">Albums</span>
+        </div>
+    </div>
 
-    <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
-        <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">menu</mat-icon>
-    </button>
-
-
-    <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
-            *ngIf="!authenticationService.isAuthenticated()">
-        Register
-    </button>
-
-    <button mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
-            *ngIf="!authenticationService.isAuthenticated()">
-        Login
-    </button>
-
-
-    <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
-        <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">
-            shopping_cart
-        </mat-icon>
-    </button>
-
-    <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"
-            *ngIf="authenticationService.isAuthenticated()">
-        <mat-icon class="app-component-navbar-icon">person</mat-icon>
-    </button>
-    <mat-menu #clientEditMenu="matMenu">
-        <button mat-menu-item (click)="navigateMyAccount()">
-            <mat-icon>account_circle</mat-icon>
-            <span>My Account</span>
+    <div class="right">
+        <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
+            <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">menu</mat-icon>
         </button>
 
-        <button mat-menu-item (click)="openLogoutComponent()">
-            <mat-icon>exit_to_app</mat-icon>
-            Logout
-        </button>
-    </mat-menu>
-</mat-toolbar>
 
+        <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
+                *ngIf="!authenticationService.isAuthenticated()">
+            Register
+        </button>
+
+        <button mat-raised-button matTooltip="Login" (click)="openLoginComponent()"
+                *ngIf="!authenticationService.isAuthenticated()">
+            Login
+        </button>
+
+
+        <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
+            <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">
+                shopping_cart
+            </mat-icon>
+        </button>
+
+        <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"
+                *ngIf="authenticationService.isAuthenticated()">
+            <mat-icon class="app-component-navbar-icon">person</mat-icon>
+        </button>
+        <mat-menu #clientEditMenu="matMenu">
+            <button mat-menu-item (click)="navigateMyAccount()">
+                <mat-icon>account_circle</mat-icon>
+                <span>My Account</span>
+            </button>
+
+            <button mat-menu-item (click)="openLogoutComponent()">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+            </button>
+        </mat-menu>
+
+    </div>
+</div>

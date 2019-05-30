@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../shared/services/authentication.service";
 import {MatDialog} from "@angular/material";
 import {LoginComponent} from "../login/login.component";
@@ -7,16 +7,26 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {RegisterComponent} from "../register/register.component";
 import {BasketService} from "../../shared/services/basket/basket.service";
 import {EventsService} from "../../shared/services/events.service";
+import {WindowRef} from "../../shared/directives/WindowRef";
+import {fadeAnimation} from "../../shared/animations/fade-animation";
+
 
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
     title = 'StarRecords';
     homePage = false;
+    className = '';
+
+
+    @Input() defaultColor = '#ffffff';
+    @Input() scrollColor = '#000000';
+
+    fontColor = this.defaultColor;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -25,6 +35,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private dialog: MatDialog,
         private router: Router,
         private route: ActivatedRoute,
+        private winRef: WindowRef,
     ) {
 
     }
@@ -32,6 +43,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.registerLoginShowEvent();
         this.registerRouteChanges();
+        this.registerScrollEvent();
     }
 
     private registerLoginShowEvent() {
@@ -43,12 +55,39 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private registerRouteChanges() {
         this.router.events.subscribe((val) => {
             this.homePage = this.router.url == '/';
+            if (this.homePage) {
+                this.defaultColor = '#ffffff';
+            } else {
+                this.defaultColor = '#000000';
+            }
+            this.fontColor = this.defaultColor;
         });
     }
 
-    ngOnDestroy(): void {
-
+    private registerScrollEvent() {
+        this.winRef.nativeWindow.addEventListener('scroll', this.scroll, true);
     }
+
+    private removeScrollEvent() {
+        window.removeEventListener('scroll', this.scroll, true);
+    }
+
+    ngOnDestroy(): void {
+        this.removeScrollEvent();
+    }
+
+    scroll = (event: any): void => {
+        const top = event.srcElement.scrollTop;
+        if (top == 0) {
+            this.className = '';
+            this.fontColor = this.defaultColor;
+        } else {
+            this.className = 'app-navbar-dark';
+            this.fontColor = this.scrollColor;
+        }
+
+
+    };
 
     getBasketTotal() {
         const total = this.basketService.getCount();
@@ -107,5 +146,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     navigateBasket() {
         this.router.navigate(['basket']);
     }
+
 
 }

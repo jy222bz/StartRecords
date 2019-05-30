@@ -1,14 +1,24 @@
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, state, style, transition, trigger} from "@angular/animations";
 
 
 export const fadeAnimation =
     trigger('fadeAnimation', [
-        state('open', style({
-            opacity: 1
+        state('in', style({
+            'opacity': '1',
         })),
-        state('closed',   style({
-            opacity: 0
+        state('out', style({
+            'opacity': '0',
         })),
-        transition('open => closed', animate('600ms ease-out')),
-        transition('closed => open', animate('1000ms ease-in'))
+        transition('in => out', [group([
+                animate('200ms ease-in-out', style({
+                    'opacity': '0'
+                })),
+            ]
+        )]),
+        transition('out => in', [group([
+                animate('200ms ease-in-out', style({
+                    'opacity': '1'
+                }))
+            ]
+        )])
     ]);

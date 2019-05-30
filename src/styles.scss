@@ -65,7 +65,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 /* Page styles */
 .page-content {
     padding: 0 16px;
-    margin-top: 16px;
+    margin-top: 80px;
 }
 
 .page-table {
@@ -214,18 +214,6 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
     background-color: transparent;
 }
 
-
-@keyframes MatRowSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
 .mat-row {
     opacity: 0;
     animation: MatRowSlideIn 1s;
@@ -315,5 +303,41 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 @media (min-width: 700px) {
     .svg--sm {
         display: none;
+    }
+}
+
+/* Animations */
+@keyframes MatRowSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(1.6);
+        opacity: 0;
+
+    }
+    to {
+        transform: scale(1.0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(1.6);
+        opacity: 0;
+
+    }
+    to {
+        transform: scale(1.0);
+        opacity: 1;
     }
 }

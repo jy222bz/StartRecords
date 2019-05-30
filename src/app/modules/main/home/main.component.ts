@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainComponent implements OnInit {
     categoryId = '';
-    categoryName = 'All Albums';
+    categoryName = 'Albums';
 
     constructor() {
 

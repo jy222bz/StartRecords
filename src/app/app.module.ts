@@ -22,6 +22,7 @@ import {EventsService} from "./shared/services/events.service";
 import {NotificationsService} from "./shared/services/notifications.service";
 import {PlayerComponent} from "./components/player/player.component";
 import {SessionService} from "./shared/services/session.service";
+import {WindowRef} from "./shared/directives/WindowRef";
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {SessionService} from "./shared/services/session.service";
         EventsService,
         NotificationsService,
         SessionService,
+        WindowRef,
     ],
     bootstrap: [
         AppComponent,

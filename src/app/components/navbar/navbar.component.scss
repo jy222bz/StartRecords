@@ -1,13 +1,42 @@
 .app-navbar {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-    color: #ffffff;
+    filter: none;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+        margin-left: 32px;
+
+        display: flex;
+        align-items: center;
+
+        * {
+            cursor: pointer;
+        }
+    }
+
+    .option {
+        padding-left: 16px;
+        font-size: 20px;
+    }
+
+    .right {
+        margin-right: 32px;
+    }
+    transition: all 0.5s;
+}
+
+.app-navbar-dark {
+    background: linear-gradient(to bottom, #fff 10%, rgba(255, 255, 255, 0.9) 100%);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+
 }
 
 .app-navbar-title {
-    margin-left: 2em;
-    margin-top: 0;
     font-family: 'Arvo', fantasy;
-    font-size: 30px;
-    cursor: pointer;
+    font-size: 32px;
     font-weight: bold;
 }
+

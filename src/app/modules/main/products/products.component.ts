@@ -11,12 +11,12 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
     styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-    categoryName = 'All Albums';
+    categoryName = 'Albums';
 
     products = [];
 
     columns = 3;
-    rowHeight = 42;
+    rowHeight = 29;
 
     _categoryId = '';
 
@@ -31,12 +31,14 @@ export class ProductsComponent implements OnInit {
     constructor(private productsService: ProductsService,
                 private eventsService: EventsService,
                 private dialog: MatDialog,
-                private winRef: WindowRef,) {
+                private winRef: WindowRef,
+    ) {
 
     }
 
     ngOnInit(): void {
         this.get();
+        this.calcHeight(this.winRef.nativeWindow.innerWidth);
     }
 
     ngOnDestroy(): void {
@@ -72,14 +74,16 @@ export class ProductsComponent implements OnInit {
             this.columns = 3;
         }
 
-        if (this.columns < 3) {
-            this.rowHeight = 49;
+        if (this.columns == 2) {
+            this.rowHeight = 54;
+        } else if (this.columns == 1) {
+            this.rowHeight = 70;
         } else {
             this.rowHeight = 29;
         }
     }
 
-    getColumnSpan(element) : number {
+    getColumnSpan(element): number {
         if (this.columns == 1) {
             return 1;
         }

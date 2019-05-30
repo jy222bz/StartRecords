@@ -1,19 +1,6 @@
-@keyframes fadein {
-    from {
-        transform: scale(1.6);
-        opacity: 0;
-
-    }
-    to {
-        transform: scale(1.0);
-        opacity: 1;
-    }
-}
-
 .app-products-product {
 
     cursor: pointer;
-
 
     .app-product-title {
         z-index: 10;
@@ -35,16 +22,17 @@
                 font-size: 3em;
                 font-weight: bold;
                 text-align: center;
+                transition: all .2s ease-in-out;
             }
 
             .artist {
-                font-size: 1.3em;
+                font-size: 1em;
                 font-weight: bold;
                 text-transform: uppercase;
                 line-height: 1.83333vw;
                 letter-spacing: 0.06em;
-                padding: 0.2em;
-
+                padding: 8px;
+                transition: all .2s ease-in-out;
             }
         }
     }
@@ -90,15 +78,29 @@
         width: 100%;
         border: transparent;
         object-fit: fill;
-        animation: fadein 1.2s;
+        animation: fadeIn 1.2s;
         transition: all .2s ease-in-out;
+
+        .app-rating {
+            animation: slideIn 1.2s;
+        }
     }
-
-
 }
 
-.app-main-home-products-product:hover {
+.app-products-product:hover {
     img {
         transform: scale(1.2);
+        filter: brightness(20%);
     }
+
+    .name {
+        transform: translateY(-50px);
+    }
+
+    .artist {
+        transform: translateY(-25px);
+    }
+
+
+
 }
