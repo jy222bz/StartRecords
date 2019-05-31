@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FilterComponent} from "./components/filter/filter.component";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {EventsService} from "../../../shared/services/events.service";
@@ -10,7 +10,7 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
     categoryName = 'Albums';
 
     products = [];
@@ -42,13 +42,16 @@ export class ProductsComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        this.eventsService.unregisterEvent('HOME-FILTER-SHOW', this);
+
     }
+
 
     categoryChanged(element) {
         this.categoryId = element.id;
         this.categoryName = element.name;
     }
+
+
 
     @Input()
     set categoryId(value) {

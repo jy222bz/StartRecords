@@ -5,7 +5,7 @@ import {PageNotFoundComponent} from './shared/components/page-not-found/page-not
 const routes: Routes = [
     {
         path: '',
-        loadChildren: './modules/main/home/main.module#MainModule',
+        loadChildren: './modules/main/home/home.module#HomeModule',
     },
     {
         path: 'products',

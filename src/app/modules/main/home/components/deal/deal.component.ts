@@ -4,7 +4,7 @@ import {Product} from "../../../../../shared/models/products/product";
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-main-home-deal',
+    selector: 'app-home-deal',
     templateUrl: './deal.component.html',
     styleUrls: ['./deal.component.scss'],
 })

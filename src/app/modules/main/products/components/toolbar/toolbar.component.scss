@@ -1,34 +1,8 @@
-.app-main-home-products-toolbar {
-    height: 6em;
-}
-
-.app-main-home-products-toolbar {
-    display: flex;
+.app-products-toolbar {
     color: black;
     font-family: Garamond, serif;
-}
-
-.app-main-home-products-toolbar .left {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.app-main-home-products-toolbar .center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.app-main-home-products-toolbar .title {
-    font-size: 5em;
+    font-size: 4em;
     font-weight: bold;
-}
 
-.app-main-home-products-toolbar .right {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+    padding: 16px 32px 16px 32px;
 }

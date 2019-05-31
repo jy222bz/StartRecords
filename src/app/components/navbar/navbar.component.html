@@ -1,4 +1,4 @@
-<div [className]="'app-navbar ' + className" [style.color]="fontColor">
+<div *ngIf="visible" [className]="'app-navbar ' + className" [style.color]="fontColor">
     <div class="title">
         <span class="app-navbar-title" [routerLink]="['/']">{{ title }}</span>
 
@@ -8,10 +8,16 @@
     </div>
 
     <div class="right">
-        <button mat-icon-button *ngIf="homePage" (click)="openCategories()">
-            <mat-icon class="app-component-navbar-icon" matBadgeColor="primary">menu</mat-icon>
+        <button mat-icon-button *ngIf="productsPage" (click)="openSearch()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="productsPage" (click)="openCategories()">
+            <mat-icon>menu</mat-icon>
         </button>
 
+        <button mat-icon-button *ngIf="productsPage" (click)="openFilter()">
+            <mat-icon>filter_list</mat-icon>
+        </button>
 
         <button style="margin-right: 8px" mat-raised-button matTooltip="Signup" (click)="openRegisterComponent()"
                 *ngIf="!authenticationService.isAuthenticated()">
@@ -25,14 +31,14 @@
 
 
         <button mat-icon-button *ngIf="authenticationService.isUser()" (click)="navigateBasket()">
-            <mat-icon class="app-component-navbar-icon" matBadge="{{getBasketTotal()}}" matBadgeColor="primary">
+            <mat-icon matBadge="{{getBasketTotal()}}" matBadgeColor="primary">
                 shopping_cart
             </mat-icon>
         </button>
 
         <button mat-icon-button [matMenuTriggerFor]="clientEditMenu"
                 *ngIf="authenticationService.isAuthenticated()">
-            <mat-icon class="app-component-navbar-icon">person</mat-icon>
+            <mat-icon>person</mat-icon>
         </button>
         <mat-menu #clientEditMenu="matMenu">
             <button mat-menu-item (click)="navigateMyAccount()">

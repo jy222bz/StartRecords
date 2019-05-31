@@ -1,1 +1,11 @@
-<div class="app-products-search"></div>
+<div class="app-products-search" [@slideDownAnimation]="getShowState()">
+    <form class="search-form__form ng-untouched ng-pristine ng-valid" novalidate="">
+        <input
+        autocomplete="off" class="search-form__input search-form__input--animate-in"
+        placeholder="Search" type="text" ng-reflect-klass="search-form__input">
+    </form>
+    <button _ngcontent-c12="" class="search-form__button">
+        <div _ngcontent-c12="" class="search-form__close-icon search-form__close-icon--rotate"
+             ng-reflect-klass="search-form__close-icon" ng-reflect-ng-class="[object Object]"></div>
+    </button>
+</div>

@@ -2,16 +2,19 @@ import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core'
 import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
 import {Category} from "../../../../../shared/models/categories/category";
 import {EventsService} from "../../../../../shared/services/events.service";
+import {slideDownAnimation} from "../../../../../shared/animations/slide-down-animation";
 
 @Component({
     selector: 'app-products-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss'],
+    animations: [slideDownAnimation],
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
 
     visible = false;
     categories: Category[] = [];
+    albums = -1;
 
     @Output() categoryChanged = new EventEmitter<Category>();
 
@@ -28,23 +31,40 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.eventsService.unregisterEvent('HOME-CATEGORIES-SHOW', this);
+        this.unregisterShowEvent();
     }
 
     private registerShowEvent() {
-        this.eventsService.registerEvent('HOME-CATEGORIES-SHOW', this, () => {
-            this.visible = true;
+        this.eventsService.registerEvent('PRODUCTS-CATEGORIES-SHOW', this, () => {
+            this.show();
         });
+    }
+
+    private unregisterShowEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-CATEGORIES-SHOW', this);
     }
 
     get() {
         const subscription = this.categoriesService.get()
             .subscribe((data) => {
                 this.updateElements(data);
-
                 subscription.unsubscribe();
             })
         ;
+    }
+
+    getShowState() {
+        return this.visible ? 'in' : 'out';
+    }
+
+    show() {
+        this.visible = true;
+        this.eventsService.emit('MENU-HIDE');
+    }
+
+    hide() {
+        this.visible = false;
+        this.eventsService.emit('MENU-SHOW');
     }
 
     updateElements(data) {
@@ -79,12 +99,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
 
     changeCategory(element) {
-        this.hideCategories();
+        this.hide();
         this.categoryChanged.emit(element);
-    }
-
-    hideCategories() {
-        this.visible = false;
     }
 
     getScale(element) {
@@ -92,5 +108,13 @@ export class CategoriesComponent implements OnInit, OnDestroy {
             return 'scale(1.0)';
         }
         return 'scale(' + element.scale + ')';
+    }
+
+    mouseEnter(element) {
+        this.albums = element.count;
+    }
+
+    mouseLeave(element) {
+        this.albums = -1;
     }
 }

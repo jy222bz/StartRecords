@@ -8,8 +8,6 @@ import {RegisterComponent} from "../register/register.component";
 import {BasketService} from "../../shared/services/basket/basket.service";
 import {EventsService} from "../../shared/services/events.service";
 import {WindowRef} from "../../shared/directives/WindowRef";
-import {fadeAnimation} from "../../shared/animations/fade-animation";
-
 
 
 @Component({
@@ -19,8 +17,9 @@ import {fadeAnimation} from "../../shared/animations/fade-animation";
 })
 export class NavbarComponent implements OnInit, OnDestroy {
     title = 'StarRecords';
-    homePage = false;
+    productsPage = false;
     className = '';
+    visible = true;
 
 
     @Input() defaultColor = '#ffffff';
@@ -44,6 +43,32 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.registerLoginShowEvent();
         this.registerRouteChanges();
         this.registerScrollEvent();
+        this.registerShowEvent();
+        this.registerHideEvent();
+    }
+
+    ngOnDestroy(): void {
+        this.removeScrollEvent();
+    }
+
+    show() {
+        this.visible = true;
+    }
+
+    hide() {
+        this.visible = false;
+    }
+
+    private registerShowEvent() {
+        this.eventsService.registerEvent('MENU-SHOW', this, () => {
+            this.show();
+        });
+    }
+
+    private registerHideEvent() {
+        this.eventsService.registerEvent('MENU-HIDE', this, () => {
+            this.hide();
+        });
     }
 
     private registerLoginShowEvent() {
@@ -54,8 +79,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     private registerRouteChanges() {
         this.router.events.subscribe((val) => {
-            this.homePage = this.router.url == '/';
-            if (this.homePage) {
+            this.productsPage = this.router.url == '/products';
+
+            // check home
+            if (this.router.url == '/') {
                 this.defaultColor = '#ffffff';
             } else {
                 this.defaultColor = '#000000';
@@ -72,9 +99,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         window.removeEventListener('scroll', this.scroll, true);
     }
 
-    ngOnDestroy(): void {
-        this.removeScrollEvent();
-    }
+
 
     scroll = (event: any): void => {
         const top = event.srcElement.scrollTop;
@@ -126,11 +151,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
 
     openCategories() {
-        this.eventsService.emit('HOME-CATEGORIES-SHOW');
+        this.eventsService.emit('PRODUCTS-CATEGORIES-SHOW');
     }
 
     openSearch() {
-        this.eventsService.emit('HOME-CATEGORIES-SHOW');
+        this.eventsService.emit('PRODUCTS-SEARCH-SHOW');
+    }
+
+    openFilter() {
+        this.eventsService.emit('PRODUCTS-FILTER-SHOW');
     }
 
 

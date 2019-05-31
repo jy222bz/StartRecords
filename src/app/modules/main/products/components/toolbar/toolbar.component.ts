@@ -24,11 +24,4 @@ export class ToolbarComponent implements OnInit {
 
     }
 
-    showCategories() {
-        this.eventsService.emit('HOME-CATEGORIES-SHOW');
-    }
-
-    showFilter() {
-        this.eventsService.emit('HOME-FILTER-SHOW');
-    }
 }

@@ -1,34 +1,48 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {EventsService} from "../../../../../shared/services/events.service";
+import {slideDownAnimation} from "../../../../../shared/animations/slide-down-animation";
 
 
 @Component({
     selector: 'app-products-search',
     templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    animations: [slideDownAnimation],
 })
-export class SearchComponent implements OnInit {
-    form: FormGroup;
-    working = false;
-    error = null;
+export class SearchComponent implements OnInit, OnDestroy {
+    visible = null;
 
-    constructor(
-        private fb: FormBuilder,
-        private dialog: MatDialogRef<SearchComponent>,
-        @Inject(MAT_DIALOG_DATA) private data) {
+    constructor(private eventsService: EventsService) {
 
-        this.form = this.fb.group({
-            'name': [data.filter, [Validators.pattern("^[0-9]*$")]],
+    }
+
+    ngOnInit(): void {
+        this.registerShowEvent();
+    }
+
+    ngOnDestroy(): void {
+        this.unregisterShowEvent();
+    }
+
+    private registerShowEvent() {
+        this.eventsService.registerEvent('PRODUCTS-SEARCH-SHOW', this, () => {
+            this.visible = true;
         });
     }
 
-    ngOnInit() {
-
+    private unregisterShowEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-SEARCH-SHOW', this);
     }
 
-    save() {
-
+    getShowState() {
+        return this.visible ? 'in' : 'out'
     }
 
+    show() {
+        this.visible = true;
+    }
 
+    hide() {
+        this.visible = false;
+    }
 }

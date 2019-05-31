@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PlayerService} from "../../shared/services/player.service";
 import {EventsService} from "../../shared/services/events.service";
-import {slideAnimation} from "../../shared/animations/slide-animation";
+import {slideUpAnimation} from "../../shared/animations/slide-up-animation";
 
 
 @Component({
     selector: 'app-player',
     templateUrl: './player.component.html',
     styleUrls: ['./player.component.scss'],
-    animations: [slideAnimation]
+    animations: [slideUpAnimation]
 })
 
 export class PlayerComponent implements OnInit, OnDestroy {

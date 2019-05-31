@@ -5,16 +5,17 @@ import {BasketService} from "../../../shared/services/basket/basket.service";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
 import {EventsService} from "../../../shared/services/events.service";
 import {WindowRef} from "../../../shared/directives/WindowRef";
+import {Product} from "../../../shared/models/products/product";
 
 
 @Component({
-    selector: 'app-main-product',
+    selector: 'app-product',
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss']
 })
 
 export class ProductComponent implements OnInit {
-    product: any = {};
+    product: Product = new Product();
     imageWidth = 30;
 
     constructor(

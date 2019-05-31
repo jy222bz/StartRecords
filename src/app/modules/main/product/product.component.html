@@ -21,9 +21,12 @@
 
         <div fxFlex="1 1 100%">
             <div class="app-product-img" *ngIf="product != null">
-                <img [lazyLoad]="product.cover" width="{{imageWidth}}">
+                <img *ngIf="product.cover != null" [lazyLoad]="product.cover" width="{{imageWidth}}">
             </div>
-            <app-rating [productId]="product.id" [rating]="product.getRating()"></app-rating>
+            <div class="app-product-rating">
+                <app-rating [productId]="product.id" [rating]="product.getRating()"></app-rating>
+            </div>
+
         </div>
 
     </div>

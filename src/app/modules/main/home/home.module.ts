@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {MaterialModule} from '../../../material.module';
-import {MainRoutingModule} from './main.routing.module';
-import {MainComponent} from './main.component';
+import {HomeRoutingModule} from './home.routing.module';
+import {HomeComponent} from './home.component';
 import {ComponentsModule} from "../../../components.module";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {CommonModule} from "@angular/common";
@@ -15,20 +15,21 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
     imports: [
         MaterialModule,
         ComponentsModule,
-        MainRoutingModule,
+        HomeRoutingModule,
         CommonModule,
         SharedModule,
         ProductModule,
     ],
     declarations: [
-        MainComponent,
+        HomeComponent,
         DealComponent,
     ],
     providers: [
         ProductsService,
         WindowRef,
     ],
+
     entryComponents: []
 })
-export class MainModule {
+export class HomeModule {
 }
