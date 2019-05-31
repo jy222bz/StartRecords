@@ -5,8 +5,7 @@
 export const environment = {
     production: false,
     firebase: {
-        // apiKey: 'AIzaSyAnpqmewD4LhX5powperfElfCqxt3KFqX4',
-        apiKey: '22',
+        apiKey: 'AIzaSyAnpqmewD4LhX5powperfElfCqxt3KFqX4',
         authDomain: 'dv508-grp-2.firebaseapp.com',
         databaseURL: 'https://dv508-grp-2.firebaseio.com',
         projectId: 'dv508-grp-2',
