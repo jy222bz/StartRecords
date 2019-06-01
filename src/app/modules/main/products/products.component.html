@@ -9,7 +9,11 @@
         <mat-grid-list [gutterSize]="1" [cols]="columns" class="app-products-list"
                        rowHeight="{{getRowHeight()}}">
 
-            <mat-grid-tile *ngFor="let element of products" class="app-products-product">
+            <mat-grid-tile *ngFor="let element of products" class="app-products-product"
+                           [rowspan]="getRowSpan(element)"
+                           [colspan]="getColumnSpan(element)"
+
+            >
 
                 <div class="app-products-product" (click)="navigate(element)">
                     <div class="app-product-title">

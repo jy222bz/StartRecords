@@ -28,7 +28,7 @@ export class AddComponent implements OnInit {
             'producer': ['Ville', [Validators.required, Validators.minLength(1)]],
             'price': [0, [Validators.required]],
             'duration': [0],
-            'total': [0],
+            'tracks': [0],
             'totalRatings': [0],
             'numberOfRatings': [0],
             'cover': [''],

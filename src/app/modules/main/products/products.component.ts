@@ -5,6 +5,7 @@ import {EventsService} from "../../../shared/services/events.service";
 import {MatDialog} from "@angular/material";
 import {WindowRef} from "../../../shared/directives/WindowRef";
 import {Router} from "@angular/router";
+import {Product} from "../../../shared/models/products/product";
 
 @Component({
     selector: 'app-products',
@@ -15,11 +16,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     categoryName = 'Albums';
     _categoryId = '';
 
-    products = [];
+    products: Product[] = [];
 
     columns = 3;
     rowHeight = 29;
-
 
 
     filterData = {
@@ -53,7 +53,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.categoryId = element.id;
         this.categoryName = element.name;
     }
-
 
 
     @Input()
@@ -169,6 +168,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                             return ret;
                         });
                     }
+                    console.log(data);
                     this.products = data;
                     subscription.unsubscribe();
                 },
