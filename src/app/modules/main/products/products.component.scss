@@ -70,6 +70,16 @@ $elements: 15;
         }
     }
 
+    .app-product-top {
+        position: absolute;
+        top: 0;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin: 1.2em;
+        z-index: 11;
+        color: white;
+    }
+
     .app-product-bottom {
         z-index: 11;
         position: absolute;

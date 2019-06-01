@@ -70,7 +70,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     updateElements(data) {
         // find the lowest count
         //
-        let min, max;
+        let min = 0, max = 0;
         if (data.length > 0) {
             min = data[0].count;
             max = data[0].count;
@@ -90,9 +90,11 @@ export class CategoriesComponent implements OnInit, OnDestroy {
             max = 1;
         }
 
+        console.log(min);
+        console.log(max);
 
         for (let i = 0; i < data.length; ++i) {
-            data[i].scale = 1 + data[i].count * min / max;
+            data[i].scale = 1 + (data[i].count - min) * min / max;
         }
         this.categories = data;
     }
