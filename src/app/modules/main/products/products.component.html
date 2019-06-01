@@ -16,6 +16,10 @@
             >
 
                 <div class="app-products-product" (click)="navigate(element)">
+                    <div class="app-product-top">
+                        {{element.price}} kr
+                    </div>
+
                     <div class="app-product-title">
                         <div class="title">
                             <div class="name">{{element.name}}</div>
