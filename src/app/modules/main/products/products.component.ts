@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     categoryName = 'Albums';
     _categoryId = '';
 
+    items: Product[] = [];
     products: Product[] = [];
 
     columns = 3;
@@ -67,8 +68,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     private registerProductsSearchEvent() {
-        this.eventsService.registerEvent('PRODUCTS-SEARCH', this, () => {
-
+        this.eventsService.registerEvent('PRODUCTS-SEARCH', this, (value) => {
+            if (value instanceof Array) {
+                this.filterData.search = value[0];
+                this.filter();
+            }
         });
     }
 
@@ -138,7 +142,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.filterData = result;
-                this.get();
+                this.filter();
             }
         });
     }
@@ -147,66 +151,69 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.router.navigate(['/product/' + element.id]);
     }
 
+    filter() {
+        let data = this.items;
+        if (this.filterData.filter !== 0) {
+            data = data.filter((item) => {
+                let value = item.price;
+                if (this.filterData.filter === 2) {
+                    value = item.year;
+                } else if (this.filterData.filter === 3) {
+                    value = item.ratingCalc;
+                }
+                if (this.filterData.operation === 0) {
+                    return value == this.filterData.value;
+                } else if (this.filterData.operation === 1) {
+                    return value > this.filterData.value;
+                } else if (this.filterData.operation === 2) {
+                    return value < this.filterData.value;
+                } else if (this.filterData.operation === 3) {
+                    return value >= this.filterData.fromValue && value <= this.filterData.toValue;
+                }
+            });
+        }
+
+        if (this.filterData.sortField > 0) {
+            data.sort((a, b) => {
+                let ret = 0;
+                if (this.filterData.sortField === 1) {
+
+                    if (a.price < b.price) {
+                        ret = -1;
+                    }
+                    if (a.price > b.price) {
+                        ret = 1;
+                    }
+                } else if (this.filterData.sortField === 2) {
+                    if (a.year < b.year) {
+                        ret = -1;
+                    }
+                    if (a.year > b.year) {
+                        ret = 1;
+                    }
+                } else if (this.filterData.sortField === 3) {
+                    if (a.ratingCalc < b.ratingCalc) {
+                        ret = -1;
+                    }
+                    if (a.ratingCalc > b.ratingCalc) {
+                        ret = 1;
+                    }
+                }
+                if (this.filterData.sortType === 'desc') {
+                    ret = -1 * ret;
+                }
+                return ret;
+            });
+        }
+        this.products = data;
+    }
+
     // ----------------------
     get() {
         const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
-                    console.log(this.filterData);
-                    if (this.filterData.filter !== 0) {
-                        data = data.filter((item) => {
-                            let value = item.price;
-                            if (this.filterData.filter === 2) {
-                                value = item.year;
-                            } else if (this.filterData.filter === 3) {
-                                value = item.ratingCalc;
-                            }
-                            if (this.filterData.operation === 0) {
-                                return value == this.filterData.value;
-                            } else if (this.filterData.operation === 1) {
-                                return value > this.filterData.value;
-                            } else if (this.filterData.operation === 2) {
-                                return value < this.filterData.value;
-                            } else if (this.filterData.operation === 3) {
-                                return value >= this.filterData.fromValue && value <= this.filterData.toValue;
-                            }
-                        });
-                    }
-
-                    if (this.filterData.sortField > 0) {
-                        data.sort((a, b) => {
-                            let ret = 0;
-                            if (this.filterData.sortField === 1) {
-
-                                if (a.price < b.price) {
-                                    ret = -1;
-                                }
-                                if (a.price > b.price) {
-                                    ret = 1;
-                                }
-                            } else if (this.filterData.sortField === 2) {
-                                if (a.year < b.year) {
-                                    ret = -1;
-                                }
-                                if (a.year > b.year) {
-                                    ret = 1;
-                                }
-                            } else if (this.filterData.sortField === 3) {
-                                if (a.ratingCalc < b.ratingCalc) {
-                                    ret = -1;
-                                }
-                                if (a.ratingCalc > b.ratingCalc) {
-                                    ret = 1;
-                                }
-                            }
-                            if (this.filterData.sortType === 'desc') {
-                                ret = -1 * ret;
-                            }
-                            return ret;
-                        });
-                    }
-
-                    console.log(data);
-                    this.products = data;
+                    this.items = data;
+                    this.filter();
                     subscription.unsubscribe();
                 },
                 (error) => {

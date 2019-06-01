@@ -27,6 +27,7 @@ export class FilterComponent implements OnInit {
             'sortType': [data.sortType, [Validators.required]],
             'sortField': [data.sortField, [Validators.required]],
         });
+        this.selectionChange();
     }
 
     ngOnInit() {
