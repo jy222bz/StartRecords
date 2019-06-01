@@ -29,6 +29,8 @@ export class RatingComponent implements OnInit {
     @Input() clickable = true;
     @Input() productId: string;
 
+    @Input() voters = null;
+
     stars: RateElement[] = [
         {id: 1, rated: false},
         {id: 2, rated: false},

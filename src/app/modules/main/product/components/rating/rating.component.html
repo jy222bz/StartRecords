@@ -5,4 +5,6 @@
               (mouseleave)="mouseLeave(elem)"
               (mouseover)="mouseOver(elem)"
     >star_rate</mat-icon>
+
+    <span *ngIf="voters != null" class="app-rating-voters" ><app-counter [value]="voters"></app-counter> voters</span>
 </div>

@@ -1,22 +1,37 @@
 .app-product {
-    background-color: #eef2f3;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-}
+    position: relative;
+    padding: 80px 0 32px 0;
 
-.app-product-basic {
-    padding: 32px 8px 32px 8px;
-    margin-top: 80px;
+    > div {
+        padding: 0 32px 0 32px;
+    }
 
-    z-index: 10;
-}
+    .general {
+        height: 64px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 16px;
 
 
-.app-product-title {
-    font-size: 2em;
-    font-weight: bold;
+        .title {
+            font-size: 52px;
+            font-weight: bold;
+        }
+
+        .buy {
+            margin-left: auto;
+        }
+    }
+
+    .price {
+        height: 64px;
+        font-size: 32px;
+    }
+
+    .rating {
+        height: 48px;
+    }
 }
 
 .app-product-img {
@@ -30,9 +45,8 @@
 
         box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     }
+
+    z-index: 10;
 }
 
-.app-product-rating {
-    padding: 16px;
-}
 

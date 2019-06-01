@@ -4,6 +4,7 @@ import {ProductsService} from "../../../shared/services/products/products.servic
 import {EventsService} from "../../../shared/services/events.service";
 import {MatDialog} from "@angular/material";
 import {WindowRef} from "../../../shared/directives/WindowRef";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-products',
@@ -12,13 +13,14 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
 })
 export class ProductsComponent implements OnInit, OnDestroy {
     categoryName = 'Albums';
+    _categoryId = '';
 
     products = [];
 
     columns = 3;
     rowHeight = 29;
 
-    _categoryId = '';
+
 
     filterData = {
         filter: 0,
@@ -32,6 +34,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 private eventsService: EventsService,
                 private dialog: MatDialog,
                 private winRef: WindowRef,
+                private router: Router,
     ) {
 
     }
@@ -114,6 +117,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
         });
     }
 
+    navigate(element) {
+        this.router.navigate(['/product/' + element.id]);
+    }
+
     // ----------------------
     get() {
         const subscription = this.productsService.get(this._categoryId)
@@ -125,7 +132,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                             } else if (this.filterData.filter === 2) {
                                 return item.year == this.filterData.value;
                             } else if (this.filterData.filter === 3) {
-                                return item.getRating() == this.filterData.value;
+                                return item.ratingCalc == this.filterData.value;
                             }
                         });
                     }
@@ -149,10 +156,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
                                     ret = 1;
                                 }
                             } else if (this.filterData.sortField === 3) {
-                                if (a.getRating() < b.getRating()) {
+                                if (a.ratingCalc < b.ratingCalc) {
                                     ret = -1;
                                 }
-                                if (a.getRating() > b.getRating()) {
+                                if (a.ratingCalc > b.ratingCalc) {
                                     ret = 1;
                                 }
                             }

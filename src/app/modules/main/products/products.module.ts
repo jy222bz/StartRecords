@@ -13,7 +13,6 @@ import {ProductModule} from "../product/product.module";
 import {WindowRef} from "../../../shared/directives/WindowRef";
 import {FilterComponent} from "./components/filter/filter.component";
 import {ProductsComponent} from "./products.component";
-import {ProductComponent} from "./components/product/product.component";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {SearchComponent} from "./components/search/search.component";
 
@@ -31,7 +30,6 @@ import {SearchComponent} from "./components/search/search.component";
     declarations: [
         ProductsComponent,
         ProductsComponent,
-        ProductComponent,
         ToolbarComponent,
         CategoriesComponent,
         FilterComponent,
