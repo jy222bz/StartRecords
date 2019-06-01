@@ -6,9 +6,8 @@ export class Product extends Model {
     producer: string;
     cover: string;
     price: number;
-    total: number;
     duration: number;
-    tracks: number;
+    tracks: number = 0;
     description: string;
     createdAt: string;
     rowSpan: number;
@@ -16,7 +15,7 @@ export class Product extends Model {
     year: number;
 
     numberOfRatings: number = 0;
-    totalRatings: number;
+    totalRatings: number = 0;
     discount: any;
     ratingCalc: any = 0;
     durationMIn: any = 0;
@@ -37,7 +36,6 @@ export class Product extends Model {
         this.duration = document.data().duration;
         this.cover = document.data().cover;
         this.description = document.data().description;
-        this.total = document.data().total;
         this.tracks = document.data().tracks;
         this.createdAt = document.data().createdAt != null ? document.data().createdAt.toDate().toLocaleString() : '';
         this.year = document.data().year;
@@ -51,7 +49,7 @@ export class Product extends Model {
             this.ratingCalc = Math.floor(this.totalRatings / this.numberOfRatings);
         }
         if (this.duration !== undefined) {
-            this.duration = Math.floor(this.duration / 60);
+            this.durationMIn = Math.floor(this.duration / 60);
         }
     }
 }

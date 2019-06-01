@@ -23,6 +23,7 @@ import {NotificationsService} from "./shared/services/notifications.service";
 import {PlayerComponent} from "./components/player/player.component";
 import {SessionService} from "./shared/services/session.service";
 import {WindowRef} from "./shared/directives/WindowRef";
+import {MaintenanceService} from "./shared/services/maintenance.service";
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {WindowRef} from "./shared/directives/WindowRef";
         EventsService,
         NotificationsService,
         SessionService,
+        MaintenanceService,
         WindowRef,
     ],
     bootstrap: [
