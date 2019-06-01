@@ -82,7 +82,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
             this.productsPage = this.router.url == '/products';
 
             // check home
-            if (this.router.url == '/') {
+            if (this.router.url == '/' || (this.router.url == '/contact')) {
                 this.defaultColor = '#ffffff';
             } else {
                 this.defaultColor = '#000000';
