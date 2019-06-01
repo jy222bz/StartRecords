@@ -90,9 +90,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
             max = 1;
         }
 
-        console.log(min);
-        console.log(max);
-
         for (let i = 0; i < data.length; ++i) {
             data[i].scale = 1 + (data[i].count - min) * min / max;
         }

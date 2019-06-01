@@ -18,6 +18,11 @@ export class ProductsService {
     }
 
     get(categoryId = '') {
+        let query = ref => ref
+            .where('categories', 'array-contains', categoryId)
+        ;
+
+
         if (categoryId === '') {
             return this.afs.collection<Product>('products',
                 ref => ref
@@ -30,10 +35,7 @@ export class ProductsService {
                     }
                 ));
         } else {
-            return this.afs.collection<Product>('products',
-                ref => ref
-                    .where('categories', 'array-contains', categoryId)
-            ).snapshotChanges()
+            return this.afs.collection<Product>('products', query).snapshotChanges()
                 .pipe(map(
                     actions => {
                         return actions.map(item => {

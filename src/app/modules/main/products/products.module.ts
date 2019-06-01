@@ -14,7 +14,6 @@ import {WindowRef} from "../../../shared/directives/WindowRef";
 import {FilterComponent} from "./components/filter/filter.component";
 import {ProductsComponent} from "./products.component";
 import {ToolbarComponent} from "./components/toolbar/toolbar.component";
-import {SearchComponent} from "./components/search/search.component";
 
 
 @NgModule({
@@ -33,7 +32,6 @@ import {SearchComponent} from "./components/search/search.component";
         ToolbarComponent,
         CategoriesComponent,
         FilterComponent,
-        SearchComponent,
     ],
     providers: [
         ProductsService,

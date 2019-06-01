@@ -11,6 +11,7 @@ export class FilterComponent implements OnInit {
     form: FormGroup;
     working = false;
     error = null;
+    showRange = false;
 
     constructor(
         private fb: FormBuilder,
@@ -19,7 +20,10 @@ export class FilterComponent implements OnInit {
 
         this.form = this.fb.group({
             'filter': [data.filter, [Validators.pattern("^[0-9]*$")]],
+            'operation': [data.operation, [Validators.required]],
             'value': [data.value, [Validators.pattern("^[0-9]*$")]],
+            'fromValue': [data.fromValue, [Validators.pattern("^[0-9]*$")]],
+            'toValue': [data.toValue, [Validators.pattern("^[0-9]*$")]],
             'sortType': [data.sortType, [Validators.required]],
             'sortField': [data.sortField, [Validators.required]],
         });
@@ -27,6 +31,10 @@ export class FilterComponent implements OnInit {
 
     ngOnInit() {
 
+    }
+
+    selectionChange() {
+        this.showRange = this.form.controls.operation.value === 3;
     }
 
     save() {
@@ -43,6 +51,9 @@ export class FilterComponent implements OnInit {
 
         this.data.filter = this.form.controls.filter.value;
         this.data.value = parseInt(this.form.controls.value.value, 10);
+        this.data.fromValue = parseInt(this.form.controls.fromValue.value, 10);
+        this.data.toValue = parseInt(this.form.controls.toValue.value, 10);
+        this.data.operation = parseInt(this.form.controls.operation.value, 10);
         this.data.sortType = this.form.controls.sortType.value;
         this.data.sortField = parseInt(this.form.controls.sortField.value, 10);
         this.dialog.close(this.data);

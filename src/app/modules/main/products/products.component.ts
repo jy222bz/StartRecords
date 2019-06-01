@@ -24,9 +24,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     filterData = {
         filter: 0,
+        operation: 0,
         value: 0,
+        fromValue: 0,
+        toValue: 0,
         sortType: 'asc',
         sortField: 0,
+        search: ''
     };
 
 
@@ -42,12 +46,35 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.get();
         this.calcHeight(this.winRef.nativeWindow.innerWidth);
+        this.registerFilterShowEvent();
+        this.registerProductsSearchEvent();
     }
 
     ngOnDestroy(): void {
-
+        this.unregisterFilterShowEvent();
+        this.unregisterProductsSearchEvent();
     }
 
+
+    private registerFilterShowEvent() {
+        this.eventsService.registerEvent('PRODUCTS-FILTER-SHOW', this, () => {
+            this.openFilterComponent();
+        });
+    }
+
+    private unregisterFilterShowEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-FILTER-SHOW', this);
+    }
+
+    private registerProductsSearchEvent() {
+        this.eventsService.registerEvent('PRODUCTS-SEARCH', this, () => {
+
+        });
+    }
+
+    private unregisterProductsSearchEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-SEARCH', this);
+    }
 
     categoryChanged(element) {
         this.categoryId = element.id;
@@ -124,14 +151,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
     get() {
         const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
+                    console.log(this.filterData);
                     if (this.filterData.filter !== 0) {
                         data = data.filter((item) => {
-                            if (this.filterData.filter === 1) {
-                                return item.price == this.filterData.value;
-                            } else if (this.filterData.filter === 2) {
-                                return item.year == this.filterData.value;
+                            let value = item.price;
+                            if (this.filterData.filter === 2) {
+                                value = item.year;
                             } else if (this.filterData.filter === 3) {
-                                return item.ratingCalc == this.filterData.value;
+                                value = item.ratingCalc;
+                            }
+                            if (this.filterData.operation === 0) {
+                                return value == this.filterData.value;
+                            } else if (this.filterData.operation === 1) {
+                                return value > this.filterData.value;
+                            } else if (this.filterData.operation === 2) {
+                                return value < this.filterData.value;
+                            } else if (this.filterData.operation === 3) {
+                                return value >= this.filterData.fromValue && value <= this.filterData.toValue;
                             }
                         });
                     }
@@ -168,6 +204,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                             return ret;
                         });
                     }
+
                     console.log(data);
                     this.products = data;
                     subscription.unsubscribe();
