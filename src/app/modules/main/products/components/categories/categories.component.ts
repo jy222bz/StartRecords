@@ -2,13 +2,13 @@ import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core'
 import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
 import {Category} from "../../../../../shared/models/categories/category";
 import {EventsService} from "../../../../../shared/services/events.service";
-import {slideDownAnimation} from "../../../../../shared/animations/slide-down-animation";
+import {flip3DAnimation} from "../../../../../shared/animations/flip-3d-animation";
 
 @Component({
     selector: 'app-products-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss'],
-    animations: [slideDownAnimation],
+    animations: [flip3DAnimation],
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
 

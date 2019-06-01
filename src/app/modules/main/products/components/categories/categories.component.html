@@ -1,4 +1,4 @@
-<div class="app-products-categories" [@slideDownAnimation]="getShowState()">
+<div class="app-products-categories" [@flip3DAnimation]="getShowState()">
     <div class="app-products-categories" *ngIf="visible">
         <div class="header">
             <span>Choose category</span>
@@ -14,7 +14,7 @@
                  (mouseleave)="mouseLeave(element)"
 
             >
-                <span [style.transform]="getScale(element)" style="display: inline-block;">{{element.name}}</span>
+                <span [style.transform]="getScale(element)">{{element.name}}</span>
             </div>
         </div>
         <div class="albums">

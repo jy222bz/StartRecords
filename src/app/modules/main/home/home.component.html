@@ -1,20 +1,18 @@
+<div class="app-home" (window:resize)="onResize($event)">
 
-<div class="app-home" (window:resize)="onResize($event)" >
-
-    <div class="app-home-content">
-        <div class="info">
-            <div>Your Ultimate Music Source</div>
-            <div>Listen to your favorite music anytime anywhere</div>
-            <div>
-                <button mat-flat-button color="primary" (click)="navigateProducts()">
-                    Listen Now
-                </button>
-            </div>
+    <div class="info">
+        <div>Your Ultimate Music Source</div>
+        <div>Listen to your favorite music anytime anywhere</div>
+        <div>
+            <button mat-flat-button color="primary" (click)="navigateProducts()">
+                Listen Now
+            </button>
         </div>
-        <div class="icon" *ngIf="imageWidth > 300">
-            <svg [style.width]="imageWidth + 'px'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                 viewBox="0 0 287.386 287.386" xml:space="preserve">
-<g>
+    </div>
+    <div class="icon" *ngIf="imageWidth > 300">
+        <svg [style.width]="imageWidth + 'px'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px"
+             y="0px"
+             viewBox="0 0 287.386 287.386" xml:space="preserve">
 	<g>
 		<path fill="#fff" d="M62.743,155.437v98.42c0,5.867,4.741,10.605,10.605,10.605c5.854,0,10.605-4.738,10.605-10.605v-98.42
 			c0-5.856-4.751-10.605-10.605-10.605C67.484,144.832,62.743,149.576,62.743,155.437z"/>
@@ -25,11 +23,10 @@
         <path fill="#fff" d="M203.454,155.437v98.42c0,5.867,4.748,10.605,10.604,10.605s10.604-4.738,10.604-10.605v-98.42
 			c0-5.856-4.748-10.605-10.604-10.605C208.191,144.832,203.454,149.576,203.454,155.437z"/>
 	</g>
-</g>
 </svg>
 
-        </div>
     </div>
+
 
     <svg class="svg-background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" preserveAspectRatio="none">
         <defs>
@@ -42,5 +39,6 @@
          534.7C355.07 523.14 386.84 530.51 355.04 523.13C231.39 494.47 101.79 533.24 14.2 625.1C12.31 627.09
          7.58 632.05 0 640L0 0" id="en4Ed0Oo7"></path>
     </svg>
+
 </div>
 <app-footer></app-footer>
