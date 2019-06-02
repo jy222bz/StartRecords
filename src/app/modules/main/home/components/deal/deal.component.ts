@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../../../../shared/services/products/products.service";
-import {Product} from "../../../../../shared/models/products/product";
-import {Router} from "@angular/router";
+import {ProductsService} from '../../../../../shared/services/products/products.service';
+import {Product} from '../../../../../shared/models/products/product';
+import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-main-home-deal',
+    selector: 'app-home-deal',
     templateUrl: './deal.component.html',
     styleUrls: ['./deal.component.scss'],
 })

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     MatButtonModule,
     MatCardModule,
@@ -24,13 +24,13 @@ import {
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    MatSidenavModule, MatChipsModule, MatBadgeModule, MatStepperModule,
-} from "@angular/material";
-import {CommonModule} from "@angular/common";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {InputFileComponent} from "./shared/components/input-file/input-file.component";
-import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.component";
-import {RouterModule} from "@angular/router";
+    MatSidenavModule, MatChipsModule, MatBadgeModule, MatStepperModule, MatSliderModule,
+} from '@angular/material';
+import {CommonModule} from '@angular/common';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {InputFileComponent} from './shared/components/input-file/input-file.component';
+import {BreadcrumbComponent} from './shared/components/breadcrumb/breadcrumb.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -66,6 +66,7 @@ import {RouterModule} from "@angular/router";
         MatChipsModule,
         MatBadgeModule,
         MatStepperModule,
+        MatSliderModule,
 
         FlexLayoutModule,
         CommonModule,
@@ -102,6 +103,7 @@ import {RouterModule} from "@angular/router";
         MatChipsModule,
         FlexLayoutModule,
         MatBadgeModule,
+        MatSliderModule,
 
         InputFileComponent,
         BreadcrumbComponent,

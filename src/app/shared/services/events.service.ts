@@ -1,8 +1,8 @@
 import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
 
 
-export interface IEventListener extends OnDestroy{
-    ngOnDestroy(): void
+export interface IEventListener extends OnDestroy {
+    ngOnDestroy(): void;
 }
 
 @Injectable()
@@ -20,17 +20,17 @@ export class EventsService {
                     listener.callback(args);
                 }
             }
-        })
+        });
 
     }
 
     public registerEvent(eventName: string, eventListener: IEventListener, callback: any) {
-        if (!this.listeners[eventName])
+        if (!this.listeners[eventName]) {
             this.listeners[eventName] = [];
-
+        }
         let eventExist = false;
         for (let listener of this.listeners[eventName]) {
-            if (listener.eventListener.constructor.name == eventListener.constructor.name) {
+            if (listener.eventListener.constructor.name === eventListener.constructor.name) {
                 eventExist = true;
                 break;
             }
@@ -45,7 +45,7 @@ export class EventsService {
         if (this.listeners[eventName]) {
             for (let i = 0; i < this.listeners[eventName].length; i++) {
 
-                if (this.listeners[eventName][i].eventListener.constructor.name == eventListener.constructor.name) {
+                if (this.listeners[eventName][i].eventListener.constructor.name === eventListener.constructor.name) {
                     this.listeners[eventName].splice(i, 1);
                     break;
                 }
@@ -55,7 +55,6 @@ export class EventsService {
 
 
     emit(name: string, ...args: any[]) {
-        console.log('sending ' + name);
         this.subject.next({name, args});
     }
 }

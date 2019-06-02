@@ -5,8 +5,8 @@ import {ItemsComponent} from '../../../shared/components/items/items.component';
 import {ProductsService} from '../../../shared/services/products/products.service';
 import {Product} from '../../../shared/models/products/product';
 import {DeleteComponent} from './components/delete/delete.component';
-import {DealComponent} from "./components/deal/deal.component";
-import {UnDealComponent} from "./components/undeal/un-deal.component";
+import {DealComponent} from './components/deal/deal.component';
+import {UnDealComponent} from './components/undeal/un-deal.component';
 
 
 @Component({
@@ -75,7 +75,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
 
     // ----------------------
     get() {
-        const subscription = this.productsService.get(this.pageIndex, this.pageSize)
+        const subscription = this.productsService.get()
             .subscribe(
                 (data) => {
                     this.set(data);
@@ -107,7 +107,7 @@ export class AdminProductsComponent extends ItemsComponent<Product> implements O
             (error) => {
                 console.log(error);
             }
-        )
+        );
     }
 }
 

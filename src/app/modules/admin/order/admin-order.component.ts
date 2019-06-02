@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {MatDialog} from "@angular/material";
-import {StatusComponent} from "./components/status/status.component";
-import {Order} from "../../../shared/models/orders/order";
-import {OrderService} from "../../../shared/services/orders/order.service";
+import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {StatusComponent} from './components/status/status.component';
+import {Order} from '../../../shared/models/orders/order';
+import {OrderService} from '../../../shared/services/orders/order.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class AdminOrderComponent implements OnInit {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            this.order.id = params['id'];
+            this.order.id = params.id;
             this.load();
         });
     }
@@ -40,10 +40,6 @@ export class AdminOrderComponent implements OnInit {
                 this.order.status = result.status;
             }
         });
-    }
-
-    openSendComponent() {
-        alert('This is for next sprint');
     }
 
     // -----------------------
@@ -58,7 +54,7 @@ export class AdminOrderComponent implements OnInit {
             () => {
                 subscription.unsubscribe();
             }
-        )
+        );
     }
 }
 

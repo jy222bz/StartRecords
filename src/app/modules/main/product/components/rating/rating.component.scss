@@ -1,53 +1,14 @@
-@keyframes fadein {
-    from {
-        transform: scale(1.6);
-        opacity: 0;
+.app-rating {
+    display: flex;
+    align-items: center;
 
+
+    .app-rating-voters {
+        padding-left: 16px;
+        font-size: 18px;
     }
-    to {
-        transform: scale(1.0);
-        opacity: 1;
+
+    .star {
+        cursor: pointer;
     }
-}
-
-.star {
-    float:left;
-    cursor: pointer;
-
-}
-
-
-
-.rating:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-    clip:rect(0,0,0,0);
-}
-
-.rating:not(:checked) > label {
-    float:right;
-    width:1em;
-    padding:0.1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
-}
-
-.rating > input:checked ~ label {
-    color: #f70;
-}
-
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-    color: gold;
-}
-
-
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-    color: #ea0;
 }

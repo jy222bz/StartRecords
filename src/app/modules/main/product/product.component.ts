@@ -1,19 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../../shared/services/products/product.service";
-import {ActivatedRoute} from "@angular/router";
-import {BasketService} from "../../../shared/services/basket/basket.service";
-import {AuthenticationService} from "../../../shared/services/authentication.service";
-import {EventsService} from "../../../shared/services/events.service";
+import {ProductService} from '../../../shared/services/products/product.service';
+import {ActivatedRoute} from '@angular/router';
+import {BasketService} from '../../../shared/services/basket/basket.service';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {EventsService} from '../../../shared/services/events.service';
+import {WindowRef} from '../../../shared/directives/WindowRef';
+import {Product} from '../../../shared/models/products/product';
 
 
 @Component({
-    selector: 'app-main-product',
+    selector: 'app-product',
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss']
 })
 
 export class ProductComponent implements OnInit {
-    product: any = {};
+    product: Product = new Product();
+    imageWidth = 30;
 
     constructor(
         private productService: ProductService,
@@ -21,13 +24,14 @@ export class ProductComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private eventsService: EventsService,
         private activatedRoute: ActivatedRoute,
+        private winRef: WindowRef,
     ) {
-
+        this.calcDimension(winRef.nativeWindow.innerWidth);
     }
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            this.product.id = params['id'];
+            this.product.id = params.id;
             this.load();
         });
     }
@@ -44,15 +48,22 @@ export class ProductComponent implements OnInit {
         this.basketService.add(this.product.id);
     }
 
-    getRating() {
-        if (this.product == null) {
-            return;
-        }
-        if (this.product.numberOfRatings === 0) {
-            return 0;
-        }
-        return this.product.totalRatings / this.product.numberOfRatings;
+    onResize(event) {
+        this.calcDimension(event.target.innerWidth);
+    }
 
+    calcDimension(width) {
+        if (width < 400) {
+            this.imageWidth = 300;
+        } else if (width < 600) {
+            this.imageWidth = 300;
+        } else if (width < 960) {
+            this.imageWidth = 400;
+        } else if (width < 1280) {
+            this.imageWidth = 500;
+        } else {
+            this.imageWidth = 600;
+        }
     }
 
     load() {
@@ -64,7 +75,7 @@ export class ProductComponent implements OnInit {
             () => {
                 subscription.unsubscribe();
             }
-        )
+        );
     }
 }
 

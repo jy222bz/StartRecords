@@ -19,8 +19,8 @@ export class ProductTracksService {
             .pipe(map(
                 actions => {
                     return actions.map(item => {
-                        return new Track(item.payload.doc)
-                    })
+                        return new Track(item.payload.doc);
+                    });
                 }));
     }
 
@@ -31,7 +31,8 @@ export class ProductTracksService {
                 .then((data) => {
                     this.afs.collection('products').doc(args.productId).update(
                         {
-                            duration: firestore.FieldValue.increment(args.duration)
+                            duration: firestore.FieldValue.increment(args.duration),
+                            tracks: firestore.FieldValue.increment(1)
                         })
                         .then((next) => {
                             args.id = data.id;
@@ -41,7 +42,7 @@ export class ProductTracksService {
                         .catch((error) => {
                             console.log(error);
                             reject(error);
-                        })
+                        });
                 })
                 .catch((error) => {
                     console.log(error);

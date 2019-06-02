@@ -33,19 +33,19 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element"><strong> {{element.name}} </strong>
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Name</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"><strong> {{element.name}} </strong>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="albums">
-            <mat-header-cell *matHeaderCellDef> Albums</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.count}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Albums</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text">{{element.count}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef class="biggest-size-text"> Description</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
         </ng-container>
 

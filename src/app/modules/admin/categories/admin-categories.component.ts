@@ -15,7 +15,7 @@ export class AdminCategoriesComponent extends ItemsComponent<Category> implement
     breadcrumbs = [{label: '', params: '', url: '/admin', home: true},
         {label: 'Categories', params: '', url: '/admin/categories', home: false}
     ];
-    displayedColumns = ['name', 'albums', 'description'];
+    displayedColumns = ['name', 'albums', 'description', 'edit'];
 
     constructor(
         private categoriesService: CategoriesService,

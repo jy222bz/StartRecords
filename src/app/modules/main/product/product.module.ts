@@ -1,20 +1,19 @@
 import {NgModule} from '@angular/core';
 
-import {CommonModule} from "@angular/common";
-import {ComponentsModule} from "../../../components.module";
-import {ProductComponent} from "./product.component";
-import {ProductService} from "../../../shared/services/products/product.service";
-import {ProductRoutingModule} from "./product.routing.module";
-import {MaterialModule} from "../../../material.module";
-import {RatingComponent} from "./components/rating/rating.component";
-import {TracksComponent} from "./components/tracks/tracks.component";
-import {ProductTracksService} from "../../../shared/services/products/product-tracks.service";
-import {SharedModule} from "../../../shared.module";
-import {BasketService} from "../../../shared/services/basket/basket.service";
-import {LocalStorageService} from "../../../shared/services/local-storage.service";
-import {InfoComponent} from "./components/info/info.component";
-import {ProductRatingsService} from "../../../shared/services/products/product-ratings.service";
-import {AudioControlComponent} from "./components/audio-control/audio-control.component";
+import {CommonModule} from '@angular/common';
+import {ComponentsModule} from '../../../components.module';
+import {ProductComponent} from './product.component';
+import {ProductService} from '../../../shared/services/products/product.service';
+import {ProductRoutingModule} from './product.routing.module';
+import {MaterialModule} from '../../../material.module';
+import {RatingComponent} from './components/rating/rating.component';
+import {TracksComponent} from './components/tracks/tracks.component';
+import {ProductTracksService} from '../../../shared/services/products/product-tracks.service';
+import {SharedModule} from '../../../shared.module';
+import {BasketService} from '../../../shared/services/basket/basket.service';
+import {LocalStorageService} from '../../../shared/services/local-storage.service';
+import {InfoComponent} from './components/info/info.component';
+import {ProductRatingsService} from '../../../shared/services/products/product-ratings.service';
 
 
 @NgModule({
@@ -30,9 +29,6 @@ import {AudioControlComponent} from "./components/audio-control/audio-control.co
         TracksComponent,
         RatingComponent,
         InfoComponent,
-        AudioControlComponent,
-
-
     ],
     providers: [
         ProductService,
@@ -40,6 +36,9 @@ import {AudioControlComponent} from "./components/audio-control/audio-control.co
         ProductRatingsService,
         LocalStorageService,
         BasketService,
+    ],
+    exports: [
+        RatingComponent
     ],
     entryComponents: []
 })

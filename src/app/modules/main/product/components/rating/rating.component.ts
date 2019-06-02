@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthenticationService} from "../../../../../shared/services/authentication.service";
-import {ProductRatingsService} from "../../../../../shared/services/products/product-ratings.service";
-import {EventsService} from "../../../../../shared/services/events.service";
+import {AuthenticationService} from '../../../../../shared/services/authentication.service';
+import {ProductRatingsService} from '../../../../../shared/services/products/product-ratings.service';
+import {EventsService} from '../../../../../shared/services/events.service';
 
 class RateElement {
     id: number;
@@ -26,7 +26,10 @@ export class RatingComponent implements OnInit {
     }
 
     rated = false;
+    @Input() clickable = true;
     @Input() productId: string;
+
+    @Input() voters = null;
 
     stars: RateElement[] = [
         {id: 1, rated: false},
@@ -55,14 +58,14 @@ export class RatingComponent implements OnInit {
     }
 
     mouseOver(elem: RateElement) {
-        if (this.rated) { 
+        if (!this.clickable || this.rated) {
             return;
         }
         this.updateRating(elem.id);
     }
 
     mouseLeave(elem: RateElement) {
-        if (this.rated) {
+        if (!this.clickable || this.rated) {
             return;
         }
         this.updateRating(this._rating);
@@ -70,7 +73,7 @@ export class RatingComponent implements OnInit {
 
     // -----------------
     getUserRating() {
-        let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
+        const subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
             .subscribe((next) => {
                     if (next.size > 0) {
                         this.rated = true;
@@ -85,6 +88,9 @@ export class RatingComponent implements OnInit {
     }
 
     setUserRating(elem: RateElement): void {
+        if (!this.clickable) {
+            return;
+        }
         if (this.authenticationService.isAdmin()) {
             alert('Login as user to be able to rate');
             return;
@@ -93,8 +99,7 @@ export class RatingComponent implements OnInit {
             this.eventsService.emit('LOGIN-SHOW');
             return;
         }
-        if (this.rated) {           
-            alert('You have already rated this product!');
+        if (this.rated) {
             return;
         }
         this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
@@ -104,7 +109,7 @@ export class RatingComponent implements OnInit {
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 }
 

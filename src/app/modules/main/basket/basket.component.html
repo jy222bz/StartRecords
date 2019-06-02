@@ -34,7 +34,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Name</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Name</mat-header-cell>
                             <mat-cell *matCellDef="let element" class="app-main-basket-product-name">
                                 <div><strong> <a routerLink="/product/{{element.id}}">{{element.name}}</a></strong>
                                 </div>
@@ -44,34 +44,39 @@
                         </ng-container>
 
                         <ng-container matColumnDef="count">
-                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Count</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
+                            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Count</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="small-size-text">
                                 <app-counter [value]="element.count"></app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="price">
-                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Price</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
-                                <app-counter [value]="element.price"></app-counter>
+                            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Price</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="small-size-text">
+                                <app-counter [value]="element.price"> kr</app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="total">
-                            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="app-main-basket-end-size">
-                                <app-counter [value]="element.price * element.count"></app-counter>
+                            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="end-size-text">
+                                <app-counter [value]="element.price * element.count"> kr</app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="edit">
-                            <mat-header-cell *matHeaderCellDef class="app-main-basket-bigger-size"> Edit</mat-header-cell>
-                            <mat-cell *matCellDef="let element" class="app-main-basket-small-size">
+                            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Edit</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="small-size-text">
                                 <button mat-icon-button (click)="openProductEditComponent(element)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                <button mat-icon-button (click)="openProductDeleteComponent(element)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
                             </mat-cell>
                         </ng-container>
+
+
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
@@ -100,7 +105,7 @@
 
         <mat-step>
             <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" style="padding-bottom: 16px;">
-                <ng-template matStepLabel>You have put a order</ng-template>
+                <ng-template matStepLabel>Confirm order</ng-template>
                 <div fxFlex="66">
                     <div fxFlex="1 1 100%">
                         <app-main-basket-bill [count]="basketService.getCount()"

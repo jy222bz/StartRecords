@@ -34,67 +34,67 @@
         </ng-container>
 
         <ng-container matColumnDef="image">
-            <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Image</mat-header-cell>
             <mat-cell *matCellDef="let element"><img *ngIf="element.cover !== ''" src="{{element.cover}}"
                                                      class="app-admin-products-img" alt=""/></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-            <mat-cell *matCellDef="let element">
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Name</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text">
                 <a routerLink="/admin/products/{{element.id}}">
                 <strong> {{element.name}} </strong></a>
-                <mat-icon *ngIf="dealOfDay === element.id" style="padding-left: 16px">card_giftcard</mat-icon>
+                <mat-icon *ngIf="dealOfDay === element.id" style="padding-left: 16px" color="primary">card_giftcard</mat-icon>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="artist">
-            <mat-header-cell *matHeaderCellDef> Artist</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.artist}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Artist</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.artist}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="producer">
-            <mat-header-cell *matHeaderCellDef> Producer</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.producer}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Producer</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.producer}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.price}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Price</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.price}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="duration">
-            <mat-header-cell *matHeaderCellDef> Tracks Duration</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.duration}}
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Tracks Duration</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.duration}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="created_at">
-            <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Created</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="small-size-text"> {{element.createdAt}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-header-cell *matHeaderCellDef class="bigger-size-text"></mat-header-cell>
             <mat-cell *matCellDef="let element" class="mat-column-end">
-                <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                <button mat-icon-button [matMenuTriggerFor]="userMenu" class="small-size-text">
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #userMenu="matMenu">
                     <button *ngIf="element.id !== dealOfDay" mat-menu-item (click)="openProductDealComponent(element)">
                         <mat-icon color="primary">card_giftcard</mat-icon>
-                        <span>Deal</span>
+                        <span class="bigger-size-text">Deal</span>
                     </button>
                     <button *ngIf="element.id === dealOfDay" mat-menu-item (click)="openProductUnDealComponent(element)">
                         <mat-icon color="warn">card_giftcard</mat-icon>
-                        <span>Reset</span>
+                        <span class="bigger-size-text">Reset</span>
                     </button>
                     <button mat-menu-item (click)="openProductDeleteComponent(element)">
                         <mat-icon color="warn">delete</mat-icon>
-                        <span>Delete</span>
+                        <span class="bigger-size-text">Delete</span>
                     </button>
                 </mat-menu>
             </mat-cell>
@@ -103,9 +103,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50, 100, 150, 200]"
-                   (page)="onPageChange($event)"
-                   showFirstLastButtons></mat-paginator>
+
 </div>
 
 

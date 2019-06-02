@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {EmailService} from "./shared/services/email.service";
+import {Component, isDevMode, OnInit} from '@angular/core';
+import {SessionService} from './shared/services/session.service';
+import {MaintenanceService} from './shared/services/maintenance.service';
 
 @Component({
     selector: 'app-root',
@@ -9,13 +10,33 @@ import {EmailService} from "./shared/services/email.service";
 export class AppComponent implements OnInit {
 
     constructor(
-        private emailService: EmailService,
+        private sessionService: SessionService,
+        private maintenanceService: MaintenanceService,
     ) {
 
     }
 
     ngOnInit(): void {
-        this.emailService.send('oz222am@student.lnu.se');
+        // this.maintenanceService.fixProductsDurationAndTracks();
+    }
+
+    prepareSession() {
+        this.sessionService.addConnectedListener(() => {
+            this.sessionConnected();
+        });
+        if (isDevMode()) {
+            this.sessionService.connect('ws://manage.snabbs.local:23000/ws');
+        } else {
+            if ((location.protocol !== 'https:')) {
+                this.sessionService.connect('ws:/presentation.softuza.com:22000/ws');
+            } else {
+                this.sessionService.connect('wss://presentation.softuza.com:23000/ws');
+            }
+        }
+    }
+
+    sessionConnected() {
+
     }
 
 }

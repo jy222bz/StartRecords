@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ItemsComponent} from "../../../../../shared/components/items/items.component";
-import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
-import {Track} from "../../../../../shared/models/tracks/track";
-import {ActivatedRoute} from "@angular/router";
-import {AudioPlayerService} from "../../../../../shared/services/audio-player.service";
+import {ItemsComponent} from '../../../../../shared/components/items/items.component';
+import {ProductTracksService} from '../../../../../shared/services/products/product-tracks.service';
+import {Track} from '../../../../../shared/models/tracks/track';
+import {ActivatedRoute} from '@angular/router';
+import {PlayerService} from '../../../../../shared/services/player.service';
+import {EventsService} from '../../../../../shared/services/events.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private tracksService: ProductTracksService,
-        private audioPlayerService: AudioPlayerService,
+        private audioPlayerService: PlayerService,
+        private eventsService: EventsService,
     ) {
         super();
     }
@@ -29,7 +31,8 @@ export class TracksComponent extends ItemsComponent<Track> implements OnInit {
 
     // ----------------------
     play(item) {
-        this.audioPlayerService.play(item.sample);
+        this.audioPlayerService.play(item);
+        this.eventsService.emit('PLAYER-SHOW');
     }
 
 
