@@ -31,6 +31,12 @@ export class UserOrdersComponent extends ItemsComponent<Order> implements OnInit
 
     // ----------------------
     get() {
+        if (!this.authenticationService.isAuthenticated()) {
+            setTimeout(() => {
+                this.get();
+            }, 1000);
+            return;
+        }
         const subscription = this.ordersService.get(this.authenticationService.getAccountId())
             .subscribe(
                 (data) => {

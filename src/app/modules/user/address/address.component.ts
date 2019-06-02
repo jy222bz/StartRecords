@@ -40,10 +40,15 @@ export class AddressComponent implements OnInit {
     }
 
     get() {
-        // ToDo: fix issue if page refreshed and account is null
-        this.userAddressesService.get(this.authenticationService.getAccount().id).subscribe(
+        if (!this.authenticationService.isAuthenticated()) {
+            setTimeout(() => {
+                this.get();
+            }, 1000);
+            return;
+        }
+        this.userAddressesService.get(this.authenticationService.getAccountId()).subscribe(
             (next) => {
-                if (next !== undefined) {
+                if (next !== undefined && next.data() != undefined) {
                     this.form.controls.city.setValue(next.data().city);
                     this.form.controls.street.setValue(next.data().street);
                     this.form.controls.postalNumber.setValue(next.data().postalNumber);
