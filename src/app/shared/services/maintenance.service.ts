@@ -11,6 +11,10 @@ export class MaintenanceService {
 
     }
 
+    fixOrders() {
+
+    }
+
     fixProductsDurationAndTracks() {
         this.afs.collection<Product>('products').snapshotChanges()
             .pipe(map(actions => {
@@ -71,5 +75,7 @@ export class MaintenanceService {
                 console.log(error);
             });
     }
+
+
 
 }

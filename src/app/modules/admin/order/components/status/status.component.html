@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.status">
+                <mat-select formControlName="status">
                     <mat-option [value]="0">Ordered</mat-option>
                     <mat-option [value]="1">Processing</mat-option>
                     <mat-option [value]="2">Shipping</mat-option>

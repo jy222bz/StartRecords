@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.filter">
+                <mat-select formControlName="filter">
                     <mat-option [value]="0">-</mat-option>
                     <mat-option [value]="1">Price</mat-option>
                     <mat-option [value]="2">Year</mat-option>
@@ -14,7 +14,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.operation" (selectionChange)="selectionChange()">
+                <mat-select formControlName="operation" (selectionChange)="selectionChange()">
                     <mat-option [value]="0">equals</mat-option>
                     <mat-option [value]="1">greater than</mat-option>
                     <mat-option [value]="2">less than</mat-option>
@@ -25,22 +25,22 @@
         <div fxLayout="row" *ngIf="!this.showRange">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Value"
-                       [formControl]="form.controls.value">
+                       formControlName="value">
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutGap="8px" *ngIf="this.showRange">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Min"
-                       [formControl]="form.controls.fromValue">
+                       formControlName="fromValue">
             </mat-form-field>
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Max"
-                       [formControl]="form.controls.toValue">
+                       formControlName="toValue">
             </mat-form-field>
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.sortField" placeholder="Sort Field">
+                <mat-select formControlName="sortField" placeholder="Sort Field">
                     <mat-option [value]="0">-</mat-option>
                     <mat-option [value]="1">Price</mat-option>
                     <mat-option [value]="2">Year</mat-option>
@@ -50,7 +50,7 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.sortType">
+                <mat-select formControlName="sortType">
                     <mat-option value="asc">Ascending</mat-option>
                     <mat-option value="desc">Descending</mat-option>
                 </mat-select>

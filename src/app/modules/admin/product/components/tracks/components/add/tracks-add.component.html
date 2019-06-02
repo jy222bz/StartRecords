@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Name" [formControl]="form.controls.name">
+                <input matInput maxlength="255" placeholder="Name" formControlName="name">
                 <mat-error *ngIf="form.controls.name.hasError('required') ||
                form.controls.name.hasError('minlength')">required
                 </mat-error>
@@ -12,12 +12,12 @@
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Duration" [formControl]="form.controls.duration">
+                <input matInput maxlength="255" placeholder="Duration" formControlName="duration">
             </mat-form-field>
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Description" [formControl]="form.controls.description">
+                <input matInput maxlength="255" placeholder="Description" formControlName="description">
             </mat-form-field>
         </div>
     </mat-dialog-content>

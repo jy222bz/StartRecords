@@ -17,8 +17,7 @@ interface Tile {
     styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-    breadcrumbs = [{label: '', params: '', url: '/user', home: true}
-    ];
+    breadcrumbs = [{label: '', params: '', url: '/user', home: true}];
 
     items: Tile[] = [
         {

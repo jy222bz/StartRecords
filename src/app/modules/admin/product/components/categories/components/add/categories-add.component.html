@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <mat-select [formControl]="form.controls.category_id" placeholder="Genres">
+                <mat-select formControlName="category_id" placeholder="Genres">
                     <mat-option *ngFor="let r of categories" [value]="r.id">{{r.name}}</mat-option>
                 </mat-select>
             </mat-form-field>

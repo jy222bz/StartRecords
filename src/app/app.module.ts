@@ -26,6 +26,7 @@ import {WindowRef} from './shared/directives/WindowRef';
 import {MaintenanceService} from './shared/services/maintenance.service';
 import {HttpClientModule} from '@angular/common/http';
 import {SoundVisualizerComponent} from './components/sound-visualizer/sound-visualizer.component';
+import {ErrorComponent} from "./shared/components/error/error.component";
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {SoundVisualizerComponent} from './components/sound-visualizer/sound-visu
         LogoutComponent,
         PlayerComponent,
         SoundVisualizerComponent,
+        ErrorComponent,
     ],
     providers: [
         UserService,
@@ -69,6 +71,7 @@ import {SoundVisualizerComponent} from './components/sound-visualizer/sound-visu
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
+        ErrorComponent,
     ]
 })
 export class AppModule {
