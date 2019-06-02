@@ -1,5 +1,4 @@
 import {Component, isDevMode, OnInit} from '@angular/core';
-import {NotificationsService} from "./shared/services/notifications.service";
 import {SessionService} from "./shared/services/session.service";
 import {MaintenanceService} from "./shared/services/maintenance.service";
 
@@ -11,7 +10,6 @@ import {MaintenanceService} from "./shared/services/maintenance.service";
 export class AppComponent implements OnInit {
 
     constructor(
-        private emailService: NotificationsService,
         private sessionService: SessionService,
         private maintenanceService: MaintenanceService,
     ) {
@@ -19,9 +17,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.emailService.sendEmail('oz222am@student.lnu.se');
-
-         // this.maintenanceService.fixProductsDurationAndTracks();
+        // this.maintenanceService.fixProductsDurationAndTracks();
     }
 
     prepareSession() {

@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material";
 import {WindowRef} from "../../../shared/directives/WindowRef";
 import {Router} from "@angular/router";
 import {Product} from "../../../shared/models/products/product";
+import * as lunr from 'lunr';
 
 @Component({
     selector: 'app-products',
@@ -16,7 +17,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     categoryName = 'Albums';
     _categoryId = '';
 
+    items: Product[] = [];
     products: Product[] = [];
+    index = null;
 
     columns = 3;
     rowHeight = 29;
@@ -24,9 +27,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     filterData = {
         filter: 0,
+        operation: 0,
         value: 0,
+        fromValue: 0,
+        toValue: 0,
         sortType: 'asc',
         sortField: 0,
+        search: ''
     };
 
 
@@ -42,12 +49,51 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.get();
         this.calcHeight(this.winRef.nativeWindow.innerWidth);
+        this.registerFilterShowEvent();
+        this.registerProductsSearchEvent();
+        this.registerProductsSearchCloseEvent();
     }
 
     ngOnDestroy(): void {
-
+        this.unregisterFilterShowEvent();
+        this.unregisterProductsSearchEvent();
+        this.unregisterProductsSearchCloseEvent();
     }
 
+
+    private registerFilterShowEvent() {
+        this.eventsService.registerEvent('PRODUCTS-FILTER-SHOW', this, () => {
+            this.openFilterComponent();
+        });
+    }
+
+    private unregisterFilterShowEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-FILTER-SHOW', this);
+    }
+
+    private registerProductsSearchEvent() {
+        this.eventsService.registerEvent('PRODUCTS-SEARCH', this, (value) => {
+            if (value instanceof Array) {
+                this.filterData.search = value[0];
+                this.filter();
+            }
+        });
+    }
+
+    private unregisterProductsSearchEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-SEARCH', this);
+    }
+
+    private registerProductsSearchCloseEvent() {
+        this.eventsService.registerEvent('PRODUCTS-SEARCH-CLOSE', this, (value) => {
+            this.filterData.search = '';
+            this.filter();
+        });
+    }
+
+    private unregisterProductsSearchCloseEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-SEARCH-CLOSE', this);
+    }
 
     categoryChanged(element) {
         this.categoryId = element.id;
@@ -111,7 +157,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         ref.afterClosed().subscribe(result => {
             if (result) {
                 this.filterData = result;
-                this.get();
+                this.filter();
             }
         });
     }
@@ -120,56 +166,84 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.router.navigate(['/product/' + element.id]);
     }
 
+    filter() {
+        let data = this.items;
+        if (this.filterData.filter !== 0) {
+            data = data.filter((item) => {
+                let value = item.price;
+                if (this.filterData.filter === 2) {
+                    value = item.year;
+                } else if (this.filterData.filter === 3) {
+                    value = item.ratingCalc;
+                }
+                if (this.filterData.operation === 0) {
+                    return value == this.filterData.value;
+                } else if (this.filterData.operation === 1) {
+                    return value > this.filterData.value;
+                } else if (this.filterData.operation === 2) {
+                    return value < this.filterData.value;
+                } else if (this.filterData.operation === 3) {
+                    return value >= this.filterData.fromValue && value <= this.filterData.toValue;
+                }
+            });
+        }
+
+        if (this.filterData.sortField > 0) {
+            data.sort((a, b) => {
+                let ret = 0;
+                if (this.filterData.sortField === 1) {
+
+                    if (a.price < b.price) {
+                        ret = -1;
+                    }
+                    if (a.price > b.price) {
+                        ret = 1;
+                    }
+                } else if (this.filterData.sortField === 2) {
+                    if (a.year < b.year) {
+                        ret = -1;
+                    }
+                    if (a.year > b.year) {
+                        ret = 1;
+                    }
+                } else if (this.filterData.sortField === 3) {
+                    if (a.ratingCalc < b.ratingCalc) {
+                        ret = -1;
+                    }
+                    if (a.ratingCalc > b.ratingCalc) {
+                        ret = 1;
+                    }
+                }
+                if (this.filterData.sortType === 'desc') {
+                    ret = -1 * ret;
+                }
+                return ret;
+            });
+        }
+
+        if (this.filterData.search != '' && this.filterData.search !== null) {
+            const items = this.index.search('*' + this.filterData.search + '*');
+            data = data.filter((item) => {
+                return items.find(x => x.ref === item.id) !== undefined;
+            });
+        }
+
+        this.products = data;
+    }
+
     // ----------------------
     get() {
         const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
-                    if (this.filterData.filter !== 0) {
-                        data = data.filter((item) => {
-                            if (this.filterData.filter === 1) {
-                                return item.price == this.filterData.value;
-                            } else if (this.filterData.filter === 2) {
-                                return item.year == this.filterData.value;
-                            } else if (this.filterData.filter === 3) {
-                                return item.ratingCalc == this.filterData.value;
-                            }
-                        });
-                    }
-
-                    if (this.filterData.sortField > 0) {
-                        data.sort((a, b) => {
-                            let ret = 0;
-                            if (this.filterData.sortField === 1) {
-
-                                if (a.price < b.price) {
-                                    ret = -1;
-                                }
-                                if (a.price > b.price) {
-                                    ret = 1;
-                                }
-                            } else if (this.filterData.sortField === 2) {
-                                if (a.year < b.year) {
-                                    ret = -1;
-                                }
-                                if (a.year > b.year) {
-                                    ret = 1;
-                                }
-                            } else if (this.filterData.sortField === 3) {
-                                if (a.ratingCalc < b.ratingCalc) {
-                                    ret = -1;
-                                }
-                                if (a.ratingCalc > b.ratingCalc) {
-                                    ret = 1;
-                                }
-                            }
-                            if (this.filterData.sortType === 'desc') {
-                                ret = -1 * ret;
-                            }
-                            return ret;
-                        });
-                    }
-                    console.log(data);
-                    this.products = data;
+                    this.items = data;
+                    this.index = lunr(function () {
+                        this.field('name');
+                        this.field('artist');
+                        data.forEach((item) => {
+                            this.add(item);
+                        })
+                    });
+                    this.filter();
                     subscription.unsubscribe();
                 },
                 (error) => {

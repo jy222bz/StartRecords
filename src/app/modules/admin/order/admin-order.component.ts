@@ -42,10 +42,6 @@ export class AdminOrderComponent implements OnInit {
         });
     }
 
-    openSendComponent() {
-        alert('This is for next sprint');
-    }
-
     // -----------------------
     load() {
         const subscription = this.orderService.get(this.order.id).subscribe(

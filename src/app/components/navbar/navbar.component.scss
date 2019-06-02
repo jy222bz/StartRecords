@@ -25,7 +25,33 @@
     .right {
         margin-right: 32px;
     }
-    transition: all 1s;
+
+    .search {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        input {
+            width: 100%;
+            height: 100%;
+            padding: 0 7px 0 32px;
+            font-size: 1.714rem;
+            box-sizing: border-box;
+            font-weight: 300;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 32px;
+            cursor: pointer;
+
+        }
+    }
+
+    transition: all .2s;
 }
 
 .app-navbar-dark {

@@ -18,8 +18,9 @@ import {WindowRef} from "../../shared/directives/WindowRef";
 export class NavbarComponent implements OnInit, OnDestroy {
     title = 'StarRecords';
     productsPage = false;
-    className = '';
     visible = true;
+    searchEnabled = false;
+    atTop = true;
 
 
     @Input() defaultColor = '#ffffff';
@@ -51,6 +52,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.removeScrollEvent();
     }
 
+    getClass() {
+        if (this.searchEnabled || !this.atTop) {
+            return 'app-navbar-dark';
+        } else {
+            return '';
+        }
+    }
+
     show() {
         this.visible = true;
     }
@@ -80,6 +89,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private registerRouteChanges() {
         this.router.events.subscribe((val) => {
             this.productsPage = this.router.url == '/products';
+            if (!this.productsPage) {
+                this.searchEnabled = false;
+            }
 
             // check home
             if (this.router.url == '/' || (this.router.url == '/contact')) {
@@ -100,18 +112,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
 
 
-
     scroll = (event: any): void => {
         const top = event.srcElement.scrollTop;
         if (top == 0) {
-            this.className = '';
+            this.atTop = true;
             this.fontColor = this.defaultColor;
         } else {
-            this.className = 'app-navbar-dark';
+            this.atTop = false;
             this.fontColor = this.scrollColor;
         }
-
-
     };
 
     getBasketTotal() {
@@ -155,13 +164,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
 
     openSearch() {
-        this.eventsService.emit('PRODUCTS-SEARCH-SHOW');
+        this.searchEnabled = true;
+    }
+
+    closeSearch() {
+        this.searchEnabled = false;
+        this.eventsService.emit('PRODUCTS-SEARCH-CLOSE');
     }
 
     openFilter() {
         this.eventsService.emit('PRODUCTS-FILTER-SHOW');
     }
 
+    onSearchChange(event) {
+        this.eventsService.emit('PRODUCTS-SEARCH', event);
+    }
 
     // ----------------
     navigateHome() {
