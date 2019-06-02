@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemsComponent} from '../../../shared/components/items/items.component';
-import {Order} from "../../../shared/models/orders/order";
-import {OrdersService} from "../../../shared/services/orders/orders.service";
-import {AuthenticationService} from "../../../shared/services/authentication.service";
+import {Order} from '../../../shared/models/orders/order';
+import {OrdersService} from '../../../shared/services/orders/orders.service';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
 
 
 @Component({
@@ -31,6 +31,12 @@ export class UserOrdersComponent extends ItemsComponent<Order> implements OnInit
 
     // ----------------------
     get() {
+        if (!this.authenticationService.isAuthenticated()) {
+            setTimeout(() => {
+                this.get();
+            }, 1000);
+            return;
+        }
         const subscription = this.ordersService.get(this.authenticationService.getAccountId())
             .subscribe(
                 (data) => {

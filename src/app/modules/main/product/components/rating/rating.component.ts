@@ -73,11 +73,13 @@ export class RatingComponent implements OnInit {
 
     // -----------------
     getUserRating() {
+        if (!this.authenticationService.isAuthenticated()) {
+            return;
+        }
         const subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
             .subscribe((next) => {
                     if (next.size > 0) {
                         this.rated = true;
-
                     }
                     subscription.unsubscribe();
                 },
