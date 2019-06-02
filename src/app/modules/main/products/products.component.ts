@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material";
 import {WindowRef} from "../../../shared/directives/WindowRef";
 import {Router} from "@angular/router";
 import {Product} from "../../../shared/models/products/product";
+import * as lunr from 'lunr';
 
 @Component({
     selector: 'app-products',
@@ -18,6 +19,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     items: Product[] = [];
     products: Product[] = [];
+    index = null;
 
     columns = 3;
     rowHeight = 29;
@@ -49,11 +51,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.calcHeight(this.winRef.nativeWindow.innerWidth);
         this.registerFilterShowEvent();
         this.registerProductsSearchEvent();
+        this.registerProductsSearchCloseEvent();
     }
 
     ngOnDestroy(): void {
         this.unregisterFilterShowEvent();
         this.unregisterProductsSearchEvent();
+        this.unregisterProductsSearchCloseEvent();
     }
 
 
@@ -78,6 +82,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     private unregisterProductsSearchEvent() {
         this.eventsService.unregisterEvent('PRODUCTS-SEARCH', this);
+    }
+
+    private registerProductsSearchCloseEvent() {
+        this.eventsService.registerEvent('PRODUCTS-SEARCH-CLOSE', this, (value) => {
+            this.filterData.search = '';
+            this.filter();
+        });
+    }
+
+    private unregisterProductsSearchCloseEvent() {
+        this.eventsService.unregisterEvent('PRODUCTS-SEARCH-CLOSE', this);
     }
 
     categoryChanged(element) {
@@ -205,6 +220,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 return ret;
             });
         }
+
+        if (this.filterData.search != '' && this.filterData.search !== null) {
+            const items = this.index.search('*' + this.filterData.search + '*');
+            data = data.filter((item) => {
+                return items.find(x => x.ref === item.id) !== undefined;
+            });
+        }
+
         this.products = data;
     }
 
@@ -213,6 +236,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
         const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
                     this.items = data;
+                    this.index = lunr(function () {
+                        this.field('name');
+                        this.field('artist');
+                        data.forEach((item) => {
+                            this.add(item);
+                        })
+                    });
                     this.filter();
                     subscription.unsubscribe();
                 },

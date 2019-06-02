@@ -169,6 +169,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     closeSearch() {
         this.searchEnabled = false;
+        this.eventsService.emit('PRODUCTS-SEARCH-CLOSE');
     }
 
     openFilter() {
