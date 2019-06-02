@@ -239,6 +239,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
                     this.index = lunr(function () {
                         this.field('name');
                         this.field('artist');
+                        this.field('producer');
+                        this.field('year');
                         data.forEach((item) => {
                             this.add(item);
                         })
