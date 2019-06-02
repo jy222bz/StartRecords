@@ -2,6 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from "../../../../../shared/services/orders/order.service";
+import {EmailService} from "../../../../../shared/services/email.service";
+import {User} from "../../../../../shared/models/users/user";
+import {Order} from "../../../../../shared/models/orders/order";
 
 
 @Component({
@@ -15,6 +18,7 @@ export class StatusComponent implements OnInit {
 
     constructor(
         private orderService: OrderService,
+        private emailService: EmailService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<StatusComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
@@ -45,6 +49,7 @@ export class StatusComponent implements OnInit {
             .then((next) => {
                     this.working = false;
                     this.dialog.close(data);
+                    this.sendEmail();
                 }
             )
             .catch((error) => {
@@ -52,6 +57,14 @@ export class StatusComponent implements OnInit {
                 this.working = false;
             });
         return false;
+    }
+
+    sendEmail() {
+        let user = new User();
+        user.email = 'osamaz26@gmail.com';
+        user.name = 'sdfsdf';
+        let order = new Order();
+        this.emailService.sendOrderUpdate(user, order);
     }
 
     close() {

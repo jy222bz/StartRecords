@@ -22,10 +22,10 @@ export class AddComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'name': ['Test', [Validators.required, Validators.minLength(1)]],
-            'year': ['1999', [Validators.required, Validators.minLength(4)]],
-            'artist': ['Niko', [Validators.required, Validators.minLength(1)]],
-            'producer': ['Ville', [Validators.required, Validators.minLength(1)]],
+            'name': ['', [Validators.required, Validators.minLength(1)]],
+            'year': ['', [Validators.required, Validators.minLength(4)]],
+            'artist': ['', [Validators.required, Validators.minLength(1)]],
+            'producer': ['', [Validators.required, Validators.minLength(1)]],
             'price': [0, [Validators.required]],
             'duration': [0],
             'tracks': [0],

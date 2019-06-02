@@ -19,11 +19,13 @@ import {BasketService} from "./shared/services/basket/basket.service";
 import {LocalStorageService} from "./shared/services/local-storage.service";
 import {PlayerService} from "./shared/services/player.service";
 import {EventsService} from "./shared/services/events.service";
-import {NotificationsService} from "./shared/services/notifications.service";
+import {EmailService} from "./shared/services/email.service";
 import {PlayerComponent} from "./components/player/player.component";
 import {SessionService} from "./shared/services/session.service";
 import {WindowRef} from "./shared/directives/WindowRef";
 import {MaintenanceService} from "./shared/services/maintenance.service";
+import {HttpClientModule} from "@angular/common/http";
+import {SoundVisualizerComponent} from "./components/sound-visualizer/sound-visualizer.component";
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {MaintenanceService} from "./shared/services/maintenance.service";
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         CommonModule,
         FirebaseModule,
         MaterialModule,
@@ -45,6 +48,7 @@ import {MaintenanceService} from "./shared/services/maintenance.service";
         RegisterComponent,
         LogoutComponent,
         PlayerComponent,
+        SoundVisualizerComponent,
     ],
     providers: [
         UserService,
@@ -53,7 +57,7 @@ import {MaintenanceService} from "./shared/services/maintenance.service";
         BasketService,
         PlayerService,
         EventsService,
-        NotificationsService,
+        EmailService,
         SessionService,
         MaintenanceService,
         WindowRef,
