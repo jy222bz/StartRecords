@@ -76,16 +76,12 @@ export class StatusComponent implements OnInit {
             }, (error) => {
                 console.log(error);
             });
-
-
-        const order = new Order();
-
     }
 
     getStatus(status) {
         switch (status) {
             case 0:
-                return 'Orders';
+                return 'Ordered';
             case 1:
                 return 'Processing';
             case 2:
@@ -93,7 +89,7 @@ export class StatusComponent implements OnInit {
             case 3:
                 return 'Sent';
             default:
-                return 'Sent';
+                return 'Unknown';
         }
     }
 
