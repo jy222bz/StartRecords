@@ -27,6 +27,7 @@ export class AuthenticationService {
                     this.userService.set(this.account.id, {
                         admin: false,
                         name: name,
+                        email: email,
                     }).then(() => {
                         this.account.name = name;
                         resolve(this.account);
@@ -122,6 +123,7 @@ export class AuthenticationService {
                 .subscribe((result) => {
                         this.account.name = result.data().name;
                         this.account.admin = result.data().admin;
+                        this.account.email = result.data().admin;
                         resolve();
                     }, (error) => {
                         reject(error);

@@ -11,6 +11,7 @@ import {OrderDetailsService} from '../../../shared/services/orders/order-details
 import {StatusComponent} from './components/status/status.component';
 import {OrderDetailsComponent} from './components/details/order-details.component';
 import {EmailService} from '../../../shared/services/email.service';
+import {UserService} from "../../../shared/services/user/user.service";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {EmailService} from '../../../shared/services/email.service';
         OrderService,
         OrderDetailsService,
         EmailService,
+        UserService,
     ],
     entryComponents: [
         StatusComponent,
