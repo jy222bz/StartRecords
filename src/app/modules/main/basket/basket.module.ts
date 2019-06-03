@@ -33,7 +33,6 @@ import {ProductsService} from "../../../shared/services/products/products.servic
         DeleteComponent,
         EditComponent,
         AddressComponent,
-
     ],
     providers: [
         BasketService,

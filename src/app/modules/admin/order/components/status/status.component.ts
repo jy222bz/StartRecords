@@ -1,10 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OrderService} from "../../../../../shared/services/orders/order.service";
-import {EmailService} from "../../../../../shared/services/email.service";
-import {User} from "../../../../../shared/models/users/user";
-import {Order} from "../../../../../shared/models/orders/order";
+import {OrderService} from '../../../../../shared/services/orders/order.service';
+import {EmailService} from '../../../../../shared/services/email.service';
+import {UserService} from "../../../../../shared/services/user/user.service";
 
 
 @Component({
@@ -19,11 +18,12 @@ export class StatusComponent implements OnInit {
     constructor(
         private orderService: OrderService,
         private emailService: EmailService,
+        private userService: UserService,
         private fb: FormBuilder,
         private dialog: MatDialogRef<StatusComponent>,
         @Inject(MAT_DIALOG_DATA) private data) {
         this.form = this.fb.group({
-            'status': [data.status, [Validators.required]],
+            status: [data.status, [Validators.required]],
         });
 
     }
@@ -42,14 +42,14 @@ export class StatusComponent implements OnInit {
         }
         this.working = true;
         this.error = null;
-        let data = {
+        const data = {
             status: parseInt(this.form.controls.status.value, 10)
         };
         this.orderService.set(this.data.id, data)
             .then((next) => {
                     this.working = false;
                     this.dialog.close(data);
-                    this.sendEmail();
+                    this.sendEmail(this.data.userId, this.data.id, data.status);
                 }
             )
             .catch((error) => {
@@ -59,12 +59,37 @@ export class StatusComponent implements OnInit {
         return false;
     }
 
-    sendEmail() {
-        let user = new User();
-        user.email = 'osamaz26@gmail.com';
-        user.name = 'sdfsdf';
-        let order = new Order();
-        this.emailService.sendOrderUpdate(user, order);
+    sendEmail(userId, orderId, orderStatus) {
+        this.userService.get(userId)
+            .subscribe((next) => {
+                this.emailService.sendOrderUpdate(next.data().name, next.data().email
+                    , orderId, this.getStatus(orderStatus))
+                    .subscribe(
+                        (next) => {
+                            console.log(next);
+                        },
+                        (error) => {
+                            console.log(error);
+                        }
+                    )
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    getStatus(status) {
+        switch (status) {
+            case 0:
+                return 'Ordered';
+            case 1:
+                return 'Processing';
+            case 2:
+                return 'Shipping';
+            case 3:
+                return 'Sent';
+            default:
+                return 'Unknown';
+        }
     }
 
     close() {

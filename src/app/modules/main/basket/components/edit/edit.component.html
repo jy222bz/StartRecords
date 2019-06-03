@@ -3,7 +3,7 @@
 <mat-dialog-content [formGroup]="form">
     <div fxLayout="row">
         <mat-form-field fxFlex="1 1 100%">
-            <input matInput maxlength="255" placeholder="Count" [formControl]="form.controls.count">
+            <input matInput maxlength="255" placeholder="Count" formControlName="count">
             <mat-error *ngIf="form.controls.count.hasError('required') ||
                form.controls.count.hasError('minlength')">required
             </mat-error>

@@ -124,13 +124,13 @@ export class ProductsService {
                                 (error) => {
                                     reject(error);
                                 }
-                            )
+                            );
                     },
                     (error) => {
                         subscription.unsubscribe();
                         reject(error);
                     }
-                )
+                );
         });
     }
 }

@@ -19,13 +19,13 @@ export class FilterComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data) {
 
         this.form = this.fb.group({
-            'filter': [data.filter, [Validators.pattern("^[0-9]*$")]],
-            'operation': [data.operation, [Validators.required]],
-            'value': [data.value, [Validators.pattern("^[0-9]*$")]],
-            'fromValue': [data.fromValue, [Validators.pattern("^[0-9]*$")]],
-            'toValue': [data.toValue, [Validators.pattern("^[0-9]*$")]],
-            'sortType': [data.sortType, [Validators.required]],
-            'sortField': [data.sortField, [Validators.required]],
+            filter: [data.filter, [Validators.pattern('^[0-9]*$')]],
+            operation: [data.operation, [Validators.required]],
+            value: [data.value, [Validators.pattern('^[0-9]*$')]],
+            fromValue: [data.fromValue, [Validators.pattern('^[0-9]*$')]],
+            toValue: [data.toValue, [Validators.pattern('^[0-9]*$')]],
+            sortType: [data.sortType, [Validators.required]],
+            sortField: [data.sortField, [Validators.required]],
         });
         this.selectionChange();
     }

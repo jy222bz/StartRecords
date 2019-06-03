@@ -1,6 +1,6 @@
 import {Component, isDevMode, OnInit} from '@angular/core';
-import {SessionService} from "./shared/services/session.service";
-import {MaintenanceService} from "./shared/services/maintenance.service";
+import {SessionService} from './shared/services/session.service';
+import {MaintenanceService} from './shared/services/maintenance.service';
 
 @Component({
     selector: 'app-root',

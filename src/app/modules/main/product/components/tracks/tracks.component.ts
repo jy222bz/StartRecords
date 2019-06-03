@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ItemsComponent} from "../../../../../shared/components/items/items.component";
-import {ProductTracksService} from "../../../../../shared/services/products/product-tracks.service";
-import {Track} from "../../../../../shared/models/tracks/track";
-import {ActivatedRoute} from "@angular/router";
-import {PlayerService} from "../../../../../shared/services/player.service";
-import {EventsService} from "../../../../../shared/services/events.service";
+import {ItemsComponent} from '../../../../../shared/components/items/items.component';
+import {ProductTracksService} from '../../../../../shared/services/products/product-tracks.service';
+import {Track} from '../../../../../shared/models/tracks/track';
+import {ActivatedRoute} from '@angular/router';
+import {PlayerService} from '../../../../../shared/services/player.service';
+import {EventsService} from '../../../../../shared/services/events.service';
 
 
 @Component({

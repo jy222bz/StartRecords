@@ -1,13 +1,13 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AuthenticationService} from "../../shared/services/authentication.service";
-import {MatDialog} from "@angular/material";
-import {LoginComponent} from "../login/login.component";
-import {LogoutComponent} from "../logout/logout.component";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RegisterComponent} from "../register/register.component";
-import {BasketService} from "../../shared/services/basket/basket.service";
-import {EventsService} from "../../shared/services/events.service";
-import {WindowRef} from "../../shared/directives/WindowRef";
+import {AuthenticationService} from '../../shared/services/authentication.service';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
+import {LogoutComponent} from '../logout/logout.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RegisterComponent} from '../register/register.component';
+import {BasketService} from '../../shared/services/basket/basket.service';
+import {EventsService} from '../../shared/services/events.service';
+import {WindowRef} from '../../shared/directives/WindowRef';
 
 
 @Component({
@@ -88,13 +88,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     private registerRouteChanges() {
         this.router.events.subscribe((val) => {
-            this.productsPage = this.router.url == '/products';
+            this.productsPage = this.router.url === '/products';
             if (!this.productsPage) {
                 this.searchEnabled = false;
             }
 
             // check home
-            if (this.router.url == '/' || (this.router.url == '/contact')) {
+            if (this.router.url === '/' || (this.router.url === '/contact')) {
                 this.defaultColor = '#ffffff';
             } else {
                 this.defaultColor = '#000000';
@@ -114,14 +114,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     scroll = (event: any): void => {
         const top = event.srcElement.scrollTop;
-        if (top == 0) {
+        if (top === 0) {
             this.atTop = true;
             this.fontColor = this.defaultColor;
         } else {
             this.atTop = false;
             this.fontColor = this.scrollColor;
         }
-    };
+    }
 
     getBasketTotal() {
         const total = this.basketService.getCount();

@@ -10,7 +10,7 @@ import * as p5 from 'p5';
 })
 export class SoundVisualizerComponent {
 
-    container = {width: 450, height: 450, id: "p5-container"}
+    container = {width: 450, height: 450, id: 'p5-container'};
 
     constructor() {
 

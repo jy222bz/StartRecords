@@ -10,11 +10,11 @@
         </mat-toolbar-row>
     </mat-toolbar>
 
-    <form novalidate (ngSubmit)="save()">
+    <form novalidate (ngSubmit)="save()" [formGroup]="form">
         <div style="padding: 16px">
             <div fxLayout="row">
                 <mat-form-field fxFlex="1 1 100%">
-                    <input matInput maxlength="255" placeholder="City" [formControl]="form.controls.city">
+                    <input matInput maxlength="255" placeholder="City" formControlName="city">
                     <mat-error *ngIf="form.controls.city.hasError('required') ||
                form.controls.city.hasError('minlength')">required
                     </mat-error>
@@ -23,13 +23,13 @@
             <div fxLayout="row">
                 <mat-form-field fxFlex="1 1 100%">
                     <input matInput maxlength="255" placeholder="Postal Number"
-                           [formControl]="form.controls.postalNumber">
+                           formControlName="postalNumber">
                 </mat-form-field>
             </div>
             <div fxLayout="row">
                 <mat-form-field fxFlex="1 1 100%">
                     <input matInput maxlength="255" placeholder="Street"
-                           [formControl]="form.controls.street">
+                           formControlName="street">
                 </mat-form-field>
             </div>
         </div>

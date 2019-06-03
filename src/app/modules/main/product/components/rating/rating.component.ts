@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthenticationService} from "../../../../../shared/services/authentication.service";
-import {ProductRatingsService} from "../../../../../shared/services/products/product-ratings.service";
-import {EventsService} from "../../../../../shared/services/events.service";
+import {AuthenticationService} from '../../../../../shared/services/authentication.service';
+import {ProductRatingsService} from '../../../../../shared/services/products/product-ratings.service';
+import {EventsService} from '../../../../../shared/services/events.service';
+import {ErrorComponent} from "../../../../../shared/components/error/error.component";
+import {MatDialog} from "@angular/material";
 
 class RateElement {
     id: number;
@@ -43,6 +45,7 @@ export class RatingComponent implements OnInit {
         private productRatingsService: ProductRatingsService,
         private authenticationService: AuthenticationService,
         private eventsService: EventsService,
+        private dialog: MatDialog,
     ) {
 
     }
@@ -73,11 +76,13 @@ export class RatingComponent implements OnInit {
 
     // -----------------
     getUserRating() {
-        let subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
+        if (!this.authenticationService.isAuthenticated()) {
+            return;
+        }
+        const subscription = this.productRatingsService.get(this.productId, this.authenticationService.getAccountId())
             .subscribe((next) => {
                     if (next.size > 0) {
                         this.rated = true;
-
                     }
                     subscription.unsubscribe();
                 },
@@ -92,7 +97,14 @@ export class RatingComponent implements OnInit {
             return;
         }
         if (this.authenticationService.isAdmin()) {
-            alert('Login as user to be able to rate');
+            const ref = this.dialog.open(ErrorComponent, {
+                autoFocus: true,
+                width: '480px',
+                data: "Login in as a user to be able to rate"
+            });
+            ref.afterClosed()
+                .subscribe((next) => {
+                });
             return;
         }
         if (!this.authenticationService.isAuthenticated()) {
@@ -100,8 +112,18 @@ export class RatingComponent implements OnInit {
             return;
         }
         if (this.rated) {
+            const ref = this.dialog.open(ErrorComponent, {
+                autoFocus: true,
+                width: '480px',
+                data: "You have already voted to this album"
+            });
+            ref.afterClosed()
+                .subscribe((next) => {
+                });
             return;
         }
+
+
         this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
             .then((next) => {
                 this.rated = true;
@@ -109,7 +131,7 @@ export class RatingComponent implements OnInit {
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 }
 

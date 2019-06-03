@@ -1,20 +1,20 @@
-import {animate, group, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, state, style, transition, trigger} from '@angular/animations';
 
 
 export const slideUpAnimation =
     trigger('slideUpAnimation', [
         state('in', style({
-            'opacity': '1',  'transform': 'translateY(0%)'
+            opacity: '1',  transform: 'translateY(0%)'
         })),
         state('out', style({
-            'opacity': '0', 'transform': 'translateY(100%)'
+            opacity: '0', transform: 'translateY(100%)'
         })),
         transition('in => out', [group([
                 animate('200ms ease-in-out', style({
-                    'opacity': '0'
+                    opacity: '0'
                 })),
                 animate('200ms ease-in-out', style({
-                    'transform': 'translateY(100%)'
+                    transform: 'translateY(100%)'
                 })),
             ]
         )]),
@@ -23,7 +23,7 @@ export const slideUpAnimation =
                     transform: 'translateY(0%)'
                 })),
                 animate('200ms ease-in-out', style({
-                    'opacity': '1'
+                    opacity: '1'
                 }))
             ]
         )])

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {CategoriesService} from "../../../../../shared/services/categoreis/categories.service";
-import {Category} from "../../../../../shared/models/categories/category";
-import {EventsService} from "../../../../../shared/services/events.service";
-import {flip3DAnimation} from "../../../../../shared/animations/flip-3d-animation";
+import {CategoriesService} from '../../../../../shared/services/categoreis/categories.service';
+import {Category} from '../../../../../shared/models/categories/category';
+import {EventsService} from '../../../../../shared/services/events.service';
+import {flip3DAnimation} from '../../../../../shared/animations/flip-3d-animation';
 
 @Component({
     selector: 'app-products-categories',
@@ -70,7 +70,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     updateElements(data) {
         // find the lowest count
         //
-        let min = 0, max = 0;
+        let min = 0;
+        let max = 0;
         if (data.length > 0) {
             min = data[0].count;
             max = data[0].count;
@@ -83,7 +84,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
                 max = data[i].count;
             }
         }
-        if (min == 0) {
+        if (min === 0) {
             min = 1;
         }
         if (max === 0) {

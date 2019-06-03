@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Howl, Howler} from 'howler';
-import {Track} from "../models/tracks/track";
+import {Track} from '../models/tracks/track';
 
 
 @Injectable()

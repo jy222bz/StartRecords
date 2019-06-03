@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {WindowRef} from "../../../shared/directives/WindowRef";
-import {Router} from "@angular/router";
+import {WindowRef} from '../../../shared/directives/WindowRef';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',

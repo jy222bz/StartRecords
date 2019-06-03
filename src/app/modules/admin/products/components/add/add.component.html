@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Name" [formControl]="form.controls.name">
+                <input matInput maxlength="255" placeholder="Name" formControlName="name">
                 <mat-error *ngIf="form.controls.name.hasError('required') ||
                form.controls.name.hasError('minlength')">required
                 </mat-error>
@@ -13,35 +13,35 @@
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Year"
-                       [formControl]="form.controls.year">
+                       formControlName="year">
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutGap="8px">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Artist"
-                       [formControl]="form.controls.artist">
+                       formControlName="artist">
             </mat-form-field>
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Producer"
-                       [formControl]="form.controls.producer">
+                       formControlName="producer">
             </mat-form-field>
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Price"
-                       [formControl]="form.controls.price">
+                       formControlName="price">
             </mat-form-field>
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input-file placeholder="Cover" [formControl]="form.controls.cover"></input-file>
+                <input-file placeholder="Cover" formControlName="cover"></input-file>
                 <mat-icon matSuffix>photo</mat-icon>
             </mat-form-field>
         </div>
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
                 <textarea matInput maxlength="2048" placeholder="Description"
-                          [formControl]="form.controls.description"></textarea>
+                          formControlName="description"></textarea>
             </mat-form-field>
         </div>
     </mat-dialog-content>

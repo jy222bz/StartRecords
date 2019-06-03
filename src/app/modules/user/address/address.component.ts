@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from "../../../shared/services/authentication.service";
-import {UserAddressesService} from "../../../shared/services/user/user-addresses.service";
-import {Router} from "@angular/router";
+import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {UserAddressesService} from '../../../shared/services/user/user-addresses.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -29,9 +29,9 @@ export class AddressComponent implements OnInit {
     ) {
 
         this.form = this.fb.group({
-            'city': ['', [Validators.required, Validators.minLength(1)]],
-            'postalNumber': ['', [Validators.required, Validators.minLength(5)]],
-            'street': ['', [Validators.required]],
+            city: ['', [Validators.required, Validators.minLength(1)]],
+            postalNumber: ['', [Validators.required, Validators.minLength(5)]],
+            street: ['', [Validators.required]],
         });
     }
 
@@ -40,10 +40,15 @@ export class AddressComponent implements OnInit {
     }
 
     get() {
-        // ToDo: fix issue if page refreshed and account is null
-        this.userAddressesService.get(this.authenticationService.getAccount().id).subscribe(
+        if (!this.authenticationService.isAuthenticated()) {
+            setTimeout(() => {
+                this.get();
+            }, 1000);
+            return;
+        }
+        this.userAddressesService.get(this.authenticationService.getAccountId()).subscribe(
             (next) => {
-                if (next !== undefined) {
+                if (next !== undefined && next.data() !== undefined) {
                     this.form.controls.city.setValue(next.data().city);
                     this.form.controls.street.setValue(next.data().street);
                     this.form.controls.postalNumber.setValue(next.data().postalNumber);
@@ -52,7 +57,7 @@ export class AddressComponent implements OnInit {
             (error) => {
                 console.log(error);
             }
-        )
+        );
     }
 
     save() {

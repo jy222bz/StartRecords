@@ -10,6 +10,7 @@ import {OrderDetailsService} from "../../../shared/services/orders/order-details
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../../shared/services/authentication.service";
 import {ProductsService} from "../../../shared/services/products/products.service";
+import {ErrorComponent} from "../../../shared/components/error/error.component";
 
 @Component({
     selector: 'app-main-basket',
@@ -32,7 +33,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
         private productsService: ProductsService,
         private authenticationService: AuthenticationService,
         private dialog: MatDialog,
-        private router: Router
+        private router: Router,
     ) {
         super();
     }
@@ -99,6 +100,18 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
 
 
     confirm() {
+        if (this.getTotal() === 0) {
+            const ref = this.dialog.open(ErrorComponent, {
+                autoFocus: true,
+                width: '480px',
+                data: "Your basket is empty"
+            });
+            ref.afterClosed()
+                .subscribe((next) => {
+                });
+            return;
+        }
+
         //
         this.working = true;
 
@@ -149,7 +162,7 @@ export class BasketComponent extends ItemsComponent<ProductBasket> implements On
                     if (next.productId !== undefined) {
                         let item = this.findById(next.productId);
                         if (item !== undefined) {
-                            item.price = item.price - (item.price * parseInt(next.discount, 10) / 100 );
+                            item.price = item.price - (item.price * parseInt(next.discount, 10) / 100);
                             item.discount = next.discount;
                             this.updateItem(item);
                             this.updateTotal();

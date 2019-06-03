@@ -1,6 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {PlayerComponent} from './player.component';
-import {PlayerService} from "../../shared/services/player.service";
+import {PlayerService} from '../../shared/services/player.service';
 
 
 describe('PlayerIsShown', () => {

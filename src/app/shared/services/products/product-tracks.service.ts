@@ -19,8 +19,8 @@ export class ProductTracksService {
             .pipe(map(
                 actions => {
                     return actions.map(item => {
-                        return new Track(item.payload.doc)
-                    })
+                        return new Track(item.payload.doc);
+                    });
                 }));
     }
 
@@ -42,7 +42,7 @@ export class ProductTracksService {
                         .catch((error) => {
                             console.log(error);
                             reject(error);
-                        })
+                        });
                 })
                 .catch((error) => {
                     console.log(error);

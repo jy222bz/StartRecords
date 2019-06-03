@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../../shared/services/products/product.service";
-import {ActivatedRoute} from "@angular/router";
-import {BasketService} from "../../../shared/services/basket/basket.service";
-import {AuthenticationService} from "../../../shared/services/authentication.service";
-import {EventsService} from "../../../shared/services/events.service";
-import {WindowRef} from "../../../shared/directives/WindowRef";
-import {Product} from "../../../shared/models/products/product";
+import {ProductService} from '../../../shared/services/products/product.service';
+import {ActivatedRoute} from '@angular/router';
+import {BasketService} from '../../../shared/services/basket/basket.service';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {EventsService} from '../../../shared/services/events.service';
+import {WindowRef} from '../../../shared/directives/WindowRef';
+import {Product} from '../../../shared/models/products/product';
+import {ErrorComponent} from "../../../shared/components/error/error.component";
+import {MatDialog} from "@angular/material";
 
 
 @Component({
@@ -25,20 +27,28 @@ export class ProductComponent implements OnInit {
         private eventsService: EventsService,
         private activatedRoute: ActivatedRoute,
         private winRef: WindowRef,
+        private dialog: MatDialog,
     ) {
         this.calcDimension(winRef.nativeWindow.innerWidth);
     }
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe(params => {
-            this.product.id = params['id'];
+            this.product.id = params.id;
             this.load();
         });
     }
 
     buy() {
         if (this.authenticationService.isAdmin()) {
-            alert('Login as user to be able to buy');
+            const ref = this.dialog.open(ErrorComponent, {
+                autoFocus: true,
+                width: '480px',
+                data: "Login in as a user to be able to buy"
+            });
+            ref.afterClosed()
+                .subscribe((next) => {
+                });
             return;
         }
         if (!this.authenticationService.isAuthenticated()) {
@@ -75,7 +85,7 @@ export class ProductComponent implements OnInit {
             () => {
                 subscription.unsubscribe();
             }
-        )
+        );
     }
 }
 

@@ -4,7 +4,7 @@
     <mat-dialog-content [formGroup]="form">
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
-                <input matInput maxlength="255" placeholder="Email" [formControl]="form.controls.email">
+                <input matInput maxlength="255" placeholder="Email" formControlName="email">
                 <mat-error *ngIf="form.controls.email.hasError('required') ||
                form.controls.email.hasError('minlength')">required
                 </mat-error>
@@ -13,7 +13,7 @@
         <div fxLayout="row">
             <mat-form-field fxFlex="1 1 100%">
                 <input matInput maxlength="255" placeholder="Password" type="password"
-                       [formControl]="form.controls.password">
+                       formControlName="password">
             </mat-form-field>
         </div>
     </mat-dialog-content>

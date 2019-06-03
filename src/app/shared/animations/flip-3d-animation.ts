@@ -1,23 +1,23 @@
-import {animate, group, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, state, style, transition, trigger} from '@angular/animations';
 
 
 export const flip3DAnimation =
     trigger('flip3DAnimation', [
         state('in', style({
-            'opacity': '1', 'transform': 'rotateY(0deg)', 'visibility': 'visible'
+            opacity: '1', transform: 'rotateY(0deg)', visibility: 'visible'
         })),
         state('out', style({
-            'opacity': '0', 'transform': 'rotateY(180deg)', 'visibility': 'hidden'
+            opacity: '0', transform: 'rotateY(180deg)', visibility: 'hidden'
         })),
         transition('in => out', [group([
                 animate('.9s ease-in-out', style({
-                    'opacity': '0'
+                    opacity: '0'
                 })),
                 animate('.9s ease-in-out', style({
-                    'visibility': 'hidden'
+                    visibility: 'hidden'
                 })),
                 animate('.9s ease-in-out', style({
-                    'transform': 'rotateY(180deg)'
+                    transform: 'rotateY(180deg)'
                 })),
             ]
         )]),
@@ -26,10 +26,10 @@ export const flip3DAnimation =
                     transform: 'rotateY(0)'
                 })),
                 animate('.9s ease-in-out', style({
-                    'visibility': 'visible'
+                    visibility: 'visible'
                 })),
                 animate('.9s ease-in-out', style({
-                    'opacity': '1'
+                    opacity: '1'
                 }))
             ]
         )])

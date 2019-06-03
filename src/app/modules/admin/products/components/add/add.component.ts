@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProductsService} from "../../../../../shared/services/products/products.service";
-import {UploadService} from "../../../../../shared/services/upload.service";
+import {ProductsService} from '../../../../../shared/services/products/products.service';
+import {UploadService} from '../../../../../shared/services/upload.service';
 
 
 @Component({
@@ -22,17 +22,17 @@ export class AddComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.form = this.fb.group({
-            'name': ['', [Validators.required, Validators.minLength(1)]],
-            'year': ['', [Validators.required, Validators.minLength(4)]],
-            'artist': ['', [Validators.required, Validators.minLength(1)]],
-            'producer': ['', [Validators.required, Validators.minLength(1)]],
-            'price': [0, [Validators.required]],
-            'duration': [0],
-            'tracks': [0],
-            'totalRatings': [0],
-            'numberOfRatings': [0],
-            'cover': [''],
-            'description': [''],
+            name: ['', [Validators.required, Validators.minLength(1)]],
+            year: ['', [Validators.required, Validators.minLength(4)]],
+            artist: ['', [Validators.required, Validators.minLength(1)]],
+            producer: ['', [Validators.required, Validators.minLength(1)]],
+            price: [0, [Validators.required]],
+            duration: [0],
+            tracks: [0],
+            totalRatings: [0],
+            numberOfRatings: [0],
+            cover: [''],
+            description: [''],
         });
     }
 
@@ -84,7 +84,7 @@ export class AddComponent implements OnInit {
     }
 
     saveProduct(cover) {
-        let data: any = {
+        const data: any = {
             name: this.form.controls.name.value,
             year: this.form.controls.year.value,
             artist: this.form.controls.artist.value,
@@ -94,7 +94,7 @@ export class AddComponent implements OnInit {
             description: this.form.controls.description.value,
             numberOfRatings: this.form.controls.numberOfRatings.value,
             totalRatings: this.form.controls.totalRatings.value,
-            cover: cover,
+            cover,
             total: 0,
         };
         this.productsService.add(data)

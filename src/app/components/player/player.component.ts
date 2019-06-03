@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PlayerService} from "../../shared/services/player.service";
-import {EventsService} from "../../shared/services/events.service";
-import {slideUpAnimation} from "../../shared/animations/slide-up-animation";
+import {PlayerService} from '../../shared/services/player.service';
+import {EventsService} from '../../shared/services/events.service';
+import {slideUpAnimation} from '../../shared/animations/slide-up-animation';
 
 
 @Component({
@@ -37,7 +37,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     }
 
     getShowState() {
-        return this.visible ? 'in' : 'out'
+        return this.visible ? 'in' : 'out';
     }
 
     show() {
@@ -62,7 +62,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     }
 
     volume() {
-        if (this.playerService.getVolume() == 0.0) {
+        if (this.playerService.getVolume() === 0.0) {
             this.playerService.setVolume(1.0);
         } else {
             this.playerService.setVolume(0);

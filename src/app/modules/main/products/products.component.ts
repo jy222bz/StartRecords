@@ -1,11 +1,11 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FilterComponent} from "./components/filter/filter.component";
-import {ProductsService} from "../../../shared/services/products/products.service";
-import {EventsService} from "../../../shared/services/events.service";
-import {MatDialog} from "@angular/material";
-import {WindowRef} from "../../../shared/directives/WindowRef";
-import {Router} from "@angular/router";
-import {Product} from "../../../shared/models/products/product";
+import {FilterComponent} from './components/filter/filter.component';
+import {ProductsService} from '../../../shared/services/products/products.service';
+import {EventsService} from '../../../shared/services/events.service';
+import {MatDialog} from '@angular/material';
+import {WindowRef} from '../../../shared/directives/WindowRef';
+import {Router} from '@angular/router';
+import {Product} from '../../../shared/models/products/product';
 import * as lunr from 'lunr';
 
 @Component({
@@ -125,9 +125,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
             this.columns = 3;
         }
 
-        if (this.columns == 2) {
+        if (this.columns === 2) {
             this.rowHeight = 54;
-        } else if (this.columns == 1) {
+        } else if (this.columns === 1) {
             this.rowHeight = 70;
         } else {
             this.rowHeight = 29;
@@ -135,14 +135,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     getColumnSpan(element): number {
-        if (this.columns == 1) {
+        if (this.columns === 1) {
             return 1;
         }
         return element.columnSpan;
     }
 
     getRowSpan(element) {
-        if (this.columns == 1) {
+        if (this.columns === 1) {
             return 1;
         }
         return element.rowSpan;
@@ -177,7 +177,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                     value = item.ratingCalc;
                 }
                 if (this.filterData.operation === 0) {
-                    return value == this.filterData.value;
+                    return value === this.filterData.value;
                 } else if (this.filterData.operation === 1) {
                     return value > this.filterData.value;
                 } else if (this.filterData.operation === 2) {
@@ -221,7 +221,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
             });
         }
 
-        if (this.filterData.search != '' && this.filterData.search !== null) {
+        if (this.filterData.search !== '' && this.filterData.search !== null) {
             const items = this.index.search('*' + this.filterData.search + '*');
             data = data.filter((item) => {
                 return items.find(x => x.ref === item.id) !== undefined;
@@ -236,14 +236,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
         const subscription = this.productsService.get(this._categoryId)
             .subscribe((data) => {
                     this.items = data;
-                    this.index = lunr(function () {
+                    this.index = lunr(function() {
                         this.field('name');
                         this.field('artist');
                         this.field('producer');
                         this.field('year');
                         data.forEach((item) => {
                             this.add(item);
-                        })
+                        });
                     });
                     this.filter();
                     subscription.unsubscribe();

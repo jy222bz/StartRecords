@@ -37,6 +37,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 .mat-column-end {
     display: flex;
     justify-content: flex-end;
+    font-size: 20px;
 }
 
 .mat-stepper-horizontal {
@@ -73,7 +74,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 }
 
 .page-table-pagination {
-    height: calc(100vh - 252px);
+    height: calc(100vh - 180px);
     overflow-y: auto;
 }
 

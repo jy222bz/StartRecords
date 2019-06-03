@@ -1,13 +1,17 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
-import {Track} from "../models/tracks/track";
-import {Product} from "../models/products/product";
+import {Track} from '../models/tracks/track';
+import {Product} from '../models/products/product';
 
 
 @Injectable()
 export class MaintenanceService {
     constructor(private afs: AngularFirestore) {
+
+    }
+
+    fixOrders() {
 
     }
 
@@ -27,8 +31,8 @@ export class MaintenanceService {
                         .pipe(map(
                             actions => {
                                 return actions.map(item => {
-                                    return new Track(item.payload.doc)
-                                })
+                                    return new Track(item.payload.doc);
+                                });
                             }))
                         .subscribe(
                             (tracks) => {
@@ -43,7 +47,7 @@ export class MaintenanceService {
 
                                 this.afs.collection('products').doc(product.id).set(
                                     {
-                                        duration: duration,
+                                        duration,
                                         tracks: tracks.length,
                                     }, {
                                         merge: true
@@ -61,7 +65,7 @@ export class MaintenanceService {
                             (error) => {
                                 console.log(error);
                             }
-                        )
+                        );
 
 
                 });
@@ -69,7 +73,9 @@ export class MaintenanceService {
 
             }, (error) => {
                 console.log(error);
-            })
+            });
     }
+
+
 
 }

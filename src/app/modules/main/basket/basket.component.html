@@ -53,14 +53,14 @@
                         <ng-container matColumnDef="price">
                             <mat-header-cell *matHeaderCellDef class="bigger-size-text"> Price</mat-header-cell>
                             <mat-cell *matCellDef="let element" class="small-size-text">
-                                <app-counter [value]="element.price"></app-counter>
+                                <app-counter [value]="element.price"> kr</app-counter>
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="total">
-                            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total(kr)</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef class="mat-column-end"> Total</mat-header-cell>
                             <mat-cell *matCellDef="let element" class="end-size-text">
-                                <app-counter [value]="element.price * element.count"></app-counter>
+                                <app-counter [value]="element.price * element.count"> kr</app-counter>
                             </mat-cell>
                         </ng-container>
 

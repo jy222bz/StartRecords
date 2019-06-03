@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     MatButtonModule,
     MatCardModule,
@@ -25,12 +25,12 @@ import {
     MatTabsModule,
     MatTooltipModule,
     MatSidenavModule, MatChipsModule, MatBadgeModule, MatStepperModule, MatSliderModule,
-} from "@angular/material";
-import {CommonModule} from "@angular/common";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {InputFileComponent} from "./shared/components/input-file/input-file.component";
-import {BreadcrumbComponent} from "./shared/components/breadcrumb/breadcrumb.component";
-import {RouterModule} from "@angular/router";
+} from '@angular/material';
+import {CommonModule} from '@angular/common';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {InputFileComponent} from './shared/components/input-file/input-file.component';
+import {BreadcrumbComponent} from './shared/components/breadcrumb/breadcrumb.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [
