@@ -112,8 +112,18 @@ export class RatingComponent implements OnInit {
             return;
         }
         if (this.rated) {
+            const ref = this.dialog.open(ErrorComponent, {
+                autoFocus: true,
+                width: '480px',
+                data: "You have already voted to this album"
+            });
+            ref.afterClosed()
+                .subscribe((next) => {
+                });
             return;
         }
+
+
         this.productRatingsService.add(this.productId, this.authenticationService.getAccountId(), elem.id)
             .then((next) => {
                 this.rated = true;

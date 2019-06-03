@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from '../../../../../shared/services/orders/order.service';
 import {EmailService} from '../../../../../shared/services/email.service';
-import {Order} from '../../../../../shared/models/orders/order';
 import {UserService} from "../../../../../shared/services/user/user.service";
 
 
