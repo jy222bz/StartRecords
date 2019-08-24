@@ -1,4 +1,4 @@
-# Project
+# Projecthttps://github.com/jy222bz/StartRecords/blob/dev/README.md
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
@@ -28,9 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-## Weekly meeting
-Monday 		  11:30   Slack
-Tuesday 	  12:45
-Wednesday 	  11:30   Slack
-Thursday 	  11:30		
-Friday		  11:30   Slack
+
